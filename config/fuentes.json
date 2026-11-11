@@ -1,7 +1,7 @@
 [
   {"id": "gamedeveloper", "nombre": "Game Developer", "url": "https://www.gamedeveloper.com/", "rss": "https://www.gamedeveloper.com/rss.xml", "tipo": "noticias", "activa": true, "nota": "RSS confirmado"},
-  {"id": "arstechnica", "nombre": "Ars Technica", "url": "https://arstechnica.com/gaming/", "rss": "https://feed.arstechnica.com/arst-web", "tipo": "noticias", "activa": true, "nota": "el feed es el GENERAL del sitio, no solo gaming: filtrar solo notas de videojuegos, nube o IA aplicada a juegos"},
-  {"id": "theverge", "nombre": "The Verge Entertainment", "url": "https://www.theverge.com/entertainment", "rss": null, "tipo": "noticias", "activa": true, "nota": "buscar RSS en la página"},
+  {"id": "arstechnica", "nombre": "Ars Technica", "url": "https://arstechnica.com/gaming/", "rss": "https://arstechnica.com/gaming/feed/", "tipo": "noticias", "activa": true, "nota": "feed de la sección gaming, probado el 11/11/2026 (responde OK). Reemplaza al feed general feed.arstechnica.com/arst-web, que devolvió 404"},
+  {"id": "theverge", "nombre": "The Verge Entertainment", "url": "https://www.theverge.com/games", "rss": "https://www.theverge.com/rss/games/index.xml", "tipo": "noticias", "activa": true, "nota": "feed de la sección de juegos, probado el 11/11/2026 (responde OK); es el usado en la edición 1, más útil que el de entertainment"},
   {"id": "wired_es", "nombre": "Wired en Español", "url": "https://es.wired.com/", "rss": null, "tipo": "noticias", "activa": true, "nota": "filtrar solo videojuegos y tecnología"},
   {"id": "newzoo", "nombre": "Newzoo", "url": "https://newzoo.com/reports", "rss": null, "tipo": "reportes", "activa": true, "nota": "muchos reportes son pagos; usar solo lo público"},
   {"id": "ampere", "nombre": "Ampere Analysis", "url": "https://www.ampereanalysis.com/reports", "rss": null, "tipo": "reportes", "activa": true, "nota": "el sitio requiere JavaScript; probable fallback a inbox/"},
