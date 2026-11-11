@@ -531,3 +531,14 @@ a.indicador:hover { transform: translateY(-2px); border-color: var(--acento); }
 .ref-tarjeta__pie { margin-top: auto; padding-top: 6px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; font-size: .82rem; color: var(--tinta-suave); }
 .bloque--calidad { background: var(--aviso-fondo); border-radius: 10px; padding: 12px 14px; }
 .tarjeta--advertencia { border-left: 4px solid var(--aviso); }
+.ref-tarjeta__brecha .par { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; margin-right: 10px; }
+.ref-tarjeta__brecha strong { flex-basis: 100%; }
+
+/* Teléfono: el nombre no se monta sobre el selector y las fichas de respaldo no se parten */
+.marca__nombre { overflow: hidden; text-overflow: ellipsis; }
+.chip-id { white-space: nowrap; min-width: 0; }
+@media (max-width: 480px) {
+  .marca__nombre { font-size: 1rem; }
+  .encabezado__controles .selector__rotulo { display: none; }
+  .chip-id span { max-width: 22ch; }
+}

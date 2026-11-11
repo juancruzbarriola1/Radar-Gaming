@@ -775,8 +775,8 @@
     if (g == null || l == null) return '';
     var dif = l - g;
     var txt = dif === 0 ? 'igual a la global' : (dif > 0 ? dif + (dif === 1 ? ' punto mayor' : ' puntos mayor') + ' que la global' : (-dif) + ((-dif) === 1 ? ' punto menor' : ' puntos menor') + ' que la global');
-    return '<p class="ref-tarjeta__brecha">Brecha global ' + medidor(g, 5, 'var(--serie-global)') + ' · Latam ' + medidor(l, 5, 'var(--serie-latam)') +
-      ' <strong>→ en Latinoamérica es ' + txt + '</strong>' + (n.certeza === 'baja' ? ' ' + insigniaCerteza(n) : '') + '</p>';
+    return '<p class="ref-tarjeta__brecha"><span class="par">Brecha global ' + medidor(g, 5, 'var(--serie-global)') + '</span><span class="par">Latam ' + medidor(l, 5, 'var(--serie-latam)') + '</span>' +
+      '<strong>→ en Latinoamérica es ' + txt + '</strong>' + (n.certeza === 'baja' ? ' ' + insigniaCerteza(n) : '') + '</p>';
   }
   function tarjetaRef(n) {
     var u = urlSegura(n.url);
@@ -799,7 +799,7 @@
 
   // Referencias con geografía latam + noticias de la edición con base para valorar la región.
   function latamItems(d) {
-    var refs = refsOk().filter(function (r) { return r.geografia === 'latam'; });
+    var refs = refsOk().filter(function (r) { return r.geografia === 'latam' || r.foco === 'latam'; });
     var ns = d ? noticiasDe(d).filter(function (n) { return n.geografia === 'latam' || num(n.brecha_latam) != null || num(n.adopcion_latam) != null; }) : [];
     return refs.concat(ns);
   }

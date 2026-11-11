@@ -64,7 +64,7 @@ Prioridad de cobertura: cloud_gaming, digitalizacion e ia_clonacion_pirateria. S
 Cada referencia usa los mismos campos que una noticia (id = id de config/fuentes.json; fecha_publicacion puede ser null) más:
 - "tipo_documento": prensa_datos | reporte | paper | analisis | opinion_experta | analisis_legal | posicionamiento_industria | secundaria
 - "foco": el foco de config/fuentes.json (un tema, "latam" o "largo_plazo")
-- "geografia": global | latam | otra (nombrala, p. ej. "EE. UU.", "Colombia")
+- "geografia": global | latam | otra (nombrala, p. ej. "EE. UU.", "Colombia"); null si no es accesible
 - "tipo_evidencia" y "certeza" (como en las noticias)
 - "estado": ok | no_accesible. Si es no_accesible: verificada=false, nota_calidad con el motivo, y resumen, dato_clave y valoraciones en null.
 - "nota_calidad": advertencias sobre la fuente (segunda mano, comunicado patrocinado, cifras que difieren entre firmas, preprint sin revisión), o null.

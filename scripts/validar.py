@@ -335,7 +335,9 @@ class Validador:
             self.enum(r, "foco", FOCOS, donde)
             self.enum(r, "tema", TEMAS, donde)
             geo = r.get("geografia")
-            if not isinstance(geo, str) or not geo.strip():
+            if geo is None and r.get("estado") == "no_accesible":
+                pass  # sin texto no hay base para la geografía
+            elif not isinstance(geo, str) or not geo.strip():
                 self.error(donde, "'geografia' debe ser 'global', 'latam' u otra región nombrada")
             nota = r.get("nota_calidad")
             if nota is not None and (not isinstance(nota, str) or not nota.strip()):
