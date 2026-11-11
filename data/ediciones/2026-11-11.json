@@ -193,6 +193,8 @@
       "brecha_global": 3,
       "brecha_latam": 4,
       "justificacion_brecha": "Global 3: el servicio existe y suma un título masivo, pero limitado a consolas Xbox. Latam 4: Xbox Wire en Español (03/09) dice que la disponibilidad y la compra de horas varían por mercado, y Cultura Geek (22/10) señala que no hay precio confirmado para Argentina. Adopción 4 e impacto 7: la nota muestra uso restringido a una plataforma pero con un lanzamiento de alcance masivo.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "media",
       "verificada": true
     },
     {
@@ -216,6 +218,8 @@
       "brecha_global": 2,
       "brecha_latam": null,
       "justificacion_brecha": "Brecha 2: el horizonte es lo que ya pasa hoy (cierre por bajo uso). Adopción 2 por la cifra de uso de menos del 0,4%; impacto 4 porque el streaming de Sony sigue en consola y Portal. Fase abismo: el propio operador retira el producto por falta de demanda. Sin base para Latam.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "alta",
       "verificada": true
     },
     {
@@ -239,6 +243,8 @@
       "brecha_global": 4,
       "brecha_latam": null,
       "justificacion_brecha": "Brecha 4: es una prueba temprana, solo en EE. UU. y con un único control, frente a un horizonte de adopción temprana. Adopción 1 por esa restricción; impacto 5 porque mejora la experiencia pero no cambia el modelo de negocio. Sin base para Latam.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "alta",
       "verificada": true
     },
     {
@@ -262,6 +268,8 @@
       "brecha_global": 2,
       "brecha_latam": null,
       "justificacion_brecha": "Brecha 2: es la operación habitual del servicio (altas mensuales de catálogo). Adopción 4 e impacto 5: el comunicado muestra crecimiento incremental, no un cambio de modelo. Sin base para Latam.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "alta",
       "verificada": true
     },
     {
@@ -285,6 +293,8 @@
       "brecha_global": 2,
       "brecha_latam": null,
       "justificacion_brecha": "Brecha 2: la venta digital ya es mayoritaria incluso en Nintendo, aunque un tercio largo sigue físico. Adopción 7 por la cifra de 60,7%; impacto 7 porque redefine márgenes y canales minoristas. Sin base para Latam.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "alta",
       "verificada": true
     },
     {
@@ -308,6 +318,8 @@
       "brecha_global": 2,
       "brecha_latam": null,
       "justificacion_brecha": "Brecha 2: la nota cita que lo digital ya era 61,5% del negocio de Nintendo en el segundo trimestre calendario, cerca del escenario de mediano plazo. Adopción 7 (distribución digital) e impacto 6 (costos del físico). Sin base para Latam.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "alta",
       "verificada": true
     },
     {
@@ -331,6 +343,8 @@
       "brecha_global": 3,
       "brecha_latam": null,
       "justificacion_brecha": "Brecha 3: el lanzador está en vista previa y su producto estrella aún no es compatible. Adopción 2 e impacto 4: es un movimiento de distribución acotado a Linux. Sin base para Latam.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "alta",
       "verificada": true
     },
     {
@@ -353,7 +367,9 @@
       "cuadrante": "interrogante",
       "brecha_global": 4,
       "brecha_latam": null,
-      "justificacion_brecha": "Brecha 4: la nota es especulativa (no hay un caso concreto con GTA VI), pero describe un cambio que podría darse pronto. Adopción 3 e impacto 8: fenómeno incipiente con potencial de alterar las ventanas de lanzamiento. Fase pico por el nivel de atención mediática. Sin base para Latam.",
+      "justificacion_brecha": "Brecha 4: la nota es especulativa (no hay un caso concreto con GTA VI), pero describe un cambio que podría darse pronto. Adopción 3 e impacto 8: fenómeno incipiente con potencial de alterar las ventanas de lanzamiento. Fase pico por el nivel de atención mediática. Sin base para Latam. Certeza baja: la brecha se mide sobre un escenario especulativo que todavía no ocurrió.",
+      "tipo_evidencia": "especulacion",
+      "certeza": "baja",
       "verificada": true
     },
     {
@@ -377,6 +393,8 @@
       "brecha_global": 4,
       "brecha_latam": null,
       "justificacion_brecha": "Brecha 4: la empresa reconoce el riesgo pero describe las defensas como trabajo en curso. Adopción 3 (amenaza aún potencial) e impacto 8 (puede cambiar ventanas de lanzamiento y costos legales). Sin base para Latam.",
+      "tipo_evidencia": "opinion",
+      "certeza": "media",
       "verificada": true
     },
     {
@@ -400,6 +418,8 @@
       "brecha_global": 3,
       "brecha_latam": null,
       "justificacion_brecha": "Brecha 3: los jurados registran un aumento significativo de juegos hechos con IA, pero sin consenso de aceptación. Adopción 5 por ese aumento; impacto 7 por el alcance en producción y reputación. Fase abismo por el rechazo explícito de parte de la comunidad. Sin base para Latam.",
+      "tipo_evidencia": "opinion",
+      "certeza": "media",
       "verificada": true
     },
     {
@@ -423,6 +443,8 @@
       "brecha_global": 2,
       "brecha_latam": null,
       "justificacion_brecha": "Brecha 2: el efecto ya se ve hoy en los tiempos de revisión. Adopción 5 e impacto 6 son estimaciones prudentes porque la relación con la IA es una inferencia del medio, no de Valve. Sin base para Latam.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "media",
       "verificada": true
     },
     {
@@ -446,6 +468,8 @@
       "brecha_global": 1,
       "brecha_latam": null,
       "justificacion_brecha": "Brecha 1: describe el modelo vigente de grandes lanzamientos con preventa digital. Adopción 8 e impacto 6: es el negocio central de la industria, con un título capaz de mover el año. Sin base para Latam.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "alta",
       "verificada": true
     },
     {
@@ -468,7 +492,9 @@
       "cuadrante": "estrella",
       "brecha_global": 1,
       "brecha_latam": null,
-      "justificacion_brecha": "Brecha 1: Unity ya es estándar de facto en móviles según la nota; el cambio sería de propiedad, no de adopción. Adopción 8 e impacto 6 por su alcance y por el riesgo de cambios de condiciones para estudios. Sin base para Latam.",
+      "justificacion_brecha": "Brecha 1: Unity ya es estándar de facto en móviles según la nota; el cambio sería de propiedad, no de adopción. Adopción 8 e impacto 6 por su alcance y por el riesgo de cambios de condiciones para estudios. Sin base para Latam. Certeza baja: la compra es una negociación reportada, no un hecho ocurrido.",
+      "tipo_evidencia": "especulacion",
+      "certeza": "baja",
       "verificada": true
     },
     {
@@ -492,6 +518,8 @@
       "brecha_global": 1,
       "brecha_latam": null,
       "justificacion_brecha": "Brecha 1: describe la operación actual del negocio de consolas. Adopción 8 e impacto 5: mercado maduro donde la variable nueva es el costo de componentes. Sin base para Latam.",
+      "tipo_evidencia": "opinion",
+      "certeza": "media",
       "verificada": true
     },
     {
@@ -515,6 +543,8 @@
       "brecha_global": 1,
       "brecha_latam": null,
       "justificacion_brecha": "Brecha 1: un cambio de generación es un ciclo conocido de la industria. Adopción 8 e impacto 5: base instalada enorme y transición planificada. Sin base para Latam.",
+      "tipo_evidencia": "pronostico",
+      "certeza": "media",
       "verificada": true
     }
   ],
