@@ -1,1 +1,13 @@
-{"ediciones": []}
+{
+  "ediciones": [
+    {
+      "numero": 1,
+      "fecha": "2026-11-11",
+      "desde": "2026-11-04",
+      "hasta": "2026-11-11",
+      "archivo": "data/ediciones/2026-11-11.json",
+      "titulo": "GTA VI como prueba de estrés: nube, clonación con IA y formato digital",
+      "noticias": 15
+    }
+  ]
+}

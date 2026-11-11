@@ -1,0 +1,622 @@
+{
+  "edicion": {
+    "numero": 1,
+    "fecha": "2026-11-11",
+    "desde": "2026-11-04",
+    "hasta": "2026-11-11"
+  },
+  "tema_de_la_semana": {
+    "titulo": "GTA VI como prueba de estrés: nube, clonación con IA y formato digital",
+    "bajada": "A días del estreno, GTA VI concentra las tres tendencias prioritarias: Xbox lo usa para empujar su nube hacia consolas viejas, Take-Two admite el riesgo de versiones de PC hechas con IA, y las preventas récord se dan en tiendas digitales mientras el cartucho y el disco pierden peso.",
+    "noticia_ids": [
+      "n01",
+      "n08",
+      "n09",
+      "n12",
+      "n05"
+    ]
+  },
+  "dato_de_la_semana": {
+    "cifra": "60,7%",
+    "texto": "de las ventas de juegos de Nintendo entre abril y septiembre de 2026 fue digital, medido en ingresos: incluso el mayor defensor del formato físico ya vende mayoritariamente en digital.",
+    "fuente": "GamesRadar+",
+    "url": "https://www.gamesradar.com/games/nintendo-says-60-7-percent-of-its-game-sales-are-now-digital-as-physical-share-falls-6-2-percent-from-last-year/"
+  },
+  "fuentes_consultadas": [
+    {
+      "id": "gamedeveloper",
+      "nombre": "Game Developer",
+      "url": "https://www.gamedeveloper.com/rss.xml",
+      "estado": "ok",
+      "nota": "RSS leído; 10 notas en la ventana, 5 usadas."
+    },
+    {
+      "id": "arstechnica",
+      "nombre": "Ars Technica",
+      "url": "https://arstechnica.com/gaming/feed/",
+      "estado": "ok",
+      "nota": "El feed general configurado (feed.arstechnica.com/arst-web) devolvió 404; se usó el feed de la sección gaming. Sugerencia: actualizar config/fuentes.json."
+    },
+    {
+      "id": "theverge",
+      "nombre": "The Verge Entertainment",
+      "url": "https://www.theverge.com/rss/entertainment/index.xml",
+      "estado": "ok",
+      "nota": "Se leyeron los RSS de entertainment y de games (https://www.theverge.com/rss/games/index.xml); el de games es el más útil."
+    },
+    {
+      "id": "wired_es",
+      "nombre": "Wired en Español",
+      "url": "https://es.wired.com/feed/rss",
+      "estado": "sin_novedades",
+      "nota": "RSS leído; en la ventana solo hubo una reseña de hardware y una guía de regalos, sin noticias de industria."
+    },
+    {
+      "id": "newzoo",
+      "nombre": "Newzoo",
+      "url": "https://newzoo.com/reports",
+      "estado": "bloqueada",
+      "nota": "Respuesta 403 con desafío anti-bots (Cloudflare). No se intentó otro camino."
+    },
+    {
+      "id": "ampere",
+      "nombre": "Ampere Analysis",
+      "url": "https://www.ampereanalysis.com/reports",
+      "estado": "requiere_js",
+      "nota": "La página carga solo un esqueleto que depende de JavaScript; sin contenido legible."
+    },
+    {
+      "id": "gartner_forrester",
+      "nombre": "Gartner / Forrester",
+      "url": null,
+      "estado": "sin_novedades",
+      "nota": "La búsqueda no encontró comunicados públicos de Gartner ni Forrester sobre IA en desarrollo de juegos en la ventana."
+    },
+    {
+      "id": "xbox_wire",
+      "nombre": "Xbox Wire",
+      "url": "https://news.xbox.com/en-us/2026/11/10/grand-theft-auto-6-comes-to-xbox-cloud-gaming-november-19/",
+      "estado": "ok",
+      "nota": "Comunicado oficial; también se leyó la versión en español para Latinoamérica del 03/09."
+    },
+    {
+      "id": "windowscentral",
+      "nombre": "Windows Central",
+      "url": "https://www.windowscentral.com/gaming/xbox/grand-theft-auto-6-will-be-playable-on-xbox-cloud-gaming-but-there-are-a-few-catches",
+      "estado": "ok",
+      "nota": "Usado para contrastar n01."
+    },
+    {
+      "id": "purexbox",
+      "nombre": "Pure Xbox",
+      "url": "https://www.purexbox.com/",
+      "estado": "ok",
+      "nota": "Hallado por búsqueda."
+    },
+    {
+      "id": "gamesradar",
+      "nombre": "GamesRadar+",
+      "url": "https://www.gamesradar.com/",
+      "estado": "ok",
+      "nota": "Hallado por búsqueda."
+    },
+    {
+      "id": "ibtimes",
+      "nombre": "International Business Times UK",
+      "url": "https://www.ibtimes.co.uk/",
+      "estado": "ok",
+      "nota": "Hallado por búsqueda."
+    },
+    {
+      "id": "worthplaying",
+      "nombre": "Worthplaying",
+      "url": "https://worthplaying.com/",
+      "estado": "ok",
+      "nota": "Reproduce el comunicado de NVIDIA sobre GeForce NOW."
+    },
+    {
+      "id": "tweaktown",
+      "nombre": "TweakTown",
+      "url": "https://www.tweaktown.com/news/114606/take-two-strengthens-legal-defenses-against-ai-built-gta-6-pc-clones/index.html",
+      "estado": "bloqueada",
+      "nota": "Respuesta 403; se cubrió el tema con IBTimes UK."
+    },
+    {
+      "id": "kotaku",
+      "nombre": "Kotaku",
+      "url": "https://kotaku.com/",
+      "estado": "ok",
+      "nota": "Nota del 26/10, fuera de ventana; usada solo como alerta."
+    },
+    {
+      "id": "boardgamewire",
+      "nombre": "Board Game Wire",
+      "url": "https://boardgamewire.com/",
+      "estado": "ok",
+      "nota": "Nota del 03/11, fuera de ventana; usada solo como alerta."
+    },
+    {
+      "id": "semana",
+      "nombre": "Semana (Colombia)",
+      "url": "https://www.semana.com/",
+      "estado": "ok",
+      "nota": "Nota del 22/10, fuera de ventana; usada como alerta con ángulo Latam."
+    },
+    {
+      "id": "culturageek",
+      "nombre": "Cultura Geek (Argentina)",
+      "url": "https://culturageek.com.ar/",
+      "estado": "ok",
+      "nota": "Nota del 22/10; usada para justificar brecha Latam de n01."
+    },
+    {
+      "id": "oyedigital",
+      "nombre": "Oye 89.7 (México)",
+      "url": "https://oyedigital.mx/",
+      "estado": "ok",
+      "nota": "La nota sobre el estudio PGB Latam 2026 no muestra fecha de publicación; usada solo como alerta."
+    },
+    {
+      "id": "infobae",
+      "nombre": "Infobae",
+      "url": "https://www.infobae.com/",
+      "estado": "ok",
+      "nota": "Nota del 24/10 sobre horas de nube sin Game Pass; fuera de ventana, solo contexto."
+    },
+    {
+      "id": "inbox",
+      "nombre": "inbox/ (fuentes manuales)",
+      "url": null,
+      "estado": "sin_novedades",
+      "nota": "Solo contiene LEEME.md; no hubo textos manuales esta semana."
+    }
+  ],
+  "noticias": [
+    {
+      "id": "n01",
+      "fuente": "The Verge",
+      "url": "https://www.theverge.com/news/1030714/gta-vi-xbox-cloud-gaming-support",
+      "fecha_publicacion": "2026-11-10",
+      "titulo": "GTA VI will be available on Xbox Cloud Gaming for Xbox One consoles",
+      "tipo": "noticia",
+      "tema": "cloud_gaming",
+      "resumen_propio": "Grand Theft Auto VI podrá jugarse por Xbox Cloud Gaming desde su lanzamiento, pero solo en consolas Xbox One y Series X|S, no en PC, móviles ni televisores. El streaming usa la configuración gráfica de Series S. Microsoft lo presenta como inicio de una alianza de diez años con Take-Two. En los hechos, Xbox es la única nube con el juego al estreno. Según Xbox Wire, desde el 11 de noviembre se puede comprar tiempo de nube sin Game Pass en mercados habilitados.",
+      "dato_clave": "Microsoft describe el acuerdo como el primer paso de una alianza estratégica de 10 años con Take-Two.",
+      "lectura_negocio": "La nube se usa como puente para que dueños de hardware viejo (Xbox One) accedan al lanzamiento del año sin comprar consola nueva: un argumento de acceso más que de calidad técnica.",
+      "importancia": 5,
+      "horizonte": "corto",
+      "fase_curva": "pendiente",
+      "adopcion": 4,
+      "adopcion_latam": null,
+      "impacto": 7,
+      "cuadrante": "interrogante",
+      "brecha_global": 3,
+      "brecha_latam": 4,
+      "justificacion_brecha": "Global 3: el servicio existe y suma un título masivo, pero limitado a consolas Xbox. Latam 4: Xbox Wire en Español (03/09) dice que la disponibilidad y la compra de horas varían por mercado, y Cultura Geek (22/10) señala que no hay precio confirmado para Argentina. Adopción 4 e impacto 7: la nota muestra uso restringido a una plataforma pero con un lanzamiento de alcance masivo.",
+      "verificada": true
+    },
+    {
+      "id": "n02",
+      "fuente": "The Verge",
+      "url": "https://www.theverge.com/games/1031144/sony-playstation-plus-windows-pc-app-shutting-down",
+      "fecha_publicacion": "2026-11-10",
+      "titulo": "The PlayStation Plus PC app is shutting down next month",
+      "tipo": "noticia",
+      "tema": "cloud_gaming",
+      "resumen_propio": "Sony cerrará el 10 de diciembre la aplicación de PlayStation Plus para PC, que permitía a los suscriptores Premium jugar por streaming en computadoras. La empresa justificó la decisión por el bajo uso y dijo que prefiere concentrarse en experiencias que más miembros utilizan. El streaming seguirá disponible en consolas y en PlayStation Portal. La medida se suma a reportes previos de un repliegue de Sony en PC.",
+      "dato_clave": "Según Sony, menos del 0,4% de los miembros elegibles de PlayStation Plus Premium usaba la app de PC.",
+      "lectura_negocio": "Sony achica su apuesta de nube a su propio ecosistema de hardware, mientras Microsoft la expande: dos estrategias opuestas para el mismo servicio.",
+      "importancia": 4,
+      "horizonte": "promedio_actual",
+      "fase_curva": "abismo",
+      "adopcion": 2,
+      "adopcion_latam": null,
+      "impacto": 4,
+      "cuadrante": "perro",
+      "brecha_global": 2,
+      "brecha_latam": null,
+      "justificacion_brecha": "Brecha 2: el horizonte es lo que ya pasa hoy (cierre por bajo uso). Adopción 2 por la cifra de uso de menos del 0,4%; impacto 4 porque el streaming de Sony sigue en consola y Portal. Fase abismo: el propio operador retira el producto por falta de demanda. Sin base para Latam.",
+      "verificada": true
+    },
+    {
+      "id": "n03",
+      "fuente": "Pure Xbox",
+      "url": "https://www.purexbox.com/news/2026/11/xbox-announces-two-new-methods-to-play-games-through-the-cloud",
+      "fecha_publicacion": "2026-11-04",
+      "titulo": "Xbox Announces Two New Methods To Play Games Through The Cloud",
+      "tipo": "noticia",
+      "tema": "cloud_gaming",
+      "resumen_propio": "Xbox lanzó en vista previa dos formas nuevas de jugar en la nube. La primera permite usar el teléfono (Android o iOS) como control en televisores inteligentes compatibles. La segunda, llamada cloud connect, conecta el control directamente al servidor por wifi en lugar de Bluetooth al televisor, con el objetivo de reducir la latencia de entrada. Por ahora solo funciona con el nuevo Xbox Nano Controller, en Estados Unidos y no con todos los juegos.",
+      "dato_clave": "Cloud connect usa el wifi para conectar el control directo al servidor de la nube, sin pasar por el televisor.",
+      "lectura_negocio": "Atacar la latencia y la necesidad de comprar un control son dos barreras clásicas del juego en la nube en televisores; el resultado depende de que salga de la fase de prueba.",
+      "importancia": 3,
+      "horizonte": "corto",
+      "fase_curva": "disparador",
+      "adopcion": 1,
+      "adopcion_latam": null,
+      "impacto": 5,
+      "cuadrante": "perro",
+      "brecha_global": 4,
+      "brecha_latam": null,
+      "justificacion_brecha": "Brecha 4: es una prueba temprana, solo en EE. UU. y con un único control, frente a un horizonte de adopción temprana. Adopción 1 por esa restricción; impacto 5 porque mejora la experiencia pero no cambia el modelo de negocio. Sin base para Latam.",
+      "verificada": true
+    },
+    {
+      "id": "n04",
+      "fuente": "Worthplaying (comunicado de NVIDIA)",
+      "url": "https://worthplaying.com/article/2026/11/5/news/151362-geforce-now-brings-dlss-5-to-hogwarts-legacy-adding-24-games-in-november-world-of-warcraft-forever-planet-zoo-2-and-6-others-this-week/",
+      "fecha_publicacion": "2026-11-05",
+      "titulo": "GeForce NOW Brings DLSS 5 To Hogwarts Legacy, Adding 24 Games In November, World of Warcraft: Forever, Planet Zoo 2 And 6 Others This Week",
+      "tipo": "noticia",
+      "tema": "cloud_gaming",
+      "resumen_propio": "NVIDIA anunció que GeForce NOW sumará dos docenas de juegos en noviembre, ocho en la primera semana, entre ellos World of Warcraft: Forever. También estrena en la nube DLSS 5 con renderizado neuronal en Hogwarts Legacy. El servicio pasa a anunciar sus incorporaciones con cadencia mensual, aunque seguirá publicando juegos cada semana. La fecha corresponde a la publicación del comunicado en Worthplaying.",
+      "dato_clave": "24 juegos se suman a GeForce NOW en noviembre, 8 de ellos en la primera semana.",
+      "lectura_negocio": "GeForce NOW compite por catálogo y por técnica gráfica de punta (DLSS 5): el modelo de nube de 'trae tu propia biblioteca' sigue sumando contenido de forma sostenida.",
+      "importancia": 2,
+      "horizonte": "promedio_actual",
+      "fase_curva": "pendiente",
+      "adopcion": 4,
+      "adopcion_latam": null,
+      "impacto": 5,
+      "cuadrante": "perro",
+      "brecha_global": 2,
+      "brecha_latam": null,
+      "justificacion_brecha": "Brecha 2: es la operación habitual del servicio (altas mensuales de catálogo). Adopción 4 e impacto 5: el comunicado muestra crecimiento incremental, no un cambio de modelo. Sin base para Latam.",
+      "verificada": true
+    },
+    {
+      "id": "n05",
+      "fuente": "GamesRadar+",
+      "url": "https://www.gamesradar.com/games/nintendo-says-60-7-percent-of-its-game-sales-are-now-digital-as-physical-share-falls-6-2-percent-from-last-year/",
+      "fecha_publicacion": "2026-11-05",
+      "titulo": "Nintendo says 60.7% of its game sales are now digital, as physical share falls 6.2% from last year",
+      "tipo": "noticia",
+      "tema": "digitalizacion",
+      "resumen_propio": "El reporte financiero de Nintendo muestra que la mayoría de sus ventas de software ya son digitales, aunque más de un tercio sigue siendo físico. La medición es por ingresos, por lo que la debilidad del yen influye, pero la compañía también registró más ventas de versiones descargables de juegos en caja. La nota recuerda que Nintendo es el último de los tres grandes fabricantes que sostiene el formato físico, mientras PlayStation planea abandonarlo.",
+      "dato_clave": "El 60,7% de las ventas de juegos de Nintendo entre abril y septiembre de 2026 fue digital (medido en ingresos).",
+      "lectura_negocio": "Incluso el principal defensor del cartucho cruza la mitad digital: el formato físico pasa a ser un nicho a administrar, no el canal principal.",
+      "importancia": 4,
+      "horizonte": "promedio_actual",
+      "fase_curva": "meseta",
+      "adopcion": 7,
+      "adopcion_latam": null,
+      "impacto": 7,
+      "cuadrante": "estrella",
+      "brecha_global": 2,
+      "brecha_latam": null,
+      "justificacion_brecha": "Brecha 2: la venta digital ya es mayoritaria incluso en Nintendo, aunque un tercio largo sigue físico. Adopción 7 por la cifra de 60,7%; impacto 7 porque redefine márgenes y canales minoristas. Sin base para Latam.",
+      "verificada": true
+    },
+    {
+      "id": "n06",
+      "fuente": "Ars Technica",
+      "url": "https://arstechnica.com/gaming/2026/11/the-tech-memory-shortage-comes-for-nintendos-cartridge-supply-chain/",
+      "fecha_publicacion": "2026-11-04",
+      "titulo": "Nintendo's biggest ROM chip supplier is bowing out of the business",
+      "tipo": "noticia",
+      "tema": "digitalizacion",
+      "resumen_propio": "Macronix, señalada por un analista como principal fabricante de chips de memoria para los cartuchos de Nintendo, anunció que deja gradualmente la industria del videojuego. La demanda de memoria impulsada por la IA hace más rentable usar su capacidad de fábrica en otros chips. Nintendo dijo que no piensa abandonar el cartucho, pero producirlo podría encarecerse al depender de otros proveedores, con posible efecto en el precio de los juegos físicos.",
+      "dato_clave": "La producción de ROM de Macronix cayó 39% en un año y representa solo el 5% de su negocio.",
+      "lectura_negocio": "El fin del formato físico no lo empuja solo el consumidor: la cadena de suministro de memoria, presionada por la IA, también vuelve más caro fabricarlo.",
+      "importancia": 4,
+      "horizonte": "mediano",
+      "fase_curva": "pendiente",
+      "adopcion": 7,
+      "adopcion_latam": null,
+      "impacto": 6,
+      "cuadrante": "estrella",
+      "brecha_global": 2,
+      "brecha_latam": null,
+      "justificacion_brecha": "Brecha 2: la nota cita que lo digital ya era 61,5% del negocio de Nintendo en el segundo trimestre calendario, cerca del escenario de mediano plazo. Adopción 7 (distribución digital) e impacto 6 (costos del físico). Sin base para Latam.",
+      "verificada": true
+    },
+    {
+      "id": "n07",
+      "fuente": "The Verge",
+      "url": "https://www.theverge.com/games/1029557/epic-games-launcher-is-coming-to-steamos",
+      "fecha_publicacion": "2026-11-08",
+      "titulo": "Epic Games Launcher is coming to SteamOS",
+      "tipo": "noticia",
+      "tema": "digitalizacion",
+      "resumen_propio": "Epic confirmó que su nuevo lanzador para Linux, todavía en vista previa, soportará oficialmente SteamOS y Steam Deck, además de otras distribuciones. Eso no garantiza que Fortnite llegue a SteamOS: el soporte de su sistema antitrampas en Linux sigue sin resolverse y Epic dijo que conversa con Valve al respecto.",
+      "dato_clave": null,
+      "lectura_negocio": "La competencia entre tiendas digitales se traslada al hardware portátil: Epic busca presencia en el dispositivo de su rival directo.",
+      "importancia": 2,
+      "horizonte": "corto",
+      "fase_curva": "disparador",
+      "adopcion": 2,
+      "adopcion_latam": null,
+      "impacto": 4,
+      "cuadrante": "perro",
+      "brecha_global": 3,
+      "brecha_latam": null,
+      "justificacion_brecha": "Brecha 3: el lanzador está en vista previa y su producto estrella aún no es compatible. Adopción 2 e impacto 4: es un movimiento de distribución acotado a Linux. Sin base para Latam.",
+      "verificada": true
+    },
+    {
+      "id": "n08",
+      "fuente": "Ars Technica",
+      "url": "https://arstechnica.com/gaming/2026/11/could-potential-ai-clones-of-gta-vi-force-a-quicker-official-port/",
+      "fecha_publicacion": "2026-11-06",
+      "titulo": "Could potential AI clones of GTA VI force a quicker official port?",
+      "tipo": "analisis",
+      "tema": "ia_clonacion_pirateria",
+      "resumen_propio": "Un exdirector técnico de Rockstar, que dejó la empresa en 2009, opinó en una entrevista que las herramientas de IA para ingeniería inversa podrían usarse para producir versiones de PC no autorizadas de GTA VI a partir de la de consola. Según él, el resultado sería inferior, pero suficiente para algunos jugadores, y podría empujar a Rockstar a acercar las fechas de consola y PC. Ars aclara que no hay fecha oficial para la versión de PC.",
+      "dato_clave": "El exdirector técnico estimó que el intento podría costar decenas de miles de dólares en tokens de IA.",
+      "lectura_negocio": "Si la IA abarata la conversión no autorizada, la ventana de exclusividad de consola deja de ser una barrera técnica y pasa a ser un riesgo comercial.",
+      "importancia": 5,
+      "horizonte": "corto",
+      "fase_curva": "pico",
+      "adopcion": 3,
+      "adopcion_latam": null,
+      "impacto": 8,
+      "cuadrante": "interrogante",
+      "brecha_global": 4,
+      "brecha_latam": null,
+      "justificacion_brecha": "Brecha 4: la nota es especulativa (no hay un caso concreto con GTA VI), pero describe un cambio que podría darse pronto. Adopción 3 e impacto 8: fenómeno incipiente con potencial de alterar las ventanas de lanzamiento. Fase pico por el nivel de atención mediática. Sin base para Latam.",
+      "verificada": true
+    },
+    {
+      "id": "n09",
+      "fuente": "International Business Times UK",
+      "url": "https://www.ibtimes.co.uk/take-two-anti-piracy-ai-gta-6-pc-ports-1831461",
+      "fecha_publicacion": "2026-11-10",
+      "titulo": "GTA 6 Could Face AI-Made PC Copies as Take-Two Strengthens Legal Defences Against Growing Piracy Threat",
+      "tipo": "noticia",
+      "tema": "ia_clonacion_pirateria",
+      "resumen_propio": "El CEO de Take-Two, Strauss Zelnick, dijo que la empresa refuerza sus defensas técnicas y sus acciones legales ante la posibilidad de versiones de PC no oficiales de GTA VI hechas con IA. Lo describió como un problema creativo más que una amenaza financiera, y admitió que la piratería probablemente afecte al negocio en alguna medida, aunque lo consideró manejable. Rockstar no anunció versión para PC.",
+      "dato_clave": "Zelnick: \"We are utterly focused on enhancing our technical defences and enhancing our legal activities\".",
+      "lectura_negocio": "Es la primera respuesta explícita de un publisher grande ante la clonación asistida por IA: prioriza vía legal y técnica, y minimiza el impacto financiero frente a inversores.",
+      "importancia": 5,
+      "horizonte": "corto",
+      "fase_curva": "pico",
+      "adopcion": 3,
+      "adopcion_latam": null,
+      "impacto": 8,
+      "cuadrante": "interrogante",
+      "brecha_global": 4,
+      "brecha_latam": null,
+      "justificacion_brecha": "Brecha 4: la empresa reconoce el riesgo pero describe las defensas como trabajo en curso. Adopción 3 (amenaza aún potencial) e impacto 8 (puede cambiar ventanas de lanzamiento y costos legales). Sin base para Latam.",
+      "verificada": true
+    },
+    {
+      "id": "n10",
+      "fuente": "The Verge",
+      "url": "https://www.theverge.com/games/1030994/big-walk-independent-games-festival-igf-ai",
+      "fecha_publicacion": "2026-11-10",
+      "titulo": "The indie game community is in disarray over AI and Big Walk",
+      "tipo": "noticia",
+      "tema": "ia_desarrollo",
+      "resumen_propio": "Un grupo de jurados del Independent Games Festival declaró que no votará juegos que usen IA generativa de ninguna forma, tras notar un aumento fuerte de postulaciones hechas con esas herramientas. Poco después, House House, estudio de Big Walk, admitió un uso puntual de chatbots para resolver problemas técnicos y lo informó en su postulación, aunque no en Steam porque la plataforma no lo pide. El debate expone la falta de consenso en la escena independiente.",
+      "dato_clave": "House House estimó que muy por debajo del 0,1% del código de Big Walk tuvo relación con el uso de LLM.",
+      "lectura_negocio": "El uso de IA, aun mínimo, ya es un riesgo reputacional en premios y comunidades independientes; la transparencia voluntaria no está protegiendo a los estudios.",
+      "importancia": 4,
+      "horizonte": "corto",
+      "fase_curva": "abismo",
+      "adopcion": 5,
+      "adopcion_latam": null,
+      "impacto": 7,
+      "cuadrante": "estrella",
+      "brecha_global": 3,
+      "brecha_latam": null,
+      "justificacion_brecha": "Brecha 3: los jurados registran un aumento significativo de juegos hechos con IA, pero sin consenso de aceptación. Adopción 5 por ese aumento; impacto 7 por el alcance en producción y reputación. Fase abismo por el rechazo explícito de parte de la comunidad. Sin base para Latam.",
+      "verificada": true
+    },
+    {
+      "id": "n11",
+      "fuente": "Game Developer",
+      "url": "https://www.gamedeveloper.com/business/valve-warns-of-slower-steam-approval-process-due-to-flood-of-new-games",
+      "fecha_publicacion": "2026-11-04",
+      "titulo": "Valve warns of slower Steam approvals, possibly due to AI game surge",
+      "tipo": "noticia",
+      "tema": "ia_desarrollo",
+      "resumen_propio": "Valve avisó que la revisión de juegos para publicar en Steam se está demorando por un aumento significativo de envíos, y anunció cambios para que los juegos aprueben en el primer intento. Algunos desarrolladores reportan haber perdido fechas de lanzamiento. Valve no atribuye la demora a la IA; Game Developer lo vincula con el récord de envíos en Steam Next Fest y con datos de Itch.io sobre una avalancha de juegos hechos con IA.",
+      "dato_clave": "Valve: la revisión suele tardar de 3 a 5 días, pero hoy está llevando hasta 12 días hábiles.",
+      "lectura_negocio": "Más oferta (posiblemente impulsada por IA) congestiona la curaduría de las tiendas: el cuello de botella pasa de producir el juego a lograr que lo publiquen y lo vean.",
+      "importancia": 3,
+      "horizonte": "promedio_actual",
+      "fase_curva": "pico",
+      "adopcion": 5,
+      "adopcion_latam": null,
+      "impacto": 6,
+      "cuadrante": "estrella",
+      "brecha_global": 2,
+      "brecha_latam": null,
+      "justificacion_brecha": "Brecha 2: el efecto ya se ve hoy en los tiempos de revisión. Adopción 5 e impacto 6 son estimaciones prudentes porque la relación con la IA es una inferencia del medio, no de Valve. Sin base para Latam.",
+      "verificada": true
+    },
+    {
+      "id": "n12",
+      "fuente": "Game Developer",
+      "url": "https://www.gamedeveloper.com/business/take-two-financials-are-steady-while-the-ceo-claims-that-grand-theft-auto-vi-pre-orders-are-exceeding-expectations",
+      "fecha_publicacion": "2026-11-10",
+      "titulo": "Take-Two CEO: Grand Theft Auto VI pre-orders are exceeding expectations",
+      "tipo": "noticia",
+      "tema": "mercado",
+      "resumen_propio": "Take-Two presentó resultados del trimestre previo al lanzamiento de GTA VI con caídas interanuales en reservas netas e ingresos, atribuidas en parte al arranque lento de NBA 2K27. Su CEO afirmó que las preventas de GTA VI superan ampliamente lo esperado, sin dar cifras. PlayStation y Xbox dijeron que es el juego más reservado de sus tiendas. La empresa espera superar los 8.000 millones de dólares de reservas netas en el año fiscal.",
+      "dato_clave": "Reservas netas de US$1.600 millones en el trimestre; guía anual superior a US$8.000 millones.",
+      "lectura_negocio": "Todo el año fiscal de Take-Two depende de un solo lanzamiento; que sea récord de preventa en tiendas digitales refuerza el peso del canal digital.",
+      "importancia": 4,
+      "horizonte": "promedio_actual",
+      "fase_curva": "meseta",
+      "adopcion": 8,
+      "adopcion_latam": null,
+      "impacto": 6,
+      "cuadrante": "estrella",
+      "brecha_global": 1,
+      "brecha_latam": null,
+      "justificacion_brecha": "Brecha 1: describe el modelo vigente de grandes lanzamientos con preventa digital. Adopción 8 e impacto 6: es el negocio central de la industria, con un título capaz de mover el año. Sin base para Latam.",
+      "verificada": true
+    },
+    {
+      "id": "n13",
+      "fuente": "Game Developer",
+      "url": "https://www.gamedeveloper.com/business/silver-lake-and-the-saudi-arabia-pif-hold-talks-with-unity-to-explore-acquisition",
+      "fecha_publicacion": "2026-11-06",
+      "titulo": "Report: Silver Lake and the Saudi Arabia PIF hold talks with Unity to explore acquisition",
+      "tipo": "noticia",
+      "tema": "mercado",
+      "resumen_propio": "Según Reuters, citada por Game Developer, un consorcio encabezado por Silver Lake y el fondo soberano de Arabia Saudita (PIF) conversa con Unity sobre una posible compra mediante una adquisición apalancada, similar a la que hicieron con Electronic Arts. Silver Lake ya posee 8% de Unity. La empresa del motor gráfico viene reorientándose hacia la IA, con una herramienta para crear juegos a partir de instrucciones de texto.",
+      "dato_clave": "Unity, según la propia empresa, se usa en más de la mitad de los juegos móviles.",
+      "lectura_negocio": "El mismo grupo que controla EA podría sumar el motor más usado en móviles: concentración de propiedad sobre infraestructura crítica de desarrollo.",
+      "importancia": 4,
+      "horizonte": "mediano",
+      "fase_curva": "meseta",
+      "adopcion": 8,
+      "adopcion_latam": null,
+      "impacto": 6,
+      "cuadrante": "estrella",
+      "brecha_global": 1,
+      "brecha_latam": null,
+      "justificacion_brecha": "Brecha 1: Unity ya es estándar de facto en móviles según la nota; el cambio sería de propiedad, no de adopción. Adopción 8 e impacto 6 por su alcance y por el riesgo de cambios de condiciones para estudios. Sin base para Latam.",
+      "verificada": true
+    },
+    {
+      "id": "n14",
+      "fuente": "Game Developer",
+      "url": "https://www.gamedeveloper.com/business/nintendo-confident-in-memory-supply-in-new-financial-report",
+      "fecha_publicacion": "2026-11-05",
+      "titulo": "Nintendo confident in memory supply in new financial report",
+      "tipo": "noticia",
+      "tema": "mercado",
+      "resumen_propio": "El presidente de Nintendo dijo que la compañía puede asegurar memoria suficiente para su hardware pese a la crisis global de precios. Las ventas de Switch 2 cayeron frente al trimestre anterior tras la suba de precio en Estados Unidos, aunque la consola sigue por encima de su antecesora en la comparación desde el lanzamiento. El software creció interanualmente y la previsión anual de Switch 2 se mantiene.",
+      "dato_clave": "Switch 2 vendió 2,67 millones de unidades en el trimestre; la previsión anual sigue en 16 millones.",
+      "lectura_negocio": "La crisis de memoria encarece el hardware y ya frena ventas; el mensaje de Nintendo apunta a calmar a inversores sobre nuevas subas de precio.",
+      "importancia": 3,
+      "horizonte": "promedio_actual",
+      "fase_curva": "meseta",
+      "adopcion": 8,
+      "adopcion_latam": null,
+      "impacto": 5,
+      "cuadrante": "vaca_lechera",
+      "brecha_global": 1,
+      "brecha_latam": null,
+      "justificacion_brecha": "Brecha 1: describe la operación actual del negocio de consolas. Adopción 8 e impacto 5: mercado maduro donde la variable nueva es el costo de componentes. Sin base para Latam.",
+      "verificada": true
+    },
+    {
+      "id": "n15",
+      "fuente": "Game Developer",
+      "url": "https://www.gamedeveloper.com/console/sony-insists-next-generation-consoles-are-still-on-schedule-in-new-financial-report",
+      "fecha_publicacion": "2026-11-06",
+      "titulo": "Sony insists its next-generation console plans are still on schedule",
+      "tipo": "noticia",
+      "tema": "mercado",
+      "resumen_propio": "Sony elevó su previsión de ganancia anual y aseguró que el desarrollo de su próxima generación de consolas avanza según lo planeado, con mayor inversión en la segunda mitad del año. Ante preguntas por el alza de la memoria, sus ejecutivos mencionaron un acuerdo con TSMC para reducir riesgos de suministro. La PS5 se acerca a los 100 millones de unidades distribuidas.",
+      "dato_clave": "PS5 llegó a 97,9 millones de unidades distribuidas; 2,6 millones en el último trimestre.",
+      "lectura_negocio": "Sony mantiene el calendario de nueva consola pese a la crisis de memoria, y lo hace mientras planea abandonar el disco físico: la próxima generación nacería digital.",
+      "importancia": 3,
+      "horizonte": "mediano",
+      "fase_curva": "meseta",
+      "adopcion": 8,
+      "adopcion_latam": null,
+      "impacto": 5,
+      "cuadrante": "vaca_lechera",
+      "brecha_global": 1,
+      "brecha_latam": null,
+      "justificacion_brecha": "Brecha 1: un cambio de generación es un ciclo conocido de la industria. Adopción 8 e impacto 5: base instalada enorme y transición planificada. Sin base para Latam.",
+      "verificada": true
+    }
+  ],
+  "frente_a_frente": {
+    "coincidencias": [
+      {
+        "titulo": "GTA VI en la nube, solo para consolas Xbox",
+        "texto": "Las tres fuentes coinciden en que GTA VI se podrá jugar por Xbox Cloud Gaming desde el estreno únicamente en Xbox One y Series X|S, con la configuración gráfica de Series S, y en que es el inicio de una alianza de diez años con Take-Two.",
+        "fuentes": [
+          "The Verge",
+          "Xbox Wire",
+          "Windows Central"
+        ]
+      },
+      {
+        "titulo": "La IA vuelve viable la conversión no autorizada de juegos grandes",
+        "texto": "Ars Technica y IBTimes coinciden en que la ingeniería inversa asistida por IA hace plausible una versión de PC no oficial de GTA VI antes que la oficial, y que eso ya condiciona la estrategia de Rockstar y Take-Two.",
+        "fuentes": [
+          "Ars Technica",
+          "International Business Times UK"
+        ]
+      },
+      {
+        "titulo": "La crisis de memoria atraviesa a toda la industria",
+        "texto": "Tres notas de la semana vinculan la demanda de memoria por la IA con costos y suministro del gaming: cartuchos más caros (Ars), precio de Switch 2 (Game Developer) y la próxima consola de Sony (Game Developer).",
+        "fuentes": [
+          "Ars Technica",
+          "Game Developer"
+        ]
+      }
+    ],
+    "diferencias": [
+      {
+        "titulo": "¿Amenaza financiera o creativa?",
+        "texto": "El exdirector técnico de Rockstar citado por Ars sostiene que una versión de PC hecha con IA podría dañar las ventas; el CEO de Take-Two, según IBTimes, dice que no es un tema financiero sino creativo y que el impacto será manejable.",
+        "fuentes": [
+          "Ars Technica",
+          "International Business Times UK"
+        ]
+      },
+      {
+        "titulo": "Memoria: tranquilidad oficial frente a señales de la cadena de suministro",
+        "texto": "Nintendo asegura tener memoria suficiente para su hardware (Game Developer), mientras Ars informa que su principal proveedor de chips ROM para cartuchos se retira del negocio del videojuego.",
+        "fuentes": [
+          "Game Developer",
+          "Ars Technica"
+        ]
+      },
+      {
+        "titulo": "Dos estrategias de nube opuestas",
+        "texto": "La misma semana, Microsoft amplía su nube con GTA VI y venta de horas sin suscripción (Xbox Wire), y Sony cierra su app de streaming en PC por bajo uso (The Verge).",
+        "fuentes": [
+          "Xbox Wire",
+          "The Verge"
+        ]
+      }
+    ]
+  },
+  "alertas": [
+    {
+      "tipo": "oportunidad",
+      "fuente": "Semana",
+      "url": "https://www.semana.com/tecnologia/articulo/xbox-pone-precio-al-juego-en-la-nube-sin-suscripcion-a-game-pass/202659/",
+      "fecha": "2026-10-22",
+      "titulo": "Xbox pone precio al juego en la nube sin pagar suscripción a Game Pass",
+      "resumen": "Medio colombiano que detalla la prueba de paquetes de 10, 25 y 50 horas de juego en la nube sin Game Pass, que no vencen y no incluyen el catálogo. Xbox Wire confirmó que la compra se habilita desde el 11 de noviembre en mercados compatibles.",
+      "por_que_importa": "Un modelo de pago por uso baja la barrera de entrada en mercados sensibles al precio como Latinoamérica; falta confirmar en qué países y a qué precio local llega."
+    },
+    {
+      "tipo": "riesgo",
+      "fuente": "Kotaku",
+      "url": "https://kotaku.com/now-that-the-shoe-is-on-the-other-foot-microsoft-and-epic-games-suddenly-agree-that-ai-is-theft-2000749316",
+      "fecha": "2026-10-26",
+      "titulo": "Microsoft And Epic Games Suddenly Agree That AI Is Theft",
+      "resumen": "Kotaku reporta cientos de avisos de retiro por derechos de autor contra versiones para navegador y recompilaciones hechas con IA, incluidas de juegos independientes, y cuestiona la coherencia de Microsoft y Epic, que promueven la IA en su propio desarrollo.",
+      "por_que_importa": "La ola de clonación con IA ya genera litigiosidad y costos de protección de PI también para estudios chicos, no solo para los grandes."
+    },
+    {
+      "tipo": "riesgo",
+      "fuente": "Board Game Wire",
+      "url": "https://boardgamewire.com/index.php/2026/11/03/anthropic-cracks-down-on-ai-game-cloning-as-risk-of-unauthorised-digital-copies-reskins-grows/",
+      "fecha": "2026-11-03",
+      "titulo": "Anthropic cracks down on AI game cloning as risk of unauthorised digital copies, reskins grows",
+      "resumen": "Anthropic agregó a su herramienta de programación instrucciones para no recrear juegos existentes. La nota explica que las mecánicas de juego en general no tienen protección de derechos de autor, lo que deja expuestos sobre todo a los juegos de mesa.",
+      "por_que_importa": "Los proveedores de IA empiezan a autorregularse ante la clonación; las mecánicas siguen sin protección legal, así que el riesgo para los creadores no desaparece."
+    },
+    {
+      "tipo": "oportunidad",
+      "fuente": "Oye 89.7",
+      "url": "https://oyedigital.mx/gaming/pgb-latam-2026-gamers-ia/",
+      "fecha": "",
+      "titulo": "Estudio PGB Latam 2026 revela hábitos de gamers y crecimiento de la IA en videojuegos",
+      "resumen": "Encuesta a 7.202 jugadores de México, Argentina, Perú, Colombia y Chile presentada en gamescom latam: el 48,8% compraría juegos desarrollados con IA y el 25,7% lo pensaría antes de comprar uno hecho principalmente con IA. La nota no muestra fecha de publicación.",
+      "por_que_importa": "Es una de las pocas mediciones regionales sobre aceptación de la IA en juegos: el público latinoamericano aparece menos reacio que la escena independiente global."
+    }
+  ],
+  "limitaciones": [
+    "Al inicio de la sesión la red del entorno bloqueaba todas las fuentes; se habilitó durante la ejecución y luego se pudieron leer.",
+    "Newzoo bloqueó el acceso (desafío anti-bots) y Ampere requiere JavaScript: no hay datos de reportes pagos ni de sus resúmenes públicos esta semana.",
+    "No se encontraron noticias dentro de la ventana con datos específicos de Latinoamérica sobre nube, digitalización o piratería; el ángulo regional quedó en alertas y en la brecha Latam de n01. adopcion_latam quedó en null en todas las noticias.",
+    "No hubo noticias de regulacion_pi verificables en la ventana: un fallo interino del Tribunal Superior del Reino Unido (Spribe vs. Aviator, con efectos en Colombia) apareció solo en un servicio legal con muro de pago y no se incluyó.",
+    "El tema de clonación con IA tuvo mucha cobertura de fines de octubre (avisos de retiro de Microsoft y Epic), fuera de la ventana: se registró solo como alerta.",
+    "El feed general de Ars Technica configurado devuelve 404; se usó el de la sección gaming."
+  ]
+}
