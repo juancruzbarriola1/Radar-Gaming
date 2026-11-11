@@ -1,0 +1,11 @@
+[
+  {"id": "gamedeveloper", "nombre": "Game Developer", "url": "https://www.gamedeveloper.com/", "rss": "https://www.gamedeveloper.com/rss.xml", "tipo": "noticias", "activa": true, "nota": "RSS confirmado"},
+  {"id": "arstechnica", "nombre": "Ars Technica", "url": "https://arstechnica.com/gaming/", "rss": "https://feed.arstechnica.com/arst-web", "tipo": "noticias", "activa": true, "nota": "el feed es el GENERAL del sitio, no solo gaming: filtrar solo notas de videojuegos, nube o IA aplicada a juegos"},
+  {"id": "theverge", "nombre": "The Verge Entertainment", "url": "https://www.theverge.com/entertainment", "rss": null, "tipo": "noticias", "activa": true, "nota": "buscar RSS en la página"},
+  {"id": "wired_es", "nombre": "Wired en Español", "url": "https://es.wired.com/", "rss": null, "tipo": "noticias", "activa": true, "nota": "filtrar solo videojuegos y tecnología"},
+  {"id": "newzoo", "nombre": "Newzoo", "url": "https://newzoo.com/reports", "rss": null, "tipo": "reportes", "activa": true, "nota": "muchos reportes son pagos; usar solo lo público"},
+  {"id": "ampere", "nombre": "Ampere Analysis", "url": "https://www.ampereanalysis.com/reports", "rss": null, "tipo": "reportes", "activa": true, "nota": "el sitio requiere JavaScript; probable fallback a inbox/"},
+  {"id": "gartner_forrester", "nombre": "Gartner / Forrester", "url": null, "rss": null, "tipo": "reportes", "activa": true, "nota": "sin URL fija: buscar comunicados de prensa públicos sobre IA generativa en desarrollo de juegos"},
+  {"id": "bain_genai_games", "nombre": "Bain: How Will Generative AI Change the Video Game Industry?", "url": "https://www.bain.com/es-ar/insights/how-will-generative-ai-change-the-video-game-industry/", "rss": null, "tipo": "contexto", "activa": false, "nota": "publicado en 2023; línea base para 'promedio actual', no noticia de la semana"},
+  {"id": "digit_google_cloud", "nombre": "DIGIT: AI Is Powering a New Era in Gaming, Finds Google Cloud", "url": "https://www.digit.fyi/?p=123008", "rss": null, "tipo": "contexto", "activa": false, "nota": "reporta el estudio de Google Cloud 'AI Meets the Games Industry'; línea base de adopción de IA"}
+]
