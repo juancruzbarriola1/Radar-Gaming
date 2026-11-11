@@ -1,0 +1,518 @@
+{
+  "actualizado": "2026-11-11",
+  "tendencias": [
+    {
+      "id": "t01",
+      "nombre": "La nube como puente de acceso",
+      "tema": "cloud_gaming",
+      "descripcion": "Jugar por streaming desde servidores remotos, sin hardware potente. Hoy los operadores la usan sobre todo para llevar su catálogo a equipos viejos o a pantallas sin consola.",
+      "promedio_actual": "Servicio complementario y de nicho: según GlobalData (vía PocketGamer.biz), solo 6% de los jugadores tenía una suscripción de juego en la nube en 2023, y Sony cierra su app de PC porque la usaba menos del 0,4% de los miembros elegibles de PlayStation Plus Premium. Xbox ofrece GTA VI en la nube solo en sus consolas y GeForce NOW suma catálogo mes a mes.",
+      "hacia_donde_va": "Si madura, la nube vuelve accesible un lanzamiento AAA sin comprar consola nueva y abre el pago por uso (Xbox habilita la compra de horas sin Game Pass en mercados compatibles). GlobalData proyecta un mercado de más de US$22.000 millones en 2030, un pronóstico de 2024 sin actualizar.",
+      "horizonte": "corto",
+      "fase_curva": "pendiente",
+      "adopcion": 3,
+      "impacto": 7,
+      "cuadrante": "interrogante",
+      "brecha_global": 3,
+      "brecha_latam": 4,
+      "justificacion_brecha": "Global 3: el servicio existe y suma títulos masivos (n01, n04), pero el uso medido es bajo (n02: menos de 0,4%; GlobalData: 6% de suscriptores en 2023). Latam 4: según n01, la disponibilidad y la compra de horas varían por mercado y no hay precio confirmado para Argentina; según GSMA, vía El Economista, la penetración de internet móvil era 64% a fines de 2024. Fase pendiente: los operadores ajustan el modelo (Sony se repliega, Microsoft la usa como puente).",
+      "posicion_industria": "adelantada",
+      "argumento_posicion": "La oferta va por delante de la demanda medida: Microsoft y NVIDIA amplían catálogo y formas de acceso (n01, n03, n04) mientras Sony retira su app de PC por bajo uso (n02) y GlobalData midió 6% de suscriptores en 2023.",
+      "proveedores": [
+        {"nombre": "Microsoft (Xbox Cloud Gaming)", "rol": "Streaming de GTA VI en Xbox One y Series X|S desde el lanzamiento; venta de horas de nube sin Game Pass en mercados habilitados.", "fuente_id": "n01"},
+        {"nombre": "Microsoft (Xbox)", "rol": "Prueba en EE. UU. del teléfono como control en televisores y de cloud connect, que conecta el control al servidor por wifi para bajar la latencia.", "fuente_id": "n03"},
+        {"nombre": "NVIDIA (GeForce NOW)", "rol": "Nube de tipo 'traé tu biblioteca': 24 juegos nuevos en noviembre y DLSS 5 en la nube.", "fuente_id": "n04"},
+        {"nombre": "Sony (PlayStation Plus Premium)", "rol": "Mantiene el streaming en consolas y PlayStation Portal; cierra la app de PC el 10 de diciembre.", "fuente_id": "n02"},
+        {"nombre": "Claro", "rol": "Operador que vende juego en la nube y lo presenta como forma de control frente a piratería y fraude (webinar de la Universidad Externado).", "fuente_id": "uexternado_pirateria"}
+      ],
+      "inversion_requerida": "media",
+      "justificacion_inversion": "Para un estudio o publisher, entrar a una nube existente es sobre todo un acuerdo comercial y pruebas de rendimiento (GTA VI corre con la configuración de Series S, n01); operar infraestructura propia es otra escala y Sony muestra que puede no recuperarse (n02). Valoración editorial: ninguna fuente da montos.",
+      "kpis": [
+        "Horas jugadas por streaming sobre horas totales del título",
+        "Jugadores que acceden por nube sin tener consola de la generación actual",
+        "Compras de horas de nube por mercado, donde se habilite",
+        "Latencia de entrada y abandono de sesión",
+        "Conversión de jugador de nube a comprador del juego o de la suscripción"
+      ],
+      "justificacion_kpis": "Miden lo que las fuentes ponen en duda: el uso real (n02), el rol de puente para hardware viejo (n01), la latencia que Xbox intenta reducir (n03) y el pago por horas (n01).",
+      "implicancias": {
+        "indie": "Estar en catálogos como GeForce NOW da alcance sin portar a cada hardware, pero el uso medido de la nube todavía es bajo (n02).",
+        "publisher_aaa": "La nube permite vender el lanzamiento a dueños de consolas viejas (GTA VI en Xbox One): conviene negociarla como canal de acceso, no como sustituto del hardware.",
+        "plataforma_distribuidor": "Dos estrategias opuestas: Microsoft amplía y vende horas sueltas; Sony se repliega a su hardware. El diferencial está en catálogo, latencia y precio por uso.",
+        "latam": "Disponibilidad y precio de la nube varían por país y no están confirmados en Argentina; con 64% de internet móvil (GSMA, 2024) la conectividad pone techo."
+      },
+      "decision_sugerida": "Tratar la nube como canal complementario: medir horas por streaming por mercado antes de invertir más y negociar presencia en catálogos existentes en lugar de infraestructura propia.",
+      "urgencia": "vigilar",
+      "certeza": "media",
+      "evidencia": [
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n01"},
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n02"},
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n03"},
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n04"},
+        {"tipo": "referencia", "edicion": null, "id": "pocketgamer_globaldata_cloud"},
+        {"tipo": "referencia", "edicion": null, "id": "eleconomista_latam"},
+        {"tipo": "referencia", "edicion": null, "id": "uexternado_pirateria"}
+      ],
+      "ultima_actualizacion": "2026-11-11"
+    },
+    {
+      "id": "t02",
+      "nombre": "Lo digital como canal principal; el físico, nicho caro",
+      "tema": "digitalizacion",
+      "descripcion": "La venta de juegos se concentra en tiendas digitales y el formato físico pierde participación. Además, fabricar cartuchos se encarece porque la memoria se desvía a la IA.",
+      "promedio_actual": "La venta digital ya es mayoría incluso en Nintendo: 60,7% de sus ventas de juegos entre abril y septiembre de 2026, medido en ingresos (n05). GTA VI es el juego más reservado en las tiendas de PlayStation y Xbox (n12). En hardware y accesorios también avanza el canal online frente a la tienda física, según NielsenIQ, vía La República.",
+      "hacia_donde_va": "El físico pasa a ser un nicho a administrar: más caro de producir si los proveedores de memoria se retiran (Macronix, n06) y con PlayStation planeando abandonarlo (n05). Margen y poder de negociación se trasladan a las tiendas digitales.",
+      "horizonte": "promedio_actual",
+      "fase_curva": "meseta",
+      "adopcion": 7,
+      "impacto": 7,
+      "cuadrante": "estrella",
+      "brecha_global": 2,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 2: la venta digital ya es mayoritaria según los datos medidos de Nintendo (n05; 61,5% del negocio en el segundo trimestre calendario según n06); la distancia que queda es el tercio físico. Sin base para Latam: ninguna fuente mide la venta digital de juegos en la región (NielsenIQ, vía La República, habla del canal online en hardware y accesorios, no de juegos).",
+      "posicion_industria": "en_linea",
+      "argumento_posicion": "La industria acompaña el cambio: Nintendo vende mayoría digital pero sostiene el cartucho (n05, n06), PlayStation planea abandonar el físico (n05) y los grandes lanzamientos se reservan en tiendas digitales (n12).",
+      "proveedores": [
+        {"nombre": "Nintendo", "rol": "Último de los tres grandes que sostiene el formato físico; 60,7% de sus ventas de juegos ya es digital.", "fuente_id": "n05"},
+        {"nombre": "Macronix", "rol": "Principal fabricante de chips ROM para cartuchos de Nintendo, según un analista; se retira gradualmente del videojuego.", "fuente_id": "n06"},
+        {"nombre": "Tiendas de PlayStation y Xbox", "rol": "Canal de preventa del lanzamiento del año: según ambas plataformas, GTA VI es el juego más reservado de sus tiendas.", "fuente_id": "n12"}
+      ],
+      "inversion_requerida": "baja",
+      "justificacion_inversion": "Para quien ya vende en tiendas digitales, el cambio no exige inversión nueva; el costo está en sostener el físico, con cartuchos más caros (n06). Valoración editorial: ninguna fuente da montos.",
+      "kpis": [
+        "Participación digital en los ingresos de software",
+        "Costo unitario de fabricación del formato físico",
+        "Preventas digitales sobre preventas totales",
+        "Margen por unidad digital frente a física"
+      ],
+      "justificacion_kpis": "Son las variables que mueven las fuentes: participación digital medida en ingresos (n05), costo del cartucho (n06) y preventas en tiendas (n12).",
+      "implicancias": {
+        "indie": "Sin impacto relevante nuevo: la mayoría ya vende solo en digital. Si se hace una edición física, su costo tiende a subir (n06).",
+        "publisher_aaa": "El lanzamiento se juega en las tiendas digitales (preventas de GTA VI); el físico pasa a ser una decisión de margen, con cartuchos más caros.",
+        "plataforma_distribuidor": "Las tiendas digitales concentran preventas y margen; el minorista físico pierde peso y la cadena de soportes pierde proveedores.",
+        "latam": "Sin base en la evidencia para medir la venta digital de juegos en la región."
+      },
+      "decision_sugerida": "Planificar cada lanzamiento con el canal digital como principal y revisar tiradas y precio del físico ante el aumento del costo de los cartuchos.",
+      "urgencia": "preparar",
+      "certeza": "alta",
+      "evidencia": [
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n05"},
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n06"},
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n12"},
+        {"tipo": "referencia", "edicion": null, "id": "larepublica_nielseniq"}
+      ],
+      "ultima_actualizacion": "2026-11-11"
+    },
+    {
+      "id": "t03",
+      "nombre": "Venta directa y competencia entre tiendas",
+      "tema": "digitalizacion",
+      "descripcion": "Los editores venden cada vez más por canales propios, como tiendas web, y las tiendas compiten por estar en el hardware del rival. El objetivo es recuperar margen y relación directa con el jugador.",
+      "promedio_actual": "Según la encuesta global de Bain (más de 5.300 jugadores), casi la mitad compró en tiendas web de desarrolladores. Newzoo, vía PocketGamer.biz, señala que la venta directa gana peso entre los grandes editores. Epic lleva su lanzador, en vista previa, a SteamOS y Steam Deck (n07).",
+      "hacia_donde_va": "Si madura, la comisión de las plataformas deja de ser un costo fijo: el editor captura margen y datos del jugador, y el hardware abierto como SteamOS se vuelve terreno de varias tiendas. En Latinoamérica, Bain marca como desafíos las comisiones y los medios de pago locales.",
+      "horizonte": "corto",
+      "fase_curva": "pendiente",
+      "adopcion": 5,
+      "impacto": 6,
+      "cuadrante": "estrella",
+      "brecha_global": 2,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 2: la compra directa ya alcanza a casi la mitad de los jugadores encuestados por Bain y Newzoo la ve ganar peso. Adopción 5 por esa cifra; impacto 6 por el efecto en margen. Epic en SteamOS sigue en vista previa (n07). Sin base para Latam: Bain no separa cifras por región y su lectura regional es interpretación, no dato.",
+      "posicion_industria": "en_linea",
+      "argumento_posicion": "Los grandes editores ya empujan la venta directa (Newzoo, vía PocketGamer.biz) y los jugadores responden (Bain), pero las tiendas de terceros siguen controlando el hardware: Fortnite no llega a SteamOS por el antitrampas (n07).",
+      "proveedores": [
+        {"nombre": "Epic Games", "rol": "Lanzador para Linux en vista previa con soporte oficial de SteamOS y Steam Deck.", "fuente_id": "n07"},
+        {"nombre": "Valve", "rol": "Dueño de SteamOS y Steam Deck; Epic conversa con Valve sobre el soporte de su antitrampas.", "fuente_id": "n07"}
+      ],
+      "inversion_requerida": "media",
+      "justificacion_inversion": "Una tienda web propia exige pasarela de pagos, soporte y marketing directo; en Latinoamérica, Bain marca los medios de pago locales como desafío. Valoración editorial: ninguna fuente da montos.",
+      "kpis": [
+        "Participación de la venta directa en los ingresos",
+        "Margen neto por venta directa frente a tienda de terceros",
+        "Conversión de la tienda web",
+        "Jugadores con cuenta propia (datos de primera mano)",
+        "Tasa de aprobación de pagos locales por país"
+      ],
+      "justificacion_kpis": "Responden a lo que las fuentes dicen que cambia: el canal (Bain), el margen (Newzoo, vía PocketGamer.biz) y los medios de pago locales (Bain).",
+      "implicancias": {
+        "indie": "La venta directa exige audiencia propia; lo inmediato es diversificar tiendas, ya que el hardware abierto (SteamOS) empieza a admitir otras además de Steam (n07).",
+        "publisher_aaa": "La venta directa recupera margen y datos: Newzoo la ve ganar peso entre los grandes editores y casi la mitad de los jugadores ya compró así (Bain).",
+        "plataforma_distribuidor": "La comisión queda en discusión y el hardware propio deja de ser exclusivo de una tienda: Epic entra en SteamOS.",
+        "latam": "Bain señala comisiones y medios de pago locales como desafíos en la región; no hay cifras regionales de venta directa."
+      },
+      "decision_sugerida": "Evaluar un canal de venta directa (tienda web o lanzador propio) con medios de pago locales, empezando por los mercados con más jugadores que pagan.",
+      "urgencia": "preparar",
+      "certeza": "media",
+      "evidencia": [
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n07"},
+        {"tipo": "referencia", "edicion": null, "id": "bain_latam_2026"},
+        {"tipo": "referencia", "edicion": null, "id": "pocketgamer_newzoo"}
+      ],
+      "ultima_actualizacion": "2026-11-11"
+    },
+    {
+      "id": "t04",
+      "nombre": "Ports y clones no autorizados hechos con IA",
+      "tema": "ia_clonacion_pirateria",
+      "descripcion": "Herramientas de IA para ingeniería inversa podrían abaratar versiones no autorizadas de un juego, por ejemplo un port de PC de un título de consola. Los editores responden con defensas técnicas y acciones legales.",
+      "promedio_actual": "Riesgo reconocido pero sin caso concreto con GTA VI: Take-Two dice reforzar sus defensas técnicas y legales y lo llama un problema creativo más que financiero (n09). Un exdirector técnico de Rockstar estima que intentarlo costaría decenas de miles de dólares en tokens de IA (n08). En Latinoamérica, la piratería de software de juegos promedió 58% según la BSA, cifra de segunda mano y sin año (webinar de la Universidad Externado).",
+      "hacia_donde_va": "Si la conversión asistida por IA se abarata, la exclusividad temporal de consola deja de ser una barrera técnica: el editor tendría que acortar la distancia entre las versiones de consola y PC (n08) y sumar costos legales permanentes.",
+      "horizonte": "corto",
+      "fase_curva": "pico",
+      "adopcion": 3,
+      "impacto": 8,
+      "cuadrante": "interrogante",
+      "brecha_global": 4,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 4: el editor reconoce la amenaza (n09) pero el escenario no ocurrió (n08 es especulativa) y las defensas se describen como trabajo en curso. Certeza baja: la brecha se mide sobre un escenario especulativo, todavía no ocurrido. Sin base para Latam: la cifra de piratería regional es de segunda mano, sin año, y no mide clonación con IA.",
+      "posicion_industria": "atrasada",
+      "argumento_posicion": "Las defensas van detrás de la amenaza: Take-Two describe sus defensas técnicas y legales como algo que está reforzando (n09) y no hay fecha oficial para la versión de PC de GTA VI, que es la ventana que la IA podría aprovechar (n08).",
+      "proveedores": [],
+      "inversion_requerida": "media",
+      "justificacion_inversion": "Supone defensa técnica y legal continua; Take-Two la considera manejable (n09). Valoración editorial: ninguna fuente da montos de defensa.",
+      "kpis": [
+        "Días entre el lanzamiento en consola y la aparición de versiones no autorizadas",
+        "Avisos de retiro enviados y resueltos",
+        "Meses entre la versión de consola y la de PC",
+        "Costo legal anual de protección de PI"
+      ],
+      "justificacion_kpis": "Siguen las dos palancas que plantean las fuentes: la ventana consola-PC (n08) y la defensa técnica y legal (n09).",
+      "implicancias": {
+        "indie": "La evidencia se centra en un AAA; para un estudio chico el riesgo es el mismo con menos recursos para defenderse, así que conviene tener lista la vía de reclamo de PI.",
+        "publisher_aaa": "La ventana de exclusividad de consola pasa a ser un riesgo comercial: cuanto más larga, más espacio para una versión no autorizada (n08).",
+        "plataforma_distribuidor": "Sin impacto directo medido en la evidencia; si el riesgo se concreta, las plataformas serían el punto donde se ejecutan los retiros.",
+        "latam": "La región ya convive con piratería alta (58% según la BSA, de segunda mano y sin año); la clonación con IA no tiene datos regionales."
+      },
+      "decision_sugerida": "Para títulos grandes, revisar la distancia entre la versión de consola y la de PC y dejar listo un protocolo técnico y legal de retiro antes del lanzamiento.",
+      "urgencia": "preparar",
+      "certeza": "baja",
+      "evidencia": [
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n08"},
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n09"},
+        {"tipo": "referencia", "edicion": null, "id": "uexternado_pirateria"}
+      ],
+      "ultima_actualizacion": "2026-11-11"
+    },
+    {
+      "id": "t05",
+      "nombre": "IA generativa en la producción: adopción con rechazo",
+      "tema": "ia_desarrollo",
+      "descripcion": "Uso de IA generativa para crear código, arte o contenido de juegos. Crece en volumen, pero choca con el rechazo de parte de la comunidad y congestiona la curaduría de las tiendas.",
+      "promedio_actual": "Al menos 7% de los juegos publicados en Steam declara algún uso de IA para crear contenido, frente a 1% el año anterior, según un reporte de Ichiro Lambe citado por Ternar et al. Los jurados del IGF notan un aumento fuerte de postulaciones con IA y parte se niega a votarlas (n10). Valve demora la revisión hasta 12 días hábiles por más envíos, sin atribuirlo a la IA (n11).",
+      "hacia_donde_va": "La IA acelera la ideación y el prototipado, pero sus resultados exigen retrabajo y supervisión antes de producción (Ternar et al.). El cuello de botella pasa de producir el juego a lograr que lo publiquen y lo acepten (n10, n11). Unity ya ofrece una herramienta para crear juegos a partir de texto (n13).",
+      "horizonte": "corto",
+      "fase_curva": "abismo",
+      "adopcion": 5,
+      "impacto": 7,
+      "cuadrante": "estrella",
+      "brecha_global": 3,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 3: el uso ya es visible (7% de los lanzamientos en Steam; más postulaciones con IA en el IGF) pero sin consenso de aceptación ni norma de declaración (Steam no la pide, n10). Fase abismo por el rechazo explícito de jurados. Sin base para Latam: la encuesta de Bain sobre comodidad con la IA es global y los estudios revisados por Ternar et al. no cubren la región.",
+      "posicion_industria": "atrasada",
+      "argumento_posicion": "Las reglas van detrás del uso: Steam no pide declarar la IA (n10), la curaduría se satura (n11) y cada premio fija su criterio. Del lado del público, Bain mide que 42% de los jugadores se siente más cómodo con la IA en los juegos que hace un año.",
+      "proveedores": [
+        {"nombre": "Unity", "rol": "Motor que se reorienta a la IA, con una herramienta para crear juegos a partir de instrucciones de texto.", "fuente_id": "n13"},
+        {"nombre": "Valve (Steam)", "rol": "Tienda que recibe el aumento de envíos y cambia su proceso para que los juegos aprueben en el primer intento.", "fuente_id": "n11"}
+      ],
+      "inversion_requerida": "baja",
+      "justificacion_inversion": "Las herramientas están disponibles; el costo real está en retrabajo, supervisión y riesgo de autoría (Ternar et al.), más el riesgo reputacional (n10). Valoración editorial: ninguna fuente da montos.",
+      "kpis": [
+        "Horas ahorradas en prototipado frente a horas de retrabajo",
+        "Porcentaje de contenido final hecho con IA (declarado)",
+        "Días de aprobación en tiendas",
+        "Menciones y reseñas sobre el uso de IA en el juego",
+        "Reclamos de autoría o de PI recibidos"
+      ],
+      "justificacion_kpis": "Miden el balance que describen las fuentes: velocidad contra retrabajo (Ternar et al.), demora de publicación (n11) y costo reputacional (n10).",
+      "implicancias": {
+        "indie": "Usar IA, aun en forma mínima, ya es un riesgo reputacional en festivales y comunidades: House House estimó muy por debajo de 0,1% de código ligado a LLM y quedó en el centro del debate (n10).",
+        "publisher_aaa": "La IA acelera prototipos, pero el ahorro no es automático por el retrabajo; conviene tener una política de declaración antes de que la exijan tiendas o premios.",
+        "plataforma_distribuidor": "Más envíos saturan la curaduría (Steam pasó de 3-5 días a hasta 12 días hábiles); la tienda debe decidir si exige declarar el uso de IA.",
+        "latam": "Sin base regional en la evidencia de esta tendencia."
+      },
+      "decision_sugerida": "Definir por escrito dónde y cuánto se usa IA y cómo se declara, y sumar días de aprobación en Steam al calendario de lanzamiento.",
+      "urgencia": "ahora",
+      "certeza": "media",
+      "evidencia": [
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n10"},
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n11"},
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n13"},
+        {"tipo": "referencia", "edicion": null, "id": "arxiv_genai_qualitative"},
+        {"tipo": "referencia", "edicion": null, "id": "bain_latam_2026"}
+      ],
+      "ultima_actualizacion": "2026-11-11"
+    },
+    {
+      "id": "t06",
+      "nombre": "Motores generativos y modelos de mundo",
+      "tema": "ia_desarrollo",
+      "descripcion": "Sistemas de IA que generan mundos de juego, su física y su lógica en tiempo real, en lugar de armarlos a mano en un motor tradicional. Hoy es agenda de investigación y prototipos.",
+      "promedio_actual": "Nicho de investigación: un relevamiento encuentra 53 juegos y prototipos nativos de IA públicos, 45,3% de ellos aventuras narrativas (Xu et al.). Naavik ve el uso más cercano en preproducción y prototipado, y estima más de US$10.000 millones invertidos en modelos de mundo en 18 meses, sin detallar la fuente.",
+      "hacia_donde_va": "Si madura, el motor pasa a generar mundos bajo control del diseñador. Yu et al. ubican mundos interactivos con física coherente a 3-5 años y mundos que evolucionan solos a 10-15 años, como pronóstico preliminar y condicional.",
+      "horizonte": "largo",
+      "fase_curva": "disparador",
+      "adopcion": 1,
+      "impacto": 8,
+      "cuadrante": "interrogante",
+      "brecha_global": 5,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 5. Certeza baja: la brecha se mide contra un escenario especulativo; los propios autores ubican el primer nivel generativo a 3-5 años sin garantía (Yu et al.) y Naavik ve las experiencias de consumo muy lejos por el costo de inferencia. Adopción 1: solo 53 artefactos públicos (Xu et al.). Sin base para Latam.",
+      "posicion_industria": "adelantada",
+      "argumento_posicion": "El capital va por delante del producto: Naavik estima más de US$10.000 millones invertidos en modelos de mundo, mientras las experiencias de consumo siguen lejos por el costo de inferencia y con dudas sobre la demanda.",
+      "proveedores": [
+        {"nombre": "Genie 3", "rol": "Modelo de mundo citado por Naavik; costo estimado de unos US$100 por hora, sin fuente nombrada.", "fuente_id": "naavik_world_models"}
+      ],
+      "inversion_requerida": "alta",
+      "justificacion_inversion": "Desarrollar o adoptar estas tecnologías exige investigación y cómputo caros (costo de inferencia, según Naavik y Xu et al.); para la mayoría, lo viable es experimentar en prototipado. Valoración editorial.",
+      "kpis": [
+        "Costo de inferencia por hora de juego",
+        "Tiempo de prototipado con y sin modelo de mundo",
+        "Consistencia y control del mundo generado en pruebas internas",
+        "Volumen y orden de los datos propios de juego disponibles para entrenar"
+      ],
+      "justificacion_kpis": "Son los cuellos de botella que nombran las fuentes: costo de inferencia (Naavik, Xu et al.), memoria, consistencia y control (Yu et al.) y el valor de los datos propios (Naavik).",
+      "implicancias": {
+        "indie": "Experimental: puede servir para prototipar, pero los juegos nativos de IA son sobre todo aventuras narrativas; estrategia y simulación casi no aparecen (Xu et al.).",
+        "publisher_aaa": "Horizonte largo: vale explorar en preproducción y cuidar los datos de juego propios, que Naavik ve como el activo de valor; no reemplaza al motor en este ciclo.",
+        "plataforma_distribuidor": "Sin impacto relevante en este horizonte: la evidencia no trata la distribución.",
+        "latam": "Sin base regional en la evidencia."
+      },
+      "decision_sugerida": "Asignar un equipo chico a probar modelos de mundo en prototipado y ordenar los datos de juego propios, sin compromisos de producción.",
+      "urgencia": "vigilar",
+      "certeza": "baja",
+      "evidencia": [
+        {"tipo": "referencia", "edicion": null, "id": "arxiv_gge_roadmap"},
+        {"tipo": "referencia", "edicion": null, "id": "arxiv_ai_native_games"},
+        {"tipo": "referencia", "edicion": null, "id": "naavik_world_models"}
+      ],
+      "ultima_actualizacion": "2026-11-11"
+    },
+    {
+      "id": "t07",
+      "nombre": "Autoría y protección de PI con contenido hecho con IA",
+      "tema": "regulacion_pi",
+      "descripcion": "Qué se puede proteger cuando parte del juego se genera con IA y cómo se registra la propiedad intelectual en cada mercado. Define si un competidor puede copiar activos sin consecuencias.",
+      "promedio_actual": "En EE. UU., según Nelson Mullins, el arte, los íconos o los sonidos generados solo por IA podrían quedar sin derecho de autor, y recomiendan documentar la intervención humana. En Brasil rige para marcas la regla de quien registra primero (LexLatin, 2023). Ninguna de las dos fuentes cita casos judiciales.",
+      "hacia_donde_va": "Documentar la intervención humana (prompts, borradores, aprobaciones) pasa a ser parte del costo de producción, y los contratos con proveedores incorporan cláusulas de autoría. Los marcos de la región siguen siendo desiguales.",
+      "horizonte": "mediano",
+      "fase_curva": "disparador",
+      "adopcion": 4,
+      "impacto": 7,
+      "cuadrante": "interrogante",
+      "brecha_global": 3,
+      "brecha_latam": 3,
+      "justificacion_brecha": "Global 3: el marco existe en EE. UU., pero la documentación de autoría es una recomendación y no se citan casos (Nelson Mullins). Latam 3: LexLatin describe un mapa regulatorio desigual a 2023, con Brasil aún discutiendo su ley, y puede haber cambiado. Ambas fuentes se centran en el juego de azar en línea más que en videojuegos.",
+      "posicion_industria": "atrasada",
+      "argumento_posicion": "La práctica va detrás del uso de la IA: documentar la autoría es una recomendación de bufetes, no un estándar, y no hay jurisprudencia citada (Nelson Mullins); para Latinoamérica la referencia disponible es de 2023 (LexLatin).",
+      "proveedores": [
+        {"nombre": "Nelson Mullins", "rol": "Bufete autor del análisis sobre derecho de autor y contenido generado con IA en EE. UU.", "fuente_id": "nelsonmullins_ai_copyright"},
+        {"nombre": "Demarest", "rol": "Bufete cuyas abogadas analizan para LexLatin los riesgos de PI en Brasil.", "fuente_id": "lexlatin_regulacion"}
+      ],
+      "inversion_requerida": "baja",
+      "justificacion_inversion": "Registrar PI y documentar el proceso creativo es un costo administrativo y legal acotado frente al riesgo de perder protección. Valoración editorial: las fuentes no dan montos.",
+      "kpis": [
+        "Porcentaje de activos con registro de intervención humana",
+        "Marcas y software registrados por mercado antes del lanzamiento",
+        "Contratos con proveedores que incluyen cláusulas de autoría e IA",
+        "Reclamos de PI recibidos o iniciados"
+      ],
+      "justificacion_kpis": "Traducen en indicadores las recomendaciones de las fuentes: documentar la intervención humana y ajustar contratos (Nelson Mullins) y registrar antes de lanzar (LexLatin).",
+      "implicancias": {
+        "indie": "Si se usa IA para arte o sonido, documentar la intervención humana es la forma de no perder protección; registrar la marca antes de entrar a Brasil es la defensa básica.",
+        "publisher_aaa": "Los contratos con proveedores y estudios externos deben cubrir autoría e IA; sin documentación, activos generados podrían quedar libres para copiar en EE. UU.",
+        "plataforma_distribuidor": "Sin impacto relevante directo: las fuentes no tratan a las tiendas ni a las plataformas.",
+        "latam": "Marco desigual por país (LexLatin, 2023); en Brasil, la marca es de quien la registra primero."
+      },
+      "decision_sugerida": "Sumar al proceso de producción un registro de intervención humana sobre los activos hechos con IA y registrar marca y software en cada mercado antes de lanzar.",
+      "urgencia": "preparar",
+      "certeza": "media",
+      "evidencia": [
+        {"tipo": "referencia", "edicion": null, "id": "nelsonmullins_ai_copyright"},
+        {"tipo": "referencia", "edicion": null, "id": "lexlatin_regulacion"}
+      ],
+      "ultima_actualizacion": "2026-11-11"
+    },
+    {
+      "id": "t08",
+      "nombre": "El costo de la memoria presiona hardware y cartuchos",
+      "tema": "mercado",
+      "descripcion": "La demanda de memoria para IA encarece chips y desvía capacidad de fábrica. Golpea el precio de las consolas, la producción de cartuchos y la planificación de la próxima generación.",
+      "promedio_actual": "Switch 2 vendió 2,67 millones de unidades en el trimestre, menos que en el anterior, tras la suba de precio en EE. UU.; Nintendo asegura tener memoria suficiente (n14). Sony mantiene el calendario de su próxima consola y firmó con TSMC para reducir riesgos de suministro (n15). Macronix, principal proveedor de ROM para cartuchos según un analista, se retira del videojuego (n06).",
+      "hacia_donde_va": "Si persiste, el hardware y el formato físico se encarecen, el precio frena ventas y los fabricantes compiten por asegurar suministro con acuerdos de largo plazo. Refuerza el paso a lo digital.",
+      "horizonte": "promedio_actual",
+      "fase_curva": "meseta",
+      "adopcion": 7,
+      "impacto": 5,
+      "cuadrante": "vaca_lechera",
+      "brecha_global": 2,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 2: la crisis ya está en curso y los grandes fabricantes la gestionan (n14, n15); la brecha es la capacidad de absorberla sin subir precios. Adopción 7 porque alcanza a Nintendo, Sony y la cadena de cartuchos; impacto 5 porque afecta costos y precios, no el modelo de negocio. Fase meseta: se gestiona dentro de la operación. Sin base para Latam.",
+      "posicion_industria": "en_linea",
+      "argumento_posicion": "Los grandes responden a tiempo: Nintendo declara suministro asegurado (n14) y Sony cerró un acuerdo con TSMC (n15). El punto débil es la cadena del cartucho, cuyo principal proveedor se retira (n06).",
+      "proveedores": [
+        {"nombre": "TSMC", "rol": "Acuerdo con Sony para reducir riesgos de suministro.", "fuente_id": "n15"},
+        {"nombre": "Macronix", "rol": "Fabricante de ROM para cartuchos que se retira; su producción de ROM cayó 39% en un año.", "fuente_id": "n06"}
+      ],
+      "inversion_requerida": "media",
+      "justificacion_inversion": "Asegurar suministro exige contratos anticipados o pagar más por componentes; para quien no fabrica hardware, el efecto llega por el precio de consolas y cartuchos. Valoración editorial: las fuentes no dan montos.",
+      "kpis": [
+        "Costo de memoria por unidad de hardware o cartucho",
+        "Ventas de hardware después de cada cambio de precio",
+        "Meses de suministro asegurado por contrato",
+        "Base instalada de la plataforma objetivo"
+      ],
+      "justificacion_kpis": "Siguen las variables que mueven las notas: precio y ventas de Switch 2 (n14), acuerdos de suministro (n15) y costo del cartucho (n06).",
+      "implicancias": {
+        "indie": "Efecto indirecto: consolas más caras pueden frenar la base instalada a la que se apunta, y el físico se encarece.",
+        "publisher_aaa": "Si el hardware se encarece, la base instalada crece más lento: Switch 2 vendió menos tras la suba de precio en EE. UU. (n14).",
+        "plataforma_distribuidor": "Es el perfil más expuesto: el costo de memoria pega en el precio de la consola y en el calendario de la próxima generación.",
+        "latam": "Sin base regional en la evidencia."
+      },
+      "decision_sugerida": "Revisar los supuestos de base instalada y precio de hardware en el plan del próximo año y, si se fabrica físico, cotizar proveedores alternativos de memoria.",
+      "urgencia": "preparar",
+      "certeza": "media",
+      "evidencia": [
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n14"},
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n15"},
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n06"}
+      ],
+      "ultima_actualizacion": "2026-11-11"
+    },
+    {
+      "id": "t09",
+      "nombre": "Latinoamérica: crecimiento móvil con fricción de pagos y conectividad",
+      "tema": "mercado",
+      "descripcion": "La región crece por encima del promedio global, con el móvil como plataforma dominante. Los frenos son los medios de pago, las comisiones y la conectividad desigual.",
+      "promedio_actual": "Mercado ya masivo y mobile-first: Newzoo (vía GameDev Reports) pronostica 394 millones de jugadores y US$9.300 millones en 2026 (+7,9%); NielsenIQ (vía La República) midió a la región como la de mayor crecimiento (25%, período no explícito). El informe de GamesBeat patrocinado por Xsolla trata a Brasil, México y el resto como mercados distintos. Las cifras de jugadores difieren entre firmas y no se combinan.",
+      "hacia_donde_va": "Si madura, la región pasa de oportunidad a prioridad estratégica (GamesBeat/Xsolla): ganan quienes resuelvan pagos locales, localización por país y conectividad. GSMA (vía El Economista) proyecta 74% de internet móvil en 2030, frente a 64% a fines de 2024.",
+      "horizonte": "mediano",
+      "fase_curva": "pendiente",
+      "adopcion": 6,
+      "impacto": 6,
+      "cuadrante": "estrella",
+      "brecha_global": null,
+      "brecha_latam": 3,
+      "justificacion_brecha": "Sin brecha global: es una tendencia regional. Latam 3: la conectividad móvil (64% hoy frente a 74% proyectado por GSMA, vía El Economista) y los medios de pago (Bain) siguen frenando, mientras Newzoo prevé crecimiento por encima del promedio (vía GameDev Reports). Las bases son pronósticos y un comunicado patrocinado, y el tamaño de mercado difiere unas 2,8 veces entre firmas (E&N).",
+      "posicion_industria": "atrasada",
+      "argumento_posicion": "La infraestructura comercial va detrás de la audiencia: varias firmas cuentan cientos de millones de jugadores, pero medios de pago, comisiones (Bain) y conectividad (GSMA) frenan la monetización; Newzoo ve a la región crecer rápido con una porción chica de los ingresos.",
+      "proveedores": [
+        {"nombre": "Xsolla", "rol": "Patrocina el informe de GamesBeat sobre la región y se promociona en él.", "fuente_id": "xsolla_latam_2026"}
+      ],
+      "inversion_requerida": "media",
+      "justificacion_inversion": "Localización por país, medios de pago locales y presencia en eventos regionales, repetidos por país porque la región no es un bloque (GamesBeat/Xsolla). Valoración editorial: las fuentes no dan montos.",
+      "kpis": [
+        "Ingresos por país (Brasil, México, resto), no como bloque",
+        "Tasa de aprobación de pagos locales",
+        "Ingreso promedio por jugador que paga en la región",
+        "Participación del móvil en los ingresos regionales",
+        "Retención según la calidad de conexión"
+      ],
+      "justificacion_kpis": "Atienden lo que señalan las fuentes: mercados distintos por país (GamesBeat/Xsolla), pagos (Bain), móvil dominante (Newzoo, E&N) y conectividad (GSMA).",
+      "implicancias": {
+        "indie": "Los indies están en crecimiento en la región según el informe de GamesBeat/Xsolla; el móvil y los medios de pago locales definen el alcance.",
+        "publisher_aaa": "La región crece más rápido que el total pero pesa poco en ingresos (Newzoo): la oportunidad está en la escala de jugadores y la monetización local.",
+        "plataforma_distribuidor": "Medios de pago locales y comisiones son la fricción principal (Bain); quien la resuelva captura el crecimiento.",
+        "latam": "Tratar Brasil, México y el resto como mercados distintos y elegir una sola firma para dimensionar el mercado: las cifras difieren mucho entre firmas."
+      },
+      "decision_sugerida": "Armar un plan por país, no regional, con medios de pago locales y foco móvil, citando una única firma para dimensionar el mercado.",
+      "urgencia": "preparar",
+      "certeza": "media",
+      "evidencia": [
+        {"tipo": "referencia", "edicion": null, "id": "xsolla_latam_2026"},
+        {"tipo": "referencia", "edicion": null, "id": "gamedevreports_newzoo_2026"},
+        {"tipo": "referencia", "edicion": null, "id": "larepublica_nielseniq"},
+        {"tipo": "referencia", "edicion": null, "id": "eleconomista_latam"},
+        {"tipo": "referencia", "edicion": null, "id": "eyn_latam_2025"},
+        {"tipo": "referencia", "edicion": null, "id": "bain_latam_2026"}
+      ],
+      "ultima_actualizacion": "2026-11-11"
+    },
+    {
+      "id": "t10",
+      "nombre": "Mercado maduro: crecer por gasto y retención",
+      "tema": "mercado",
+      "descripcion": "Con la audiencia cerca del techo en los mercados maduros, el crecimiento viene de monetizar mejor a los jugadores existentes. Pocos lanzamientos masivos concentran el resultado del año.",
+      "promedio_actual": "Según Newzoo (vía GamesBeat y PocketGamer.biz, que citan a la misma firma), el mercado llegaría a US$213.900 millones en 2026 y los jugadores que gastan crecerían 4,7% hasta 1.650 millones. Take-Two espera más de US$8.000 millones de reservas netas en el año fiscal, apoyado en GTA VI (n12).",
+      "hacia_donde_va": "La competencia pasa a ser por gasto y retención, no por jugadores nuevos: según Newzoo no hay un único modelo de crecimiento y la venta directa gana peso. Newzoo proyecta 4.070 millones de jugadores en 2029, con más crecimiento en mercados emergentes.",
+      "horizonte": "promedio_actual",
+      "fase_curva": "meseta",
+      "adopcion": 8,
+      "impacto": 5,
+      "cuadrante": "vaca_lechera",
+      "brecha_global": 1,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 1: describe el funcionamiento actual del mercado, sobre pronósticos de Newzoo. Las tres referencias citan a la misma firma, así que no son fuentes independientes. Sin base para Latam en esta tendencia (la región se trata en la tendencia de Latinoamérica).",
+      "posicion_industria": "en_linea",
+      "argumento_posicion": "La industria ya opera así: Take-Two apoya su año fiscal en un lanzamiento (n12) y los grandes editores empujan la venta directa (Newzoo, vía PocketGamer.biz).",
+      "proveedores": [],
+      "inversion_requerida": "media",
+      "justificacion_inversion": "Retener y monetizar requiere operación en vivo, datos y venta directa; es más un cambio de prioridad que una inversión nueva. Valoración editorial: las fuentes no dan montos.",
+      "kpis": [
+        "Ingreso promedio por jugador que paga",
+        "Retención a 30 y 90 días",
+        "Proporción de jugadores que pagan",
+        "Peso del principal lanzamiento en los ingresos del año"
+      ],
+      "justificacion_kpis": "Reflejan el cambio que describe Newzoo (más pagadores que jugadores nuevos) y la concentración en un título que muestra Take-Two (n12).",
+      "implicancias": {
+        "indie": "Sin impacto relevante distinto: las fuentes hablan del mercado agregado y de grandes editores.",
+        "publisher_aaa": "El año depende de pocos lanzamientos (Take-Two y GTA VI) y de retener y monetizar a la base existente.",
+        "plataforma_distribuidor": "Con menos jugadores nuevos, el valor está en retener al que paga y en no perder la venta frente a la venta directa de los editores.",
+        "latam": "Sin base en esta tendencia; la región se trata en la tendencia de Latinoamérica."
+      },
+      "decision_sugerida": "Medir y priorizar ingreso por jugador que paga y retención por sobre la captación, y bajar la dependencia de un único lanzamiento.",
+      "urgencia": "vigilar",
+      "certeza": "media",
+      "evidencia": [
+        {"tipo": "referencia", "edicion": null, "id": "gamesbeat_newzoo_2026"},
+        {"tipo": "referencia", "edicion": null, "id": "pocketgamer_newzoo"},
+        {"tipo": "referencia", "edicion": null, "id": "gamedevreports_newzoo_2026"},
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n12"}
+      ],
+      "ultima_actualizacion": "2026-11-11"
+    },
+    {
+      "id": "t11",
+      "nombre": "Concentración de capital en herramientas de desarrollo",
+      "tema": "mercado",
+      "descripcion": "Grandes fondos compran empresas que proveen herramientas centrales del desarrollo de juegos. Puede cambiar condiciones de uso y precios para los estudios.",
+      "promedio_actual": "Según Reuters, citada por Game Developer, Silver Lake y el fondo soberano de Arabia Saudita (PIF) conversan con Unity sobre una posible compra, similar a la que hicieron con Electronic Arts; Silver Lake ya posee 8% de Unity. Es una negociación reportada, no un hecho.",
+      "hacia_donde_va": "Si ocurre, el mismo grupo controlaría a un gran editor y al motor que, según Unity, se usa en más de la mitad de los juegos móviles: más poder sobre condiciones y precios de una herramienta crítica.",
+      "horizonte": "mediano",
+      "fase_curva": "meseta",
+      "adopcion": 4,
+      "impacto": 6,
+      "cuadrante": "interrogante",
+      "brecha_global": 2,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 2: según la nota, el mismo grupo ya compró EA; sumar Unity sería continuidad más que un cambio de adopción. Certeza baja: la compra es una negociación reportada, no un hecho ocurrido, y hay una sola fuente. Sin base para Latam.",
+      "posicion_industria": "en_linea",
+      "argumento_posicion": "Sin base para hablar de atraso o adelanto: la negociación sigue un antecedente reciente (EA) según la única fuente disponible.",
+      "proveedores": [
+        {"nombre": "Unity", "rol": "Motor usado en más de la mitad de los juegos móviles, según la empresa; objeto de la posible compra.", "fuente_id": "n13"},
+        {"nombre": "Silver Lake y PIF", "rol": "Consorcio que negocia la compra mediante una adquisición apalancada, como la que hicieron con Electronic Arts.", "fuente_id": "n13"}
+      ],
+      "inversion_requerida": "sin_dato",
+      "justificacion_inversion": "No hay una inversión del lado de los estudios; el costo posible es de dependencia (cambios de condiciones), que ninguna fuente cuantifica.",
+      "kpis": [
+        "Porcentaje de proyectos que dependen de un único motor",
+        "Costo de licencias del motor por proyecto",
+        "Tiempo estimado para migrar de motor"
+      ],
+      "justificacion_kpis": "Miden la exposición a un cambio de condiciones del proveedor, el riesgo que plantea la lectura de negocio de n13.",
+      "implicancias": {
+        "indie": "Muchos estudios móviles dependen de Unity; un cambio de dueño podría traer cambios de condiciones, hoy no anunciados.",
+        "publisher_aaa": "Sin impacto relevante inmediato; conviene seguir la operación si se usa Unity en proyectos propios.",
+        "plataforma_distribuidor": "Sin impacto relevante en la evidencia.",
+        "latam": "Sin base regional en la evidencia."
+      },
+      "decision_sugerida": "Seguir la operación y estimar cuánto cuesta migrar de motor en los proyectos que dependen de Unity.",
+      "urgencia": "vigilar",
+      "certeza": "baja",
+      "evidencia": [
+        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n13"}
+      ],
+      "ultima_actualizacion": "2026-11-11"
+    }
+  ]
+}

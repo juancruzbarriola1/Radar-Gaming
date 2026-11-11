@@ -22,6 +22,106 @@
     "fuente": "GamesRadar+",
     "url": "https://www.gamesradar.com/games/nintendo-says-60-7-percent-of-its-game-sales-are-now-digital-as-physical-share-falls-6-2-percent-from-last-year/"
   },
+  "resumen_ejecutivo": {
+    "claves": [
+      {
+        "texto": "GTA VI llega a la nube de Xbox solo en consolas, mientras Sony cierra su app de streaming en PC por bajo uso: la nube sirve como puente de acceso, no como reemplazo del hardware.",
+        "tendencia_id": "t01",
+        "noticia_ids": [
+          "n01",
+          "n02"
+        ]
+      },
+      {
+        "texto": "Nintendo ya vende 60,7% en digital (en ingresos) y su principal proveedor de chips ROM se retira: el físico pierde demanda y se encarece.",
+        "tendencia_id": "t02",
+        "noticia_ids": [
+          "n05",
+          "n06"
+        ]
+      },
+      {
+        "texto": "Take-Two admite el riesgo de versiones de PC de GTA VI hechas con IA y responde con defensas técnicas y legales; el caso todavía no ocurrió.",
+        "tendencia_id": "t04",
+        "noticia_ids": [
+          "n08",
+          "n09"
+        ]
+      },
+      {
+        "texto": "La IA generativa ya pesa en la curaduría: Steam demora hasta 12 días hábiles y jurados del IGF se niegan a votar juegos hechos con IA.",
+        "tendencia_id": "t05",
+        "noticia_ids": [
+          "n10",
+          "n11"
+        ]
+      },
+      {
+        "texto": "La memoria cara frena el hardware: Switch 2 vendió menos tras subir de precio en EE. UU. y Sony asegura suministro con TSMC.",
+        "tendencia_id": "t08",
+        "noticia_ids": [
+          "n14",
+          "n15"
+        ]
+      }
+    ],
+    "decisiones": [
+      {
+        "accion": "Escribir una política de uso de IA (dónde, cuánto y cómo se declara) antes de postular a premios o lanzar.",
+        "urgencia": "ahora",
+        "por_que": "Jurados del IGF no votarán juegos con IA y un uso mínimo declarado ya generó debate (n10).",
+        "tendencia_id": "t05"
+      },
+      {
+        "accion": "Sumar al calendario de lanzamiento más días de revisión en Steam.",
+        "urgencia": "ahora",
+        "por_que": "Valve informa revisiones de hasta 12 días hábiles, contra 3 a 5 habituales; hubo estudios que perdieron su fecha (n11).",
+        "tendencia_id": "t05"
+      },
+      {
+        "accion": "Revisar la distancia entre la versión de consola y la de PC y preparar un protocolo de retiro para títulos grandes.",
+        "urgencia": "preparar",
+        "por_que": "La IA podría abaratar ports no autorizados y Take-Two ya refuerza defensas técnicas y legales (n08, n09).",
+        "tendencia_id": "t04"
+      },
+      {
+        "accion": "Revisar tiradas y precio del formato físico y los supuestos de precio de hardware para el próximo año.",
+        "urgencia": "preparar",
+        "por_que": "El cartucho se encarece por la salida de Macronix (n06) y la suba de precio ya frenó ventas de Switch 2 (n14).",
+        "tendencia_id": "t08"
+      },
+      {
+        "accion": "Medir horas de nube por mercado antes de invertir más en streaming, sobre todo en Latinoamérica.",
+        "urgencia": "vigilar",
+        "por_que": "Sony cierra su app de PC por uso menor a 0,4% (n02) y en la región la disponibilidad y el precio varían por país (n01).",
+        "tendencia_id": "t01"
+      }
+    ],
+    "riesgos": [
+      {
+        "texto": "Versiones no autorizadas de un lanzamiento grande, hechas con IA, antes del port oficial.",
+        "tendencia_id": "t04"
+      },
+      {
+        "texto": "Cartuchos y consolas más caros por la demanda de memoria de la IA.",
+        "tendencia_id": "t08"
+      },
+      {
+        "texto": "Rechazo reputacional por usar IA, aun en forma mínima, en la escena independiente.",
+        "tendencia_id": "t05"
+      }
+    ],
+    "oportunidades": [
+      {
+        "texto": "La compra de horas de nube sin Game Pass baja la barrera de entrada; falta confirmar países y precios en Latinoamérica.",
+        "tendencia_id": "t01"
+      },
+      {
+        "texto": "Preventas récord de GTA VI en tiendas digitales: el canal digital concentra el lanzamiento del año.",
+        "tendencia_id": "t02"
+      }
+    ]
+  },
   "fuentes_consultadas": [
     {
       "id": "gamedeveloper",
@@ -180,6 +280,7 @@
       "titulo": "GTA VI will be available on Xbox Cloud Gaming for Xbox One consoles",
       "tipo": "noticia",
       "tema": "cloud_gaming",
+      "tendencia_id": "t01",
       "resumen_propio": "Grand Theft Auto VI podrá jugarse por Xbox Cloud Gaming desde su lanzamiento, pero solo en consolas Xbox One y Series X|S, no en PC, móviles ni televisores. El streaming usa la configuración gráfica de Series S. Microsoft lo presenta como inicio de una alianza de diez años con Take-Two. En los hechos, Xbox es la única nube con el juego al estreno. Según Xbox Wire, desde el 11 de noviembre se puede comprar tiempo de nube sin Game Pass en mercados habilitados.",
       "dato_clave": "Microsoft describe el acuerdo como el primer paso de una alianza estratégica de 10 años con Take-Two.",
       "lectura_negocio": "La nube se usa como puente para que dueños de hardware viejo (Xbox One) accedan al lanzamiento del año sin comprar consola nueva: un argumento de acceso más que de calidad técnica.",
@@ -205,6 +306,7 @@
       "titulo": "The PlayStation Plus PC app is shutting down next month",
       "tipo": "noticia",
       "tema": "cloud_gaming",
+      "tendencia_id": "t01",
       "resumen_propio": "Sony cerrará el 10 de diciembre la aplicación de PlayStation Plus para PC, que permitía a los suscriptores Premium jugar por streaming en computadoras. La empresa justificó la decisión por el bajo uso y dijo que prefiere concentrarse en experiencias que más miembros utilizan. El streaming seguirá disponible en consolas y en PlayStation Portal. La medida se suma a reportes previos de un repliegue de Sony en PC.",
       "dato_clave": "Según Sony, menos del 0,4% de los miembros elegibles de PlayStation Plus Premium usaba la app de PC.",
       "lectura_negocio": "Sony achica su apuesta de nube a su propio ecosistema de hardware, mientras Microsoft la expande: dos estrategias opuestas para el mismo servicio.",
@@ -230,6 +332,7 @@
       "titulo": "Xbox Announces Two New Methods To Play Games Through The Cloud",
       "tipo": "noticia",
       "tema": "cloud_gaming",
+      "tendencia_id": "t01",
       "resumen_propio": "Xbox lanzó en vista previa dos formas nuevas de jugar en la nube. La primera permite usar el teléfono (Android o iOS) como control en televisores inteligentes compatibles. La segunda, llamada cloud connect, conecta el control directamente al servidor por wifi en lugar de Bluetooth al televisor, con el objetivo de reducir la latencia de entrada. Por ahora solo funciona con el nuevo Xbox Nano Controller, en Estados Unidos y no con todos los juegos.",
       "dato_clave": "Cloud connect usa el wifi para conectar el control directo al servidor de la nube, sin pasar por el televisor.",
       "lectura_negocio": "Atacar la latencia y la necesidad de comprar un control son dos barreras clásicas del juego en la nube en televisores; el resultado depende de que salga de la fase de prueba.",
@@ -255,6 +358,7 @@
       "titulo": "GeForce NOW Brings DLSS 5 To Hogwarts Legacy, Adding 24 Games In November, World of Warcraft: Forever, Planet Zoo 2 And 6 Others This Week",
       "tipo": "noticia",
       "tema": "cloud_gaming",
+      "tendencia_id": "t01",
       "resumen_propio": "NVIDIA anunció que GeForce NOW sumará dos docenas de juegos en noviembre, ocho en la primera semana, entre ellos World of Warcraft: Forever. También estrena en la nube DLSS 5 con renderizado neuronal en Hogwarts Legacy. El servicio pasa a anunciar sus incorporaciones con cadencia mensual, aunque seguirá publicando juegos cada semana. La fecha corresponde a la publicación del comunicado en Worthplaying.",
       "dato_clave": "24 juegos se suman a GeForce NOW en noviembre, 8 de ellos en la primera semana.",
       "lectura_negocio": "GeForce NOW compite por catálogo y por técnica gráfica de punta (DLSS 5): el modelo de nube de 'trae tu propia biblioteca' sigue sumando contenido de forma sostenida.",
@@ -280,6 +384,7 @@
       "titulo": "Nintendo says 60.7% of its game sales are now digital, as physical share falls 6.2% from last year",
       "tipo": "noticia",
       "tema": "digitalizacion",
+      "tendencia_id": "t02",
       "resumen_propio": "El reporte financiero de Nintendo muestra que la mayoría de sus ventas de software ya son digitales, aunque más de un tercio sigue siendo físico. La medición es por ingresos, por lo que la debilidad del yen influye, pero la compañía también registró más ventas de versiones descargables de juegos en caja. La nota recuerda que Nintendo es el último de los tres grandes fabricantes que sostiene el formato físico, mientras PlayStation planea abandonarlo.",
       "dato_clave": "El 60,7% de las ventas de juegos de Nintendo entre abril y septiembre de 2026 fue digital (medido en ingresos).",
       "lectura_negocio": "Incluso el principal defensor del cartucho cruza la mitad digital: el formato físico pasa a ser un nicho a administrar, no el canal principal.",
@@ -305,6 +410,7 @@
       "titulo": "Nintendo's biggest ROM chip supplier is bowing out of the business",
       "tipo": "noticia",
       "tema": "digitalizacion",
+      "tendencia_id": "t02",
       "resumen_propio": "Macronix, señalada por un analista como principal fabricante de chips de memoria para los cartuchos de Nintendo, anunció que deja gradualmente la industria del videojuego. La demanda de memoria impulsada por la IA hace más rentable usar su capacidad de fábrica en otros chips. Nintendo dijo que no piensa abandonar el cartucho, pero producirlo podría encarecerse al depender de otros proveedores, con posible efecto en el precio de los juegos físicos.",
       "dato_clave": "La producción de ROM de Macronix cayó 39% en un año y representa solo el 5% de su negocio.",
       "lectura_negocio": "El fin del formato físico no lo empuja solo el consumidor: la cadena de suministro de memoria, presionada por la IA, también vuelve más caro fabricarlo.",
@@ -330,6 +436,7 @@
       "titulo": "Epic Games Launcher is coming to SteamOS",
       "tipo": "noticia",
       "tema": "digitalizacion",
+      "tendencia_id": "t03",
       "resumen_propio": "Epic confirmó que su nuevo lanzador para Linux, todavía en vista previa, soportará oficialmente SteamOS y Steam Deck, además de otras distribuciones. Eso no garantiza que Fortnite llegue a SteamOS: el soporte de su sistema antitrampas en Linux sigue sin resolverse y Epic dijo que conversa con Valve al respecto.",
       "dato_clave": null,
       "lectura_negocio": "La competencia entre tiendas digitales se traslada al hardware portátil: Epic busca presencia en el dispositivo de su rival directo.",
@@ -355,6 +462,7 @@
       "titulo": "Could potential AI clones of GTA VI force a quicker official port?",
       "tipo": "analisis",
       "tema": "ia_clonacion_pirateria",
+      "tendencia_id": "t04",
       "resumen_propio": "Un exdirector técnico de Rockstar, que dejó la empresa en 2009, opinó en una entrevista que las herramientas de IA para ingeniería inversa podrían usarse para producir versiones de PC no autorizadas de GTA VI a partir de la de consola. Según él, el resultado sería inferior, pero suficiente para algunos jugadores, y podría empujar a Rockstar a acercar las fechas de consola y PC. Ars aclara que no hay fecha oficial para la versión de PC.",
       "dato_clave": "El exdirector técnico estimó que el intento podría costar decenas de miles de dólares en tokens de IA.",
       "lectura_negocio": "Si la IA abarata la conversión no autorizada, la ventana de exclusividad de consola deja de ser una barrera técnica y pasa a ser un riesgo comercial.",
@@ -380,6 +488,7 @@
       "titulo": "GTA 6 Could Face AI-Made PC Copies as Take-Two Strengthens Legal Defences Against Growing Piracy Threat",
       "tipo": "noticia",
       "tema": "ia_clonacion_pirateria",
+      "tendencia_id": "t04",
       "resumen_propio": "El CEO de Take-Two, Strauss Zelnick, dijo que la empresa refuerza sus defensas técnicas y sus acciones legales ante la posibilidad de versiones de PC no oficiales de GTA VI hechas con IA. Lo describió como un problema creativo más que una amenaza financiera, y admitió que la piratería probablemente afecte al negocio en alguna medida, aunque lo consideró manejable. Rockstar no anunció versión para PC.",
       "dato_clave": "Zelnick: \"We are utterly focused on enhancing our technical defences and enhancing our legal activities\".",
       "lectura_negocio": "Es la primera respuesta explícita de un publisher grande ante la clonación asistida por IA: prioriza vía legal y técnica, y minimiza el impacto financiero frente a inversores.",
@@ -405,6 +514,7 @@
       "titulo": "The indie game community is in disarray over AI and Big Walk",
       "tipo": "noticia",
       "tema": "ia_desarrollo",
+      "tendencia_id": "t05",
       "resumen_propio": "Un grupo de jurados del Independent Games Festival declaró que no votará juegos que usen IA generativa de ninguna forma, tras notar un aumento fuerte de postulaciones hechas con esas herramientas. Poco después, House House, estudio de Big Walk, admitió un uso puntual de chatbots para resolver problemas técnicos y lo informó en su postulación, aunque no en Steam porque la plataforma no lo pide. El debate expone la falta de consenso en la escena independiente.",
       "dato_clave": "House House estimó que muy por debajo del 0,1% del código de Big Walk tuvo relación con el uso de LLM.",
       "lectura_negocio": "El uso de IA, aun mínimo, ya es un riesgo reputacional en premios y comunidades independientes; la transparencia voluntaria no está protegiendo a los estudios.",
@@ -430,6 +540,7 @@
       "titulo": "Valve warns of slower Steam approvals, possibly due to AI game surge",
       "tipo": "noticia",
       "tema": "ia_desarrollo",
+      "tendencia_id": "t05",
       "resumen_propio": "Valve avisó que la revisión de juegos para publicar en Steam se está demorando por un aumento significativo de envíos, y anunció cambios para que los juegos aprueben en el primer intento. Algunos desarrolladores reportan haber perdido fechas de lanzamiento. Valve no atribuye la demora a la IA; Game Developer lo vincula con el récord de envíos en Steam Next Fest y con datos de Itch.io sobre una avalancha de juegos hechos con IA.",
       "dato_clave": "Valve: la revisión suele tardar de 3 a 5 días, pero hoy está llevando hasta 12 días hábiles.",
       "lectura_negocio": "Más oferta (posiblemente impulsada por IA) congestiona la curaduría de las tiendas: el cuello de botella pasa de producir el juego a lograr que lo publiquen y lo vean.",
@@ -455,6 +566,7 @@
       "titulo": "Take-Two CEO: Grand Theft Auto VI pre-orders are exceeding expectations",
       "tipo": "noticia",
       "tema": "mercado",
+      "tendencia_id": "t02",
       "resumen_propio": "Take-Two presentó resultados del trimestre previo al lanzamiento de GTA VI con caídas interanuales en reservas netas e ingresos, atribuidas en parte al arranque lento de NBA 2K27. Su CEO afirmó que las preventas de GTA VI superan ampliamente lo esperado, sin dar cifras. PlayStation y Xbox dijeron que es el juego más reservado de sus tiendas. La empresa espera superar los 8.000 millones de dólares de reservas netas en el año fiscal.",
       "dato_clave": "Reservas netas de US$1.600 millones en el trimestre; guía anual superior a US$8.000 millones.",
       "lectura_negocio": "Todo el año fiscal de Take-Two depende de un solo lanzamiento; que sea récord de preventa en tiendas digitales refuerza el peso del canal digital.",
@@ -480,6 +592,7 @@
       "titulo": "Report: Silver Lake and the Saudi Arabia PIF hold talks with Unity to explore acquisition",
       "tipo": "noticia",
       "tema": "mercado",
+      "tendencia_id": "t11",
       "resumen_propio": "Según Reuters, citada por Game Developer, un consorcio encabezado por Silver Lake y el fondo soberano de Arabia Saudita (PIF) conversa con Unity sobre una posible compra mediante una adquisición apalancada, similar a la que hicieron con Electronic Arts. Silver Lake ya posee 8% de Unity. La empresa del motor gráfico viene reorientándose hacia la IA, con una herramienta para crear juegos a partir de instrucciones de texto.",
       "dato_clave": "Unity, según la propia empresa, se usa en más de la mitad de los juegos móviles.",
       "lectura_negocio": "El mismo grupo que controla EA podría sumar el motor más usado en móviles: concentración de propiedad sobre infraestructura crítica de desarrollo.",
@@ -505,6 +618,7 @@
       "titulo": "Nintendo confident in memory supply in new financial report",
       "tipo": "noticia",
       "tema": "mercado",
+      "tendencia_id": "t08",
       "resumen_propio": "El presidente de Nintendo dijo que la compañía puede asegurar memoria suficiente para su hardware pese a la crisis global de precios. Las ventas de Switch 2 cayeron frente al trimestre anterior tras la suba de precio en Estados Unidos, aunque la consola sigue por encima de su antecesora en la comparación desde el lanzamiento. El software creció interanualmente y la previsión anual de Switch 2 se mantiene.",
       "dato_clave": "Switch 2 vendió 2,67 millones de unidades en el trimestre; la previsión anual sigue en 16 millones.",
       "lectura_negocio": "La crisis de memoria encarece el hardware y ya frena ventas; el mensaje de Nintendo apunta a calmar a inversores sobre nuevas subas de precio.",
@@ -530,6 +644,7 @@
       "titulo": "Sony insists its next-generation console plans are still on schedule",
       "tipo": "noticia",
       "tema": "mercado",
+      "tendencia_id": "t08",
       "resumen_propio": "Sony elevó su previsión de ganancia anual y aseguró que el desarrollo de su próxima generación de consolas avanza según lo planeado, con mayor inversión en la segunda mitad del año. Ante preguntas por el alza de la memoria, sus ejecutivos mencionaron un acuerdo con TSMC para reducir riesgos de suministro. La PS5 se acerca a los 100 millones de unidades distribuidas.",
       "dato_clave": "PS5 llegó a 97,9 millones de unidades distribuidas; 2,6 millones en el último trimestre.",
       "lectura_negocio": "Sony mantiene el calendario de nueva consola pese a la crisis de memoria, y lo hace mientras planea abandonar el disco físico: la próxima generación nacería digital.",

@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
-"""Valida ediciones y la biblioteca de referencias del Radar Gaming contra el
-esquema definido en CLAUDE.md.
+"""Valida ediciones, la biblioteca de referencias y la capa de tendencias del
+Radar Gaming contra el esquema definido en CLAUDE.md.
 
 Uso:
     python scripts/validar.py data/ediciones/AAAA-MM-DD.json
     python scripts/validar.py data/referencias.json
-    python scripts/validar.py            (valida todas las ediciones y las referencias)
+    python scripts/validar.py data/tendencias.json
+    python scripts/validar.py            (valida ediciones, referencias y tendencias)
+
+Controles cruzados: el tendencia_id de cada noticia debe existir en
+data/tendencias.json, y la evidencia de cada tendencia debe existir en las
+ediciones (data/ediciones/) o en data/referencias.json.
 
 Imprime cada error (con el id de la noticia cuando corresponde) y sale con
 código 1 si hay errores, 2 si el archivo no se puede leer, 0 si todo está bien.
@@ -33,6 +38,23 @@ TIPOS_DOCUMENTO = {"prensa_datos", "reporte", "paper", "analisis", "opinion_expe
                    "analisis_legal", "posicionamiento_industria", "secundaria"}
 FOCOS = TEMAS | {"latam", "largo_plazo"}
 ESTADOS_REFERENCIA = {"ok", "no_accesible"}
+POSICIONES = {"atrasada", "en_linea", "adelantada"}
+INVERSIONES = {"baja", "media", "alta", "sin_dato"}
+URGENCIAS = {"ahora", "preparar", "vigilar"}
+TIPOS_EVIDENCIA_TENDENCIA = {"noticia", "referencia"}
+PERFILES = ["indie", "publisher_aaa", "plataforma_distribuidor", "latam"]
+ORDEN_CERTEZA = {"baja": 0, "media": 1, "alta": 2}
+CAMPOS_TENDENCIA = ["id", "nombre", "tema", "descripcion", "promedio_actual", "hacia_donde_va",
+                    "horizonte", "fase_curva", "adopcion", "impacto", "cuadrante",
+                    "brecha_global", "brecha_latam", "justificacion_brecha",
+                    "posicion_industria", "argumento_posicion", "proveedores",
+                    "inversion_requerida", "justificacion_inversion", "kpis",
+                    "justificacion_kpis", "implicancias", "decision_sugerida", "urgencia",
+                    "certeza", "evidencia", "ultima_actualizacion"]
+TEXTOS_TENDENCIA = ["nombre", "descripcion", "promedio_actual", "hacia_donde_va",
+                    "justificacion_brecha", "argumento_posicion", "justificacion_inversion",
+                    "justificacion_kpis", "decision_sugerida"]
+CAMPOS_RESUMEN = ["claves", "decisiones", "riesgos", "oportunidades"]
 # Palabras que la justificación debe contener cuando una brecha tiene certeza baja.
 MARCAS_CERTEZA_BAJA = ("certeza baja", "especulativ", "no ocurri")
 
@@ -41,7 +63,7 @@ UMBRAL_IMPACTO = 6
 MAX_PALABRAS_RESUMEN = 90  # máximo de palabras permitido en resumen_propio (inclusive)
 
 CAMPOS_EDICION = ["edicion", "tema_de_la_semana", "dato_de_la_semana",
-                  "fuentes_consultadas", "noticias", "frente_a_frente",
+                  "resumen_ejecutivo", "fuentes_consultadas", "noticias", "frente_a_frente",
                   "alertas", "limitaciones"]
 CAMPOS_META = ["numero", "fecha", "desde", "hasta"]
 CAMPOS_TEMA_SEMANA = ["titulo", "bajada", "noticia_ids"]
@@ -52,8 +74,9 @@ CAMPOS_NOTICIA = ["id", "fuente", "url", "fecha_publicacion", "titulo", "tipo",
                   "importancia", "horizonte", "fase_curva", "adopcion",
                   "adopcion_latam", "impacto", "cuadrante", "brecha_global",
                   "brecha_latam", "justificacion_brecha", "tipo_evidencia", "certeza",
-                  "verificada"]
-CAMPOS_REFERENCIA = CAMPOS_NOTICIA + ["tipo_documento", "foco", "geografia",
+                  "verificada", "tendencia_id"]
+# Las referencias no llevan tendencia_id: se vinculan desde la evidencia de cada tendencia.
+CAMPOS_REFERENCIA = [c for c in CAMPOS_NOTICIA if c != "tendencia_id"] + ["tipo_documento", "foco", "geografia",
                                       "estado", "nota_calidad"]
 # En una referencia no accesible estos campos van en null (no hay base para valorarlos).
 VALORACIONES = ["importancia", "horizonte", "fase_curva", "adopcion", "adopcion_latam",
@@ -65,8 +88,10 @@ CAMPOS_ALERTA = ["tipo", "fuente", "url", "fecha", "titulo", "resumen",
 
 
 class Validador:
-    def __init__(self):
+    def __init__(self, raiz=None):
         self.errores = []
+        self.raiz = raiz or raiz_proyecto()
+        self._tendencias = False  # se carga a demanda (None si no existe el archivo)
 
     def error(self, donde, mensaje):
         self.errores.append(f"[{donde}] {mensaje}")
@@ -132,6 +157,8 @@ class Validador:
 
         desde, hasta = self.validar_meta(data.get("edicion"))
         ids = self.validar_noticias(data.get("noticias"), desde, hasta)
+        self.validar_tendencia_ids(data.get("noticias"))
+        self.validar_resumen_ejecutivo(data.get("resumen_ejecutivo"), ids)
         self.validar_tema_semana(data.get("tema_de_la_semana"), ids)
         self.validar_dato_semana(data.get("dato_de_la_semana"))
         self.validar_fuentes(data.get("fuentes_consultadas"))
@@ -246,6 +273,95 @@ class Validador:
             if isinstance(dato, str) and re.search(r"\d", dato):
                 self.error(donde, f"noticia no verificada con cifras en 'dato_clave': {dato!r}")
 
+    # --- vínculo con la capa de tendencias ------------------------------
+
+    def ids_tendencias(self):
+        """Ids de data/tendencias.json, o None si el archivo no existe o no se puede leer."""
+        if self._tendencias is False:
+            ruta = os.path.join(self.raiz, "data", "tendencias.json")
+            try:
+                with open(ruta, encoding="utf-8") as fh:
+                    data = json.load(fh)
+                self._tendencias = {t.get("id") for t in data.get("tendencias", []) if isinstance(t, dict)}
+            except (OSError, json.JSONDecodeError, AttributeError):
+                self._tendencias = None
+        return self._tendencias
+
+    def tendencia_existe(self, tid, donde, campo="tendencia_id"):
+        ids = self.ids_tendencias()
+        if ids is None:
+            self.error(donde, f"'{campo}' = {tid!r}, pero no existe data/tendencias.json (corré /analizar-tendencias)")
+        elif tid not in ids:
+            self.error(donde, f"'{campo}' referencia una tendencia inexistente en data/tendencias.json: {tid!r}")
+
+    def validar_tendencia_ids(self, noticias):
+        for i, n in enumerate(noticias if isinstance(noticias, list) else []):
+            if not isinstance(n, dict) or "tendencia_id" not in n:
+                continue
+            tid = n["tendencia_id"]
+            donde = f"noticia {n.get('id') or '#' + str(i + 1)}"
+            if tid is None:
+                continue
+            if not isinstance(tid, str) or not tid.strip():
+                self.error(donde, f"'tendencia_id' debe ser un id de tendencia o null (recibido: {tid!r})")
+                continue
+            self.tendencia_existe(tid, donde)
+
+    def validar_resumen_ejecutivo(self, resumen, ids):
+        donde = "resumen_ejecutivo"
+        if not self.requeridos(resumen, CAMPOS_RESUMEN, donde):
+            return
+        for clave, minimo, maximo in (("claves", 3, 5), ("decisiones", 3, 5)):
+            items = resumen.get(clave)
+            if clave not in resumen:
+                continue
+            if not isinstance(items, list):
+                self.error(donde, f"'{clave}' debe ser una lista")
+                continue
+            if not (minimo <= len(items) <= maximo):
+                self.error(donde, f"'{clave}' debe tener entre {minimo} y {maximo} elementos (tiene {len(items)})")
+            for i, item in enumerate(items):
+                d = f"{donde}.{clave} #{i + 1}"
+                campos = ["texto", "tendencia_id", "noticia_ids"] if clave == "claves" else ["accion", "urgencia", "por_que", "tendencia_id"]
+                if not self.requeridos(item, campos, d):
+                    continue
+                for c in (["texto"] if clave == "claves" else ["accion", "por_que"]):
+                    if c in item and (not isinstance(item[c], str) or not item[c].strip()):
+                        self.error(d, f"'{c}' debe ser un texto no vacío")
+                if clave == "decisiones":
+                    self.enum(item, "urgencia", URGENCIAS, d)
+                if item.get("tendencia_id") is not None:
+                    self.tendencia_existe(item["tendencia_id"], d)
+                elif clave == "decisiones":
+                    self.error(d, "'tendencia_id' es obligatorio en una decisión")
+                if clave == "claves":
+                    refs = item.get("noticia_ids")
+                    if not isinstance(refs, list):
+                        self.error(d, "'noticia_ids' debe ser una lista")
+                    else:
+                        for ref in refs:
+                            if ref not in ids:
+                                self.error(d, f"'noticia_ids' referencia una noticia inexistente: {ref!r}")
+        for clave in ("riesgos", "oportunidades"):
+            items = resumen.get(clave)
+            if clave not in resumen:
+                continue
+            if not isinstance(items, list):
+                self.error(donde, f"'{clave}' debe ser una lista")
+                continue
+            for i, item in enumerate(items):
+                d = f"{donde}.{clave} #{i + 1}"
+                if isinstance(item, str):
+                    if not item.strip():
+                        self.error(d, "no puede ser un texto vacío")
+                    continue
+                if not self.requeridos(item, ["texto", "tendencia_id"], d):
+                    continue
+                if not isinstance(item.get("texto"), str) or not item["texto"].strip():
+                    self.error(d, "'texto' debe ser un texto no vacío")
+                if item.get("tendencia_id") is not None:
+                    self.tendencia_existe(item["tendencia_id"], d)
+
     def validar_tema_semana(self, tema, ids):
         donde = "tema_de_la_semana"
         if not self.requeridos(tema, CAMPOS_TEMA_SEMANA, donde):
@@ -350,6 +466,179 @@ class Validador:
                 self.validar_item(r, donde)
 
 
+    # --- capa de tendencias ----------------------------------------------
+
+    def validar_tendencias(self, data):
+        donde_raiz = "tendencias.json"
+        if not self.requeridos(data, ["actualizado", "tendencias"], donde_raiz):
+            return
+        actualizado = self.fecha(data.get("actualizado"), donde_raiz, "actualizado") if "actualizado" in data else None
+        tendencias = data.get("tendencias")
+        if not isinstance(tendencias, list):
+            self.error(donde_raiz, "'tendencias' debe ser una lista")
+            return
+        noticias, referencias = cargar_evidencia(self.raiz)
+        # noticia (edicion, id) -> tendencia_id que declara
+        asignadas = {k: n.get("tendencia_id") for k, n in noticias.items()}
+        ids = set()
+        evidencia_por_tendencia = {}
+        for i, t in enumerate(tendencias):
+            tid = t.get("id") if isinstance(t, dict) else None
+            donde = f"tendencia {tid}" if tid else f"tendencia #{i + 1} (sin id)"
+            if not self.requeridos(t, CAMPOS_TENDENCIA, donde):
+                continue
+            if tid:
+                if tid in ids:
+                    self.error(donde, f"id duplicado: {tid!r}")
+                ids.add(tid)
+            for c in TEXTOS_TENDENCIA:
+                if c in t and (not isinstance(t[c], str) or not t[c].strip()):
+                    self.error(donde, f"'{c}' debe ser un texto no vacío")
+
+            # enums y rangos
+            self.enum(t, "tema", TEMAS, donde)
+            self.enum(t, "horizonte", HORIZONTES, donde)
+            self.enum(t, "fase_curva", FASES_CURVA, donde)
+            self.enum(t, "cuadrante", CUADRANTES, donde)
+            self.enum(t, "posicion_industria", POSICIONES, donde)
+            self.enum(t, "inversion_requerida", INVERSIONES, donde)
+            self.enum(t, "urgencia", URGENCIAS, donde)
+            self.enum(t, "certeza", CERTEZAS, donde)
+            adopcion = self.numero_rango(t, "adopcion", 0, 10, donde)
+            impacto = self.numero_rango(t, "impacto", 0, 10, donde)
+            self.entero_rango(t, "brecha_global", 1, 5, donde, nullable=True)
+            self.entero_rango(t, "brecha_latam", 1, 5, donde, nullable=True)
+            if adopcion is not None and impacto is not None and t.get("cuadrante") in CUADRANTES:
+                esperado = cuadrante_esperado(adopcion, impacto)
+                if t["cuadrante"] != esperado:
+                    self.error(donde, f"cuadrante {t['cuadrante']!r} incoherente con adopcion={adopcion} "
+                                      f"e impacto={impacto}: debería ser {esperado!r}")
+            if t.get("certeza") == "baja" and (t.get("brecha_global") is not None or t.get("brecha_latam") is not None):
+                just = str(t.get("justificacion_brecha") or "").lower()
+                if not any(m in just for m in MARCAS_CERTEZA_BAJA):
+                    self.error(donde, "brecha con certeza baja: 'justificacion_brecha' debe decir que es especulativa "
+                                      "(por ejemplo, 'Certeza baja: ...')")
+            if "ultima_actualizacion" in t:
+                f = self.fecha(t["ultima_actualizacion"], donde, "ultima_actualizacion")
+                if f and actualizado and f > actualizado:
+                    self.error(donde, f"ultima_actualizacion {f} posterior a 'actualizado' ({actualizado})")
+
+            # kpis
+            kpis = t.get("kpis")
+            if not isinstance(kpis, list) or not kpis or not all(isinstance(k, str) and k.strip() for k in kpis):
+                self.error(donde, "'kpis' debe ser una lista no vacía de textos")
+
+            # implicancias: los 4 perfiles fijos
+            imp = t.get("implicancias")
+            if not isinstance(imp, dict):
+                self.error(donde, "'implicancias' debe ser un objeto con los 4 perfiles")
+            else:
+                for p in PERFILES:
+                    if not isinstance(imp.get(p), str) or not imp[p].strip():
+                        self.error(donde, f"'implicancias.{p}' debe ser un texto no vacío (puede decir 'sin impacto relevante')")
+                extra = set(imp) - set(PERFILES)
+                if extra:
+                    self.error(donde, f"'implicancias' tiene perfiles no permitidos: {', '.join(sorted(extra))}. "
+                                      f"Los perfiles son fijos: {', '.join(PERFILES)}")
+
+            # evidencia
+            ev = t.get("evidencia")
+            claves_ev = set()
+            certezas_ev = []
+            if not isinstance(ev, list) or not ev:
+                self.error(donde, "'evidencia' debe ser una lista con al menos 1 ítem")
+                ev = []
+            for j, e in enumerate(ev):
+                d = f"{donde}.evidencia #{j + 1}"
+                if not self.requeridos(e, ["tipo", "edicion", "id"], d):
+                    continue
+                self.enum(e, "tipo", TIPOS_EVIDENCIA_TENDENCIA, d)
+                if e.get("tipo") == "noticia":
+                    clave = (e.get("edicion"), e.get("id"))
+                    if e.get("edicion") is None:
+                        self.error(d, "una noticia debe indicar su 'edicion' (AAAA-MM-DD)")
+                    elif clave not in noticias:
+                        self.error(d, f"la noticia {e.get('id')!r} no existe en la edición {e.get('edicion')!r}")
+                    else:
+                        certezas_ev.append(noticias[clave].get("certeza"))
+                elif e.get("tipo") == "referencia":
+                    clave = (None, e.get("id"))
+                    if e.get("edicion") is not None:
+                        self.error(d, "una referencia lleva 'edicion': null")
+                    r = referencias.get(e.get("id"))
+                    if r is None:
+                        self.error(d, f"la referencia {e.get('id')!r} no existe en data/referencias.json")
+                    elif r.get("estado") != "ok":
+                        self.error(d, f"la referencia {e.get('id')!r} no es accesible: no puede sostener una tendencia")
+                    else:
+                        certezas_ev.append(r.get("certeza"))
+                else:
+                    continue
+                if clave in claves_ev:
+                    self.error(d, f"evidencia repetida: {e.get('id')!r}")
+                claves_ev.add(clave)
+            evidencia_por_tendencia[tid] = claves_ev
+
+            # certeza coherente con la evidencia
+            if len(ev) == 1 and t.get("certeza") == "alta":
+                self.error(donde, "con un solo ítem de evidencia la certeza no puede ser 'alta'")
+            validas = [ORDEN_CERTEZA[c] for c in certezas_ev if c in ORDEN_CERTEZA]
+            if validas and t.get("certeza") in ORDEN_CERTEZA and ORDEN_CERTEZA[t["certeza"]] > max(validas):
+                self.error(donde, f"certeza {t['certeza']!r} mayor que la de toda su evidencia")
+
+            # proveedores: solo si una fuente de la evidencia los nombra
+            prov = t.get("proveedores")
+            if not isinstance(prov, list):
+                self.error(donde, "'proveedores' debe ser una lista (vacía si ninguna fuente los nombra)")
+            else:
+                ids_ev = {k[1] for k in claves_ev}
+                for j, p in enumerate(prov):
+                    d = f"{donde}.proveedores #{j + 1}"
+                    if not self.requeridos(p, ["nombre", "rol", "fuente_id"], d):
+                        continue
+                    for c in ("nombre", "rol"):
+                        if not isinstance(p.get(c), str) or not p[c].strip():
+                            self.error(d, f"'{c}' debe ser un texto no vacío")
+                    if p.get("fuente_id") not in ids_ev:
+                        self.error(d, f"'fuente_id' {p.get('fuente_id')!r} no está en la evidencia de la tendencia")
+
+        # cada noticia asignada a una tendencia debe figurar en su evidencia
+        for (ed, nid), tid in asignadas.items():
+            if tid is None:
+                continue
+            if tid not in ids:
+                self.error(f"noticia {nid} ({ed})", f"'tendencia_id' referencia una tendencia inexistente: {tid!r}")
+            elif (ed, nid) not in evidencia_por_tendencia.get(tid, set()):
+                self.error(f"tendencia {tid}", f"la noticia {nid} ({ed}) declara esta tendencia pero no figura en su evidencia")
+
+
+def raiz_proyecto():
+    return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def cargar_evidencia(raiz):
+    """Devuelve ({(edicion, id): noticia}, {id: referencia}) a partir de los archivos del proyecto."""
+    noticias, referencias = {}, {}
+    for ruta in sorted(glob.glob(os.path.join(raiz, "data", "ediciones", "*.json"))):
+        try:
+            with open(ruta, encoding="utf-8") as fh:
+                d = json.load(fh)
+            fecha_ed = (d.get("edicion") or {}).get("fecha") or os.path.basename(ruta)[:-5]
+            for n in d.get("noticias", []):
+                if isinstance(n, dict) and n.get("id"):
+                    noticias[(fecha_ed, n["id"])] = n
+        except (OSError, json.JSONDecodeError, AttributeError):
+            continue
+    try:
+        with open(os.path.join(raiz, "data", "referencias.json"), encoding="utf-8") as fh:
+            for r in json.load(fh).get("referencias", []):
+                if isinstance(r, dict) and r.get("id"):
+                    referencias[r["id"]] = r
+    except (OSError, json.JSONDecodeError, AttributeError):
+        pass
+    return noticias, referencias
+
+
 def cuadrante_esperado(adopcion, impacto):
     if adopcion >= UMBRAL_ADOPCION:
         return "estrella" if impacto >= UMBRAL_IMPACTO else "vaca_lechera"
@@ -366,8 +655,11 @@ def validar_archivo(ruta):
         return 2
 
     v = Validador()
+    es_tendencias = isinstance(data, dict) and "tendencias" in data and "noticias" not in data
     es_referencias = isinstance(data, dict) and "referencias" in data and "noticias" not in data
-    if es_referencias:
+    if es_tendencias:
+        v.validar_tendencias(data)
+    elif es_referencias:
         v.validar_referencias(data)
     else:
         v.validar(data)
@@ -376,7 +668,12 @@ def validar_archivo(ruta):
             print(f"ERROR {e}")
         print(f"\n{len(v.errores)} error(es) en {ruta}")
         return 1
-    if es_referencias:
+    if es_tendencias:
+        ts = data["tendencias"]
+        debiles = [t.get("id") for t in ts if len(t.get("evidencia") or []) < 2 or t.get("certeza") == "baja"]
+        print(f"OK: {ruta} cumple el esquema ({len(ts)} tendencias"
+              + (f"; evidencia débil: {', '.join(debiles)}" if debiles else "") + ")")
+    elif es_referencias:
         refs = data["referencias"]
         ok = sum(1 for r in refs if r.get("estado") == "ok")
         print(f"OK: {ruta} cumple el esquema ({len(refs)} referencias, {ok} accesibles, {len(refs) - ok} no accesibles)")
@@ -391,12 +688,13 @@ def main(argv):
         return 2
     if len(argv) == 2:
         return validar_archivo(argv[1])
-    # Sin argumentos: todas las ediciones y, si existe, la biblioteca de referencias.
-    raiz = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    # Sin argumentos: todas las ediciones y, si existen, las referencias y las tendencias.
+    raiz = raiz_proyecto()
     rutas = sorted(glob.glob(os.path.join(raiz, "data", "ediciones", "*.json")))
-    refs = os.path.join(raiz, "data", "referencias.json")
-    if os.path.exists(refs):
-        rutas.append(refs)
+    for nombre in ("referencias.json", "tendencias.json"):
+        extra = os.path.join(raiz, "data", nombre)
+        if os.path.exists(extra):
+            rutas.append(extra)
     if not rutas:
         print("No hay archivos para validar.", file=sys.stderr)
         return 2
