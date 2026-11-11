@@ -9,6 +9,9 @@ Ejecutá el proceso completo para producir una nueva edición. Seguí CLAUDE.md 
 4. Leé los archivos de inbox/ como fuentes manuales (estado "manual"). Esos textos tienen prioridad sobre lo que no pudiste abrir.
 5. Elegí de 8 a 15 noticias, sin duplicados, priorizando cloud_gaming, digitalizacion e ia_clonacion_pirateria. Abrí cada artículo antes de resumirlo.
 6. Clasificá con las rúbricas de CLAUDE.md. Armá tema_de_la_semana, dato_de_la_semana, frente_a_frente (solo si hay 2 o más fuentes sobre el mismo punto), alertas y limitaciones.
-7. Guardá data/ediciones/AAAA-MM-DD.json y agregá la edición a data/indice.json.
-8. Corré `python scripts/validar.py data/ediciones/AAAA-MM-DD.json`. Si hay errores, corregilos y repetí hasta que pase.
-9. Cerrá con un reporte breve: fuentes que funcionaron y cuáles no, cantidad de noticias, noticias con verificada=false, y qué debería pegar el usuario en inbox/ para mejorar la próxima edición. No resumas el contenido de las noticias.
+7. Asigná a cada noticia su tendencia_id: la tendencia de data/tendencias.json que mejor la describe; si no encaja en ninguna existente, dejala en null por ahora (el paso 10 puede crear una nueva y completar el id).
+8. Armá resumen_ejecutivo con el material ya resumido (sin abrir artículos nuevos), pensado para quien decide y lo lee en 30 segundos: 3 a 5 claves (texto corto, tendencia_id y noticia_ids que la sostienen), 3 a 5 decisiones (acción concreta, urgencia ahora | preparar | vigilar, por qué en una frase, tendencia_id), y riesgos y oportunidades (texto corto y tendencia_id o null).
+9. Guardá data/ediciones/AAAA-MM-DD.json y agregá la edición a data/indice.json.
+10. Ejecutá todos los pasos de .claude/commands/analizar-tendencias.md: sumá las noticias nuevas como evidencia, recalculá brechas y valoraciones con la evidencia acumulada, creá tendencias nuevas si hace falta (nunca borres) y completá los tendencia_id que quedaron en null cuando corresponda.
+11. Corré `python scripts/validar.py` (ediciones, referencias y tendencias). Si hay errores, corregilos y repetí hasta que pase.
+12. Cerrá con un reporte breve: fuentes que funcionaron y cuáles no, cantidad de noticias, noticias con verificada=false, tendencias nuevas y actualizadas, tendencias con evidencia débil (un solo ítem o certeza baja), y qué debería pegar el usuario en inbox/ para mejorar la próxima edición. No resumas el contenido de las noticias.

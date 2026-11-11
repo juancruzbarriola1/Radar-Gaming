@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 <body>
-  <a class="saltar" href="#hoy">Saltar al contenido</a>
+  <a class="saltar" href="#resumen">Saltar al contenido</a>
 
   <header class="encabezado">
     <div class="contenedor encabezado__fila">
@@ -27,6 +27,10 @@
         <span class="marca__nombre">Radar Gaming</span>
       </div>
       <div class="encabezado__controles">
+        <label class="selector selector--perfil">
+          <span class="selector__rotulo">Ver como</span>
+          <select id="selector-perfil" aria-label="Ver el tablero como"></select>
+        </label>
         <label class="selector">
           <span class="selector__rotulo">Edición</span>
           <select id="selector-edicion" aria-label="Elegir edición"></select>
@@ -39,58 +43,102 @@
     </div>
     <nav class="navegacion" aria-label="Secciones">
       <div class="contenedor navegacion__lista">
+        <a href="#resumen">Resumen</a>
+        <a href="#tendencias">Tendencias</a>
         <a href="#hoy">Hoy</a>
         <a href="#futuro">Qué puede venir</a>
         <a href="#brechas">Brechas</a>
         <a href="#latam">Latinoamérica</a>
         <a href="#regulacion">Regulación y PI</a>
-        <a href="#hemeroteca">Todas las noticias</a>
+        <a href="#evidencia">Evidencia</a>
         <a href="#metodologia">Cómo leer</a>
       </div>
     </nav>
   </header>
 
   <main id="contenido">
-    <section class="portada">
-      <div class="contenedor portada__rejilla">
-        <div class="portada__texto">
-          <p class="portada__ventana" id="ventana">Cargando edición…</p>
-          <h1 class="portada__titulo" id="tema-titulo"></h1>
-          <p class="portada__bajada" id="tema-bajada"></p>
-          <div class="portada__respaldo" id="tema-noticias"></div>
+    <!-- A. Resumen ejecutivo -->
+    <section id="resumen" class="resumen">
+      <div class="contenedor">
+        <div class="resumen__cabecera">
+          <div>
+            <p class="portada__ventana" id="ventana">Cargando edición…</p>
+            <h1 class="resumen__titulo" id="tema-titulo"></h1>
+          </div>
+          <div class="perfiles" role="radiogroup" aria-label="Ver como" id="perfil-botones"></div>
         </div>
-        <aside class="portada__panel" id="portada-panel" aria-label="Resumen de la edición y de la biblioteca de referencias"></aside>
+        <div id="aviso" role="status" aria-live="polite"></div>
+        <div class="resumen__rejilla" id="resumen-rejilla">
+          <article class="tarjeta resumen__bloque">
+            <h2 class="resumen__subtitulo">Lo que importa esta semana</h2>
+            <ol class="claves" id="claves"></ol>
+          </article>
+          <article class="tarjeta resumen__bloque">
+            <h2 class="resumen__subtitulo">Decisiones sugeridas <span class="editorial">Valoración editorial</span></h2>
+            <div class="decisiones" id="decisiones"></div>
+          </article>
+          <aside class="resumen__lado" aria-label="Riesgos y oportunidades">
+            <article class="tarjeta resumen__bloque">
+              <h2 class="resumen__subtitulo"><span class="alerta__tipo alerta__tipo--riesgo">▼ Riesgos</span></h2>
+              <ul class="ro" id="riesgos"></ul>
+            </article>
+            <article class="tarjeta resumen__bloque">
+              <h2 class="resumen__subtitulo"><span class="alerta__tipo alerta__tipo--oportunidad">▲ Oportunidades</span></h2>
+              <ul class="ro" id="oportunidades"></ul>
+            </article>
+          </aside>
+        </div>
       </div>
     </section>
 
-    <div id="aviso" class="contenedor" role="status" aria-live="polite"></div>
-
-    <!-- 1. Hoy -->
-    <section id="hoy" class="seccion revelar">
+    <!-- B. Mapa de tendencias -->
+    <section id="tendencias" class="seccion revelar">
       <div class="contenedor">
         <header class="seccion__cabecera">
           <span class="seccion__numero">01</span>
           <div>
+            <h2>Mapa de tendencias</h2>
+            <p class="seccion__ayuda">Cada tendencia agrupa noticias y referencias sobre el mismo cambio. Tocá una para ver qué hace hoy la industria, hacia dónde va, qué cuesta, cómo medirlo y qué hacer según tu perfil.</p>
+          </div>
+        </header>
+        <div class="rejilla-mapa">
+          <article class="tarjeta">
+            <h3 class="tarjeta__titulo">Brecha por tendencia <span class="editorial">Valoración editorial</span></h3>
+            <p class="tarjeta__ayuda">Distancia entre lo que se adopta hoy y lo que exige la tendencia en su horizonte, de 1 (casi nula) a 5 (muy grande). Ordenada de mayor a menor.</p>
+            <div class="leyenda" id="leyenda-certeza"></div>
+            <div class="barras" id="barras-brecha"></div>
+          </article>
+          <div class="mapa" id="mapa-tendencias"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- C. Hoy -->
+    <section id="hoy" class="seccion revelar">
+      <div class="contenedor">
+        <header class="seccion__cabecera">
+          <span class="seccion__numero">02</span>
+          <div>
             <h2>¿Qué está pasando hoy?</h2>
-            <p class="seccion__ayuda">Indicadores de la edición y las noticias que describen lo que la mayoría de las empresas ya hace.</p>
+            <p class="seccion__ayuda">Indicadores de la edición y las tendencias que ya describen lo que hace la mayoría de la industria.</p>
           </div>
         </header>
 
         <div class="indicadores" id="indicadores"></div>
 
+        <article class="tarjeta">
+          <h3 class="tarjeta__titulo">Lo que ya es práctica habitual <span class="etiqueta-suave">horizonte: promedio actual</span></h3>
+          <div class="tarjetas-tendencia" id="tendencias-actuales"></div>
+        </article>
+
         <div class="rejilla-2">
           <article class="tarjeta">
             <h3 class="tarjeta__titulo">Noticias por tema</h3>
-            <p class="tarjeta__ayuda">Tocá una barra para ver esas noticias en la hemeroteca.</p>
+            <p class="tarjeta__ayuda">Tocá una barra para ver esas noticias en Evidencia.</p>
             <div class="grafico grafico--temas"><canvas id="grafico-temas" role="img" aria-label="Gráfico de barras: cantidad de noticias por tema"></canvas></div>
           </article>
           <article class="tarjeta tarjeta--dato" id="dato-semana"></article>
         </div>
-
-        <article class="tarjeta">
-          <h3 class="tarjeta__titulo">Lo que ya es práctica habitual <span class="etiqueta-suave">horizonte: promedio actual</span></h3>
-          <div class="lista-noticias" id="lista-actual"></div>
-        </article>
 
         <article class="tarjeta" id="frente-tarjeta">
           <h3 class="tarjeta__titulo">Cómo lo cuentan las fuentes</h3>
@@ -100,14 +148,14 @@
       </div>
     </section>
 
-    <!-- 2. Futuro -->
+    <!-- D. Futuro -->
     <section id="futuro" class="seccion revelar">
       <div class="contenedor">
         <header class="seccion__cabecera">
-          <span class="seccion__numero">02</span>
+          <span class="seccion__numero">03</span>
           <div>
             <h2>¿Qué puede venir?</h2>
-            <p class="seccion__ayuda">Noticias de la semana y referencias de la biblioteca, ubicadas según cuándo podría volverse habitual lo que describen. Las referencias llevan la etiqueta <span class="insignia insignia--ref">Referencia</span> y su fecha. Tocá una para ver el detalle.</p>
+            <p class="seccion__ayuda">Tendencias ubicadas según cuándo podría volverse habitual lo que describen, con su urgencia y lo que implican para el perfil elegido arriba.</p>
           </div>
         </header>
         <div class="linea-tiempo" id="linea-tiempo"></div>
@@ -120,11 +168,11 @@
       </div>
     </section>
 
-    <!-- 3. Brechas -->
+    <!-- E. Brechas -->
     <section id="brechas" class="seccion revelar">
       <div class="contenedor">
         <header class="seccion__cabecera">
-          <span class="seccion__numero">03</span>
+          <span class="seccion__numero">04</span>
           <div>
             <h2>¿Dónde están las brechas?</h2>
             <p class="seccion__ayuda">Distancia entre lo que se adopta hoy y lo que exigiría cada tendencia, en el mundo y en Latinoamérica. Escala 1 (casi nula) a 5 (muy grande). <span class="editorial">Valoración editorial</span></p>
@@ -133,33 +181,29 @@
         <div class="filtros filtros--brechas">
           <label class="casilla">
             <input type="checkbox" id="incluir-baja">
-            <span>Incluir estimaciones de baja certeza <span id="conteo-baja" class="casilla__conteo"></span></span>
+            <span>Incluir tendencias de baja certeza <span id="conteo-baja" class="casilla__conteo"></span></span>
           </label>
-          <p class="tarjeta__ayuda" id="alcance-brechas"></p>
         </div>
+        <article class="tarjeta tarjeta--lectura" id="lectura-perfil"></article>
         <article class="tarjeta">
-          <h3 class="tarjeta__titulo">Brecha promedio por tema: global vs. Latinoamérica</h3>
+          <h3 class="tarjeta__titulo">Brecha global vs. Latinoamérica por tendencia</h3>
           <div class="leyenda" id="leyenda-brechas"></div>
-          <div class="grafico grafico--brechas"><canvas id="grafico-brechas" role="img" aria-label="Gráfico de barras agrupadas: brecha global y brecha Latinoamérica por tema"></canvas></div>
+          <div class="barras barras--doble" id="barras-gl"></div>
           <p class="muestra-latam" id="muestra-latam"></p>
-          <details class="tabla-alternativa">
-            <summary>Ver como tabla</summary>
-            <div id="tabla-brechas"></div>
-          </details>
         </article>
         <article class="tarjeta">
-          <h3 class="tarjeta__titulo">Mayores brechas</h3>
-          <p class="tarjeta__ayuda">Noticias de la edición y referencias, ordenadas por la brecha más alta (global o Latinoamérica).</p>
+          <h3 class="tarjeta__titulo">Ranking por brecha</h3>
+          <p class="tarjeta__ayuda">Ordenado por la brecha más alta (global o Latinoamérica), con la posición de la industria frente a la tendencia.</p>
           <ol class="ranking ranking--doble" id="ranking-brechas"></ol>
         </article>
       </div>
     </section>
 
-    <!-- 4. Mirada Latinoamérica -->
+  <!-- 4. Mirada Latinoamérica -->
     <section id="latam" class="seccion revelar">
       <div class="contenedor">
         <header class="seccion__cabecera">
-          <span class="seccion__numero">04</span>
+          <span class="seccion__numero">05</span>
           <div>
             <h2>Mirada Latinoamérica</h2>
             <p class="seccion__ayuda">Referencias con foco en la región y noticias de la edición con base para valorar Latinoamérica. Cada dato dice quién lo mide; firmas distintas dan cifras distintas y no se mezclan.</p>
@@ -173,7 +217,7 @@
     <section id="regulacion" class="seccion revelar">
       <div class="contenedor">
         <header class="seccion__cabecera">
-          <span class="seccion__numero">05</span>
+          <span class="seccion__numero">06</span>
           <div>
             <h2>Regulación y propiedad intelectual</h2>
             <p class="seccion__ayuda">Análisis legales, papers y posiciones de la industria de la biblioteca de referencias. No son noticias de la semana: sirven de marco para leerlas.</p>
@@ -183,14 +227,14 @@
       </div>
     </section>
 
-    <!-- 6. Hemeroteca -->
-    <section id="hemeroteca" class="seccion revelar">
+    <!-- G. Evidencia -->
+    <section id="evidencia" class="seccion revelar">
       <div class="contenedor">
         <header class="seccion__cabecera">
-          <span class="seccion__numero">06</span>
+          <span class="seccion__numero">07</span>
           <div>
-            <h2>Todas las noticias</h2>
-            <p class="seccion__ayuda">Hemeroteca con las noticias de todas las ediciones publicadas.</p>
+            <h2>Evidencia</h2>
+            <p class="seccion__ayuda">Las noticias de todas las ediciones y las referencias de la biblioteca que respaldan cada tendencia. Las referencias llevan la etiqueta <span class="insignia insignia--ref">Referencia</span>: están fuera de la ventana semanal.</p>
           </div>
         </header>
         <div class="filtros" role="search">
@@ -198,6 +242,8 @@
             <span>Buscar</span>
             <input type="search" id="filtro-texto" placeholder="Palabra, empresa, fuente…" autocomplete="off">
           </label>
+          <label class="campo"><span>Tendencia</span><select id="filtro-tendencia"></select></label>
+          <label class="campo"><span>Tipo</span><select id="filtro-tipo"></select></label>
           <label class="campo"><span>Tema</span><select id="filtro-tema"></select></label>
           <label class="campo"><span>Fuente</span><select id="filtro-fuente"></select></label>
           <label class="campo"><span>Horizonte</span><select id="filtro-horizonte"></select></label>
@@ -211,6 +257,7 @@
               <tr>
                 <th scope="col">Fecha</th>
                 <th scope="col">Título</th>
+                <th scope="col">Tendencia</th>
                 <th scope="col">Tema</th>
                 <th scope="col">Fuente</th>
                 <th scope="col">Horizonte</th>
@@ -228,7 +275,7 @@
     <section id="metodologia" class="seccion revelar">
       <div class="contenedor">
         <header class="seccion__cabecera">
-          <span class="seccion__numero">07</span>
+          <span class="seccion__numero">08</span>
           <div>
             <h2>Cómo leer este tablero</h2>
             <p class="seccion__ayuda">Qué significa cada valoración y qué no se pudo cubrir.</p>
@@ -236,8 +283,42 @@
         </header>
         <div class="rejilla-3">
           <article class="tarjeta">
+            <h3 class="tarjeta__titulo">Tendencias vs. noticias</h3>
+            <p>Una <strong>tendencia</strong> es un cambio de tecnología o de mercado que se repite en varias fuentes. Es la unidad de decisión del tablero.</p>
+            <p>Las <strong>noticias</strong> (de la semana) y las <strong>referencias</strong> (reportes, papers y análisis fuera de la ventana semanal) son la <strong>evidencia</strong> que la respalda. Cada tendencia lista su evidencia con enlace a la fuente original.</p>
+          </article>
+          <article class="tarjeta">
+            <h3 class="tarjeta__titulo">Los 4 perfiles</h3>
+            <p>El selector “Ver como” cambia qué implicancia se muestra primero en cada tendencia y qué brechas se destacan. Los perfiles son fijos:</p>
+            <dl class="definiciones" id="definiciones-perfiles"></dl>
+          </article>
+          <article class="tarjeta">
+            <h3 class="tarjeta__titulo">Urgencia</h3>
+            <p>Qué tan pronto conviene actuar sobre la decisión sugerida.</p>
+            <dl class="definiciones" id="definiciones-urgencia"></dl>
+          </article>
+        </div>
+        <div class="rejilla-3">
+          <article class="tarjeta">
+            <h3 class="tarjeta__titulo">Posición de la industria</h3>
+            <p>Cómo está la industria frente a lo que la tendencia exige en su horizonte.</p>
+            <dl class="definiciones" id="definiciones-posicion"></dl>
+          </article>
+          <article class="tarjeta">
+            <h3 class="tarjeta__titulo">Inversión y KPIs</h3>
+            <p><strong>Inversión requerida</strong> (baja, media, alta o sin dato): esfuerzo para que una empresa típica adopte o responda a la tendencia. Ninguna fuente da montos: es una valoración con su justificación.</p>
+            <p><strong>KPIs</strong>: indicadores propuestos para medir el impacto si la empresa adopta la tendencia. También son valoración editorial, ligada a lo que las fuentes dicen que cambia.</p>
+          </article>
+          <article class="tarjeta">
+            <h3 class="tarjeta__titulo">Valoración editorial trazable</h3>
+            <p>Todo lo que no es un dato de la fuente (posición, inversión, KPIs, implicancias, decisión, urgencia, brechas) es <strong>juicio del analista</strong>. Cada valor lleva una justificación y apunta a la evidencia que lo sostiene. Si falta base, el tablero muestra <span class="sin-dato">sin dato</span>.</p>
+            <p>Una tendencia con un solo ítem de evidencia nunca tiene certeza alta.</p>
+          </article>
+        </div>
+        <div class="rejilla-3">
+          <article class="tarjeta">
             <h3 class="tarjeta__titulo">Horizonte</h3>
-            <p>Cuándo podría volverse habitual lo que describe la noticia.</p>
+            <p>Cuándo podría volverse habitual lo que describe la tendencia o la noticia.</p>
             <dl class="definiciones">
               <dt>Promedio actual</dt><dd>Lo que la mayoría de las empresas ya hace hoy.</dd>
               <dt>Corto (0–1 años)</dt><dd>Adopción temprana.</dd>
@@ -247,7 +328,7 @@
           </article>
           <article class="tarjeta">
             <h3 class="tarjeta__titulo">Brecha (1 a 5)</h3>
-            <p>Distancia entre el nivel de adopción actual y el que exigiría el horizonte de la noticia. Se mide en el mundo (global) y en Latinoamérica.</p>
+            <p>Distancia entre el nivel de adopción actual y el que exigiría el horizonte de la tendencia o la noticia. Se mide en el mundo (global) y en Latinoamérica.</p>
             <dl class="definiciones">
               <dt>1</dt><dd>Casi nula: ya es estándar.</dd>
               <dt>3</dt><dd>Media.</dd>
@@ -278,7 +359,7 @@
             <dl class="definiciones">
               <dt>Alta</dt><dd>Dato medido y publicado.</dd>
               <dt>Media</dt><dd>Pronóstico de una consultora u opinión de un directivo. También ante la duda.</dd>
-              <dt>Baja</dt><dd>Especulación o hecho que todavía no ocurrió. Se excluye por defecto de los promedios y del ranking de brechas.</dd>
+              <dt>Baja</dt><dd>Especulación o hecho que todavía no ocurrió. Se excluye por defecto de la sección de brechas.</dd>
             </dl>
           </article>
           <article class="tarjeta tarjeta--advertencia">
@@ -319,7 +400,7 @@
 
   <footer class="pie">
     <div class="contenedor">
-      <p>Radar Gaming · Todo el contenido proviene de los archivos de datos de cada edición y de la biblioteca de referencias. Los títulos de las notas se muestran en su idioma original.</p>
+      <p>Radar Gaming · Todo el contenido proviene de los archivos de datos: ediciones, biblioteca de referencias y capa de tendencias (data/tendencias.json). Los títulos de las notas se muestran en su idioma original.</p>
     </div>
   </footer>
 
