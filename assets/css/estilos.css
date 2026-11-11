@@ -29,7 +29,7 @@
   --t-ia_clonacion_pirateria: #1baf7a;
   --t-ia_desarrollo: #eda100;
   --t-regulacion_pi: #e87ba4;
-  --t-mercado: #008300;
+  --t-mercado: #5b8f29;
   /* Series del gráfico de brechas */
   --serie-global: #6250d6;
   --serie-latam: #eb6834;
@@ -65,7 +65,7 @@
     --t-ia_clonacion_pirateria: #199e70;
     --t-ia_desarrollo: #c98500;
     --t-regulacion_pi: #d55181;
-    --t-mercado: #008300;
+    --t-mercado: #6aa437;
     --serie-global: #9085e9;
     --serie-latam: #d95926;
   }
@@ -96,7 +96,7 @@
   --t-ia_clonacion_pirateria: #199e70;
   --t-ia_desarrollo: #c98500;
   --t-regulacion_pi: #d55181;
-  --t-mercado: #008300;
+  --t-mercado: #6aa437;
   --serie-global: #9085e9;
   --serie-latam: #d95926;
 }
@@ -467,3 +467,67 @@ a.indicador:hover { transform: translateY(-2px); border-color: var(--acento); }
   .revelar { opacity: 1; transform: none; }
 }
 .rejilla-2--ancha { align-items: start; }
+
+/* ---------- Biblioteca de referencias y bloques nuevos ---------- */
+
+/* Portada en dos columnas: texto a la izquierda, panel de la edición a la derecha */
+.portada__rejilla { display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 1000px) { .portada__rejilla { grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; } }
+.portada__panel { background: var(--superficie); border: 1px solid var(--borde); border-radius: var(--radio); box-shadow: var(--sombra); padding: 16px 18px; }
+.portada__panel:empty { display: none; }
+.panel__titulo { font-size: .74rem; font-weight: 750; text-transform: uppercase; letter-spacing: .07em; color: var(--tinta-suave); margin: 0 0 6px; }
+.panel__titulo:not(:first-child) { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--borde); }
+.panel__fila { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 10px; align-items: baseline; padding: 5px 6px; margin: 0 -6px; border-radius: 8px; color: inherit; text-decoration: none; }
+.panel__fila:hover { background: var(--superficie-2); }
+.panel__valor { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em; text-align: right; color: var(--acento-fuerte); }
+.panel__valor small { font-size: .6em; color: var(--tinta-suave); font-weight: 700; }
+.panel__rotulo { font-size: .86rem; color: var(--tinta-2); line-height: 1.3; }
+.panel__pie { font-size: .78rem; color: var(--tinta-suave); margin: 10px 0 0; }
+
+/* Insignias */
+.insignia--ref { color: var(--acento-fuerte); background: var(--acento-suave); }
+.insignia--noticia { color: var(--tinta-2); background: var(--superficie-2); }
+.insignia--evidencia { color: var(--tinta-2); background: var(--superficie-2); border: 1px dashed var(--borde-fuerte); }
+.insignia--especulacion { color: var(--aviso); background: var(--aviso-fondo); border-color: transparent; }
+.insignia--certeza-baja { color: var(--aviso); background: var(--aviso-fondo); }
+.insignia--certeza-media { color: var(--tinta-2); background: var(--superficie-2); }
+.insignia--certeza-alta { color: var(--ok); background: var(--ok-fondo); }
+
+/* Línea de tiempo */
+.lt__item-ref { display: flex; flex-wrap: wrap; gap: 6px; }
+.lt__item--ref { border-style: dashed; }
+.lt__carril-nota { font-size: .8rem; color: var(--tinta-suave); margin: -6px 0 12px; font-style: italic; }
+.vacio--explica { font-style: normal; background: var(--superficie-2); border-radius: var(--radio-chico); padding: 12px 14px; font-size: .88rem; color: var(--tinta-2); }
+
+/* Brechas: casilla arriba, gráfico y ranking apilados (sin hueco bajo el gráfico) */
+.filtros--brechas { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; }
+.filtros--brechas .tarjeta__ayuda { margin: 0; }
+.casilla { display: inline-flex; gap: 8px; align-items: center; font-size: .92rem; font-weight: 650; cursor: pointer; background: var(--superficie); border: 1px solid var(--borde-fuerte); border-radius: 999px; padding: 6px 14px; }
+.casilla input { width: 16px; height: 16px; accent-color: var(--acento); }
+.casilla__conteo { font-weight: 500; color: var(--tinta-suave); }
+.muestra-latam { font-size: .88rem; color: var(--tinta-2); border-left: 3px solid var(--serie-latam); padding: 4px 0 4px 10px; margin: 10px 0 4px; }
+.ranking__insignias { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+.ranking__insignias:empty { display: none; }
+@media (min-width: 900px) {
+  .ranking--doble { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px; }
+  .ranking--doble li:nth-last-child(2):nth-child(odd) { border-bottom: 0; }
+}
+
+/* Tarjetas de referencias (Latinoamérica, Regulación) */
+.tarjetas-ref { display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 760px) { .tarjetas-ref { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .tarjetas-ref { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.tarjetas-ref > .vacio { grid-column: 1 / -1; }
+.ref-tarjeta { background: var(--superficie); border: 1px solid var(--borde); border-radius: var(--radio); box-shadow: var(--sombra); padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.ref-tarjeta--no { background: var(--superficie-2); box-shadow: none; border-style: dashed; }
+.ref-tarjeta__meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .78rem; color: var(--tinta-suave); }
+.ref-tarjeta__titulo { font-size: .98rem; font-weight: 750; line-height: 1.35; margin: 0; }
+.enlace-boton { all: unset; cursor: pointer; }
+.enlace-boton:hover { color: var(--acento-fuerte); text-decoration: underline; }
+.enlace-boton:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; border-radius: 4px; }
+.ref-tarjeta__dato { font-size: .92rem; background: var(--acento-suave); border-radius: 10px; padding: 10px 12px; margin: 0; }
+.ref-tarjeta__brecha { font-size: .84rem; color: var(--tinta-2); margin: 0; display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; }
+.ref-tarjeta__nota { font-size: .82rem; color: var(--tinta-2); margin: 0; }
+.ref-tarjeta__pie { margin-top: auto; padding-top: 6px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; font-size: .82rem; color: var(--tinta-suave); }
+.bloque--calidad { background: var(--aviso-fondo); border-radius: 10px; padding: 12px 14px; }
+.tarjeta--advertencia { border-left: 4px solid var(--aviso); }
