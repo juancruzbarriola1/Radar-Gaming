@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Radar Gaming</title>
+  <meta name="description" content="Tablero de inteligencia comercial sobre tendencias de la industria del gaming.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%236d4aff'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='white' stroke-width='2'/%3E%3Cpath d='M16 16 L27 9' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <script>
+    // Aplica el tema guardado antes de pintar, para evitar parpadeo.
+    try { var t = localStorage.getItem('rg-tema'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="assets/css/estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#hoy">Saltar al contenido</a>
+
+  <header class="encabezado">
+    <div class="contenedor encabezado__fila">
+      <div class="marca">
+        <svg class="marca__logo" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="14" class="logo-fondo"/>
+          <circle cx="16" cy="16" r="8" fill="none" stroke="#fff" stroke-width="2" opacity=".8"/>
+          <circle cx="16" cy="16" r="2.5" fill="#fff"/>
+          <path class="logo-barrido" d="M16 16 L27 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span class="marca__nombre">Radar Gaming</span>
+      </div>
+      <div class="encabezado__controles">
+        <label class="selector">
+          <span class="selector__rotulo">Edición</span>
+          <select id="selector-edicion" aria-label="Elegir edición"></select>
+        </label>
+        <button id="boton-tema" class="boton-icono" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar modo claro/oscuro">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icono-luna"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icono-sol"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="navegacion" aria-label="Secciones">
+      <div class="contenedor navegacion__lista">
+        <a href="#hoy">Hoy</a>
+        <a href="#futuro">Qué puede venir</a>
+        <a href="#brechas">Brechas</a>
+        <a href="#hemeroteca">Todas las noticias</a>
+        <a href="#metodologia">Cómo leer</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="portada">
+      <div class="contenedor">
+        <p class="portada__ventana" id="ventana">Cargando edición…</p>
+        <h1 class="portada__titulo" id="tema-titulo"></h1>
+        <p class="portada__bajada" id="tema-bajada"></p>
+        <div class="portada__respaldo" id="tema-noticias"></div>
+      </div>
+    </section>
+
+    <div id="aviso" class="contenedor" role="status" aria-live="polite"></div>
+
+    <!-- 1. Hoy -->
+    <section id="hoy" class="seccion revelar">
+      <div class="contenedor">
+        <header class="seccion__cabecera">
+          <span class="seccion__numero">01</span>
+          <div>
+            <h2>¿Qué está pasando hoy?</h2>
+            <p class="seccion__ayuda">Indicadores de la edición y las noticias que describen lo que la mayoría de las empresas ya hace.</p>
+          </div>
+        </header>
+
+        <div class="indicadores" id="indicadores"></div>
+
+        <div class="rejilla-2">
+          <article class="tarjeta">
+            <h3 class="tarjeta__titulo">Noticias por tema</h3>
+            <p class="tarjeta__ayuda">Tocá una barra para ver esas noticias en la hemeroteca.</p>
+            <div class="grafico grafico--temas"><canvas id="grafico-temas" role="img" aria-label="Gráfico de barras: cantidad de noticias por tema"></canvas></div>
+          </article>
+          <article class="tarjeta tarjeta--dato" id="dato-semana"></article>
+        </div>
+
+        <article class="tarjeta">
+          <h3 class="tarjeta__titulo">Lo que ya es práctica habitual <span class="etiqueta-suave">horizonte: promedio actual</span></h3>
+          <div class="lista-noticias" id="lista-actual"></div>
+        </article>
+
+        <article class="tarjeta" id="frente-tarjeta">
+          <h3 class="tarjeta__titulo">Cómo lo cuentan las fuentes</h3>
+          <p class="tarjeta__ayuda">Dónde coinciden y dónde se contradicen los medios consultados.</p>
+          <div class="frente" id="frente"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 2. Futuro -->
+    <section id="futuro" class="seccion revelar">
+      <div class="contenedor">
+        <header class="seccion__cabecera">
+          <span class="seccion__numero">02</span>
+          <div>
+            <h2>¿Qué puede venir?</h2>
+            <p class="seccion__ayuda">Cada noticia ubicada según cuándo podría volverse habitual. Tocá una para ver el detalle.</p>
+          </div>
+        </header>
+        <div class="linea-tiempo" id="linea-tiempo"></div>
+
+        <article class="tarjeta" id="alertas-tarjeta">
+          <h3 class="tarjeta__titulo">Señales fuera de las fuentes principales</h3>
+          <p class="tarjeta__ayuda">Oportunidades y riesgos detectados en otros medios.</p>
+          <div class="alertas" id="alertas"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. Brechas -->
+    <section id="brechas" class="seccion revelar">
+      <div class="contenedor">
+        <header class="seccion__cabecera">
+          <span class="seccion__numero">03</span>
+          <div>
+            <h2>¿Dónde están las brechas?</h2>
+            <p class="seccion__ayuda">Distancia entre lo que se adopta hoy y lo que exigiría cada tendencia, en el mundo y en Latinoamérica. Escala 1 (casi nula) a 5 (muy grande). <span class="editorial">Valoración editorial</span></p>
+          </div>
+        </header>
+        <div class="rejilla-2 rejilla-2--ancha">
+          <article class="tarjeta">
+            <h3 class="tarjeta__titulo">Brecha promedio por tema: global vs. Latinoamérica</h3>
+            <div class="leyenda" id="leyenda-brechas"></div>
+            <div class="grafico grafico--brechas"><canvas id="grafico-brechas" role="img" aria-label="Gráfico de barras agrupadas: brecha global y brecha Latinoamérica por tema"></canvas></div>
+            <details class="tabla-alternativa">
+              <summary>Ver como tabla</summary>
+              <div id="tabla-brechas"></div>
+            </details>
+          </article>
+          <article class="tarjeta">
+            <h3 class="tarjeta__titulo">Noticias con mayor brecha</h3>
+            <ol class="ranking" id="ranking-brechas"></ol>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Hemeroteca -->
+    <section id="hemeroteca" class="seccion revelar">
+      <div class="contenedor">
+        <header class="seccion__cabecera">
+          <span class="seccion__numero">04</span>
+          <div>
+            <h2>Todas las noticias</h2>
+            <p class="seccion__ayuda">Hemeroteca con las noticias de todas las ediciones publicadas.</p>
+          </div>
+        </header>
+        <div class="filtros" role="search">
+          <label class="campo campo--busqueda">
+            <span>Buscar</span>
+            <input type="search" id="filtro-texto" placeholder="Palabra, empresa, fuente…" autocomplete="off">
+          </label>
+          <label class="campo"><span>Tema</span><select id="filtro-tema"></select></label>
+          <label class="campo"><span>Fuente</span><select id="filtro-fuente"></select></label>
+          <label class="campo"><span>Horizonte</span><select id="filtro-horizonte"></select></label>
+          <label class="campo"><span>Edición</span><select id="filtro-edicion"></select></label>
+          <button type="button" class="boton-texto" id="filtro-limpiar">Limpiar filtros</button>
+        </div>
+        <p class="conteo" id="conteo-hemeroteca" aria-live="polite"></p>
+        <div class="tabla-envoltura">
+          <table class="tabla" id="tabla-hemeroteca">
+            <thead>
+              <tr>
+                <th scope="col">Fecha</th>
+                <th scope="col">Título</th>
+                <th scope="col">Tema</th>
+                <th scope="col">Fuente</th>
+                <th scope="col">Horizonte</th>
+                <th scope="col" title="Valoración editorial">Importancia</th>
+                <th scope="col"><span class="sr">Enlace original</span></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Metodología -->
+    <section id="metodologia" class="seccion revelar">
+      <div class="contenedor">
+        <header class="seccion__cabecera">
+          <span class="seccion__numero">05</span>
+          <div>
+            <h2>Cómo leer este tablero</h2>
+            <p class="seccion__ayuda">Qué significa cada valoración y qué no se pudo cubrir.</p>
+          </div>
+        </header>
+        <div class="rejilla-3">
+          <article class="tarjeta">
+            <h3 class="tarjeta__titulo">Horizonte</h3>
+            <p>Cuándo podría volverse habitual lo que describe la noticia.</p>
+            <dl class="definiciones">
+              <dt>Promedio actual</dt><dd>Lo que la mayoría de las empresas ya hace hoy.</dd>
+              <dt>Corto (0–1 años)</dt><dd>Adopción temprana.</dd>
+              <dt>Mediano (1–3 años)</dt><dd>Camino a ser el nuevo estándar.</dd>
+              <dt>Largo (3+ años)</dt><dd>Disruptivo y experimental.</dd>
+            </dl>
+          </article>
+          <article class="tarjeta">
+            <h3 class="tarjeta__titulo">Brecha (1 a 5)</h3>
+            <p>Distancia entre el nivel de adopción actual y el que exigiría el horizonte de la noticia. Se mide en el mundo (global) y en Latinoamérica.</p>
+            <dl class="definiciones">
+              <dt>1</dt><dd>Casi nula: ya es estándar.</dd>
+              <dt>3</dt><dd>Media.</dd>
+              <dt>5</dt><dd>Muy grande.</dd>
+            </dl>
+            <p class="nota">Cuando la fuente no da base para opinar sobre Latinoamérica, se muestra <strong>sin dato</strong>: nunca un cero ni un valor estimado.</p>
+          </article>
+          <article class="tarjeta">
+            <h3 class="tarjeta__titulo">Valoraciones editoriales</h3>
+            <p>Importancia (1–5), adopción (0–10), impacto (0–10), fase y brecha son <strong>juicios del analista</strong>, no datos de la fuente. Cada noticia trae una justificación basada en lo que dice la nota original.</p>
+            <dl class="definiciones">
+              <dt>Adopción</dt><dd>Qué tan extendida está hoy.</dd>
+              <dt>Impacto</dt><dd>Cuánto cambia la industria si madura.</dd>
+              <dt>Verificada</dt><dd>La nota original se abrió y leyó. Si no, se marca “sin verificar” y no lleva cifras.</dd>
+            </dl>
+          </article>
+        </div>
+
+        <article class="tarjeta">
+          <h3 class="tarjeta__titulo">Estado de las fuentes consultadas <span class="etiqueta-suave" id="fuentes-edicion"></span></h3>
+          <div class="resumen-estados" id="resumen-estados"></div>
+          <div class="tabla-envoltura">
+            <table class="tabla tabla--fuentes" id="tabla-fuentes">
+              <thead><tr><th scope="col">Fuente</th><th scope="col">Estado</th><th scope="col">Nota</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="tarjeta">
+          <h3 class="tarjeta__titulo">Limitaciones de esta edición</h3>
+          <ul class="limitaciones" id="limitaciones"></ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <p>Radar Gaming · Todo el contenido proviene de los archivos de datos de cada edición. Los títulos de las notas se muestran en su idioma original.</p>
+    </div>
+  </footer>
+
+  <!-- Panel de detalle -->
+  <div class="cajon-fondo" id="cajon-fondo" hidden></div>
+  <aside class="cajon" id="cajon" role="dialog" aria-modal="true" aria-labelledby="cajon-titulo" aria-hidden="true" tabindex="-1">
+    <div class="cajon__barra">
+      <span class="cajon__etiqueta">Detalle de la noticia</span>
+      <button type="button" class="boton-icono" id="cajon-cerrar" aria-label="Cerrar detalle">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="cajon__cuerpo" id="cajon-cuerpo"></div>
+  </aside>
+
+  <script src="assets/vendor/chart.umd.min.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
