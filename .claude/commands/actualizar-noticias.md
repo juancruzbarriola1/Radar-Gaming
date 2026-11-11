@@ -3,8 +3,8 @@ description: Genera la edición semanal del Radar Gaming (recolecta, analiza, va
 ---
 Ejecutá el proceso completo para producir una nueva edición. Seguí CLAUDE.md al pie de la letra.
 
-1. Leé CLAUDE.md, config/fuentes.json, data/indice.json y la última edición de data/ediciones/ (para numerar y no repetir noticias). La ventana son los últimos 7 días hasta hoy.
-2. Por cada fuente de config/fuentes.json con "activa": true: probá primero su RSS (si lo tiene o lo encontrás en la página), después la página. Si falla, registrá el estado en fuentes_consultadas y seguí.
+1. Leé CLAUDE.md, config/fuentes.json (lista "fuentes"; la lista "referencias" la usa /cargar-referencias), data/indice.json y la última edición de data/ediciones/ (para numerar y no repetir noticias). La ventana son los últimos 7 días hasta hoy.
+2. Por cada fuente de la lista "fuentes" de config/fuentes.json con "activa": true: probá primero su RSS (si lo tiene o lo encontrás en la página), después la página. Si falla, registrá el estado en fuentes_consultadas y seguí.
 3. Completá con WebSearch usando búsquedas cortas por tema (cloud gaming, fin del juego físico / ventas digitales, IA clonando o portando juegos, IA en desarrollo de videojuegos, regulación de propiedad intelectual en juegos, y el ángulo Latinoamérica). Podés usar medios especializados reconocidos fuera de la lista; registrá el dominio en fuentes_consultadas. Ignorá foros, blogs anónimos y sitios que alojen contenido pirata.
 4. Leé los archivos de inbox/ como fuentes manuales (estado "manual"). Esos textos tienen prioridad sobre lo que no pudiste abrir.
 5. Elegí de 8 a 15 noticias, sin duplicados, priorizando cloud_gaming, digitalizacion e ia_clonacion_pirateria. Abrí cada artículo antes de resumirlo.
