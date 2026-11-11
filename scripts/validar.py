@@ -25,7 +25,7 @@ TIPOS_NOTICIA = {"noticia", "analisis", "reporte", "encuesta", "opinion"}
 
 UMBRAL_ADOPCION = 5
 UMBRAL_IMPACTO = 6
-MAX_PALABRAS_RESUMEN = 90  # el resumen debe tener MENOS de este número de palabras
+MAX_PALABRAS_RESUMEN = 90  # máximo de palabras permitido en resumen_propio (inclusive)
 
 CAMPOS_EDICION = ["edicion", "tema_de_la_semana", "dato_de_la_semana",
                   "fuentes_consultadas", "noticias", "frente_a_frente",
@@ -190,9 +190,9 @@ class Validador:
                     self.error(donde, "'resumen_propio' debe ser un texto no vacío")
                 else:
                     palabras = len(resumen.split())
-                    if palabras >= MAX_PALABRAS_RESUMEN:
+                    if palabras > MAX_PALABRAS_RESUMEN:
                         self.error(donde, f"'resumen_propio' tiene {palabras} palabras "
-                                          f"(debe tener menos de {MAX_PALABRAS_RESUMEN})")
+                                          f"(máximo {MAX_PALABRAS_RESUMEN})")
 
             # verificada
             verificada = n.get("verificada")
