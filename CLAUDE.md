@@ -21,6 +21,11 @@ Prioridad de cobertura: cloud_gaming, digitalizacion e ia_clonacion_pirateria. S
 6. Piratería: reportá el fenómeno solo desde medios de prensa. Nunca enlaces ni nombres sitios donde se descargan copias, ni expliques cómo clonar o crackear un juego.
 7. Alertas ("alertas"): hechos relevantes de fuera de las fuentes principales, tipo oportunidad o riesgo, con "por_que_importa".
 8. Idioma de salida: español neutro. Los títulos de notas originales se dejan en su idioma.
+9. Referencias vs. noticias: las referencias (data/referencias.json: reportes, papers, análisis legales, notas con datos) están fuera de la ventana semanal y nunca se mezclan con las noticias de la semana ni se cuentan como noticias de una edición. En el tablero se rotulan "Referencia".
+10. Nunca mezclar cifras de firmas distintas: toda cifra lleva el nombre de quien la mide y, si llega de segunda mano, el medio ("según Newzoo, vía GamesBeat"). No sumes, promedies ni compares como serie cifras de firmas, métricas o períodos distintos.
+11. Si dos o más firmas dan cifras distintas sobre lo mismo, registralo en nota_calidad con ambas cifras y sus firmas, sin elegir una.
+12. adopcion_latam, brecha_latam y las fechas son null si la fuente no da base. Nunca uses la fecha de la consulta, la de otra nota de la página o una inferida del identificador como fecha de publicación.
+13. Certeza: dato medido y publicado = alta; pronóstico de consultora u opinión de un directivo = media; especulación o hecho no ocurrido = baja; ante la duda, media. Una brecha medida sobre algo especulativo se marca certeza baja y la justificacion_brecha lo dice.
 
 ## Rúbricas
 - horizonte: promedio_actual (lo que la mayoría de las empresas hace HOY), corto (0-1 años, adopción temprana), mediano (1-3 años, nuevo estándar), largo (3+ años, disruptivo experimental).
@@ -28,6 +33,8 @@ Prioridad de cobertura: cloud_gaming, digitalizacion e ia_clonacion_pirateria. S
 - adopcion (0-10): qué tan extendida está hoy. impacto (0-10): cuánto cambia la industria si madura.
 - cuadrante: estrella (adopcion>=5 e impacto>=6), interrogante (adopcion<5 e impacto>=6), vaca_lechera (adopcion>=5 e impacto<6), perro (adopcion<5 e impacto<6).
 - importancia (1-5): relevancia de la noticia para quien analiza la industria.
+- tipo_evidencia: dato_medido | pronostico | opinion | especulacion (qué sostiene la valoración).
+- certeza: alta | media | baja (ver regla 13).
 - brecha_global / brecha_latam (1-5): distancia entre el nivel de adopción actual y el que exigiría el horizonte de la noticia. 1 = casi nula (ya es estándar); 3 = media; 5 = muy grande. Con justificacion_brecha.
 
 ## Esquema de una edición (data/ediciones/AAAA-MM-DD.json)
@@ -44,9 +51,21 @@ Prioridad de cobertura: cloud_gaming, digitalizacion e ia_clonacion_pirateria. S
     "importancia": 1, "horizonte": "", "fase_curva": "",
     "adopcion": 0, "adopcion_latam": null, "impacto": 0, "cuadrante": "",
     "brecha_global": 1, "brecha_latam": null, "justificacion_brecha": "",
+    "tipo_evidencia": "dato_medido|pronostico|opinion|especulacion", "certeza": "alta|media|baja",
     "verificada": true
   }],
   "frente_a_frente": {"coincidencias": [{"titulo": "", "texto": "", "fuentes": []}], "diferencias": [{"titulo": "", "texto": "", "fuentes": []}]},
   "alertas": [{"tipo": "oportunidad|riesgo", "fuente": "", "url": "", "fecha": "", "titulo": "", "resumen": "", "por_que_importa": ""}],
   "limitaciones": ["qué no se pudo cubrir esta semana y por qué"]
 }
+
+## Esquema de la biblioteca de referencias (data/referencias.json)
+{"actualizado": "AAAA-MM-DD", "referencias": [ ... ]}
+Cada referencia usa los mismos campos que una noticia (id = id de config/fuentes.json; fecha_publicacion puede ser null) más:
+- "tipo_documento": prensa_datos | reporte | paper | analisis | opinion_experta | analisis_legal | posicionamiento_industria | secundaria
+- "foco": el foco de config/fuentes.json (un tema, "latam" o "largo_plazo")
+- "geografia": global | latam | otra (nombrala, p. ej. "EE. UU.", "Colombia"); null si no es accesible
+- "tipo_evidencia" y "certeza" (como en las noticias)
+- "estado": ok | no_accesible. Si es no_accesible: verificada=false, nota_calidad con el motivo, y resumen, dato_clave y valoraciones en null.
+- "nota_calidad": advertencias sobre la fuente (segunda mano, comunicado patrocinado, cifras que difieren entre firmas, preprint sin revisión), o null.
+Se cargan con /cargar-referencias y se validan con `python scripts/validar.py data/referencias.json`.

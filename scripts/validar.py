@@ -1,15 +1,20 @@
 #!/usr/bin/env python3
-"""Valida una edición del Radar Gaming contra el esquema definido en CLAUDE.md.
+"""Valida ediciones y la biblioteca de referencias del Radar Gaming contra el
+esquema definido en CLAUDE.md.
 
 Uso:
     python scripts/validar.py data/ediciones/AAAA-MM-DD.json
+    python scripts/validar.py data/referencias.json
+    python scripts/validar.py            (valida todas las ediciones y las referencias)
 
 Imprime cada error (con el id de la noticia cuando corresponde) y sale con
 código 1 si hay errores, 2 si el archivo no se puede leer, 0 si todo está bien.
 Solo usa la biblioteca estándar de Python.
 """
 
+import glob
 import json
+import os
 import re
 import sys
 from datetime import date
@@ -22,6 +27,14 @@ CUADRANTES = {"estrella", "interrogante", "vaca_lechera", "perro"}
 TIPOS_ALERTA = {"oportunidad", "riesgo"}
 ESTADOS_FUENTE = {"ok", "bloqueada", "sin_novedades", "requiere_js", "manual"}
 TIPOS_NOTICIA = {"noticia", "analisis", "reporte", "encuesta", "opinion"}
+CERTEZAS = {"alta", "media", "baja"}
+TIPOS_EVIDENCIA = {"dato_medido", "pronostico", "opinion", "especulacion"}
+TIPOS_DOCUMENTO = {"prensa_datos", "reporte", "paper", "analisis", "opinion_experta",
+                   "analisis_legal", "posicionamiento_industria", "secundaria"}
+FOCOS = TEMAS | {"latam", "largo_plazo"}
+ESTADOS_REFERENCIA = {"ok", "no_accesible"}
+# Palabras que la justificación debe contener cuando una brecha tiene certeza baja.
+MARCAS_CERTEZA_BAJA = ("certeza baja", "especulativ", "no ocurri")
 
 UMBRAL_ADOPCION = 5
 UMBRAL_IMPACTO = 6
@@ -38,7 +51,14 @@ CAMPOS_NOTICIA = ["id", "fuente", "url", "fecha_publicacion", "titulo", "tipo",
                   "tema", "resumen_propio", "dato_clave", "lectura_negocio",
                   "importancia", "horizonte", "fase_curva", "adopcion",
                   "adopcion_latam", "impacto", "cuadrante", "brecha_global",
-                  "brecha_latam", "justificacion_brecha", "verificada"]
+                  "brecha_latam", "justificacion_brecha", "tipo_evidencia", "certeza",
+                  "verificada"]
+CAMPOS_REFERENCIA = CAMPOS_NOTICIA + ["tipo_documento", "foco", "geografia",
+                                      "estado", "nota_calidad"]
+# En una referencia no accesible estos campos van en null (no hay base para valorarlos).
+VALORACIONES = ["importancia", "horizonte", "fase_curva", "adopcion", "adopcion_latam",
+                "impacto", "cuadrante", "brecha_global", "brecha_latam",
+                "tipo_evidencia", "certeza"]
 CAMPOS_FRENTE_ITEM = ["titulo", "texto", "fuentes"]
 CAMPOS_ALERTA = ["tipo", "fuente", "url", "fecha", "titulo", "resumen",
                  "por_que_importa"]
@@ -160,49 +180,71 @@ class Validador:
                 f = self.fecha(n["fecha_publicacion"], donde, "fecha_publicacion")
                 if f and desde and hasta and not (desde <= f <= hasta):
                     self.error(donde, f"fecha_publicacion {f} fuera de la ventana de la edición ({desde} a {hasta})")
-
-            # enums
-            self.enum(n, "tema", TEMAS, donde)
-            self.enum(n, "horizonte", HORIZONTES, donde)
-            self.enum(n, "fase_curva", FASES_CURVA, donde)
-            self.enum(n, "cuadrante", CUADRANTES, donde)
-            self.enum(n, "tipo", TIPOS_NOTICIA, donde)
-
-            # rangos
-            self.entero_rango(n, "importancia", 1, 5, donde)
-            self.entero_rango(n, "brecha_global", 1, 5, donde, nullable=True)
-            self.entero_rango(n, "brecha_latam", 1, 5, donde, nullable=True)
-            adopcion = self.numero_rango(n, "adopcion", 0, 10, donde)
-            impacto = self.numero_rango(n, "impacto", 0, 10, donde)
-            self.numero_rango(n, "adopcion_latam", 0, 10, donde, nullable=True)
-
-            # cuadrante coherente con los umbrales
-            if adopcion is not None and impacto is not None and n.get("cuadrante") in CUADRANTES:
-                esperado = cuadrante_esperado(adopcion, impacto)
-                if n["cuadrante"] != esperado:
-                    self.error(donde, f"cuadrante {n['cuadrante']!r} incoherente con adopcion={adopcion} "
-                                      f"e impacto={impacto}: debería ser {esperado!r}")
-
-            # resumen propio
-            resumen = n.get("resumen_propio")
-            if "resumen_propio" in n:
-                if not isinstance(resumen, str) or not resumen.strip():
-                    self.error(donde, "'resumen_propio' debe ser un texto no vacío")
-                else:
-                    palabras = len(resumen.split())
-                    if palabras > MAX_PALABRAS_RESUMEN:
-                        self.error(donde, f"'resumen_propio' tiene {palabras} palabras "
-                                          f"(máximo {MAX_PALABRAS_RESUMEN})")
-
-            # verificada
-            verificada = n.get("verificada")
-            if "verificada" in n and not isinstance(verificada, bool):
-                self.error(donde, f"'verificada' debe ser true o false (recibido: {verificada!r})")
-            if verificada is False:
-                dato = n.get("dato_clave")
-                if isinstance(dato, str) and re.search(r"\d", dato):
-                    self.error(donde, f"noticia no verificada con cifras en 'dato_clave': {dato!r}")
+            self.validar_item(n, donde)
         return ids
+
+    def validar_item(self, n, donde, valoraciones_nulas=False):
+        """Controles comunes a noticias y referencias (enums, rangos, cuadrante, resumen, certeza)."""
+        if valoraciones_nulas:
+            for campo in VALORACIONES + ["dato_clave", "resumen_propio"]:
+                if n.get(campo) is not None:
+                    self.error(donde, f"referencia no accesible: '{campo}' debe ser null (recibido: {n[campo]!r})")
+            if n.get("verificada") is not False:
+                self.error(donde, "referencia no accesible: 'verificada' debe ser false")
+            return
+
+        # enums
+        self.enum(n, "tema", TEMAS, donde)
+        self.enum(n, "horizonte", HORIZONTES, donde)
+        self.enum(n, "fase_curva", FASES_CURVA, donde)
+        self.enum(n, "cuadrante", CUADRANTES, donde)
+        self.enum(n, "tipo", TIPOS_NOTICIA, donde)
+        self.enum(n, "tipo_evidencia", TIPOS_EVIDENCIA, donde)
+        self.enum(n, "certeza", CERTEZAS, donde)
+
+        # certeza coherente con el tipo de evidencia
+        if n.get("tipo_evidencia") == "especulacion" and n.get("certeza") in CERTEZAS and n["certeza"] != "baja":
+            self.error(donde, f"tipo_evidencia 'especulacion' exige certeza 'baja' (recibido: {n['certeza']!r})")
+        if n.get("certeza") == "baja" and (n.get("brecha_global") is not None or n.get("brecha_latam") is not None):
+            just = str(n.get("justificacion_brecha") or "").lower()
+            if not any(m in just for m in MARCAS_CERTEZA_BAJA):
+                self.error(donde, "brecha con certeza baja: 'justificacion_brecha' debe decir que es especulativa "
+                                  "(por ejemplo, 'Certeza baja: ...')")
+
+        # rangos
+        self.entero_rango(n, "importancia", 1, 5, donde)
+        self.entero_rango(n, "brecha_global", 1, 5, donde, nullable=True)
+        self.entero_rango(n, "brecha_latam", 1, 5, donde, nullable=True)
+        adopcion = self.numero_rango(n, "adopcion", 0, 10, donde)
+        impacto = self.numero_rango(n, "impacto", 0, 10, donde)
+        self.numero_rango(n, "adopcion_latam", 0, 10, donde, nullable=True)
+
+        # cuadrante coherente con los umbrales
+        if adopcion is not None and impacto is not None and n.get("cuadrante") in CUADRANTES:
+            esperado = cuadrante_esperado(adopcion, impacto)
+            if n["cuadrante"] != esperado:
+                self.error(donde, f"cuadrante {n['cuadrante']!r} incoherente con adopcion={adopcion} "
+                                  f"e impacto={impacto}: debería ser {esperado!r}")
+
+        # resumen propio
+        resumen = n.get("resumen_propio")
+        if "resumen_propio" in n:
+            if not isinstance(resumen, str) or not resumen.strip():
+                self.error(donde, "'resumen_propio' debe ser un texto no vacío")
+            else:
+                palabras = len(resumen.split())
+                if palabras > MAX_PALABRAS_RESUMEN:
+                    self.error(donde, f"'resumen_propio' tiene {palabras} palabras "
+                                      f"(máximo {MAX_PALABRAS_RESUMEN})")
+
+        # verificada
+        verificada = n.get("verificada")
+        if "verificada" in n and not isinstance(verificada, bool):
+            self.error(donde, f"'verificada' debe ser true o false (recibido: {verificada!r})")
+        if verificada is False:
+            dato = n.get("dato_clave")
+            if isinstance(dato, str) and re.search(r"\d", dato):
+                self.error(donde, f"noticia no verificada con cifras en 'dato_clave': {dato!r}")
 
     def validar_tema_semana(self, tema, ids):
         donde = "tema_de_la_semana"
@@ -260,17 +302,62 @@ class Validador:
                 self.fecha(a["fecha"], donde, "fecha")
 
 
+    # --- biblioteca de referencias ---------------------------------------
+
+    def validar_referencias(self, data):
+        if not self.requeridos(data, ["actualizado", "referencias"], "referencias.json"):
+            return
+        actualizado = self.fecha(data.get("actualizado"), "referencias.json", "actualizado") if "actualizado" in data else None
+        refs = data.get("referencias")
+        if not isinstance(refs, list):
+            self.error("referencias.json", "'referencias' debe ser una lista")
+            return
+        ids = set()
+        for i, r in enumerate(refs):
+            rid = r.get("id") if isinstance(r, dict) else None
+            donde = f"referencia {rid}" if rid else f"referencia #{i + 1} (sin id)"
+            if not self.requeridos(r, CAMPOS_REFERENCIA, donde):
+                continue
+            if rid:
+                if rid in ids:
+                    self.error(donde, f"id duplicado: {rid!r}")
+                ids.add(rid)
+            self.url(r.get("url"), donde)
+            for campo in ("fuente", "titulo"):
+                if not isinstance(r.get(campo), str) or not r[campo].strip():
+                    self.error(donde, f"'{campo}' debe ser un texto no vacío")
+            if r.get("fecha_publicacion") is not None:
+                f = self.fecha(r["fecha_publicacion"], donde, "fecha_publicacion")
+                if f and actualizado and f > actualizado:
+                    self.error(donde, f"fecha_publicacion {f} posterior a 'actualizado' ({actualizado})")
+            self.enum(r, "estado", ESTADOS_REFERENCIA, donde)
+            self.enum(r, "tipo_documento", TIPOS_DOCUMENTO, donde)
+            self.enum(r, "foco", FOCOS, donde)
+            self.enum(r, "tema", TEMAS, donde)
+            geo = r.get("geografia")
+            if geo is None and r.get("estado") == "no_accesible":
+                pass  # sin texto no hay base para la geografía
+            elif not isinstance(geo, str) or not geo.strip():
+                self.error(donde, "'geografia' debe ser 'global', 'latam' u otra región nombrada")
+            nota = r.get("nota_calidad")
+            if nota is not None and (not isinstance(nota, str) or not nota.strip()):
+                self.error(donde, "'nota_calidad' debe ser un texto o null")
+            if r.get("estado") == "no_accesible":
+                if not nota:
+                    self.error(donde, "referencia no accesible: 'nota_calidad' debe explicar el motivo")
+                self.validar_item(r, donde, valoraciones_nulas=True)
+            elif r.get("estado") == "ok":
+                self.validar_item(r, donde)
+
+
 def cuadrante_esperado(adopcion, impacto):
     if adopcion >= UMBRAL_ADOPCION:
         return "estrella" if impacto >= UMBRAL_IMPACTO else "vaca_lechera"
     return "interrogante" if impacto >= UMBRAL_IMPACTO else "perro"
 
 
-def main(argv):
-    if len(argv) != 2:
-        print("Uso: python scripts/validar.py <ruta/a/edicion.json>", file=sys.stderr)
-        return 2
-    ruta = argv[1]
+def validar_archivo(ruta):
+    """Valida un archivo; devuelve 0 si está bien, 1 si hay errores, 2 si no se puede leer."""
     try:
         with open(ruta, encoding="utf-8") as fh:
             data = json.load(fh)
@@ -279,14 +366,41 @@ def main(argv):
         return 2
 
     v = Validador()
-    v.validar(data)
+    es_referencias = isinstance(data, dict) and "referencias" in data and "noticias" not in data
+    if es_referencias:
+        v.validar_referencias(data)
+    else:
+        v.validar(data)
     if v.errores:
         for e in v.errores:
             print(f"ERROR {e}")
         print(f"\n{len(v.errores)} error(es) en {ruta}")
         return 1
-    print(f"OK: {ruta} cumple el esquema ({len(data['noticias'])} noticias)")
+    if es_referencias:
+        refs = data["referencias"]
+        ok = sum(1 for r in refs if r.get("estado") == "ok")
+        print(f"OK: {ruta} cumple el esquema ({len(refs)} referencias, {ok} accesibles, {len(refs) - ok} no accesibles)")
+    else:
+        print(f"OK: {ruta} cumple el esquema ({len(data['noticias'])} noticias)")
     return 0
+
+
+def main(argv):
+    if len(argv) > 2:
+        print("Uso: python scripts/validar.py [ruta/a/archivo.json]", file=sys.stderr)
+        return 2
+    if len(argv) == 2:
+        return validar_archivo(argv[1])
+    # Sin argumentos: todas las ediciones y, si existe, la biblioteca de referencias.
+    raiz = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    rutas = sorted(glob.glob(os.path.join(raiz, "data", "ediciones", "*.json")))
+    refs = os.path.join(raiz, "data", "referencias.json")
+    if os.path.exists(refs):
+        rutas.append(refs)
+    if not rutas:
+        print("No hay archivos para validar.", file=sys.stderr)
+        return 2
+    return max(validar_archivo(r) for r in rutas)
 
 
 if __name__ == "__main__":

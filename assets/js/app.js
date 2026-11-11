@@ -30,6 +30,19 @@
   var FASES = { disparador: 'Disparador', pico: 'Pico de expectativas', abismo: 'Desilusión', pendiente: 'Pendiente de aprendizaje', meseta: 'Meseta de productividad' };
   var CUADRANTES = { estrella: 'Estrella', interrogante: 'Interrogante', vaca_lechera: 'Vaca lechera', perro: 'Perro' };
   var TIPOS = { noticia: 'Noticia', analisis: 'Análisis', reporte: 'Reporte', encuesta: 'Encuesta', opinion: 'Opinión' };
+  var EVIDENCIAS = {
+    dato_medido: { nombre: 'Dato medido', insignia: null },
+    pronostico: { nombre: 'Pronóstico', insignia: 'Pronóstico' },
+    opinion: { nombre: 'Opinión', insignia: 'Opinión' },
+    especulacion: { nombre: 'Especulación', insignia: 'Especulativa' }
+  };
+  var CERTEZAS = { alta: 'Alta', media: 'Media', baja: 'Baja' };
+  var TIPOS_DOC = {
+    prensa_datos: 'Nota con datos', reporte: 'Reporte', paper: 'Paper', analisis: 'Análisis',
+    opinion_experta: 'Opinión experta', analisis_legal: 'Análisis legal',
+    posicionamiento_industria: 'Posición de la industria', secundaria: 'Fuente secundaria'
+  };
+  var GEOGRAFIAS = { global: 'Global', latam: 'Latinoamérica' };
   var SIN_DATO = 'sin dato';
   var ICONO_EXTERNO = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
 
@@ -39,6 +52,9 @@
     ediciones: {},       // fecha -> edición cargada (o null si falló)
     actual: null,        // edición seleccionada
     todas: [],           // noticias de todas las ediciones (hemeroteca)
+    referencias: [],     // biblioteca de referencias (data/referencias.json), fuera de la ventana semanal
+    refsMeta: null,      // { actualizado } o null si el archivo no existe
+    refsError: null,
     graficos: {},
     ultimoFoco: null
   };
@@ -102,7 +118,24 @@
     if (n.verificada === true) return '<span class="insignia insignia--ok">✓ Verificada</span>';
     return '<span class="insignia insignia--no">⚠ Sin verificar</span>';
   }
-  function clave(n) { return n._edicion + '/' + n.id; }
+  function clave(n) { return (n._ref ? 'ref' : n._edicion) + '/' + n.id; }
+  function esRef(n) { return !!(n && n._ref); }
+  function refsOk() { return estado.referencias.filter(function (r) { return r.estado === 'ok'; }); }
+  function insigniaRef(n) {
+    return '<span class="insignia insignia--ref" title="Referencia de la biblioteca: fuera de la ventana semanal">Referencia · ' +
+      (vacio(n.fecha_publicacion) ? 'sin fecha' : esc(fecha(n.fecha_publicacion, true))) + '</span>';
+  }
+  function insigniaEvidencia(n) {
+    var e = EVIDENCIAS[n.tipo_evidencia];
+    if (!e || !e.insignia) return '';
+    return '<span class="insignia insignia--evidencia insignia--' + esc(n.tipo_evidencia) + '" title="Tipo de evidencia: ' + esc(e.nombre) +
+      (n.certeza ? ' · certeza ' + esc(CERTEZAS[n.certeza] || n.certeza) : '') + '">' + esc(e.insignia) + '</span>';
+  }
+  function insigniaCerteza(n) {
+    if (!CERTEZAS[n.certeza]) return '';
+    return '<span class="insignia insignia--certeza insignia--certeza-' + esc(n.certeza) + '">Certeza ' + esc(CERTEZAS[n.certeza].toLowerCase()) + '</span>';
+  }
+  function geoNombre(g) { return vacio(g) ? SIN_DATO : (GEOGRAFIAS[g] || String(g)); }
 
   // ---------- Carga de datos ----------
   function cargarJSON(ruta) {
@@ -142,6 +175,9 @@
           if (!estado.ediciones[o.value]) { o.disabled = true; o.textContent += ' (no disponible)'; }
         });
         armarHemeroteca();
+        return cargarReferencias();
+      }).then(function () {
+        if (!estado.indice.some(function (e) { return estado.ediciones[e.fecha]; })) { $('#ventana').textContent = 'No se pudo cargar ninguna edición.'; return; }
         var pedida = new URLSearchParams(location.search).get('edicion');
         var inicial = estado.indice.find(function (e) { return e.fecha === pedida && estado.ediciones[e.fecha]; }) ||
           estado.indice.find(function (e) { return estado.ediciones[e.fecha]; });
@@ -153,6 +189,19 @@
       $('#ventana').textContent = 'No se pudieron cargar los datos.';
       var extra = location.protocol === 'file:' ? ' Abrí el tablero con un servidor local (por ejemplo, <code>python -m http.server</code>) en lugar de hacer doble clic en el archivo.' : '';
       aviso('Error al leer <code>data/indice.json</code>: ' + esc(err.message) + '.' + extra, 'error');
+    });
+  }
+
+  // La biblioteca es opcional: si falta o falla, el tablero sigue funcionando sin ella.
+  function cargarReferencias() {
+    return cargarJSON('data/referencias.json').then(function (d) {
+      estado.refsMeta = { actualizado: d && d.actualizado };
+      estado.referencias = lista(d && d.referencias).filter(function (r) { return r && typeof r === 'object' && !vacio(r.id); });
+      estado.referencias.forEach(function (r) { Object.defineProperty(r, '_ref', { value: true, enumerable: false }); });
+    }).catch(function (err) {
+      estado.referencias = [];
+      estado.refsMeta = null;
+      estado.refsError = err.message;
     });
   }
 
@@ -176,6 +225,7 @@
       history.replaceState(null, '', u);
     }
     renderPortada(d);
+    renderPanelPortada(d);
     renderIndicadores(d);
     renderGraficoTemas(d);
     renderDatoSemana(d);
@@ -184,7 +234,10 @@
     renderLineaTiempo(d);
     renderAlertas(d);
     renderBrechas(d);
+    renderLatam(d);
+    renderRegulacion();
     renderMetodologia(d);
+    renderReferenciasEstado();
   }
 
   function noticiasDe(d) {
@@ -343,6 +396,14 @@
             } else {
               c.textAlign = 'center'; c.textBaseline = 'bottom';
               c.fillText(fmtNum(v, v % 1 ? 1 : 0), bar.x, bar.y - 4);
+              if (ds._n) {
+                // Tamaño de muestra de cada barra, debajo del valor y en tinta suave.
+                c.save();
+                c.fillStyle = css('--tinta-suave');
+                c.font = '500 10.5px ' + (css('--fuente') || 'sans-serif');
+                c.fillText('n=' + ds._n[i], bar.x, bar.y - 19);
+                c.restore();
+              }
             }
           });
         });
@@ -401,24 +462,51 @@
   }
 
   // ---------- Línea de tiempo ----------
+  // Corto y mediano: noticias de la edición + referencias. Largo: solo referencias (ver CLAUDE.md).
+  function itemLinea(n) {
+    return '<button type="button" class="lt__item' + (esRef(n) ? ' lt__item--ref' : '') + '" style="--c:' + (TEMAS[n.tema] ? 'var(--t-' + n.tema + ')' : 'var(--borde-fuerte)') + '" data-abrir="' + esc(clave(n)) + '">' +
+      (esRef(n) ? '<span class="lt__item-ref">' + insigniaRef(n) + insigniaEvidencia(n) + '</span>' : (insigniaEvidencia(n) ? '<span class="lt__item-ref">' + insigniaEvidencia(n) + '</span>' : '')) +
+      '<span class="lt__item-titulo">' + texto(n.titulo) + '</span>' +
+      '<span class="lt__item-meta">' + chipTema(n.tema) + '<span>' + esc(n.fuente || SIN_DATO) + '</span>' +
+      '<span title="Importancia (valoración editorial)">' + puntos(n.importancia, 5, 'Importancia') + '</span></span></button>';
+  }
+  function porImportanciaYTipo(a, b) { return (esRef(a) ? 1 : 0) - (esRef(b) ? 1 : 0) || porImportancia(a, b); }
+
   function renderLineaTiempo(d) {
-    var ns = noticiasDe(d);
+    var ns = noticiasDe(d), refs = refsOk();
     var carriles = ['corto', 'mediano', 'largo'];
     var html = '<div class="lt__eje" aria-hidden="true">' + carriles.map(function (h) { return '<span>' + esc(HORIZONTES[h].plazo) + '</span>'; }).join('') + '</div>';
     html += '<div class="lt__carriles">' + carriles.map(function (h) {
       var info = HORIZONTES[h];
-      var items = ns.filter(function (n) { return n.horizonte === h; }).sort(porImportancia);
+      var deNoticias = h === 'largo' ? [] : ns.filter(function (n) { return n.horizonte === h; });
+      var deRefs = refs.filter(function (r) { return r.horizonte === h; });
+      var items = deNoticias.concat(deRefs).sort(porImportanciaYTipo);
+      var conteo = h === 'largo' ? deRefs.length + (deRefs.length === 1 ? ' referencia' : ' referencias')
+        : deNoticias.length + (deNoticias.length === 1 ? ' noticia' : ' noticias') + ' · ' + deRefs.length + (deRefs.length === 1 ? ' referencia' : ' referencias');
       return '<div class="lt__carril"><div class="lt__carril-cabecera"><span class="lt__carril-titulo">' + esc(info.nombre) + '</span>' +
         '<span class="lt__carril-plazo">' + esc(info.plazo) + '</span></div>' +
-        '<p class="lt__carril-desc">' + esc(info.desc) + ' · ' + items.length + (items.length === 1 ? ' noticia' : ' noticias') + '</p>' +
-        '<div class="lt__items">' + (items.length ? items.map(function (n) {
-          return '<button type="button" class="lt__item" style="--c:' + (TEMAS[n.tema] ? 'var(--t-' + n.tema + ')' : 'var(--borde-fuerte)') + '" data-abrir="' + esc(clave(n)) + '">' +
-            '<span class="lt__item-titulo">' + texto(n.titulo) + '</span>' +
-            '<span class="lt__item-meta">' + chipTema(n.tema) + '<span>' + esc(n.fuente || SIN_DATO) + '</span>' +
-            '<span title="Importancia (valoración editorial)">' + puntos(n.importancia, 5, 'Importancia') + '</span></span></button>';
-        }).join('') : '<p class="vacio">Sin noticias en este horizonte en esta edición.</p>') + '</div></div>';
+        '<p class="lt__carril-desc">' + esc(info.desc) + ' · ' + conteo + '</p>' +
+        (h === 'largo' ? '<p class="lt__carril-nota">Se alimenta solo de referencias: las noticias de una semana no alcanzan para sostener apuestas a más de tres años.</p>' : '') +
+        '<div class="lt__items">' + (items.length ? items.map(itemLinea).join('') : carrilVacio(h, ns)) + '</div></div>';
     }).join('') + '</div>';
     $('#linea-tiempo').innerHTML = html;
+  }
+
+  // Un carril vacío explica por qué está vacío.
+  function carrilVacio(h, ns) {
+    var motivo;
+    if (h === 'largo') {
+      if (!estado.refsMeta) motivo = 'No se encontró la biblioteca de referencias (data/referencias.json), que es la única fuente de este carril.';
+      else if (!refsOk().length) motivo = 'La biblioteca de referencias todavía no tiene referencias accesibles.';
+      else motivo = 'Ninguna referencia accesible está clasificada con horizonte largo.';
+      var pendientes = estado.referencias.filter(function (r) { return r.estado === 'no_accesible' && r.foco === 'largo_plazo'; });
+      if (pendientes.length) motivo += ' Quedaron sin cargar por no ser accesibles: ' + pendientes.map(function (r) { return r.titulo || r.id; }).join('; ') + '.';
+    } else {
+      var otros = ns.filter(function (n) { return n.horizonte && n.horizonte !== h; }).length;
+      motivo = 'Ninguna noticia de esta edición ni referencia de la biblioteca describe algo a ' + (h === 'corto' ? 'menos de un año' : 'uno a tres años') + '.' +
+        (otros ? ' Las ' + otros + ' noticias de la edición se ubican en otros horizontes.' : '');
+    }
+    return '<p class="vacio vacio--explica">' + esc(motivo) + '</p>';
   }
 
   // ---------- Alertas ----------
@@ -439,8 +527,23 @@
   }
 
   // ---------- Brechas ----------
+  // Base: noticias de la edición + referencias accesibles. La certeza baja se excluye salvo que se marque la casilla.
+  function baseBrechas(d) {
+    var todos = noticiasDe(d).concat(refsOk()).filter(function (n) { return num(n.brecha_global) != null || num(n.brecha_latam) != null; });
+    var incluir = $('#incluir-baja').checked;
+    var bajas = todos.filter(function (n) { return n.certeza === 'baja'; });
+    return { items: incluir ? todos : todos.filter(function (n) { return n.certeza !== 'baja'; }), bajas: bajas.length, incluir: incluir };
+  }
+
   function renderBrechas(d) {
-    var ns = noticiasDe(d);
+    var casilla = $('#incluir-baja');
+    if (!casilla._listo) { casilla._listo = true; casilla.addEventListener('change', function () { if (estado.actual) renderBrechas(estado.actual); }); }
+    var base = baseBrechas(d);
+    var ns = base.items;
+    var nNot = ns.filter(function (n) { return !esRef(n); }).length, nRef = ns.length - nNot;
+    $('#conteo-baja').textContent = base.bajas ? '(' + base.bajas + (base.bajas === 1 ? ' excluida' : ' excluidas') + (base.incluir ? ', ahora incluidas' : '') + ')' : '(no hay)';
+    $('#alcance-brechas').textContent = 'Se promedian ' + nNot + (nNot === 1 ? ' noticia' : ' noticias') + ' de la edición y ' + nRef + (nRef === 1 ? ' referencia' : ' referencias') + ' con brecha valorada.';
+
     var presentes = ORDEN_TEMAS.concat(ns.map(function (n) { return n.tema; }).filter(function (t, i, a) { return ORDEN_TEMAS.indexOf(t) < 0 && a.indexOf(t) === i; }))
       .filter(function (t) { return !vacio(t) && ns.some(function (n) { return n.tema === t; }); });
     var filas = presentes.map(function (t) {
@@ -449,27 +552,33 @@
       var l = del.map(function (n) { return num(n.brecha_latam); }).filter(function (x) { return x != null; });
       return { tema: t, total: del.length, global: promedio(g), latam: promedio(l), ng: g.length, nl: l.length };
     });
+    var totalLatam = filas.reduce(function (a, f) { return a + f.nl; }, 0);
+    var totalGlobal = filas.reduce(function (a, f) { return a + f.ng; }, 0);
 
     $('#leyenda-brechas').innerHTML =
-      '<span><i style="background:var(--serie-global)"></i>Brecha global</span>' +
-      '<span><i style="background:var(--serie-latam)"></i>Brecha Latinoamérica</span>' +
-      '<span class="sin-dato">Sin barra = sin dato</span>';
+      '<span><i style="background:var(--serie-global)"></i>Brecha global (n=' + totalGlobal + ')</span>' +
+      '<span><i style="background:var(--serie-latam)"></i>Brecha Latinoamérica (n=' + totalLatam + ')</span>' +
+      '<span class="sin-dato">Sin barra = sin dato · n = cantidad de valoraciones promediadas</span>';
+    $('#muestra-latam').innerHTML = totalLatam
+      ? '<strong>Muestra de Latinoamérica: ' + totalLatam + (totalLatam === 1 ? ' valoración' : ' valoraciones') + '</strong> frente a ' + totalGlobal + ' globales. ' +
+        (totalLatam < 3 ? 'Con tan pocos datos, cada barra de Latinoamérica es una lectura puntual, no un promedio representativo.' : 'Los promedios con n bajo pesan poco: mirá el n de cada barra.')
+      : '<strong>Muestra de Latinoamérica: 0.</strong> Ninguna noticia ni referencia de esta base da fundamento para valorar la brecha en la región.';
 
     destruir('brechas');
     if (typeof Chart !== 'undefined' && filas.length) {
       baseChart();
       var ctx = $('#grafico-brechas');
-      var dsG = { label: 'Brecha global', data: filas.map(function (f) { return f.global; }), backgroundColor: css('--serie-global'), borderRadius: 4, borderSkipped: 'start', maxBarThickness: 28, _sinDato: true };
-      var dsL = { label: 'Brecha Latinoamérica', data: filas.map(function (f) { return f.latam; }), backgroundColor: css('--serie-latam'), borderRadius: 4, borderSkipped: 'start', maxBarThickness: 28, _sinDato: true };
+      var dsG = { label: 'Brecha global', data: filas.map(function (f) { return f.global; }), _n: filas.map(function (f) { return f.ng; }), backgroundColor: css('--serie-global'), borderRadius: 4, borderSkipped: 'start', maxBarThickness: 28, _sinDato: true };
+      var dsL = { label: 'Brecha Latinoamérica', data: filas.map(function (f) { return f.latam; }), _n: filas.map(function (f) { return f.nl; }), backgroundColor: css('--serie-latam'), borderRadius: 4, borderSkipped: 'start', maxBarThickness: 28, _sinDato: true };
       ctx.setAttribute('aria-label', 'Brecha promedio por tema. ' + filas.map(function (f) {
-        return temaInfo(f.tema).nombre + ': global ' + fmtNum(f.global, 1) + ', Latinoamérica ' + fmtNum(f.latam, 1);
+        return temaInfo(f.tema).nombre + ': global ' + fmtNum(f.global, 1) + ' (n=' + f.ng + '), Latinoamérica ' + fmtNum(f.latam, 1) + ' (n=' + f.nl + ')';
       }).join('; '));
       estado.graficos.brechas = new Chart(ctx, {
         type: 'bar',
         data: { labels: filas.map(function (f) { return partirEtiqueta(temaInfo(f.tema).nombre); }), datasets: [dsG, dsL] },
         options: {
           responsive: true, maintainAspectRatio: false,
-          layout: { padding: { top: 18 } },
+          layout: { padding: { top: 34 } },
           plugins: {
             legend: { display: false },
             tooltip: Object.assign(tooltipBase(), { callbacks: {
@@ -477,8 +586,8 @@
               label: function (c) {
                 var f = filas[c.dataIndex];
                 var n = c.datasetIndex === 0 ? f.ng : f.nl;
-                if (c.raw == null) return c.dataset.label + ': ' + SIN_DATO;
-                return c.dataset.label + ': ' + fmtNum(c.raw, 1) + ' / 5 (promedio de ' + n + ' de ' + f.total + (f.total === 1 ? ' noticia)' : ' noticias)');
+                if (c.raw == null) return c.dataset.label + ': ' + SIN_DATO + ' (n=0)';
+                return c.dataset.label + ': ' + fmtNum(c.raw, 1) + ' / 5 (n=' + n + ' de ' + f.total + ')';
               },
               footer: function () { return 'Valoración editorial'; }
             } })
@@ -491,27 +600,29 @@
         },
         plugins: [etiquetasValor('top')]
       });
+    } else if (!filas.length) {
+      destruir('brechas');
     }
 
     $('#tabla-brechas').innerHTML = filas.length ? '<table class="tabla"><thead><tr><th scope="col">Tema</th><th scope="col">Global</th><th scope="col">Latinoamérica</th></tr></thead><tbody>' +
       filas.map(function (f) {
-        return '<tr><td>' + chipTema(f.tema) + '</td><td>' + (f.global == null ? '<span class="sin-dato">' + SIN_DATO + '</span>' : fmtNum(f.global, 1) + ' <small>(' + f.ng + '/' + f.total + ')</small>') +
-          '</td><td>' + (f.latam == null ? '<span class="sin-dato">' + SIN_DATO + '</span>' : fmtNum(f.latam, 1) + ' <small>(' + f.nl + '/' + f.total + ')</small>') + '</td></tr>';
-      }).join('') + '</tbody></table><p class="tarjeta__ayuda" style="margin-top:8px">Entre paréntesis: noticias con valoración sobre el total del tema.</p>' : '<p class="vacio">Sin datos.</p>';
+        return '<tr><td>' + chipTema(f.tema) + '</td><td>' + (f.global == null ? '<span class="sin-dato">' + SIN_DATO + '</span>' : fmtNum(f.global, 1) + ' <small>(n=' + f.ng + ' de ' + f.total + ')</small>') +
+          '</td><td>' + (f.latam == null ? '<span class="sin-dato">' + SIN_DATO + '</span> <small>(n=0)</small>' : fmtNum(f.latam, 1) + ' <small>(n=' + f.nl + ' de ' + f.total + ')</small>') + '</td></tr>';
+      }).join('') + '</tbody></table><p class="tarjeta__ayuda" style="margin-top:8px">n: valoraciones promediadas sobre el total de noticias y referencias del tema.</p>' : '<p class="vacio">Sin datos.</p>';
 
-    var rank = ns.filter(function (n) { return num(n.brecha_global) != null || num(n.brecha_latam) != null; })
-      .sort(function (a, b) {
+    var rank = ns.slice().sort(function (a, b) {
         var ma = Math.max(num(a.brecha_global) || 0, num(a.brecha_latam) || 0), mb = Math.max(num(b.brecha_global) || 0, num(b.brecha_latam) || 0);
         return mb - ma || (num(b.brecha_global) || 0) - (num(a.brecha_global) || 0) || porImportancia(a, b);
-      }).slice(0, 6);
+      }).slice(0, 8);
     $('#ranking-brechas').innerHTML = rank.length ? rank.map(function (n) {
       return '<li><button type="button" data-abrir="' + esc(clave(n)) + '">' +
         '<span class="ranking__titulo">' + texto(n.titulo) + '</span>' +
+        '<span class="ranking__insignias">' + (esRef(n) ? insigniaRef(n) : '') + insigniaEvidencia(n) + (n.certeza === 'baja' ? insigniaCerteza(n) : '') + '</span>' +
         '<span class="ranking__medidas"><span>' + chipTema(n.tema) + '</span>' +
         '<span>Global ' + medidor(n.brecha_global, 5, 'var(--serie-global)') + '</span>' +
         '<span>Latam ' + medidor(n.brecha_latam, 5, 'var(--serie-latam)') + '</span></span>' +
         '<span class="ranking__just">' + texto(n.justificacion_brecha) + '</span></button></li>';
-    }).join('') : '<li class="vacio">Sin noticias con brecha valorada.</li>';
+    }).join('') : '<li class="vacio">Sin noticias ni referencias con brecha valorada' + (base.bajas && !base.incluir ? ' y certeza suficiente; marcá la casilla para ver las de baja certeza.' : '.') + '</li>';
   }
   function partirEtiqueta(s) {
     var p = s.split(' ');
@@ -631,9 +742,107 @@
     $('#limitaciones').innerHTML = lim.length ? lim.map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('') : '<li class="vacio">La edición no registra limitaciones.</li>';
   }
 
+  // ---------- Panel de la portada ----------
+  function renderPanelPortada(d) {
+    var ns = noticiasDe(d);
+    var fuentes = lista(d.fuentes_consultadas);
+    var resp = fuentes.filter(function (f) { return f && (f.estado === 'ok' || f.estado === 'sin_novedades'); }).length;
+    var ok = refsOk();
+    var latam = latamItems(d);
+    var reg = estado.referencias.filter(function (r) { return r.foco === 'regulacion_pi'; });
+    var largo = ok.filter(function (r) { return r.horizonte === 'largo'; }).length;
+    function fila(valor, rotulo, href) {
+      return '<a class="panel__fila" href="' + href + '"><span class="panel__valor">' + valor + '</span><span class="panel__rotulo">' + rotulo + '</span></a>';
+    }
+    var html = '<h2 class="panel__titulo">Esta edición</h2>' +
+      fila(ns.length, 'noticias de la semana' + (fuentes.length ? ', de ' + resp + ' fuentes que respondieron sobre ' + fuentes.length : ''), '#hoy') +
+      '<h2 class="panel__titulo">Biblioteca de referencias</h2>';
+    if (!estado.refsMeta) {
+      html += '<p class="vacio vacio--explica">No se encontró data/referencias.json. El tablero funciona solo con las noticias de la edición.</p>';
+    } else {
+      html += fila(ok.length + '<small> / ' + estado.referencias.length + '</small>', 'referencias accesibles' + (estado.referencias.length - ok.length ? ' (' + (estado.referencias.length - ok.length) + ' no se pudieron abrir)' : ''), '#metodologia') +
+        fila(largo, 'con horizonte largo (3+ años)', '#futuro') +
+        fila(latam.length, 'datos con foco en Latinoamérica', '#latam') +
+        fila(reg.filter(function (r) { return r.estado === 'ok'; }).length, 'sobre regulación y propiedad intelectual', '#regulacion') +
+        (estado.refsMeta.actualizado ? '<p class="panel__pie">Actualizada el ' + esc(fecha(estado.refsMeta.actualizado)) + '. Las referencias no son noticias de la semana.</p>' : '');
+    }
+    $('#portada-panel').innerHTML = html;
+  }
+
+  // ---------- Tarjetas de referencias (Latam y Regulación) ----------
+  function diferenciaBrecha(n) {
+    var g = num(n.brecha_global), l = num(n.brecha_latam);
+    if (g == null || l == null) return '';
+    var dif = l - g;
+    var txt = dif === 0 ? 'igual a la global' : (dif > 0 ? dif + (dif === 1 ? ' punto mayor' : ' puntos mayor') + ' que la global' : (-dif) + ((-dif) === 1 ? ' punto menor' : ' puntos menor') + ' que la global');
+    return '<p class="ref-tarjeta__brecha"><span class="par">Brecha global ' + medidor(g, 5, 'var(--serie-global)') + '</span><span class="par">Latam ' + medidor(l, 5, 'var(--serie-latam)') + '</span>' +
+      '<strong>→ en Latinoamérica es ' + txt + '</strong>' + (n.certeza === 'baja' ? ' ' + insigniaCerteza(n) : '') + '</p>';
+  }
+  function tarjetaRef(n) {
+    var u = urlSegura(n.url);
+    if (n.estado === 'no_accesible') {
+      return '<article class="ref-tarjeta ref-tarjeta--no">' +
+        '<div class="ref-tarjeta__meta"><span class="insignia insignia--no">No accesible</span>' + (n.tipo_documento ? '<span>' + esc(TIPOS_DOC[n.tipo_documento] || n.tipo_documento) + '</span>' : '') + '</div>' +
+        '<h3 class="ref-tarjeta__titulo">' + texto(n.titulo) + '</h3>' +
+        '<p class="ref-tarjeta__nota">' + texto(n.nota_calidad) + '</p>' +
+        '<div class="ref-tarjeta__pie">' + enlaceFuente(n.fuente, u, 'Ver la fuente') + '</div></article>';
+    }
+    return '<article class="ref-tarjeta">' +
+      '<div class="ref-tarjeta__meta">' + (esRef(n) ? insigniaRef(n) : '<span class="insignia insignia--noticia">Noticia de la edición · ' + esc(fecha(n.fecha_publicacion, true)) + '</span>') +
+        insigniaEvidencia(n) + chipTema(n.tema) + (esRef(n) ? '<span>' + esc(geoNombre(n.geografia)) + '</span>' : '') + '</div>' +
+      '<h3 class="ref-tarjeta__titulo"><button type="button" class="enlace-boton" data-abrir="' + esc(clave(n)) + '">' + texto(n.titulo) + '</button></h3>' +
+      '<p class="ref-tarjeta__dato">' + texto(n.dato_clave) + '</p>' +
+      diferenciaBrecha(n) +
+      (esRef(n) && !vacio(n.nota_calidad) ? '<p class="ref-tarjeta__nota"><strong>Calidad:</strong> ' + esc(n.nota_calidad) + '</p>' : '') +
+      '<div class="ref-tarjeta__pie"><span>Publica: <strong>' + texto(n.fuente) + '</strong></span>' + (u ? enlaceFuente(n.fuente, u, 'Fuente original') : '<span class="sin-dato">sin enlace</span>') + '</div></article>';
+  }
+
+  // Referencias con geografía latam + noticias de la edición con base para valorar la región.
+  function latamItems(d) {
+    var refs = refsOk().filter(function (r) { return r.geografia === 'latam' || r.foco === 'latam'; });
+    var ns = d ? noticiasDe(d).filter(function (n) { return n.geografia === 'latam' || num(n.brecha_latam) != null || num(n.adopcion_latam) != null; }) : [];
+    return refs.concat(ns);
+  }
+  function renderLatam(d) {
+    var items = latamItems(d).sort(function (a, b) {
+      return (esRef(a) ? 0 : 1) - (esRef(b) ? 0 : 1) || String(b.fecha_publicacion || '').localeCompare(String(a.fecha_publicacion || ''));
+    });
+    var pendientes = estado.referencias.filter(function (r) { return r.estado === 'no_accesible' && r.foco === 'latam'; });
+    var html = items.length ? items.map(tarjetaRef).join('') :
+      '<p class="vacio vacio--explica">' + (!estado.refsMeta ? 'No se encontró la biblioteca de referencias y ninguna noticia de esta edición tiene base para valorar Latinoamérica.' :
+        'Ninguna referencia accesible tiene geografía Latinoamérica y ninguna noticia de esta edición da base para valorar la región.') + '</p>';
+    html += pendientes.map(tarjetaRef).join('');
+    $('#latam-tarjetas').innerHTML = html;
+  }
+  function renderRegulacion() {
+    var refs = estado.referencias.filter(function (r) { return r.foco === 'regulacion_pi'; })
+      .sort(function (a, b) { return (a.estado === 'ok' ? 0 : 1) - (b.estado === 'ok' ? 0 : 1) || String(b.fecha_publicacion || '').localeCompare(String(a.fecha_publicacion || '')); });
+    $('#regulacion-tarjetas').innerHTML = refs.length ? refs.map(tarjetaRef).join('') :
+      '<p class="vacio vacio--explica">' + (!estado.refsMeta ? 'No se encontró la biblioteca de referencias (data/referencias.json), que alimenta este bloque.' : 'La biblioteca no tiene referencias con foco en regulación y propiedad intelectual.') + '</p>';
+  }
+
+  // ---------- Estado de la biblioteca (metodología) ----------
+  function renderReferenciasEstado() {
+    var refs = estado.referencias;
+    $('#referencias-actualizado').textContent = estado.refsMeta && estado.refsMeta.actualizado ? 'Actualizada el ' + fecha(estado.refsMeta.actualizado, true) : 'Sin biblioteca';
+    var ok = refs.filter(function (r) { return r.estado === 'ok'; }).length;
+    $('#resumen-referencias').innerHTML = !estado.refsMeta ? '<span class="vacio">No se encontró data/referencias.json' + (estado.refsError ? ' (' + esc(estado.refsError) + ')' : '') + '.</span>' :
+      '<span class="estado estado--ok">✓ Accesibles: ' + ok + '</span>' + (refs.length - ok ? '<span class="estado estado--bloqueada">✕ No accesibles: ' + (refs.length - ok) + '</span>' : '');
+    $('#tabla-referencias tbody').innerHTML = refs.length ? refs.map(function (r) {
+      var u = urlSegura(r.url);
+      return '<tr><td>' + (u ? enlaceFuente(r.titulo || r.id, u) : texto(r.titulo || r.id)) + ' <small class="sin-dato">' + esc(TIPOS_DOC[r.tipo_documento] || r.tipo_documento || '') + (r.fecha_publicacion ? ' · ' + esc(fecha(r.fecha_publicacion, true)) : ' · sin fecha') + '</small></td>' +
+        '<td data-rotulo="Estado">' + (r.estado === 'ok' ? '<span class="estado estado--ok">✓ Accesible</span>' : '<span class="estado estado--bloqueada">✕ No accesible</span>') + '</td>' +
+        '<td data-rotulo="Nota de calidad">' + texto(r.nota_calidad) + '</td></tr>';
+    }).join('') : '<tr><td colspan="3" class="vacio">La biblioteca está vacía.</td></tr>';
+  }
+
   // ---------- Cajón de detalle ----------
   function buscarNoticia(k) {
     var p = String(k).split('/');
+    if (p[0] === 'ref') {
+      var id = p.slice(1).join('/');
+      return estado.referencias.find(function (r) { return r.id === id; }) || null;
+    }
     var d = estado.ediciones[p[0]];
     if (!d) return null;
     return noticiasDe(d).find(function (n) { return n.id === p.slice(1).join('/'); }) || null;
@@ -645,10 +854,15 @@
     var u = urlSegura(n.url);
     var h = horizonteInfo(n.horizonte);
     var verif = n.verificada === true;
-    var html = '<div class="cajon__meta">' + chipTema(n.tema) + insigniaVerificada(n) +
-      (vacio(n.tipo) ? '' : '<span>' + esc(TIPOS[n.tipo] || n.tipo) + '</span>') + '</div>' +
+    var ref = esRef(n);
+    $('#cajon-etiqueta').textContent = ref ? 'Detalle de la referencia' : 'Detalle de la noticia';
+    var html = '<div class="cajon__meta">' + chipTema(n.tema) + (ref ? insigniaRef(n) : '') + insigniaVerificada(n) +
+      (ref ? (vacio(n.tipo_documento) ? '' : '<span>' + esc(TIPOS_DOC[n.tipo_documento] || n.tipo_documento) + '</span>') + '<span>Geografía: ' + esc(geoNombre(n.geografia)) + '</span>'
+        : (vacio(n.tipo) ? '' : '<span>' + esc(TIPOS[n.tipo] || n.tipo) + '</span>')) + '</div>' +
       '<h2 class="cajon__titulo" id="cajon-titulo">' + texto(n.titulo) + '</h2>' +
-      '<p class="cajon__fuente"><strong>' + texto(n.fuente) + '</strong> · Publicada el ' + esc(fecha(n.fecha_publicacion)) + '</p>' +
+      '<p class="cajon__fuente"><strong>' + texto(n.fuente) + '</strong> · ' + (vacio(n.fecha_publicacion) ? 'Fecha de publicación: <span class="sin-dato">' + SIN_DATO + '</span>' : 'Publicada el ' + esc(fecha(n.fecha_publicacion))) + '</p>' +
+      (ref ? '<p class="nota">Referencia de la biblioteca: está fuera de la ventana semanal y no forma parte de las noticias de ninguna edición.</p>' : '') +
+      (ref && !vacio(n.nota_calidad) ? '<div class="bloque bloque--calidad"><h4>Nota de calidad</h4><p>' + esc(n.nota_calidad) + '</p></div>' : '') +
       (u ? '<a class="boton-original" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">Leer la nota original' + ICONO_EXTERNO + '</a><p class="cajon__url">' + esc(u) + '</p>'
          : '<p class="nota">Esta noticia no tiene enlace a la nota original.</p>') +
       (verif ? '' : '<p class="nota">No se pudo abrir la nota original al elaborar la edición: el resumen no incluye cifras y conviene contrastarlo.</p>') +
@@ -665,9 +879,11 @@
         '<dt>Clasificación</dt><dd>' + (vacio(n.cuadrante) ? '<span class="sin-dato">' + SIN_DATO + '</span>' : esc(CUADRANTES[n.cuadrante] || n.cuadrante)) + '</dd>' +
         '<dt>Brecha global</dt><dd>' + medidor(n.brecha_global, 5, 'var(--serie-global)') + '</dd>' +
         '<dt>Brecha Latam</dt><dd>' + medidor(n.brecha_latam, 5, 'var(--serie-latam)') + '</dd>' +
+        '<dt>Evidencia</dt><dd>' + (EVIDENCIAS[n.tipo_evidencia] ? esc(EVIDENCIAS[n.tipo_evidencia].nombre) : '<span class="sin-dato">' + SIN_DATO + '</span>') + '</dd>' +
+        '<dt>Certeza</dt><dd>' + (CERTEZAS[n.certeza] ? insigniaCerteza(n) : '<span class="sin-dato">' + SIN_DATO + '</span>') + '</dd>' +
       '</dl></div>' +
       '<div class="bloque"><h4>Por qué esa brecha</h4><p>' + texto(n.justificacion_brecha) + '</p></div>' +
-      '<p class="tarjeta__ayuda">Edición del ' + esc(fecha(n._edicion)) + ' · id ' + esc(n.id) + '</p>';
+      '<p class="tarjeta__ayuda">' + (ref ? 'Biblioteca de referencias' + (estado.refsMeta && estado.refsMeta.actualizado ? ', actualizada el ' + esc(fecha(estado.refsMeta.actualizado)) : '') : 'Edición del ' + esc(fecha(n._edicion))) + ' · id ' + esc(n.id) + '</p>';
     $('#cajon-cuerpo').innerHTML = html;
     $('#cajon-cuerpo').scrollTop = 0;
 

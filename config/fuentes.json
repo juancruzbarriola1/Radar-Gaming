@@ -1,11 +1,268 @@
-[
-  {"id": "gamedeveloper", "nombre": "Game Developer", "url": "https://www.gamedeveloper.com/", "rss": "https://www.gamedeveloper.com/rss.xml", "tipo": "noticias", "activa": true, "nota": "RSS confirmado"},
-  {"id": "arstechnica", "nombre": "Ars Technica", "url": "https://arstechnica.com/gaming/", "rss": "https://arstechnica.com/gaming/feed/", "tipo": "noticias", "activa": true, "nota": "feed de la sección gaming, probado el 11/11/2026 (responde OK). Reemplaza al feed general feed.arstechnica.com/arst-web, que devolvió 404"},
-  {"id": "theverge", "nombre": "The Verge Entertainment", "url": "https://www.theverge.com/games", "rss": "https://www.theverge.com/rss/games/index.xml", "tipo": "noticias", "activa": true, "nota": "feed de la sección de juegos, probado el 11/11/2026 (responde OK); es el usado en la edición 1, más útil que el de entertainment"},
-  {"id": "wired_es", "nombre": "Wired en Español", "url": "https://es.wired.com/", "rss": null, "tipo": "noticias", "activa": true, "nota": "filtrar solo videojuegos y tecnología"},
-  {"id": "newzoo", "nombre": "Newzoo", "url": "https://newzoo.com/reports", "rss": null, "tipo": "reportes", "activa": true, "nota": "muchos reportes son pagos; usar solo lo público"},
-  {"id": "ampere", "nombre": "Ampere Analysis", "url": "https://www.ampereanalysis.com/reports", "rss": null, "tipo": "reportes", "activa": true, "nota": "el sitio requiere JavaScript; probable fallback a inbox/"},
-  {"id": "gartner_forrester", "nombre": "Gartner / Forrester", "url": null, "rss": null, "tipo": "reportes", "activa": true, "nota": "sin URL fija: buscar comunicados de prensa públicos sobre IA generativa en desarrollo de juegos"},
-  {"id": "bain_genai_games", "nombre": "Bain: How Will Generative AI Change the Video Game Industry?", "url": "https://www.bain.com/es-ar/insights/how-will-generative-ai-change-the-video-game-industry/", "rss": null, "tipo": "contexto", "activa": false, "nota": "publicado en 2023; línea base para 'promedio actual', no noticia de la semana"},
-  {"id": "digit_google_cloud", "nombre": "DIGIT: AI Is Powering a New Era in Gaming, Finds Google Cloud", "url": "https://www.digit.fyi/?p=123008", "rss": null, "tipo": "contexto", "activa": false, "nota": "reporta el estudio de Google Cloud 'AI Meets the Games Industry'; línea base de adopción de IA"}
-]
+{
+  "fuentes": [
+    {
+      "id": "gamedeveloper",
+      "nombre": "Game Developer",
+      "url": "https://www.gamedeveloper.com/",
+      "rss": "https://www.gamedeveloper.com/rss.xml",
+      "tipo": "noticias",
+      "activa": true,
+      "nota": "RSS confirmado"
+    },
+    {
+      "id": "arstechnica",
+      "nombre": "Ars Technica",
+      "url": "https://arstechnica.com/gaming/",
+      "rss": "https://arstechnica.com/gaming/feed/",
+      "tipo": "noticias",
+      "activa": true,
+      "nota": "feed de la sección gaming, probado el 11/11/2026 (responde OK). Reemplaza al feed general feed.arstechnica.com/arst-web, que devolvió 404"
+    },
+    {
+      "id": "theverge",
+      "nombre": "The Verge Entertainment",
+      "url": "https://www.theverge.com/games",
+      "rss": "https://www.theverge.com/rss/games/index.xml",
+      "tipo": "noticias",
+      "activa": true,
+      "nota": "feed de la sección de juegos, probado el 11/11/2026 (responde OK); es el usado en la edición 1, más útil que el de entertainment"
+    },
+    {
+      "id": "wired_es",
+      "nombre": "Wired en Español",
+      "url": "https://es.wired.com/",
+      "rss": null,
+      "tipo": "noticias",
+      "activa": true,
+      "nota": "filtrar solo videojuegos y tecnología"
+    },
+    {
+      "id": "newzoo",
+      "nombre": "Newzoo",
+      "url": "https://newzoo.com/reports",
+      "rss": null,
+      "tipo": "reportes",
+      "activa": true,
+      "nota": "muchos reportes son pagos; usar solo lo público"
+    },
+    {
+      "id": "ampere",
+      "nombre": "Ampere Analysis",
+      "url": "https://www.ampereanalysis.com/reports",
+      "rss": null,
+      "tipo": "reportes",
+      "activa": true,
+      "nota": "el sitio requiere JavaScript; probable fallback a inbox/"
+    },
+    {
+      "id": "gartner_forrester",
+      "nombre": "Gartner / Forrester",
+      "url": null,
+      "rss": null,
+      "tipo": "reportes",
+      "activa": true,
+      "nota": "sin URL fija: buscar comunicados de prensa públicos sobre IA generativa en desarrollo de juegos"
+    },
+    {
+      "id": "bain_genai_games",
+      "nombre": "Bain: How Will Generative AI Change the Video Game Industry?",
+      "url": "https://www.bain.com/es-ar/insights/how-will-generative-ai-change-the-video-game-industry/",
+      "rss": null,
+      "tipo": "contexto",
+      "activa": false,
+      "nota": "publicado en 2023; línea base para 'promedio actual', no noticia de la semana"
+    },
+    {
+      "id": "digit_google_cloud",
+      "nombre": "DIGIT: AI Is Powering a New Era in Gaming, Finds Google Cloud",
+      "url": "https://www.digit.fyi/?p=123008",
+      "rss": null,
+      "tipo": "contexto",
+      "activa": false,
+      "nota": "reporta el estudio de Google Cloud 'AI Meets the Games Industry'; línea base de adopción de IA"
+    }
+  ],
+  "referencias": [
+    {
+      "id": "xsolla_latam_2026",
+      "titulo": "Xsolla y GamesBeat: State of the LATAM Games Industry 2026 (comunicado)",
+      "url": "https://www.gamedeveloper.com/press-release/xsolla-and-gamesbeat-release-exclusive-industry-report-on-latin-america-s-gaming-market-ahead-of-gamescom-latam",
+      "tipo": "prensa_datos",
+      "foco": "latam",
+      "fecha_publicacion": "2026-04-29",
+      "nota_fecha": "fecha bajo el titular y en el dateline del comunicado"
+    },
+    {
+      "id": "bain_latam_2026",
+      "titulo": "Bain: El futuro del gaming en Latinoamérica (comunicado)",
+      "url": "https://www.bain.com/es/about/media-center/press-releases/south-america/2026/el-futuro-del-gaming-en-latinoamerica-estara-definido-por-los-adolescentes-la-compra-directa-y-la-personalizacion-con-ia/",
+      "tipo": "reporte",
+      "foco": "latam",
+      "fecha_publicacion": "2026-08-20",
+      "nota_fecha": "fecha bajo el titular"
+    },
+    {
+      "id": "larepublica_nielseniq",
+      "titulo": "La República: América Latina encabeza el alza global de los videojuegos (NielsenIQ)",
+      "url": "https://www.larepublica.co/internet-economy/america-latina-encabeza-el-alza-global-de-la-industria-de-los-videojuegos-4475231",
+      "tipo": "prensa_datos",
+      "foco": "latam",
+      "fecha_publicacion": "2026-09-05",
+      "nota_fecha": "fecha bajo el titular (la cabecera del sitio muestra la fecha del día, no la de la nota)"
+    },
+    {
+      "id": "gamedevreports_newzoo_2026",
+      "titulo": "Game Dev Reports: Newzoo, the gaming market in 2026",
+      "url": "https://gamedevreports.substack.com/p/newzoo-the-gaming-market-in-2026",
+      "tipo": "prensa_datos",
+      "foco": "latam",
+      "fecha_publicacion": "2026-08-25",
+      "nota_fecha": "fecha en la cabecera del post"
+    },
+    {
+      "id": "eleconomista_latam",
+      "titulo": "El Economista (AR): crecimiento del entretenimiento digital en Latam (GSMA)",
+      "url": "https://eleconomista.com.ar/actualidad/el-crecimiento-entretenimiento-digital-america-latina-dicen-datos-n97527",
+      "tipo": "prensa_datos",
+      "foco": "latam",
+      "fecha_publicacion": "2026-08-19",
+      "nota_fecha": "fecha bajo título y bajada"
+    },
+    {
+      "id": "eyn_latam_2025",
+      "titulo": "Revista E&N: población de videojugadores en Latinoamérica",
+      "url": "https://www.revistaeyn.com/ocio/poblacion-de-videojugadores-en-latinoamerica-crecera-45-en-2025-HN28705301",
+      "tipo": "prensa_datos",
+      "foco": "latam",
+      "fecha_publicacion": "2025-12-24",
+      "nota_fecha": "fecha bajo la foto de portada"
+    },
+    {
+      "id": "gamesbeat_newzoo_2026",
+      "titulo": "GamesBeat: Global players could reach 4 billion by 2029 (Newzoo)",
+      "url": "https://gamesbeat.com/global-players-could-reach-4-billion-by-2029-newzoo/",
+      "tipo": "prensa_datos",
+      "foco": "mercado",
+      "fecha_publicacion": "2026-08-25",
+      "nota_fecha": "fecha bajo el autor"
+    },
+    {
+      "id": "pocketgamer_newzoo",
+      "titulo": "PocketGamer.biz: No single model for growth, says Newzoo",
+      "url": "https://www.pocketgamer.biz/no-single-model-for-growth-says-newzoo/",
+      "tipo": "prensa_datos",
+      "foco": "mercado",
+      "fecha_publicacion": "2026-09-23",
+      "nota_fecha": "la firma dice 23/09/2026 y la ficha de la nota 22/09/2026; se usa la de la firma"
+    },
+    {
+      "id": "pocketgamer_globaldata_cloud",
+      "titulo": "PocketGamer.biz: cloud gaming 2030 (GlobalData)",
+      "url": "https://www.pocketgamer.biz/data-and-research/84056/cloud-gaming-had-just-6-subscriber-rate-in-2023-but-is-set-for-22-billion-worth-by-2030/",
+      "tipo": "reporte",
+      "foco": "largo_plazo",
+      "fecha_publicacion": "2024-05-23",
+      "nota_fecha": "fecha bajo el byline"
+    },
+    {
+      "id": "arxiv_gge_roadmap",
+      "titulo": "arXiv 2503.17359: game development in the AI era (generative game engines)",
+      "url": "https://arxiv.org/pdf/2503.17359",
+      "tipo": "paper",
+      "foco": "largo_plazo",
+      "fecha_publicacion": "2026-10-30",
+      "nota_fecha": "fecha de la versión v3 impresa en el PDF; la v1 es anterior (identificador 2503) pero su día exacto no figura en lo leído"
+    },
+    {
+      "id": "arxiv_ai_native_games",
+      "titulo": "arXiv 2607.00527: survey de juegos nativos de IA",
+      "url": "https://arxiv.org/abs/2607.00527",
+      "tipo": "paper",
+      "foco": "largo_plazo",
+      "fecha_publicacion": "2026-07-01",
+      "nota_fecha": "'Submitted on 1 Jul 2026 (v1)'; revisada el 3 Jul 2026 (v2)"
+    },
+    {
+      "id": "arxiv_genai_qualitative",
+      "titulo": "arXiv 2509.11898: Generative AI in Game Development, qualitative synthesis",
+      "url": "https://arxiv.org/pdf/2509.11898",
+      "tipo": "paper",
+      "foco": "ia_desarrollo",
+      "fecha_publicacion": "2025-12-09",
+      "nota_fecha": "fecha de la versión v2 impresa en el PDF; la fecha de la v1 no figura en lo leído"
+    },
+    {
+      "id": "naavik_world_models",
+      "titulo": "Naavik: World Models' Transformative Role in Gaming",
+      "url": "https://naavik.substack.com/p/world-models-transformative-role",
+      "tipo": "analisis",
+      "foco": "largo_plazo",
+      "fecha_publicacion": "2026-06-23",
+      "nota_fecha": "fecha bajo el título"
+    },
+    {
+      "id": "techradar_nvidia_2030",
+      "titulo": "TechRadar: Fully AI-generated games by 2030? (Nvidia)",
+      "url": "https://www.techradar.com/computing/gpu/fully-ai-generated-games-by-2030-thats-what-nvidias-ceo-believes-but-what-exactly-will-that-mean-for-pc-gamers",
+      "tipo": "opinion_experta",
+      "foco": "largo_plazo",
+      "fecha_publicacion": null,
+      "nota_fecha": "la página devolvió contenido truncado; fecha no visible"
+    },
+    {
+      "id": "igorslab_ai_worlds",
+      "titulo": "Igor's Lab: KI-generated game worlds, feasibility vs strategic illusion",
+      "url": "https://www.igorslab.de/en/ki-generated-game-worlds-between-technical-feasibility-and-strategic-illusion/",
+      "tipo": "opinion_experta",
+      "foco": "largo_plazo",
+      "fecha_publicacion": null,
+      "nota_fecha": "HTTP 403; fecha no visible"
+    },
+    {
+      "id": "oxford_iplp_ai_games",
+      "titulo": "Oxford IPLP 2026: The copyright protection of AI-generated content in video games",
+      "url": "https://tind.wipo.int/record/60016",
+      "tipo": "paper",
+      "foco": "regulacion_pi",
+      "fecha_publicacion": null,
+      "nota_fecha": "HTTP 403; fecha no visible (el año 2026 del título no reemplaza a una fecha de publicación)"
+    },
+    {
+      "id": "nelsonmullins_ai_copyright",
+      "titulo": "Nelson Mullins: Copyright challenges of AI-generated content in gaming",
+      "url": "https://nelsonmullins.com/insights/blogs/cards-on-the-table/all/leveling-up-or-losing-rights-copyright-challenges-of-ai-generated-content-in-gaming",
+      "tipo": "analisis_legal",
+      "foco": "regulacion_pi",
+      "fecha_publicacion": "2026-03-12",
+      "nota_fecha": "fecha bajo el título"
+    },
+    {
+      "id": "vge_ai_copyright",
+      "titulo": "Video Games Europe: AI and copyright position paper",
+      "url": "https://gameindustrylibrary.com/documents/ai-and-copyright-video-games-europe-position-paper/read",
+      "tipo": "posicionamiento_industria",
+      "foco": "regulacion_pi",
+      "fecha_publicacion": null,
+      "nota_fecha": "el visor no entregó el texto del documento; fecha no visible"
+    },
+    {
+      "id": "lexlatin_regulacion",
+      "titulo": "LexLatin: La regulación de los juegos en línea desde la propiedad intelectual",
+      "url": "https://lexlatin.com/reportajes/regulacion-juegos-en-linea-propiedad-intelectual",
+      "tipo": "analisis_legal",
+      "foco": "regulacion_pi",
+      "fecha_publicacion": "2023-05-17",
+      "nota_fecha": "'Fecha de publicación: 17/05/2023' en el cuerpo"
+    },
+    {
+      "id": "uexternado_pirateria",
+      "titulo": "Universidad Externado: relatoría del webinar Game Shield",
+      "url": "https://www.uexternado.edu.co/wp-content/uploads/2025/11/RELATORIA-Webinar-%E2%80%98Game-Shield_-Derechos-y-Seguridad-en-el-Universo-Gaming-9-SEP-25.pdf",
+      "tipo": "secundaria",
+      "foco": "ia_clonacion_pirateria",
+      "fecha_publicacion": "2025-09-09",
+      "nota_fecha": "fecha del webinar en la portada del PDF; el archivo se creó el 06/11/2025 según sus metadatos",
+      "nota_calidad": "fuente secundaria: relatoría de un webinar; las cifras de BSA y LAIP están citadas de segunda mano y requieren contraste"
+    }
+  ]
+}
