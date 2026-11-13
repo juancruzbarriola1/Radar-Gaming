@@ -759,3 +759,5 @@ a.indicador:hover { transform: translateY(-2px); border-color: var(--acento); }
   width: min(300px, 80vw); white-space: normal; text-align: left; font-size: .78rem; font-weight: 500; line-height: 1.4;
   color: var(--tinta); background: var(--superficie); border: 1px solid var(--borde-fuerte); border-radius: 8px; padding: 8px 10px; box-shadow: 0 6px 18px rgba(0,0,0,.18); pointer-events: none;
 }
+/* Tendencia regional: solo tiene brecha Latinoamérica */
+.solo-latam { font-size: .7rem; font-weight: 700; color: var(--serie-latam); white-space: nowrap; }

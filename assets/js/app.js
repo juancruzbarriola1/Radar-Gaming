@@ -525,22 +525,33 @@
       return '<span><i class="marca-certeza marca-certeza--' + c + '"></i>' + marcaCerteza(c) + ' Certeza ' + CERTEZAS[c].toLowerCase() + '</span>';
     }).join('') + '<span class="sin-dato">Barra con trama = certeza baja</span>';
 
+    // Si falta la brecha global pero hay brecha Latam (tendencia regional), se muestra la barra regional rotulada "solo Latam".
+    function brechaMapa(t) {
+      var g = num(t.brecha_global);
+      if (g != null) return { v: g, latam: false };
+      var l = num(t.brecha_latam);
+      return l != null ? { v: l, latam: true } : { v: null, latam: false };
+    }
     var orden = estado.tendencias.slice().sort(function (a, b) {
-      var ga = num(a.brecha_global), gb = num(b.brecha_global);
+      var ga = brechaMapa(a).v, gb = brechaMapa(b).v;
       if (ga == null && gb == null) return 0;
       if (ga == null) return 1;
       if (gb == null) return -1;
       return gb - ga || (ORDEN_URGENCIA[a.urgencia] || 0) - (ORDEN_URGENCIA[b.urgencia] || 0);
     });
     $('#barras-brecha').innerHTML = orden.map(function (t) {
-      var g = num(t.brecha_global);
+      var b = brechaMapa(t), g = b.v;
       var c = CERTEZAS[t.certeza] ? t.certeza : null;
+      var color = b.latam ? 'var(--serie-latam)' : 'var(--serie-global)';
       var valor = g == null
-        ? '<span class="barra__valor">' + sd() + (num(t.brecha_latam) != null ? ' <small>(regional: Latam ' + t.brecha_latam + ')</small>' : '') + '</span>'
-        : '<span class="barra__valor">' + g + (c ? ' <span class="barra__certeza" title="Certeza ' + CERTEZAS[c].toLowerCase() + '">' + marcaCerteza(c) + ' ' + CERTEZAS[c].toLowerCase() + '</span>' : '') + '</span>';
-      return '<button type="button" class="barra" data-tendencia="' + esc(t.id) + '" aria-label="' + esc(t.nombre) + ': brecha global ' + (g == null ? SIN_DATO : g + ' de 5') + ', certeza ' + (c ? CERTEZAS[c].toLowerCase() : SIN_DATO) + '">' +
+        ? '<span class="barra__valor">' + sd() + '</span>'
+        : '<span class="barra__valor">' + g + (b.latam ? ' <small class="solo-latam">solo Latam</small>' : '') +
+          (c ? ' <span class="barra__certeza" title="Certeza ' + CERTEZAS[c].toLowerCase() + '">' + marcaCerteza(c) + ' ' + CERTEZAS[c].toLowerCase() + '</span>' : '') + '</span>';
+      return '<button type="button" class="barra" data-tendencia="' + esc(t.id) + '" aria-label="' + esc(t.nombre) + ': ' +
+        (g == null ? 'brecha ' + SIN_DATO : (b.latam ? 'brecha Latinoamérica ' : 'brecha global ') + g + ' de 5' + (b.latam ? ' (solo Latam, sin brecha global)' : '')) +
+        ', certeza ' + (c ? CERTEZAS[c].toLowerCase() : SIN_DATO) + '">' +
         '<span class="barra__nombre">' + esc(t.nombre || t.id) + '</span>' +
-        '<span class="barra__pista"><span class="barra__track">' + (g == null ? '' : '<span class="barra__relleno barra__relleno--' + (c || 'media') + '" style="--v:' + (g / 5 * 100) + '%;--c:var(--serie-global)"></span>') + '</span>' + valor + '</span>' +
+        '<span class="barra__pista"><span class="barra__track">' + (g == null ? '' : '<span class="barra__relleno barra__relleno--' + (c || 'media') + '" style="--v:' + (g / 5 * 100) + '%;--c:' + color + '"></span>') + '</span>' + valor + '</span>' +
         '</button>';
     }).join('');
   }
@@ -763,16 +774,17 @@
     $('#barras-gl').innerHTML = orden.length ? orden.map(function (t) {
       var nG = lista(t.evidencia).length, nL = nEvidenciaLatam(t);
       if (num(t.brecha_latam) != null) nLatam++;
-      function fila(v, color, n, rotulo) {
+      var soloLatam = num(t.brecha_global) == null && num(t.brecha_latam) != null;
+      function fila(v, color, n, rotulo, vacioTxt) {
         v = num(v);
         return '<span class="barra__fila"><span class="barra__serie">' + rotulo + '</span><span class="barra__pista"><span class="barra__track">' +
           (v == null ? '' : '<span class="barra__relleno barra__relleno--' + (t.certeza || 'media') + '" style="--v:' + (v / 5 * 100) + '%;--c:' + color + '"></span>') + '</span>' +
-          '<span class="barra__valor">' + (v == null ? sd() : v) + ' <small>n=' + n + '</small></span></span></span>';
+          '<span class="barra__valor">' + (v == null && vacioTxt ? vacioTxt : (v == null ? sd() : v) + ' <small>n=' + n + '</small>') + '</span></span></span>';
       }
-      return '<button type="button" class="barra barra--doble" data-tendencia="' + esc(t.id) + '" aria-label="' + esc(t.nombre) + ': brecha global ' + (num(t.brecha_global) == null ? SIN_DATO : t.brecha_global) +
+      return '<button type="button" class="barra barra--doble" data-tendencia="' + esc(t.id) + '" aria-label="' + esc(t.nombre) + ': brecha global ' + (num(t.brecha_global) == null ? (soloLatam ? 'no valorada (solo Latam)' : SIN_DATO) : t.brecha_global) +
         ' (n=' + nG + '), Latinoamérica ' + (num(t.brecha_latam) == null ? SIN_DATO : t.brecha_latam) + ' (n=' + nL + ')">' +
         '<span class="barra__nombre">' + esc(t.nombre || t.id) + (t.certeza === 'baja' ? ' ' + insigniaCerteza(t) : '') + '</span>' +
-        fila(t.brecha_global, 'var(--serie-global)', nG, 'Global') +
+        fila(t.brecha_global, 'var(--serie-global)', nG, 'Global', soloLatam ? '<small class="solo-latam">solo Latam</small>' : null) +
         fila(t.brecha_latam, 'var(--serie-latam)', nL, 'Latam') +
         '</button>';
     }).join('') : '<p class="vacio">Ninguna tendencia con brecha valorada' + (base.bajas.length && !base.incluir ? ' y certeza suficiente; marcá la casilla para ver las de baja certeza.' : '.') + '</p>';
