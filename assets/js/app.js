@@ -59,10 +59,13 @@
   };
   var ORDEN_URGENCIA = { ahora: 0, preparar: 1, vigilar: 2 };
   var POSICIONES = {
-    atrasada: { nombre: 'Atrasada', icono: '◀', desc: 'La práctica, las defensas o las reglas van detrás de lo que exige la tendencia.' },
-    en_linea: { nombre: 'En línea', icono: '＝', desc: 'La industria acompaña el ritmo de la tendencia.' },
-    adelantada: { nombre: 'Adelantada', icono: '▶', desc: 'La oferta o la inversión van por delante de la demanda o de la evidencia.' }
+    atrasada: { nombre: 'Atrasada', icono: '◀', desc: 'La demanda, el riesgo o la regulación van por delante de la respuesta de la industria.' },
+    en_linea: { nombre: 'En línea', icono: '＝', desc: 'Oferta y demanda avanzan a la par.' },
+    adelantada: { nombre: 'Adelantada', icono: '▶', desc: 'La oferta de la industria va por delante de la demanda o de la regulación.' }
   };
+  var AYUDA_POSICION = 'Adelantada: la oferta de la industria va por delante de la demanda o de la regulación. ' +
+    'En línea: oferta y demanda avanzan a la par. ' +
+    'Atrasada: la demanda, el riesgo o la regulación van por delante de la respuesta de la industria.';
   var INVERSIONES = { baja: 'Baja', media: 'Media', alta: 'Alta', sin_dato: 'Sin dato' };
   var SIN_DATO = 'sin dato';
   var ICONO_EXTERNO = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
@@ -173,10 +176,15 @@
     if (!info) return '<span class="urgencia urgencia--sin">Urgencia: ' + SIN_DATO + '</span>';
     return '<span class="urgencia urgencia--' + u + (grande ? ' urgencia--grande' : '') + '">' + svg(info.icono) + esc(info.nombre) + '</span>';
   }
-  function chipPosicion(p) {
+  // Ícono de ayuda junto a la posición: "adelantada" no significa "mejor".
+  function ayudaPosicion() {
+    return '<span class="ayuda" role="img" tabindex="-1" title="' + esc(AYUDA_POSICION) + '" aria-label="' + esc(AYUDA_POSICION) + '" data-tip="' + esc(AYUDA_POSICION) + '">?</span>';
+  }
+  function chipPosicion(p, sinAyuda) {
     var info = POSICIONES[p];
     if (!info) return '<span class="posicion">Posición: ' + SIN_DATO + '</span>';
-    return '<span class="posicion posicion--' + p + '" title="Posición de la industria: ' + esc(info.desc) + '"><span aria-hidden="true">' + info.icono + '</span> ' + esc(info.nombre) + '</span>';
+    return '<span class="posicion-grupo"><span class="posicion posicion--' + p + '" title="Posición de la industria: ' + esc(info.desc) + '"><span aria-hidden="true">' + info.icono + '</span> ' + esc(info.nombre) + '</span>' +
+      (sinAyuda ? '' : ayudaPosicion()) + '</span>';
   }
   function geoNombre(g) { return vacio(g) ? SIN_DATO : (GEOGRAFIAS[g] || String(g)); }
   function normalizar(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
@@ -961,7 +969,7 @@
   function renderDefiniciones() {
     $('#definiciones-perfiles').innerHTML = ORDEN_PERFILES.map(function (p) { return '<dt>' + esc(PERFILES[p].nombre) + '</dt><dd>' + esc(PERFILES[p].desc) + '</dd>'; }).join('');
     $('#definiciones-urgencia').innerHTML = Object.keys(URGENCIAS).map(function (u) { return '<dt>' + chipUrgencia(u) + '</dt><dd>' + esc(URGENCIAS[u].desc) + '</dd>'; }).join('');
-    $('#definiciones-posicion').innerHTML = Object.keys(POSICIONES).map(function (p) { return '<dt>' + chipPosicion(p) + '</dt><dd>' + esc(POSICIONES[p].desc) + '</dd>'; }).join('');
+    $('#definiciones-posicion').innerHTML = Object.keys(POSICIONES).map(function (p) { return '<dt>' + chipPosicion(p, true) + '</dt><dd>' + esc(POSICIONES[p].desc) + '</dd>'; }).join('');
   }
 
   function renderMetodologia(d) {

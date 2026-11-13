@@ -750,3 +750,12 @@ a.indicador:hover { transform: translateY(-2px); border-color: var(--acento); }
 .leyenda i.punto-certeza--baja { background: transparent; }
 /* Implicancia sin base para el perfil: se muestra la lectura general con esta etiqueta */
 .etiqueta-general { display: inline-block; font-size: .7rem; font-weight: 600; color: var(--tinta-suave); background: var(--superficie-2); border: 1px dashed var(--borde-fuerte); padding: 0 6px; border-radius: 999px; white-space: nowrap; vertical-align: 1px; }
+/* Ayuda de "posición de la industria" */
+.posicion-grupo { display: inline-flex; align-items: center; gap: 3px; white-space: nowrap; }
+.ayuda { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; border: 1px solid var(--borde-fuerte); color: var(--tinta-suave); font-size: .66rem; font-weight: 700; line-height: 1; cursor: help; flex: none; background: var(--superficie); }
+.ayuda--muestra { vertical-align: 1px; }
+.ayuda[data-tip]:hover::after, .ayuda[data-tip]:focus::after {
+  content: attr(data-tip); position: absolute; z-index: 30; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+  width: min(300px, 80vw); white-space: normal; text-align: left; font-size: .78rem; font-weight: 500; line-height: 1.4;
+  color: var(--tinta); background: var(--superficie); border: 1px solid var(--borde-fuerte); border-radius: 8px; padding: 8px 10px; box-shadow: 0 6px 18px rgba(0,0,0,.18); pointer-events: none;
+}
