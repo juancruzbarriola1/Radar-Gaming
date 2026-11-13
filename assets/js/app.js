@@ -11,7 +11,7 @@
     digitalizacion: { nombre: 'Digitalización', icono: '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>' },
     ia_clonacion_pirateria: { nombre: 'IA, clonación y piratería', icono: '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 4H6a2 2 0 0 0-2 2v10"/>' },
     ia_desarrollo: { nombre: 'IA en desarrollo', icono: '<path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/>' },
-    regulacion_pi: { nombre: 'Regulación y PI', icono: '<path d="M12 4v16M5 8h14M7 8l-3 7h6zM17 8l-3 7h6z"/>' },
+    regulacion_pi: { nombre: 'Regulación y propiedad intelectual', icono: '<path d="M12 4v16M5 8h14M7 8l-3 7h6zM17 8l-3 7h6z"/>' },
     mercado: { nombre: 'Mercado', icono: '<path d="M4 18l6-6 4 4 6-8M15 8h5v5"/>' }
   };
   var ORDEN_TEMAS = Object.keys(TEMAS);
@@ -25,10 +25,10 @@
     ok: { nombre: 'Respondió', icono: '✓' },
     sin_novedades: { nombre: 'Sin novedades', icono: '–' },
     bloqueada: { nombre: 'Bloqueada', icono: '✕' },
-    requiere_js: { nombre: 'Requiere JavaScript', icono: '!' },
+    requiere_js: { nombre: 'Página que no se pudo leer', icono: '!' },
     manual: { nombre: 'Carga manual', icono: '✎' }
   };
-  var FASES = { disparador: 'Disparador', pico: 'Pico de expectativas', abismo: 'Desilusión', pendiente: 'Pendiente de aprendizaje', meseta: 'Meseta de productividad' };
+  var FASES = { disparador: 'Disparador', pico: 'Pico de expectativas', abismo: 'Desilusión', pendiente: 'Aprendizaje', meseta: 'Meseta (uso estable)' };
   var CUADRANTES = { estrella: 'Estrella', interrogante: 'Interrogante', vaca_lechera: 'Vaca lechera', perro: 'Perro' };
   var TIPOS = { noticia: 'Noticia', analisis: 'Análisis', reporte: 'Reporte', encuesta: 'Encuesta', opinion: 'Opinión' };
   var EVIDENCIAS = {
@@ -39,7 +39,7 @@
   };
   var CERTEZAS = { alta: 'Alta', media: 'Media', baja: 'Baja' };
   var TIPOS_DOC = {
-    prensa_datos: 'Nota con datos', reporte: 'Reporte', paper: 'Paper', analisis: 'Análisis',
+    prensa_datos: 'Nota con datos', reporte: 'Informe', paper: 'Estudio académico', analisis: 'Análisis',
     opinion_experta: 'Opinión experta', analisis_legal: 'Análisis legal',
     posicionamiento_industria: 'Posición de la industria', secundaria: 'Fuente secundaria'
   };
@@ -157,7 +157,7 @@
   function esRef(n) { return !!(n && n._ref); }
   function refsOk() { return estado.referencias.filter(function (r) { return r.estado === 'ok'; }); }
   function insigniaRef(n) {
-    return '<span class="insignia insignia--ref" title="Referencia de la biblioteca: fuera de la ventana semanal">Referencia · ' +
+    return '<span class="insignia insignia--ref" title="Referencia de la biblioteca: no es una noticia de esta semana">Referencia · ' +
       (vacio(n.fecha_publicacion) ? 'sin fecha' : esc(fecha(n.fecha_publicacion, true))) + '</span>';
   }
   function insigniaEvidencia(n) {
@@ -770,7 +770,7 @@
     $('#leyenda-brechas').innerHTML =
       '<span><i style="background:var(--serie-global)"></i>Brecha global</span>' +
       '<span><i style="background:var(--serie-latam)"></i>Brecha Latinoamérica</span>' +
-      '<span class="sin-dato">n = ítems de evidencia que sostienen cada barra</span>';
+      '<span class="sin-dato">n = cantidad de fuentes que respaldan cada barra</span>';
     $('#barras-gl').innerHTML = orden.length ? orden.map(function (t) {
       var nG = lista(t.evidencia).length, nL = nEvidenciaLatam(t);
       if (num(t.brecha_latam) != null) nLatam++;
@@ -946,7 +946,7 @@
       return true;
     });
     var nN = estado.todas.filter(function (n) { return !esRef(n); }).length;
-    $('#conteo-hemeroteca').textContent = 'Mostrando ' + res.length + ' de ' + estado.todas.length + ' ítems de evidencia (' +
+    $('#conteo-hemeroteca').textContent = 'Mostrando ' + res.length + ' de ' + estado.todas.length + ' (' +
       plural(nN, 'noticia', 'noticias') + ' y ' + plural(estado.todas.length - nN, 'referencia', 'referencias') + ').';
     var tbody = $('#tabla-hemeroteca tbody');
     if (!res.length) { tbody.innerHTML = '<tr><td colspan="8" class="vacio">Ningún ítem coincide con los filtros.</td></tr>'; return; }
@@ -1044,7 +1044,7 @@
       bloque('Decisión sugerida <span class="editorial">Valoración editorial</span>', '<p class="decision__accion">' + texto(t.decision_sugerida) + '</p>', 'bloque--decision bloque--' + esc(t.urgencia || 'sin')) +
 
       '<div class="dos-columnas">' +
-        bloque('Hoy: promedio de la industria', '<p>' + texto(t.promedio_actual) + '</p>') +
+        bloque('Qué hace hoy la mayoría', '<p>' + texto(t.promedio_actual) + '</p>') +
         bloque('Hacia dónde va', '<p>' + texto(t.hacia_donde_va) + '</p>', 'bloque--futuro') +
       '</div>' +
 
@@ -1062,7 +1062,7 @@
       '<div class="dos-columnas">' +
         bloque('Inversión requerida <span class="editorial">Valoración editorial</span>', '<p class="inversion inversion--' + esc(t.inversion_requerida || 'sin_dato') + '">' +
           (INVERSIONES[t.inversion_requerida] && t.inversion_requerida !== 'sin_dato' ? esc(INVERSIONES[t.inversion_requerida]) : sd()) + '</p><p class="tarjeta__ayuda">' + texto(t.justificacion_inversion) + '</p>') +
-        bloque('KPIs para medir el impacto <span class="editorial">Valoración editorial</span>', (kpis.length ? '<ul class="kpis">' + kpis.map(function (k) { return '<li>' + esc(k) + '</li>'; }).join('') + '</ul>' : '<p>' + sd() + '</p>') +
+        bloque('Indicadores para medir el impacto <span class="editorial">Valoración editorial</span>', (kpis.length ? '<ul class="kpis">' + kpis.map(function (k) { return '<li>' + esc(k) + '</li>'; }).join('') + '</ul>' : '<p>' + sd() + '</p>') +
           (vacio(t.justificacion_kpis) ? '' : '<p class="tarjeta__ayuda">' + esc(t.justificacion_kpis) + '</p>')) +
       '</div>' +
 
@@ -1075,7 +1075,7 @@
         '<dt>Clasificación</dt><dd>' + (vacio(t.cuadrante) ? sd() : esc(CUADRANTES[t.cuadrante] || t.cuadrante)) + '</dd>' +
       '</dl><p class="tarjeta__ayuda">' + texto(t.justificacion_brecha) + '</p></div>' +
 
-      bloque('Evidencia (' + ev.length + ')' + (ev.length < 2 ? ' <span class="insignia insignia--no">Evidencia débil: un solo ítem</span>' : ''),
+      bloque('Evidencia (' + ev.length + ')' + (ev.length < 2 ? ' <span class="insignia insignia--no">Evidencia débil: una sola fuente</span>' : ''),
         '<ul class="evidencia-lista">' + ev.map(function (x) {
           var n = x.item, e = x.e;
           if (!n) return '<li><span class="sin-dato">' + esc(e.tipo || 'ítem') + ' ' + esc(e.id) + ' no encontrado' + (e.edicion ? ' en la edición ' + esc(e.edicion) : '') + '</span></li>';
@@ -1087,8 +1087,8 @@
         }).join('') + '</ul>' +
         '<button type="button" class="boton-texto" data-filtrar-tendencia="' + esc(t.id) + '">Ver esta evidencia en la tabla</button>') +
 
-      '<p class="tarjeta__ayuda">Capa de tendencias' + (estado.tendMeta && estado.tendMeta.actualizado ? ', actualizada el ' + esc(fecha(estado.tendMeta.actualizado)) : '') +
-        ' · última actualización de esta tendencia: ' + esc(fecha(t.ultima_actualizacion)) + ' · id ' + esc(t.id) + '</p>';
+      '<p class="tarjeta__ayuda">Tendencias' + (estado.tendMeta && estado.tendMeta.actualizado ? ' actualizadas el ' + esc(fecha(estado.tendMeta.actualizado)) : '') +
+        ' · esta tendencia, el ' + esc(fecha(t.ultima_actualizacion)) + ' · código ' + esc(t.id) + '</p>';
     mostrarCajon(html, sinHash ? null : '#tendencia=' + encodeURIComponent(t.id));
   }
 
@@ -1121,11 +1121,11 @@
       '<h2 class="cajon__titulo" id="cajon-titulo">' + texto(n.titulo) + '</h2>' +
       '<p class="cajon__fuente"><strong>' + texto(n.fuente) + '</strong> · ' + (vacio(n.fecha_publicacion) ? 'Fecha de publicación: ' + sd() : 'Publicada el ' + esc(fecha(n.fecha_publicacion))) + '</p>' +
       (ts.length ? '<p class="cajon__tend">Evidencia de: ' + ts.map(function (t) { return botonTendencia(t.id); }).join(' ') + '</p>' : '<p class="cajon__tend sin-dato">No respalda ninguna tendencia.</p>') +
-      (ref ? '<p class="nota">Referencia de la biblioteca: está fuera de la ventana semanal y no forma parte de las noticias de ninguna edición.</p>' : '') +
+      (ref ? '<p class="nota">Referencia de la biblioteca: no es una noticia de esta semana ni cuenta como noticia de ninguna edición.</p>' : '') +
       (ref && !vacio(n.nota_calidad) ? '<div class="bloque bloque--calidad"><h4>Nota de calidad</h4><p>' + esc(n.nota_calidad) + '</p></div>' : '') +
       (u ? '<a class="boton-original" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">Leer la nota original' + ICONO_EXTERNO + '</a><p class="cajon__url">' + esc(u) + '</p>'
          : '<p class="nota">No tiene enlace a la nota original.</p>') +
-      (verif ? '' : '<p class="nota">No se pudo abrir la fuente original: no hay resumen con cifras y conviene contrastarlo.</p>') +
+      (verif ? '' : '<p class="nota">No se pudo abrir la nota original: el resumen no incluye cifras y conviene contrastarlo.</p>') +
       '<div class="bloque"><h4>Resumen</h4><p>' + texto(n.resumen_propio) + '</p></div>' +
       '<div class="bloque"><h4>Lectura de negocio</h4><p>' + texto(n.lectura_negocio) + '</p></div>' +
       '<div class="bloque bloque--dato"><h4>Dato clave (de la fuente)</h4><p>' + texto(n.dato_clave) + '</p></div>' +
@@ -1143,7 +1143,7 @@
         '<dt>Certeza</dt><dd>' + (CERTEZAS[n.certeza] ? insigniaCerteza(n) : sd()) + '</dd>' +
       '</dl></div>' +
       '<div class="bloque"><h4>Por qué esa brecha</h4><p>' + texto(n.justificacion_brecha) + '</p></div>' +
-      '<p class="tarjeta__ayuda">' + (ref ? 'Biblioteca de referencias' + (estado.refsMeta && estado.refsMeta.actualizado ? ', actualizada el ' + esc(fecha(estado.refsMeta.actualizado)) : '') : 'Edición del ' + esc(fecha(n._edicion))) + ' · id ' + esc(n.id) + '</p>';
+      '<p class="tarjeta__ayuda">' + (ref ? 'Biblioteca de referencias' + (estado.refsMeta && estado.refsMeta.actualizado ? ', actualizada el ' + esc(fecha(estado.refsMeta.actualizado)) : '') : 'Edición del ' + esc(fecha(n._edicion))) + ' · código ' + esc(n.id) + '</p>';
     mostrarCajon(html, sinHash ? null : '#noticia=' + encodeURIComponent(k));
   }
 
