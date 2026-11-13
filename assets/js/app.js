@@ -402,6 +402,27 @@
     var imp = implicancia(t, p);
     return !imp || /^sin (impacto relevante|base)/i.test(normalizar(imp).trim());
   }
+  function sinBase(imp) { return !imp || /^sin base/i.test(normalizar(imp).trim()); }
+  // Implicancia a mostrar para un perfil: si la del perfil no tiene base, se usa la lectura general
+  // (implicancia "global" si existe; si no, la de Publisher / AAA; si no, la primera con contenido).
+  function implicanciaVista(t, p) {
+    p = p || estado.perfil;
+    var propia = implicancia(t, p);
+    if (!sinBase(propia)) return { texto: propia, general: false };
+    var orden = ['global', 'publisher_aaa'].concat(ORDEN_PERFILES);
+    for (var i = 0; i < orden.length; i++) {
+      if (orden[i] === p) continue;
+      var alt = implicancia(t, orden[i]);
+      if (!sinBase(alt) && !/^sin impacto/i.test(normalizar(alt).trim())) return { texto: alt, general: true, origen: orden[i] };
+    }
+    return { texto: propia, general: false };
+  }
+  function implicanciaHTML(t, p) {
+    var v = implicanciaVista(t, p);
+    if (!v.general) return texto(v.texto);
+    var de = PERFILES[v.origen] ? PERFILES[v.origen].nombre : 'la industria en general';
+    return esc(v.texto) + ' <span class="etiqueta-general" title="Las fuentes no dan base para este perfil: se muestra la implicancia para ' + esc(de) + '.">lectura general, sin base regional</span>';
+  }
 
   // ---------- A. Resumen ejecutivo ----------
   function botonTendencia(tid, rotulo) {
@@ -444,11 +465,10 @@
     });
     $('#decisiones').innerHTML = (hayTendencias() ? '' : explicarSinTendencias()) + (dec.length ? dec.map(function (x) {
       var t = tendencia(x.tendencia_id);
-      var imp = implicancia(t);
       return '<div class="decision decision--' + esc(URGENCIAS[x.urgencia] ? x.urgencia : 'sin') + '">' +
         '<p class="decision__accion">' + chipUrgencia(x.urgencia) + ' ' + texto(x.accion) + '</p>' +
         '<p class="decision__porque">' + texto(x.por_que) + (t ? ' ' + botonTendencia(t.id, 'Tendencia') : '') + '</p>' +
-        (t ? '<p class="decision__perfil"><strong>' + esc(PERFILES[estado.perfil].nombre) + ':</strong> ' + texto(imp) + '</p>' : '') +
+        (t ? '<p class="decision__perfil"><strong>' + esc(PERFILES[estado.perfil].nombre) + ':</strong> ' + implicanciaHTML(t) + '</p>' : '') +
         '</div>';
     }).join('') : '<p class="vacio">' + SIN_DATO + '</p>');
 
@@ -558,7 +578,7 @@
     return '<button type="button" class="tend-mini" data-tendencia="' + esc(t.id) + '">' +
       '<span class="tend-mini__arriba">' + chipUrgencia(t.urgencia) + insigniaCerteza(t) + '</span>' +
       '<span class="tend-mini__nombre">' + texto(t.nombre) + '</span>' +
-      '<span class="tend-mini__perfil"><strong>' + esc(PERFILES[estado.perfil].corto) + ':</strong> ' + texto(implicancia(t)) + '</span>' +
+      '<span class="tend-mini__perfil"><strong>' + esc(PERFILES[estado.perfil].corto) + ':</strong> ' + implicanciaHTML(t) + '</span>' +
       '</button>';
   }
 
@@ -678,7 +698,7 @@
           return '<button type="button" class="lt__item" style="--c:' + (TEMAS[t.tema] ? 'var(--t-' + t.tema + ')' : 'var(--borde-fuerte)') + '" data-tendencia="' + esc(t.id) + '">' +
             '<span class="lt__item-ref">' + chipUrgencia(t.urgencia) + insigniaCerteza(t) + '</span>' +
             '<span class="lt__item-titulo">' + texto(t.nombre) + '</span>' +
-            '<span class="lt__item-perfil"><strong>' + esc(PERFILES[estado.perfil].corto) + ':</strong> ' + texto(implicancia(t)) + '</span>' +
+            '<span class="lt__item-perfil"><strong>' + esc(PERFILES[estado.perfil].corto) + ':</strong> ' + implicanciaHTML(t) + '</span>' +
             '</button>';
         }).join('') : '<p class="vacio vacio--explica">Ninguna tendencia está clasificada a ' + esc(info.plazo) + '.</p>') + '</div></div>';
     }).join('') + '</div>';
@@ -783,7 +803,7 @@
         return '<li><button type="button" class="lectura__item" data-tendencia="' + esc(t.id) + '">' +
           '<span class="lectura__num">' + num(t[campo]) + '<small>/5</small></span>' +
           '<span><strong>' + texto(t.nombre) + '</strong> ' + chipPosicion(t.posicion_industria) + chipUrgencia(t.urgencia) +
-          '<span class="lectura__imp">' + texto(implicancia(t, p)) + '</span></span></button></li>';
+          '<span class="lectura__imp">' + implicanciaHTML(t, p) + '</span></span></button></li>';
       }).join('') + '</ol>' +
       '<p class="tarjeta__ayuda">Brecha ' + (campo === 'brecha_latam' ? 'Latinoamérica' : 'global') + '. Se omiten las tendencias cuya implicancia para este perfil dice “sin impacto relevante” o “sin base”.</p>';
   }
@@ -1008,7 +1028,7 @@
         bloque('Hacia dónde va', '<p>' + texto(t.hacia_donde_va) + '</p>', 'bloque--futuro') +
       '</div>' +
 
-      bloque('Para <span data-perfil-nombre>' + esc(PERFILES[p].nombre) + '</span>', '<p>' + texto(implicancia(t, p)) + '</p>', 'bloque--perfil') +
+      bloque('Para <span data-perfil-nombre>' + esc(PERFILES[p].nombre) + '</span>', '<p>' + implicanciaHTML(t, p) + '</p>', 'bloque--perfil') +
       '<details class="otros-perfiles"><summary>Implicancias para los otros perfiles</summary><dl>' + otros.map(function (x) {
         return '<dt>' + esc(PERFILES[x].nombre) + '</dt><dd>' + texto(implicancia(t, x)) + '</dd>';
       }).join('') + '</dl></details>' +
