@@ -11,7 +11,7 @@
     digitalizacion: { nombre: 'Digitalización', icono: '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>' },
     ia_clonacion_pirateria: { nombre: 'IA, clonación y piratería', icono: '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 4H6a2 2 0 0 0-2 2v10"/>' },
     ia_desarrollo: { nombre: 'IA en desarrollo', icono: '<path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/>' },
-    regulacion_pi: { nombre: 'Regulación y PI', icono: '<path d="M12 4v16M5 8h14M7 8l-3 7h6zM17 8l-3 7h6z"/>' },
+    regulacion_pi: { nombre: 'Regulación y propiedad intelectual', icono: '<path d="M12 4v16M5 8h14M7 8l-3 7h6zM17 8l-3 7h6z"/>' },
     mercado: { nombre: 'Mercado', icono: '<path d="M4 18l6-6 4 4 6-8M15 8h5v5"/>' }
   };
   var ORDEN_TEMAS = Object.keys(TEMAS);
@@ -25,10 +25,10 @@
     ok: { nombre: 'Respondió', icono: '✓' },
     sin_novedades: { nombre: 'Sin novedades', icono: '–' },
     bloqueada: { nombre: 'Bloqueada', icono: '✕' },
-    requiere_js: { nombre: 'Requiere JavaScript', icono: '!' },
+    requiere_js: { nombre: 'Página que no se pudo leer', icono: '!' },
     manual: { nombre: 'Carga manual', icono: '✎' }
   };
-  var FASES = { disparador: 'Disparador', pico: 'Pico de expectativas', abismo: 'Desilusión', pendiente: 'Pendiente de aprendizaje', meseta: 'Meseta de productividad' };
+  var FASES = { disparador: 'Disparador', pico: 'Pico de expectativas', abismo: 'Desilusión', pendiente: 'Aprendizaje', meseta: 'Meseta (uso estable)' };
   var CUADRANTES = { estrella: 'Estrella', interrogante: 'Interrogante', vaca_lechera: 'Vaca lechera', perro: 'Perro' };
   var TIPOS = { noticia: 'Noticia', analisis: 'Análisis', reporte: 'Reporte', encuesta: 'Encuesta', opinion: 'Opinión' };
   var EVIDENCIAS = {
@@ -39,7 +39,7 @@
   };
   var CERTEZAS = { alta: 'Alta', media: 'Media', baja: 'Baja' };
   var TIPOS_DOC = {
-    prensa_datos: 'Nota con datos', reporte: 'Reporte', paper: 'Paper', analisis: 'Análisis',
+    prensa_datos: 'Nota con datos', reporte: 'Informe', paper: 'Estudio académico', analisis: 'Análisis',
     opinion_experta: 'Opinión experta', analisis_legal: 'Análisis legal',
     posicionamiento_industria: 'Posición de la industria', secundaria: 'Fuente secundaria'
   };
@@ -59,10 +59,13 @@
   };
   var ORDEN_URGENCIA = { ahora: 0, preparar: 1, vigilar: 2 };
   var POSICIONES = {
-    atrasada: { nombre: 'Atrasada', icono: '◀', desc: 'La práctica, las defensas o las reglas van detrás de lo que exige la tendencia.' },
-    en_linea: { nombre: 'En línea', icono: '＝', desc: 'La industria acompaña el ritmo de la tendencia.' },
-    adelantada: { nombre: 'Adelantada', icono: '▶', desc: 'La oferta o la inversión van por delante de la demanda o de la evidencia.' }
+    atrasada: { nombre: 'Atrasada', icono: '◀', desc: 'La demanda, el riesgo o la regulación van por delante de la respuesta de la industria.' },
+    en_linea: { nombre: 'En línea', icono: '＝', desc: 'Oferta y demanda avanzan a la par.' },
+    adelantada: { nombre: 'Adelantada', icono: '▶', desc: 'La oferta de la industria va por delante de la demanda o de la regulación.' }
   };
+  var AYUDA_POSICION = 'Adelantada: la oferta de la industria va por delante de la demanda o de la regulación. ' +
+    'En línea: oferta y demanda avanzan a la par. ' +
+    'Atrasada: la demanda, el riesgo o la regulación van por delante de la respuesta de la industria.';
   var INVERSIONES = { baja: 'Baja', media: 'Media', alta: 'Alta', sin_dato: 'Sin dato' };
   var SIN_DATO = 'sin dato';
   var ICONO_EXTERNO = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
@@ -154,7 +157,7 @@
   function esRef(n) { return !!(n && n._ref); }
   function refsOk() { return estado.referencias.filter(function (r) { return r.estado === 'ok'; }); }
   function insigniaRef(n) {
-    return '<span class="insignia insignia--ref" title="Referencia de la biblioteca: fuera de la ventana semanal">Referencia · ' +
+    return '<span class="insignia insignia--ref" title="Referencia de la biblioteca: no es una noticia de esta semana">Referencia · ' +
       (vacio(n.fecha_publicacion) ? 'sin fecha' : esc(fecha(n.fecha_publicacion, true))) + '</span>';
   }
   function insigniaEvidencia(n) {
@@ -173,10 +176,15 @@
     if (!info) return '<span class="urgencia urgencia--sin">Urgencia: ' + SIN_DATO + '</span>';
     return '<span class="urgencia urgencia--' + u + (grande ? ' urgencia--grande' : '') + '">' + svg(info.icono) + esc(info.nombre) + '</span>';
   }
-  function chipPosicion(p) {
+  // Ícono de ayuda junto a la posición: "adelantada" no significa "mejor".
+  function ayudaPosicion() {
+    return '<span class="ayuda" role="img" tabindex="-1" title="' + esc(AYUDA_POSICION) + '" aria-label="' + esc(AYUDA_POSICION) + '" data-tip="' + esc(AYUDA_POSICION) + '">?</span>';
+  }
+  function chipPosicion(p, sinAyuda) {
     var info = POSICIONES[p];
     if (!info) return '<span class="posicion">Posición: ' + SIN_DATO + '</span>';
-    return '<span class="posicion posicion--' + p + '" title="Posición de la industria: ' + esc(info.desc) + '"><span aria-hidden="true">' + info.icono + '</span> ' + esc(info.nombre) + '</span>';
+    return '<span class="posicion-grupo"><span class="posicion posicion--' + p + '" title="Posición de la industria: ' + esc(info.desc) + '"><span aria-hidden="true">' + info.icono + '</span> ' + esc(info.nombre) + '</span>' +
+      (sinAyuda ? '' : ayudaPosicion()) + '</span>';
   }
   function geoNombre(g) { return vacio(g) ? SIN_DATO : (GEOGRAFIAS[g] || String(g)); }
   function normalizar(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
@@ -402,6 +410,27 @@
     var imp = implicancia(t, p);
     return !imp || /^sin (impacto relevante|base)/i.test(normalizar(imp).trim());
   }
+  function sinBase(imp) { return !imp || /^sin base/i.test(normalizar(imp).trim()); }
+  // Implicancia a mostrar para un perfil: si la del perfil no tiene base, se usa la lectura general
+  // (implicancia "global" si existe; si no, la de Publisher / AAA; si no, la primera con contenido).
+  function implicanciaVista(t, p) {
+    p = p || estado.perfil;
+    var propia = implicancia(t, p);
+    if (!sinBase(propia)) return { texto: propia, general: false };
+    var orden = ['global', 'publisher_aaa'].concat(ORDEN_PERFILES);
+    for (var i = 0; i < orden.length; i++) {
+      if (orden[i] === p) continue;
+      var alt = implicancia(t, orden[i]);
+      if (!sinBase(alt) && !/^sin impacto/i.test(normalizar(alt).trim())) return { texto: alt, general: true, origen: orden[i] };
+    }
+    return { texto: propia, general: false };
+  }
+  function implicanciaHTML(t, p) {
+    var v = implicanciaVista(t, p);
+    if (!v.general) return texto(v.texto);
+    var de = PERFILES[v.origen] ? PERFILES[v.origen].nombre : 'la industria en general';
+    return esc(v.texto) + ' <span class="etiqueta-general" title="Las fuentes no dan base para este perfil: se muestra la implicancia para ' + esc(de) + '.">lectura general, sin base regional</span>';
+  }
 
   // ---------- A. Resumen ejecutivo ----------
   function botonTendencia(tid, rotulo) {
@@ -444,11 +473,10 @@
     });
     $('#decisiones').innerHTML = (hayTendencias() ? '' : explicarSinTendencias()) + (dec.length ? dec.map(function (x) {
       var t = tendencia(x.tendencia_id);
-      var imp = implicancia(t);
       return '<div class="decision decision--' + esc(URGENCIAS[x.urgencia] ? x.urgencia : 'sin') + '">' +
         '<p class="decision__accion">' + chipUrgencia(x.urgencia) + ' ' + texto(x.accion) + '</p>' +
         '<p class="decision__porque">' + texto(x.por_que) + (t ? ' ' + botonTendencia(t.id, 'Tendencia') : '') + '</p>' +
-        (t ? '<p class="decision__perfil"><strong>' + esc(PERFILES[estado.perfil].nombre) + ':</strong> ' + texto(imp) + '</p>' : '') +
+        (t ? '<p class="decision__perfil"><strong>' + esc(PERFILES[estado.perfil].nombre) + ':</strong> ' + implicanciaHTML(t) + '</p>' : '') +
         '</div>';
     }).join('') : '<p class="vacio">' + SIN_DATO + '</p>');
 
@@ -497,22 +525,33 @@
       return '<span><i class="marca-certeza marca-certeza--' + c + '"></i>' + marcaCerteza(c) + ' Certeza ' + CERTEZAS[c].toLowerCase() + '</span>';
     }).join('') + '<span class="sin-dato">Barra con trama = certeza baja</span>';
 
+    // Si falta la brecha global pero hay brecha Latam (tendencia regional), se muestra la barra regional rotulada "solo Latam".
+    function brechaMapa(t) {
+      var g = num(t.brecha_global);
+      if (g != null) return { v: g, latam: false };
+      var l = num(t.brecha_latam);
+      return l != null ? { v: l, latam: true } : { v: null, latam: false };
+    }
     var orden = estado.tendencias.slice().sort(function (a, b) {
-      var ga = num(a.brecha_global), gb = num(b.brecha_global);
+      var ga = brechaMapa(a).v, gb = brechaMapa(b).v;
       if (ga == null && gb == null) return 0;
       if (ga == null) return 1;
       if (gb == null) return -1;
       return gb - ga || (ORDEN_URGENCIA[a.urgencia] || 0) - (ORDEN_URGENCIA[b.urgencia] || 0);
     });
     $('#barras-brecha').innerHTML = orden.map(function (t) {
-      var g = num(t.brecha_global);
+      var b = brechaMapa(t), g = b.v;
       var c = CERTEZAS[t.certeza] ? t.certeza : null;
+      var color = b.latam ? 'var(--serie-latam)' : 'var(--serie-global)';
       var valor = g == null
-        ? '<span class="barra__valor">' + sd() + (num(t.brecha_latam) != null ? ' <small>(regional: Latam ' + t.brecha_latam + ')</small>' : '') + '</span>'
-        : '<span class="barra__valor">' + g + (c ? ' <span class="barra__certeza" title="Certeza ' + CERTEZAS[c].toLowerCase() + '">' + marcaCerteza(c) + ' ' + CERTEZAS[c].toLowerCase() + '</span>' : '') + '</span>';
-      return '<button type="button" class="barra" data-tendencia="' + esc(t.id) + '" aria-label="' + esc(t.nombre) + ': brecha global ' + (g == null ? SIN_DATO : g + ' de 5') + ', certeza ' + (c ? CERTEZAS[c].toLowerCase() : SIN_DATO) + '">' +
+        ? '<span class="barra__valor">' + sd() + '</span>'
+        : '<span class="barra__valor">' + g + (b.latam ? ' <small class="solo-latam">solo Latam</small>' : '') +
+          (c ? ' <span class="barra__certeza" title="Certeza ' + CERTEZAS[c].toLowerCase() + '">' + marcaCerteza(c) + ' ' + CERTEZAS[c].toLowerCase() + '</span>' : '') + '</span>';
+      return '<button type="button" class="barra" data-tendencia="' + esc(t.id) + '" aria-label="' + esc(t.nombre) + ': ' +
+        (g == null ? 'brecha ' + SIN_DATO : (b.latam ? 'brecha Latinoamérica ' : 'brecha global ') + g + ' de 5' + (b.latam ? ' (solo Latam, sin brecha global)' : '')) +
+        ', certeza ' + (c ? CERTEZAS[c].toLowerCase() : SIN_DATO) + '">' +
         '<span class="barra__nombre">' + esc(t.nombre || t.id) + '</span>' +
-        '<span class="barra__pista"><span class="barra__track">' + (g == null ? '' : '<span class="barra__relleno barra__relleno--' + (c || 'media') + '" style="--v:' + (g / 5 * 100) + '%;--c:var(--serie-global)"></span>') + '</span>' + valor + '</span>' +
+        '<span class="barra__pista"><span class="barra__track">' + (g == null ? '' : '<span class="barra__relleno barra__relleno--' + (c || 'media') + '" style="--v:' + (g / 5 * 100) + '%;--c:' + color + '"></span>') + '</span>' + valor + '</span>' +
         '</button>';
     }).join('');
   }
@@ -558,7 +597,7 @@
     return '<button type="button" class="tend-mini" data-tendencia="' + esc(t.id) + '">' +
       '<span class="tend-mini__arriba">' + chipUrgencia(t.urgencia) + insigniaCerteza(t) + '</span>' +
       '<span class="tend-mini__nombre">' + texto(t.nombre) + '</span>' +
-      '<span class="tend-mini__perfil"><strong>' + esc(PERFILES[estado.perfil].corto) + ':</strong> ' + texto(implicancia(t)) + '</span>' +
+      '<span class="tend-mini__perfil"><strong>' + esc(PERFILES[estado.perfil].corto) + ':</strong> ' + implicanciaHTML(t) + '</span>' +
       '</button>';
   }
 
@@ -678,7 +717,7 @@
           return '<button type="button" class="lt__item" style="--c:' + (TEMAS[t.tema] ? 'var(--t-' + t.tema + ')' : 'var(--borde-fuerte)') + '" data-tendencia="' + esc(t.id) + '">' +
             '<span class="lt__item-ref">' + chipUrgencia(t.urgencia) + insigniaCerteza(t) + '</span>' +
             '<span class="lt__item-titulo">' + texto(t.nombre) + '</span>' +
-            '<span class="lt__item-perfil"><strong>' + esc(PERFILES[estado.perfil].corto) + ':</strong> ' + texto(implicancia(t)) + '</span>' +
+            '<span class="lt__item-perfil"><strong>' + esc(PERFILES[estado.perfil].corto) + ':</strong> ' + implicanciaHTML(t) + '</span>' +
             '</button>';
         }).join('') : '<p class="vacio vacio--explica">Ninguna tendencia está clasificada a ' + esc(info.plazo) + '.</p>') + '</div></div>';
     }).join('') + '</div>';
@@ -731,20 +770,21 @@
     $('#leyenda-brechas').innerHTML =
       '<span><i style="background:var(--serie-global)"></i>Brecha global</span>' +
       '<span><i style="background:var(--serie-latam)"></i>Brecha Latinoamérica</span>' +
-      '<span class="sin-dato">n = ítems de evidencia que sostienen cada barra</span>';
+      '<span class="sin-dato">n = cantidad de fuentes que respaldan cada barra</span>';
     $('#barras-gl').innerHTML = orden.length ? orden.map(function (t) {
       var nG = lista(t.evidencia).length, nL = nEvidenciaLatam(t);
       if (num(t.brecha_latam) != null) nLatam++;
-      function fila(v, color, n, rotulo) {
+      var soloLatam = num(t.brecha_global) == null && num(t.brecha_latam) != null;
+      function fila(v, color, n, rotulo, vacioTxt) {
         v = num(v);
         return '<span class="barra__fila"><span class="barra__serie">' + rotulo + '</span><span class="barra__pista"><span class="barra__track">' +
           (v == null ? '' : '<span class="barra__relleno barra__relleno--' + (t.certeza || 'media') + '" style="--v:' + (v / 5 * 100) + '%;--c:' + color + '"></span>') + '</span>' +
-          '<span class="barra__valor">' + (v == null ? sd() : v) + ' <small>n=' + n + '</small></span></span></span>';
+          '<span class="barra__valor">' + (v == null && vacioTxt ? vacioTxt : (v == null ? sd() : v) + ' <small>n=' + n + '</small>') + '</span></span></span>';
       }
-      return '<button type="button" class="barra barra--doble" data-tendencia="' + esc(t.id) + '" aria-label="' + esc(t.nombre) + ': brecha global ' + (num(t.brecha_global) == null ? SIN_DATO : t.brecha_global) +
+      return '<button type="button" class="barra barra--doble" data-tendencia="' + esc(t.id) + '" aria-label="' + esc(t.nombre) + ': brecha global ' + (num(t.brecha_global) == null ? (soloLatam ? 'no valorada (solo Latam)' : SIN_DATO) : t.brecha_global) +
         ' (n=' + nG + '), Latinoamérica ' + (num(t.brecha_latam) == null ? SIN_DATO : t.brecha_latam) + ' (n=' + nL + ')">' +
         '<span class="barra__nombre">' + esc(t.nombre || t.id) + (t.certeza === 'baja' ? ' ' + insigniaCerteza(t) : '') + '</span>' +
-        fila(t.brecha_global, 'var(--serie-global)', nG, 'Global') +
+        fila(t.brecha_global, 'var(--serie-global)', nG, 'Global', soloLatam ? '<small class="solo-latam">solo Latam</small>' : null) +
         fila(t.brecha_latam, 'var(--serie-latam)', nL, 'Latam') +
         '</button>';
     }).join('') : '<p class="vacio">Ninguna tendencia con brecha valorada' + (base.bajas.length && !base.incluir ? ' y certeza suficiente; marcá la casilla para ver las de baja certeza.' : '.') + '</p>';
@@ -783,7 +823,7 @@
         return '<li><button type="button" class="lectura__item" data-tendencia="' + esc(t.id) + '">' +
           '<span class="lectura__num">' + num(t[campo]) + '<small>/5</small></span>' +
           '<span><strong>' + texto(t.nombre) + '</strong> ' + chipPosicion(t.posicion_industria) + chipUrgencia(t.urgencia) +
-          '<span class="lectura__imp">' + texto(implicancia(t, p)) + '</span></span></button></li>';
+          '<span class="lectura__imp">' + implicanciaHTML(t, p) + '</span></span></button></li>';
       }).join('') + '</ol>' +
       '<p class="tarjeta__ayuda">Brecha ' + (campo === 'brecha_latam' ? 'Latinoamérica' : 'global') + '. Se omiten las tendencias cuya implicancia para este perfil dice “sin impacto relevante” o “sin base”.</p>';
   }
@@ -906,7 +946,7 @@
       return true;
     });
     var nN = estado.todas.filter(function (n) { return !esRef(n); }).length;
-    $('#conteo-hemeroteca').textContent = 'Mostrando ' + res.length + ' de ' + estado.todas.length + ' ítems de evidencia (' +
+    $('#conteo-hemeroteca').textContent = 'Mostrando ' + res.length + ' de ' + estado.todas.length + ' (' +
       plural(nN, 'noticia', 'noticias') + ' y ' + plural(estado.todas.length - nN, 'referencia', 'referencias') + ').';
     var tbody = $('#tabla-hemeroteca tbody');
     if (!res.length) { tbody.innerHTML = '<tr><td colspan="8" class="vacio">Ningún ítem coincide con los filtros.</td></tr>'; return; }
@@ -941,7 +981,7 @@
   function renderDefiniciones() {
     $('#definiciones-perfiles').innerHTML = ORDEN_PERFILES.map(function (p) { return '<dt>' + esc(PERFILES[p].nombre) + '</dt><dd>' + esc(PERFILES[p].desc) + '</dd>'; }).join('');
     $('#definiciones-urgencia').innerHTML = Object.keys(URGENCIAS).map(function (u) { return '<dt>' + chipUrgencia(u) + '</dt><dd>' + esc(URGENCIAS[u].desc) + '</dd>'; }).join('');
-    $('#definiciones-posicion').innerHTML = Object.keys(POSICIONES).map(function (p) { return '<dt>' + chipPosicion(p) + '</dt><dd>' + esc(POSICIONES[p].desc) + '</dd>'; }).join('');
+    $('#definiciones-posicion').innerHTML = Object.keys(POSICIONES).map(function (p) { return '<dt>' + chipPosicion(p, true) + '</dt><dd>' + esc(POSICIONES[p].desc) + '</dd>'; }).join('');
   }
 
   function renderMetodologia(d) {
@@ -1004,11 +1044,11 @@
       bloque('Decisión sugerida <span class="editorial">Valoración editorial</span>', '<p class="decision__accion">' + texto(t.decision_sugerida) + '</p>', 'bloque--decision bloque--' + esc(t.urgencia || 'sin')) +
 
       '<div class="dos-columnas">' +
-        bloque('Hoy: promedio de la industria', '<p>' + texto(t.promedio_actual) + '</p>') +
+        bloque('Qué hace hoy la mayoría', '<p>' + texto(t.promedio_actual) + '</p>') +
         bloque('Hacia dónde va', '<p>' + texto(t.hacia_donde_va) + '</p>', 'bloque--futuro') +
       '</div>' +
 
-      bloque('Para <span data-perfil-nombre>' + esc(PERFILES[p].nombre) + '</span>', '<p>' + texto(implicancia(t, p)) + '</p>', 'bloque--perfil') +
+      bloque('Para <span data-perfil-nombre>' + esc(PERFILES[p].nombre) + '</span>', '<p>' + implicanciaHTML(t, p) + '</p>', 'bloque--perfil') +
       '<details class="otros-perfiles"><summary>Implicancias para los otros perfiles</summary><dl>' + otros.map(function (x) {
         return '<dt>' + esc(PERFILES[x].nombre) + '</dt><dd>' + texto(implicancia(t, x)) + '</dd>';
       }).join('') + '</dl></details>' +
@@ -1022,7 +1062,7 @@
       '<div class="dos-columnas">' +
         bloque('Inversión requerida <span class="editorial">Valoración editorial</span>', '<p class="inversion inversion--' + esc(t.inversion_requerida || 'sin_dato') + '">' +
           (INVERSIONES[t.inversion_requerida] && t.inversion_requerida !== 'sin_dato' ? esc(INVERSIONES[t.inversion_requerida]) : sd()) + '</p><p class="tarjeta__ayuda">' + texto(t.justificacion_inversion) + '</p>') +
-        bloque('KPIs para medir el impacto <span class="editorial">Valoración editorial</span>', (kpis.length ? '<ul class="kpis">' + kpis.map(function (k) { return '<li>' + esc(k) + '</li>'; }).join('') + '</ul>' : '<p>' + sd() + '</p>') +
+        bloque('Indicadores para medir el impacto <span class="editorial">Valoración editorial</span>', (kpis.length ? '<ul class="kpis">' + kpis.map(function (k) { return '<li>' + esc(k) + '</li>'; }).join('') + '</ul>' : '<p>' + sd() + '</p>') +
           (vacio(t.justificacion_kpis) ? '' : '<p class="tarjeta__ayuda">' + esc(t.justificacion_kpis) + '</p>')) +
       '</div>' +
 
@@ -1035,7 +1075,7 @@
         '<dt>Clasificación</dt><dd>' + (vacio(t.cuadrante) ? sd() : esc(CUADRANTES[t.cuadrante] || t.cuadrante)) + '</dd>' +
       '</dl><p class="tarjeta__ayuda">' + texto(t.justificacion_brecha) + '</p></div>' +
 
-      bloque('Evidencia (' + ev.length + ')' + (ev.length < 2 ? ' <span class="insignia insignia--no">Evidencia débil: un solo ítem</span>' : ''),
+      bloque('Evidencia (' + ev.length + ')' + (ev.length < 2 ? ' <span class="insignia insignia--no">Evidencia débil: una sola fuente</span>' : ''),
         '<ul class="evidencia-lista">' + ev.map(function (x) {
           var n = x.item, e = x.e;
           if (!n) return '<li><span class="sin-dato">' + esc(e.tipo || 'ítem') + ' ' + esc(e.id) + ' no encontrado' + (e.edicion ? ' en la edición ' + esc(e.edicion) : '') + '</span></li>';
@@ -1047,8 +1087,8 @@
         }).join('') + '</ul>' +
         '<button type="button" class="boton-texto" data-filtrar-tendencia="' + esc(t.id) + '">Ver esta evidencia en la tabla</button>') +
 
-      '<p class="tarjeta__ayuda">Capa de tendencias' + (estado.tendMeta && estado.tendMeta.actualizado ? ', actualizada el ' + esc(fecha(estado.tendMeta.actualizado)) : '') +
-        ' · última actualización de esta tendencia: ' + esc(fecha(t.ultima_actualizacion)) + ' · id ' + esc(t.id) + '</p>';
+      '<p class="tarjeta__ayuda">Tendencias' + (estado.tendMeta && estado.tendMeta.actualizado ? ' actualizadas el ' + esc(fecha(estado.tendMeta.actualizado)) : '') +
+        ' · esta tendencia, el ' + esc(fecha(t.ultima_actualizacion)) + ' · código ' + esc(t.id) + '</p>';
     mostrarCajon(html, sinHash ? null : '#tendencia=' + encodeURIComponent(t.id));
   }
 
@@ -1081,11 +1121,11 @@
       '<h2 class="cajon__titulo" id="cajon-titulo">' + texto(n.titulo) + '</h2>' +
       '<p class="cajon__fuente"><strong>' + texto(n.fuente) + '</strong> · ' + (vacio(n.fecha_publicacion) ? 'Fecha de publicación: ' + sd() : 'Publicada el ' + esc(fecha(n.fecha_publicacion))) + '</p>' +
       (ts.length ? '<p class="cajon__tend">Evidencia de: ' + ts.map(function (t) { return botonTendencia(t.id); }).join(' ') + '</p>' : '<p class="cajon__tend sin-dato">No respalda ninguna tendencia.</p>') +
-      (ref ? '<p class="nota">Referencia de la biblioteca: está fuera de la ventana semanal y no forma parte de las noticias de ninguna edición.</p>' : '') +
+      (ref ? '<p class="nota">Referencia de la biblioteca: no es una noticia de esta semana ni cuenta como noticia de ninguna edición.</p>' : '') +
       (ref && !vacio(n.nota_calidad) ? '<div class="bloque bloque--calidad"><h4>Nota de calidad</h4><p>' + esc(n.nota_calidad) + '</p></div>' : '') +
       (u ? '<a class="boton-original" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">Leer la nota original' + ICONO_EXTERNO + '</a><p class="cajon__url">' + esc(u) + '</p>'
          : '<p class="nota">No tiene enlace a la nota original.</p>') +
-      (verif ? '' : '<p class="nota">No se pudo abrir la fuente original: no hay resumen con cifras y conviene contrastarlo.</p>') +
+      (verif ? '' : '<p class="nota">No se pudo abrir la nota original: el resumen no incluye cifras y conviene contrastarlo.</p>') +
       '<div class="bloque"><h4>Resumen</h4><p>' + texto(n.resumen_propio) + '</p></div>' +
       '<div class="bloque"><h4>Lectura de negocio</h4><p>' + texto(n.lectura_negocio) + '</p></div>' +
       '<div class="bloque bloque--dato"><h4>Dato clave (de la fuente)</h4><p>' + texto(n.dato_clave) + '</p></div>' +
@@ -1103,7 +1143,7 @@
         '<dt>Certeza</dt><dd>' + (CERTEZAS[n.certeza] ? insigniaCerteza(n) : sd()) + '</dd>' +
       '</dl></div>' +
       '<div class="bloque"><h4>Por qué esa brecha</h4><p>' + texto(n.justificacion_brecha) + '</p></div>' +
-      '<p class="tarjeta__ayuda">' + (ref ? 'Biblioteca de referencias' + (estado.refsMeta && estado.refsMeta.actualizado ? ', actualizada el ' + esc(fecha(estado.refsMeta.actualizado)) : '') : 'Edición del ' + esc(fecha(n._edicion))) + ' · id ' + esc(n.id) + '</p>';
+      '<p class="tarjeta__ayuda">' + (ref ? 'Biblioteca de referencias' + (estado.refsMeta && estado.refsMeta.actualizado ? ', actualizada el ' + esc(fecha(estado.refsMeta.actualizado)) : '') : 'Edición del ' + esc(fecha(n._edicion))) + ' · código ' + esc(n.id) + '</p>';
     mostrarCajon(html, sinHash ? null : '#noticia=' + encodeURIComponent(k));
   }
 

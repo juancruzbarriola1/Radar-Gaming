@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-11-11",
+  "actualizado": "2026-11-13",
   "tendencias": [
     {
       "id": "t01",
@@ -247,7 +247,7 @@
       "nombre": "Motores generativos y modelos de mundo",
       "tema": "ia_desarrollo",
       "descripcion": "Sistemas de IA que generan mundos de juego, su física y su lógica en tiempo real, en lugar de armarlos a mano en un motor tradicional. Hoy es agenda de investigación y prototipos.",
-      "promedio_actual": "Nicho de investigación: un relevamiento encuentra 53 juegos y prototipos nativos de IA públicos, 45,3% de ellos aventuras narrativas (Xu et al.). Naavik ve el uso más cercano en preproducción y prototipado, y estima más de US$10.000 millones invertidos en modelos de mundo en 18 meses, sin detallar la fuente.",
+      "promedio_actual": "Nicho de investigación: un relevamiento encuentra 53 juegos y prototipos nativos de IA públicos, 45,3% de ellos aventuras narrativas (Xu et al.). Naavik ve el uso más cercano en preproducción y prototipado, y estima más de US$10.000 millones invertidos en modelos de mundo en 18 meses, sin detallar la fuente. Igor's Lab sostiene que los mundos generados hoy solo mantienen coherencia de corto plazo y no reemplazan reglas ni estados persistentes.",
       "hacia_donde_va": "Si madura, el motor pasa a generar mundos bajo control del diseñador. Yu et al. ubican mundos interactivos con física coherente a 3-5 años y mundos que evolucionan solos a 10-15 años, como pronóstico preliminar y condicional.",
       "horizonte": "largo",
       "fase_curva": "disparador",
@@ -256,11 +256,12 @@
       "cuadrante": "interrogante",
       "brecha_global": 5,
       "brecha_latam": null,
-      "justificacion_brecha": "Global 5. Certeza baja: la brecha se mide contra un escenario especulativo; los propios autores ubican el primer nivel generativo a 3-5 años sin garantía (Yu et al.) y Naavik ve las experiencias de consumo muy lejos por el costo de inferencia. Adopción 1: solo 53 artefactos públicos (Xu et al.). Sin base para Latam.",
+      "justificacion_brecha": "Global 5. Certeza baja: la brecha se mide contra un escenario especulativo; los propios autores ubican el primer nivel generativo a 3-5 años sin garantía (Yu et al.) y Naavik ve las experiencias de consumo muy lejos por el costo de inferencia. Igor's Lab describe el paso a juegos completos como una reestructuración larga, sin plazo. Adopción 1: solo 53 artefactos públicos (Xu et al.). Sin base para Latam.",
       "posicion_industria": "adelantada",
-      "argumento_posicion": "El capital va por delante del producto: Naavik estima más de US$10.000 millones invertidos en modelos de mundo, mientras las experiencias de consumo siguen lejos por el costo de inferencia y con dudas sobre la demanda.",
+      "argumento_posicion": "El capital va por delante del producto: Naavik estima más de US$10.000 millones invertidos en modelos de mundo, mientras las experiencias de consumo siguen lejos por el costo de inferencia y con dudas sobre la demanda. Igor's Lab advierte que inversores y plataformas sacan conclusiones prematuras sobre estos sistemas.",
       "proveedores": [
-        {"nombre": "Genie 3", "rol": "Modelo de mundo citado por Naavik; costo estimado de unos US$100 por hora, sin fuente nombrada.", "fuente_id": "naavik_world_models"}
+        {"nombre": "Genie 3", "rol": "Modelo de mundo citado por Naavik; costo estimado de unos US$100 por hora, sin fuente nombrada.", "fuente_id": "naavik_world_models"},
+        {"nombre": "Google DeepMind", "rol": "Investiga modelos de mundo (Genie 3, Project Genie); Igor's Lab lo cita como ejemplo.", "fuente_id": "igorslab_ai_worlds"}
       ],
       "inversion_requerida": "alta",
       "justificacion_inversion": "Desarrollar o adoptar estas tecnologías exige investigación y cómputo caros (costo de inferencia, según Naavik y Xu et al.); para la mayoría, lo viable es experimentar en prototipado. Valoración editorial.",
@@ -272,8 +273,8 @@
       ],
       "justificacion_kpis": "Son los cuellos de botella que nombran las fuentes: costo de inferencia (Naavik, Xu et al.), memoria, consistencia y control (Yu et al.) y el valor de los datos propios (Naavik).",
       "implicancias": {
-        "indie": "Experimental: puede servir para prototipar, pero los juegos nativos de IA son sobre todo aventuras narrativas; estrategia y simulación casi no aparecen (Xu et al.).",
-        "publisher_aaa": "Horizonte largo: vale explorar en preproducción y cuidar los datos de juego propios, que Naavik ve como el activo de valor; no reemplaza al motor en este ciclo.",
+        "indie": "Experimental: puede servir para prototipar, pero los juegos nativos de IA son sobre todo aventuras narrativas; estrategia y simulación casi no aparecen (Xu et al.). Igor's Lab ve la IA como un amplificador que baja la barrera de entrada para probar ideas con equipos chicos.",
+        "publisher_aaa": "Horizonte largo: vale explorar en preproducción y cuidar los datos de juego propios, que Naavik ve como el activo de valor; no reemplaza al motor en este ciclo. Recortar equipos creativos apostando a mundos generados sería, según Igor's Lab, un error estratégico.",
         "plataforma_distribuidor": "Sin impacto relevante en este horizonte: la evidencia no trata la distribución.",
         "latam": "Sin base regional en la evidencia."
       },
@@ -283,9 +284,10 @@
       "evidencia": [
         {"tipo": "referencia", "edicion": null, "id": "arxiv_gge_roadmap"},
         {"tipo": "referencia", "edicion": null, "id": "arxiv_ai_native_games"},
-        {"tipo": "referencia", "edicion": null, "id": "naavik_world_models"}
+        {"tipo": "referencia", "edicion": null, "id": "naavik_world_models"},
+        {"tipo": "referencia", "edicion": null, "id": "igorslab_ai_worlds"}
       ],
-      "ultima_actualizacion": "2026-11-11"
+      "ultima_actualizacion": "2026-11-13"
     },
     {
       "id": "t07",

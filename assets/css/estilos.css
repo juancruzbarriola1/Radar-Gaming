@@ -354,7 +354,7 @@ a.indicador:hover { transform: translateY(-2px); border-color: var(--acento); }
 .ranking button:hover .ranking__titulo { color: var(--acento-fuerte); }
 .ranking__titulo { font-weight: 700; line-height: 1.35; display: block; margin-bottom: 6px; transition: color .15s; }
 .ranking__medidas { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .82rem; color: var(--tinta-2); margin-bottom: 6px; }
-.ranking__just { font-size: .86rem; color: var(--tinta-2); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.ranking__just { font-size: .86rem; color: var(--tinta-2); }
 
 /* ---------- Filtros y tabla ---------- */
 .filtros { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: end; margin-bottom: 12px; }
@@ -600,7 +600,7 @@ a.indicador:hover { transform: translateY(-2px); border-color: var(--acento); }
 .decision__arriba .enlace-tendencia { margin: 0; font-size: .76rem; }
 .decision__accion { font-weight: 700; font-size: .95rem; line-height: 1.35; margin: 0 0 2px; }
 .decision__porque { font-size: .84rem; color: var(--tinta-2); margin: 0; }
-.decision__perfil { font-size: .8rem; color: var(--tinta-suave); margin: 4px 0 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.decision__perfil { font-size: .8rem; color: var(--tinta-suave); margin: 4px 0 0; }
 .decision__perfil strong { color: var(--tinta-2); }
 
 .ro { margin: 0; padding-left: 18px; font-size: .88rem; color: var(--tinta-2); display: flex; flex-direction: column; gap: 6px; }
@@ -731,7 +731,7 @@ a.indicador:hover { transform: translateY(-2px); border-color: var(--acento); }
 .decision__accion .urgencia { vertical-align: 1px; margin-right: 2px; }
 .decision__porque { font-size: .82rem; }
 .decision__porque .enlace-tendencia { font-size: .76rem; margin: 0; padding: 0; }
-.decision__perfil { -webkit-line-clamp: 1; margin-top: 2px; }
+.decision__perfil { margin-top: 2px; }
 .ro { font-size: .85rem; }
 /* Barras proporcionales: la pista representa la escala completa (1 a 5) */
 .barra__track { flex: 1 1 auto; min-width: 0; height: 12px; border-radius: 0 4px 4px 0; background: color-mix(in srgb, var(--rejilla) 55%, transparent); display: flex; }
@@ -748,3 +748,16 @@ a.indicador:hover { transform: translateY(-2px); border-color: var(--acento); }
 .leyenda i.punto-certeza--alta { background: currentColor; }
 .leyenda i.punto-certeza--media { background: linear-gradient(90deg, currentColor 50%, transparent 50%); }
 .leyenda i.punto-certeza--baja { background: transparent; }
+/* Implicancia sin base para el perfil: se muestra la lectura general con esta etiqueta */
+.etiqueta-general { display: inline-block; font-size: .7rem; font-weight: 600; color: var(--tinta-suave); background: var(--superficie-2); border: 1px dashed var(--borde-fuerte); padding: 0 6px; border-radius: 999px; white-space: nowrap; vertical-align: 1px; }
+/* Ayuda de "posición de la industria" */
+.posicion-grupo { display: inline-flex; align-items: center; gap: 3px; white-space: nowrap; }
+.ayuda { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; border: 1px solid var(--borde-fuerte); color: var(--tinta-suave); font-size: .66rem; font-weight: 700; line-height: 1; cursor: help; flex: none; background: var(--superficie); }
+.ayuda--muestra { vertical-align: 1px; }
+.ayuda[data-tip]:hover::after, .ayuda[data-tip]:focus::after {
+  content: attr(data-tip); position: absolute; z-index: 30; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+  width: min(300px, 80vw); white-space: normal; text-align: left; font-size: .78rem; font-weight: 500; line-height: 1.4;
+  color: var(--tinta); background: var(--superficie); border: 1px solid var(--borde-fuerte); border-radius: 8px; padding: 8px 10px; box-shadow: 0 6px 18px rgba(0,0,0,.18); pointer-events: none;
+}
+/* Tendencia regional: solo tiene brecha Latinoamérica */
+.solo-latam { font-size: .7rem; font-weight: 700; color: var(--serie-latam); white-space: nowrap; }
