@@ -155,7 +155,7 @@
           <span class="seccion__numero">03</span>
           <div>
             <h2>¿Qué puede venir?</h2>
-            <p class="seccion__ayuda">Tendencias ordenadas según cuándo podrían volverse habituales, con su urgencia y lo que implican para el perfil elegido arriba.</p>
+            <p class="seccion__ayuda">Tendencias ordenadas según cuándo podrían volverse habituales. Tocá una para ver lo que implica para el perfil elegido arriba.</p>
           </div>
         </header>
         <div class="linea-tiempo" id="linea-tiempo"></div>
@@ -193,9 +193,20 @@
         </article>
         <article class="tarjeta">
           <h3 class="tarjeta__titulo">Ranking por brecha</h3>
-          <p class="tarjeta__ayuda">De mayor a menor brecha (la más alta entre global y Latinoamérica), con la posición de la industria.</p>
+          <p class="tarjeta__ayuda">De mayor a menor brecha (la más alta entre global y Latinoamérica). Tocá una para ver el detalle.</p>
           <ol class="ranking ranking--doble" id="ranking-brechas"></ol>
         </article>
+        <details class="tarjeta avanzado" id="avanzado-brechas">
+          <summary>Análisis avanzado <span class="editorial">Valoración editorial</span></summary>
+          <p class="tarjeta__ayuda">Valoraciones de segundo nivel por tendencia. Adopción (qué tan extendida está hoy) e impacto (cuánto cambia la industria si madura) van de 0 a 10. Fase y clasificación son valoraciones orientativas del analista. Fuentes: cuántas respaldan la tendencia y cuántas dan base para valorar Latinoamérica.</p>
+          <p class="nota"><strong>Posición de la industria.</strong> <span id="ayuda-posicion-avanzado"></span></p>
+          <div class="tabla-envoltura">
+            <table class="tabla tabla--tarjetas" id="tabla-avanzado">
+              <thead><tr><th scope="col">Tendencia</th><th scope="col">Posición</th><th scope="col">Adopción</th><th scope="col">Impacto</th><th scope="col">Fase</th><th scope="col">Clasificación</th><th scope="col">Fuentes</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -250,7 +261,10 @@
           <label class="campo"><span>Edición</span><select id="filtro-edicion"></select></label>
           <button type="button" class="boton-texto" id="filtro-limpiar">Limpiar filtros</button>
         </div>
-        <p class="conteo" id="conteo-hemeroteca" aria-live="polite"></p>
+        <div class="tabla-barra">
+          <p class="conteo" id="conteo-hemeroteca" aria-live="polite"></p>
+          <button type="button" class="boton-texto" id="ver-columnas" aria-controls="tabla-hemeroteca" aria-expanded="false">Ver más columnas</button>
+        </div>
         <div class="tabla-envoltura">
           <table class="tabla" id="tabla-hemeroteca">
             <thead>
@@ -258,10 +272,10 @@
                 <th scope="col">Fecha</th>
                 <th scope="col">Título</th>
                 <th scope="col">Tendencia</th>
-                <th scope="col">Tema</th>
+                <th scope="col" class="col-extra">Tema</th>
                 <th scope="col">Fuente</th>
                 <th scope="col">Horizonte</th>
-                <th scope="col" title="Valoración editorial">Importancia</th>
+                <th scope="col" class="col-extra" title="Valoración editorial">Importancia</th>
                 <th scope="col"><span class="sr">Enlace original</span></th>
               </tr>
             </thead>

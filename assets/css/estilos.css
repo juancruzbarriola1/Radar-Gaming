@@ -761,3 +761,68 @@ a.indicador:hover { transform: translateY(-2px); border-color: var(--acento); }
 }
 /* Tendencia regional: solo tiene brecha Latinoamérica */
 .solo-latam { font-size: .7rem; font-weight: 700; color: var(--serie-latam); white-space: nowrap; }
+
+/* =====================================================================
+   Jerarquía de lectura: Nivel 1 (siempre visible) y Nivel 2 ("Más detalle")
+   ===================================================================== */
+
+/* Nivel 1: Brecha, Horizonte, Urgencia, Certeza. Mismo orden, rótulo + ícono + texto. */
+.n1 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; font-size: .8rem; width: 100%; }
+.n1--ancho { margin: 4px 0 18px; padding: 12px 14px; background: var(--superficie-2); border-radius: 10px; }
+@media (min-width: 520px) { .n1--ancho { grid-template-columns: minmax(0, 1.3fr) repeat(3, minmax(0, 1fr)); } }
+.n1__item { display: flex; flex-direction: column; gap: 3px; min-width: 0; align-items: flex-start; }
+.n1__rotulo { display: inline-flex; align-items: center; gap: 4px; font-size: .66rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--tinta-suave); }
+.n1__rotulo .ico { width: 12px; height: 12px; }
+.n1__valor { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; font-weight: 650; color: var(--tinta); min-width: 0; }
+.n1__par { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+.n1__serie { font-size: .7rem; font-weight: 650; color: var(--tinta-2); min-width: 3.1em; }
+.n1__par b { font-variant-numeric: tabular-nums; }
+.mini { display: inline-flex; gap: 2px; }
+.mini i { width: 8px; height: 7px; border-radius: 2px; background: var(--rejilla); display: block; }
+.mini i.lleno { background: var(--c, var(--acento)); }
+.horizonte { display: inline-flex; align-items: center; font-size: .74rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; color: var(--acento-fuerte); background: var(--acento-suave); white-space: normal; line-height: 1.3; }
+.certeza { display: inline-flex; align-items: center; gap: 5px; font-size: .74rem; font-weight: 750; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+.certeza--alta { color: var(--ok); background: var(--ok-fondo); }
+.certeza--media { color: var(--tinta-2); background: var(--neutro-fondo); }
+.certeza--baja { color: var(--aviso); background: var(--aviso-fondo); }
+.tend-mini, .lt__item, .tend-tarjeta { gap: 10px; }
+.ranking__titulo { margin-bottom: 8px; }
+.lectura__nombre { display: block; margin-bottom: 6px; }
+.lt__item { border-left: 1px solid transparent; }
+
+/* Nivel 2: desplegables "Más detalle" y "Análisis avanzado" */
+.mas-detalle { margin: 4px 0 18px; border-top: 1px solid var(--borde); }
+.mas-detalle > summary, .avanzado > summary {
+  cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-weight: 750; color: var(--acento-fuerte); padding: 10px 0;
+}
+.mas-detalle > summary::-webkit-details-marker, .avanzado > summary::-webkit-details-marker { display: none; }
+.mas-detalle > summary::before, .avanzado > summary::before { content: "▸"; display: inline-block; transition: transform .15s; }
+.mas-detalle[open] > summary::before, .avanzado[open] > summary::before { transform: rotate(90deg); }
+.mas-detalle__cuerpo { padding-top: 6px; }
+.mas-detalle--tarjeta { margin: 0; font-size: .86rem; }
+.mas-detalle--tarjeta > summary { padding: 6px 0 2px; font-size: .84rem; }
+.mas-detalle--tarjeta .mas-detalle__cuerpo { display: flex; flex-direction: column; gap: 8px; }
+.avanzado > summary { font-size: 1.05rem; color: var(--tinta); }
+.avanzado[open] > summary { margin-bottom: 6px; }
+.aclaracion { display: block; font-weight: 500; font-size: .76rem; color: var(--tinta-suave); margin-top: 2px; }
+.valoraciones__sub { margin-top: 14px !important; }
+#tabla-avanzado td { vertical-align: middle; }
+
+/* Evidencia: columnas extra detrás de "Ver más columnas" */
+.tabla-barra { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.tabla-barra .conteo { margin: 0; }
+#tabla-hemeroteca:not(.muestra-extra) .col-extra { display: none; }
+
+/* Cómo leer: lectura rápida */
+.rejilla-4 { display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); margin-bottom: 18px; }
+.rejilla-4 > .tarjeta { margin-bottom: 0; }
+@media (min-width: 640px) { .rejilla-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .rejilla-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.ejemplo { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--borde-fuerte); font-size: .8rem; }
+.ejemplo__rotulo { width: 100%; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--tinta-suave); }
+.ejemplo .n1__valor { flex-direction: row; flex-wrap: wrap; gap: 4px 12px; }
+.lectura-rapida__titulo { font-size: 1.1rem; font-weight: 800; margin: 4px 0 12px; }
+.avanzado--seccion { padding: 4px 20px; }
+.avanzado--seccion > .avanzado__cuerpo { padding-bottom: 12px; }
+.avanzado--seccion .tarjeta { box-shadow: none; }

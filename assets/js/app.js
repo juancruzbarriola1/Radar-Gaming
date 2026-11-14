@@ -186,6 +186,51 @@
     return '<span class="posicion-grupo"><span class="posicion posicion--' + p + '" title="Posición de la industria: ' + esc(info.desc) + '"><span aria-hidden="true">' + info.icono + '</span> ' + esc(info.nombre) + '</span>' +
       (sinAyuda ? '' : ayudaPosicion()) + '</span>';
   }
+  // ---------- Nivel 1: los cuatro indicadores que se ven sin hacer clic ----------
+  // Siempre en el mismo orden (Brecha, Horizonte, Urgencia, Certeza), con rótulo + ícono + texto.
+  var ICONO_BRECHA = '<path d="M4 19h16M7 19v-8M12 19V5M17 19v-5"/>';
+  var ICONO_HORIZONTE = '<path d="M3 12h13M12 7l5 5-5 5M21 5v14"/>';
+  var ICONO_URGENCIA = '<path d="M5 21V4h11l-2 4 2 4H5"/>';
+  var ICONO_CERTEZA = '<circle cx="12" cy="12" r="8"/><path d="M8.5 12.5l2.3 2.3 4.7-5"/>';
+  var ACLARACION_ORIENTATIVA = 'Valoración orientativa del analista.';
+  function miniBrecha(v, serie, nombre) {
+    v = num(v);
+    if (v == null) return '<span class="n1__par"><span class="n1__serie">' + nombre + '</span>' + sd() + '</span>';
+    var s = '<span class="n1__par" title="Brecha ' + nombre + ': ' + v + ' de 5"><span class="n1__serie">' + nombre + '</span>' +
+      '<span class="mini" style="--c:var(--serie-' + serie + ')" aria-hidden="true">';
+    for (var i = 1; i <= 5; i++) s += '<i' + (i <= Math.round(v) ? ' class="lleno"' : '') + '></i>';
+    return s + '</span><b>' + fmtNum(v, v % 1 ? 1 : 0) + '</b><span class="sr"> de 5</span></span>';
+  }
+  function valorBrecha(x) {
+    var g = num(x.brecha_global), l = num(x.brecha_latam);
+    var global = (g == null && l != null) ? '<span class="n1__par"><span class="n1__serie">Global</span><small class="solo-latam">solo Latam</small></span>' : miniBrecha(g, 'global', 'Global');
+    return global + miniBrecha(l, 'latam', 'Latam');
+  }
+  function chipHorizonte(h) {
+    var info = HORIZONTES[h];
+    if (!info) return vacio(h) ? sd() : esc(h);
+    return '<span class="horizonte">' + esc(info.nombre) + ' · ' + (h === 'promedio_actual' ? 'hoy' : esc(info.plazo)) + '</span>';
+  }
+  function chipCerteza(c) {
+    if (!CERTEZAS[c]) return sd();
+    return '<span class="certeza certeza--' + c + '">' + marcaCerteza(c) + ' ' + esc(CERTEZAS[c]) + '</span>';
+  }
+  function n1Celda(clase, icono, rotulo, valor) {
+    return '<span class="n1__item n1__item--' + clase + '"><span class="n1__rotulo">' + svg(icono) + rotulo + '</span><span class="n1__valor">' + valor + '</span></span>';
+  }
+  // opts.sinUrgencia: noticias y referencias no tienen urgencia (es un campo de las tendencias).
+  function nivel1(x, opts) {
+    opts = opts || {};
+    return '<span class="n1' + (opts.ancho ? ' n1--ancho' : '') + '">' +
+      n1Celda('brecha', ICONO_BRECHA, 'Brecha', valorBrecha(x)) +
+      n1Celda('horizonte', ICONO_HORIZONTE, 'Horizonte', chipHorizonte(x.horizonte)) +
+      (opts.sinUrgencia ? '' : n1Celda('urgencia', ICONO_URGENCIA, 'Urgencia', chipUrgencia(x.urgencia))) +
+      n1Celda('certeza', ICONO_CERTEZA, 'Certeza', chipCerteza(x.certeza)) + '</span>';
+  }
+  function aclaracion() { return '<small class="aclaracion">' + ACLARACION_ORIENTATIVA + '</small>'; }
+  // Abre los <details> que contienen un elemento (para enlaces que apuntan a contenido colapsado).
+  function abrirAncestros(el) { while (el) { if (el.tagName === 'DETAILS') el.open = true; el = el.parentElement; } }
+
   function geoNombre(g) { return vacio(g) ? SIN_DATO : (GEOGRAFIAS[g] || String(g)); }
   function normalizar(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
 
@@ -500,16 +545,9 @@
   function brechaMax(t) { return Math.max(num(t.brecha_global) || 0, num(t.brecha_latam) || 0); }
 
   function tarjetaMapa(t) {
+    // Tarjeta de resumen: nombre + los 4 indicadores del Nivel 1, nada más.
     return '<button type="button" class="tend-tarjeta" data-tendencia="' + esc(t.id) + '">' +
-      '<span class="tend-tarjeta__arriba">' + chipTema(t.tema) + chipUrgencia(t.urgencia) + '</span>' +
-      '<span class="tend-tarjeta__nombre">' + texto(t.nombre) + '</span>' +
-      '<span class="tend-tarjeta__datos">' +
-        '<span><small>Horizonte</small>' + esc(horizonteInfo(t.horizonte).nombre) + '</span>' +
-        '<span><small>Industria</small>' + chipPosicion(t.posicion_industria) + '</span>' +
-        '<span><small>Brecha global</small>' + medidor(t.brecha_global, 5, 'var(--serie-global)') + '</span>' +
-        '<span><small>Brecha Latam</small>' + medidor(t.brecha_latam, 5, 'var(--serie-latam)') + '</span>' +
-      '</span>' +
-      '<span class="tend-tarjeta__pie">' + insigniaCerteza(t) + '<span class="sin-dato-suave">' + plural(lista(t.evidencia).length, 'evidencia', 'evidencias') + '</span></span>' +
+      '<span class="tend-tarjeta__nombre">' + texto(t.nombre) + '</span>' + nivel1(t) +
       '</button>';
   }
 
@@ -595,9 +633,7 @@
 
   function tarjetaTendencia(t) {
     return '<button type="button" class="tend-mini" data-tendencia="' + esc(t.id) + '">' +
-      '<span class="tend-mini__arriba">' + chipUrgencia(t.urgencia) + insigniaCerteza(t) + '</span>' +
-      '<span class="tend-mini__nombre">' + texto(t.nombre) + '</span>' +
-      '<span class="tend-mini__perfil"><strong>' + esc(PERFILES[estado.perfil].corto) + ':</strong> ' + implicanciaHTML(t) + '</span>' +
+      '<span class="tend-mini__nombre">' + texto(t.nombre) + '</span>' + nivel1(t) +
       '</button>';
   }
 
@@ -714,10 +750,8 @@
         '<span class="lt__carril-plazo">' + esc(info.plazo) + '</span></div>' +
         '<p class="lt__carril-desc">' + esc(info.desc) + ' · ' + plural(ts.length, 'tendencia', 'tendencias') + '</p>' +
         '<div class="lt__items">' + (ts.length ? ts.map(function (t) {
-          return '<button type="button" class="lt__item" style="--c:' + (TEMAS[t.tema] ? 'var(--t-' + t.tema + ')' : 'var(--borde-fuerte)') + '" data-tendencia="' + esc(t.id) + '">' +
-            '<span class="lt__item-ref">' + chipUrgencia(t.urgencia) + insigniaCerteza(t) + '</span>' +
-            '<span class="lt__item-titulo">' + texto(t.nombre) + '</span>' +
-            '<span class="lt__item-perfil"><strong>' + esc(PERFILES[estado.perfil].corto) + ':</strong> ' + implicanciaHTML(t) + '</span>' +
+          return '<button type="button" class="lt__item" data-tendencia="' + esc(t.id) + '">' +
+            '<span class="lt__item-titulo">' + texto(t.nombre) + '</span>' + nivel1(t) +
             '</button>';
         }).join('') : '<p class="vacio vacio--explica">Ninguna tendencia está clasificada a ' + esc(info.plazo) + '.</p>') + '</div></div>';
     }).join('') + '</div>';
@@ -756,6 +790,7 @@
       $('#lectura-perfil').innerHTML = explicarSinTendencias();
       $('#barras-gl').innerHTML = ''; $('#leyenda-brechas').innerHTML = ''; $('#muestra-latam').innerHTML = '';
       $('#ranking-brechas').innerHTML = '';
+      $('#tabla-avanzado tbody').innerHTML = '<tr><td colspan="7" class="vacio">' + SIN_DATO + '</td></tr>';
       return;
     }
     var base = baseBrechas();
@@ -770,7 +805,7 @@
     $('#leyenda-brechas').innerHTML =
       '<span><i style="background:var(--serie-global)"></i>Brecha global</span>' +
       '<span><i style="background:var(--serie-latam)"></i>Brecha Latinoamérica</span>' +
-      '<span class="sin-dato">n = cantidad de fuentes que respaldan cada barra</span>';
+      '<span class="sin-dato">Barra con trama = certeza baja</span>';
     $('#barras-gl').innerHTML = orden.length ? orden.map(function (t) {
       var nG = lista(t.evidencia).length, nL = nEvidenciaLatam(t);
       if (num(t.brecha_latam) != null) nLatam++;
@@ -779,7 +814,7 @@
         v = num(v);
         return '<span class="barra__fila"><span class="barra__serie">' + rotulo + '</span><span class="barra__pista"><span class="barra__track">' +
           (v == null ? '' : '<span class="barra__relleno barra__relleno--' + (t.certeza || 'media') + '" style="--v:' + (v / 5 * 100) + '%;--c:' + color + '"></span>') + '</span>' +
-          '<span class="barra__valor">' + (v == null && vacioTxt ? vacioTxt : (v == null ? sd() : v) + ' <small>n=' + n + '</small>') + '</span></span></span>';
+          '<span class="barra__valor" title="' + (v == null ? '' : 'Respaldada por ' + plural(n, 'fuente', 'fuentes')) + '">' + (v == null && vacioTxt ? vacioTxt : (v == null ? sd() : v)) + '</span></span></span>';
       }
       return '<button type="button" class="barra barra--doble" data-tendencia="' + esc(t.id) + '" aria-label="' + esc(t.nombre) + ': brecha global ' + (num(t.brecha_global) == null ? (soloLatam ? 'no valorada (solo Latam)' : SIN_DATO) : t.brecha_global) +
         ' (n=' + nG + '), Latinoamérica ' + (num(t.brecha_latam) == null ? SIN_DATO : t.brecha_latam) + ' (n=' + nL + ')">' +
@@ -794,13 +829,25 @@
     var rank = ts.slice().sort(function (a, b) { return brechaMax(b) - brechaMax(a) || porUrgenciaYBrecha(a, b); });
     $('#ranking-brechas').innerHTML = rank.length ? rank.map(function (t) {
       return '<li><button type="button" data-tendencia="' + esc(t.id) + '">' +
-        '<span class="ranking__titulo">' + texto(t.nombre) + '</span>' +
-        '<span class="ranking__insignias">' + chipPosicion(t.posicion_industria) + chipUrgencia(t.urgencia) + (t.certeza === 'baja' ? insigniaCerteza(t) : '') + '</span>' +
-        '<span class="ranking__medidas"><span>' + chipTema(t.tema) + '</span>' +
-        '<span>Global ' + medidor(t.brecha_global, 5, 'var(--serie-global)') + '</span>' +
-        '<span>Latam ' + medidor(t.brecha_latam, 5, 'var(--serie-latam)') + '</span></span>' +
-        '<span class="ranking__just"><strong>Posición:</strong> ' + texto(t.argumento_posicion) + '</span></button></li>';
+        '<span class="ranking__titulo">' + texto(t.nombre) + '</span>' + nivel1(t) + '</button></li>';
     }).join('') : '<li class="vacio">Sin tendencias para mostrar.</li>';
+
+    renderAvanzadoBrechas(orden);
+  }
+
+  // Vista secundaria, colapsada: valoraciones de Nivel 2 por tendencia y cuántas fuentes respaldan cada brecha.
+  function renderAvanzadoBrechas(ts) {
+    $('#ayuda-posicion-avanzado').textContent = AYUDA_POSICION;
+    $('#tabla-avanzado tbody').innerHTML = ts.length ? ts.map(function (t) {
+      return '<tr>' +
+        '<td class="tabla__titulo"><button type="button" class="enlace-boton" data-tendencia="' + esc(t.id) + '">' + texto(t.nombre) + '</button></td>' +
+        '<td data-rotulo="Posición">' + chipPosicion(t.posicion_industria, true) + '</td>' +
+        '<td data-rotulo="Adopción">' + medidor(t.adopcion, 10) + '</td>' +
+        '<td data-rotulo="Impacto">' + medidor(t.impacto, 10) + '</td>' +
+        '<td data-rotulo="Fase">' + (vacio(t.fase_curva) ? sd() : esc(FASES[t.fase_curva] || t.fase_curva)) + '</td>' +
+        '<td data-rotulo="Clasificación">' + (vacio(t.cuadrante) ? sd() : esc(CUADRANTES[t.cuadrante] || t.cuadrante)) + '</td>' +
+        '<td data-rotulo="Fuentes">Global ' + lista(t.evidencia).length + ' · Latam ' + nEvidenciaLatam(t) + '</td></tr>';
+    }).join('') : '<tr><td colspan="7" class="vacio">Sin tendencias para mostrar.</td></tr>';
   }
 
   // "Para un <perfil>, las brechas que más pesan son…": se toman las tendencias con implicancia
@@ -822,10 +869,9 @@
       '<ol class="lectura">' + cand.map(function (t) {
         return '<li><button type="button" class="lectura__item" data-tendencia="' + esc(t.id) + '">' +
           '<span class="lectura__num">' + num(t[campo]) + '<small>/5</small></span>' +
-          '<span><strong>' + texto(t.nombre) + '</strong> ' + chipPosicion(t.posicion_industria) + chipUrgencia(t.urgencia) +
-          '<span class="lectura__imp">' + implicanciaHTML(t, p) + '</span></span></button></li>';
+          '<span><strong class="lectura__nombre">' + texto(t.nombre) + '</strong>' + nivel1(t) + '</span></button></li>';
       }).join('') + '</ol>' +
-      '<p class="tarjeta__ayuda">Brecha ' + (campo === 'brecha_latam' ? 'Latinoamérica' : 'global') + '. Se omiten las tendencias cuya implicancia para este perfil dice “sin impacto relevante” o “sin base”.</p>';
+      '<p class="tarjeta__ayuda">Brecha ' + (campo === 'brecha_latam' ? 'Latinoamérica' : 'global') + '. Se omiten las tendencias cuya implicancia para este perfil dice “sin impacto relevante” o “sin base”. Tocá una para ver qué implica para este perfil.</p>';
   }
 
   // ---------- F. Latam y Regulación (tarjetas de referencias) ----------
@@ -834,8 +880,7 @@
     if (g == null || l == null) return '';
     var dif = l - g;
     var txt = dif === 0 ? 'igual a la global' : (dif > 0 ? dif + (dif === 1 ? ' punto mayor' : ' puntos mayor') + ' que la global' : (-dif) + ((-dif) === 1 ? ' punto menor' : ' puntos menor') + ' que la global');
-    return '<p class="ref-tarjeta__brecha"><span class="par">Brecha global ' + medidor(g, 5, 'var(--serie-global)') + '</span><span class="par">Latam ' + medidor(l, 5, 'var(--serie-latam)') + '</span>' +
-      '<strong>→ en Latinoamérica es ' + txt + '</strong>' + (n.certeza === 'baja' ? ' ' + insigniaCerteza(n) : '') + '</p>';
+    return '<p class="ref-tarjeta__brecha"><strong>Brecha: en Latinoamérica es ' + txt + '</strong></p>';
   }
   function tendenciasChips(n) {
     var ts = tendenciasDe(n);
@@ -850,13 +895,17 @@
         '<p class="ref-tarjeta__nota">' + texto(n.nota_calidad) + '</p>' +
         '<div class="ref-tarjeta__pie">' + enlaceFuente(n.fuente, u, 'Ver la fuente') + '</div></article>';
     }
+    // Visible: rótulo Referencia/Noticia, título, dato clave y Nivel 1. El resto, en "Más detalle".
     return '<article class="ref-tarjeta">' +
-      '<div class="ref-tarjeta__meta">' + (esRef(n) ? insigniaRef(n) : '<span class="insignia insignia--noticia">Noticia de la edición · ' + esc(fecha(n.fecha_publicacion, true)) + '</span>') +
-        insigniaEvidencia(n) + chipTema(n.tema) + (esRef(n) ? '<span>' + esc(geoNombre(n.geografia)) + '</span>' : '') + '</div>' +
+      '<div class="ref-tarjeta__meta">' + (esRef(n) ? insigniaRef(n) : '<span class="insignia insignia--noticia">Noticia de la edición · ' + esc(fecha(n.fecha_publicacion, true)) + '</span>') + '</div>' +
       '<h3 class="ref-tarjeta__titulo"><button type="button" class="enlace-boton" data-abrir="' + esc(clave(n)) + '">' + texto(n.titulo) + '</button></h3>' +
       '<p class="ref-tarjeta__dato">' + texto(n.dato_clave) + '</p>' +
-      diferenciaBrecha(n) + tendenciasChips(n) +
-      (esRef(n) && !vacio(n.nota_calidad) ? '<p class="ref-tarjeta__nota"><strong>Calidad:</strong> ' + esc(n.nota_calidad) + '</p>' : '') +
+      nivel1(n, { sinUrgencia: true }) +
+      '<details class="mas-detalle mas-detalle--tarjeta"><summary>Más detalle</summary><div class="mas-detalle__cuerpo">' +
+        '<div class="ref-tarjeta__meta">' + insigniaEvidencia(n) + chipTema(n.tema) + (esRef(n) ? '<span>Geografía: ' + esc(geoNombre(n.geografia)) + '</span>' : '') + '</div>' +
+        diferenciaBrecha(n) + tendenciasChips(n) +
+        (esRef(n) && !vacio(n.nota_calidad) ? '<p class="ref-tarjeta__nota"><strong>Calidad:</strong> ' + esc(n.nota_calidad) + '</p>' : '') +
+      '</div></details>' +
       '<div class="ref-tarjeta__pie"><span>Publica: <strong>' + texto(n.fuente) + '</strong></span>' + (u ? enlaceFuente(n.fuente, u, 'Fuente original') : '<span class="sin-dato">sin enlace</span>') + '</div></article>';
   }
   function latamItems(d) {
@@ -917,6 +966,11 @@
     $('#filtro-texto').addEventListener('input', function () { clearTimeout(t); t = setTimeout(renderTabla, 120); });
     $('#filtro-limpiar').addEventListener('click', function () { FILTROS.forEach(function (s) { $(s).value = ''; }); renderTabla(); });
     $('#tabla-hemeroteca').classList.add('tabla--tarjetas');
+    $('#ver-columnas').addEventListener('click', function () {
+      var ver = $('#tabla-hemeroteca').classList.toggle('muestra-extra');
+      this.setAttribute('aria-expanded', ver ? 'true' : 'false');
+      this.textContent = ver ? 'Ver menos columnas' : 'Ver más columnas';
+    });
     $('#tabla-hemeroteca tbody').addEventListener('keydown', function (e) {
       var tr = e.target.closest('tr[data-abrir]');
       if (tr && (e.key === 'Enter' || e.key === ' ') && e.target === tr) { e.preventDefault(); abrirDetalle(tr.getAttribute('data-abrir')); }
@@ -959,10 +1013,10 @@
         '<td class="tabla__fecha" data-rotulo="Fecha">' + esc(fecha(n.fecha_publicacion, true)) + '</td>' +
         '<td class="tabla__titulo">' + texto(n.titulo) + marca + '</td>' +
         '<td data-rotulo="Tendencia">' + (ts.length ? ts.map(function (t) { return '<span class="chip-tend">' + esc(t.nombre) + '</span>'; }).join(' ') : sd()) + '</td>' +
-        '<td data-rotulo="Tema">' + (vacio(n.tema) ? sd() : chipTema(n.tema)) + '</td>' +
+        '<td class="col-extra" data-rotulo="Tema">' + (vacio(n.tema) ? sd() : chipTema(n.tema)) + '</td>' +
         '<td data-rotulo="Fuente">' + texto(n.fuente) + '</td>' +
         '<td data-rotulo="Horizonte">' + (vacio(n.horizonte) ? sd() : esc(horizonteInfo(n.horizonte).nombre)) + '</td>' +
-        '<td data-rotulo="Importancia">' + puntos(n.importancia, 5, 'Importancia') + '</td>' +
+        '<td class="col-extra" data-rotulo="Importancia">' + puntos(n.importancia, 5, 'Importancia') + '</td>' +
         '<td class="tabla__enlace">' + (u ? '<a class="enlace-fuente" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer" data-no-abrir>Original' + ICONO_EXTERNO + '</a>' : '<span class="sin-dato">sin enlace</span>') + '</td></tr>';
     }).join('');
   }
@@ -1035,11 +1089,13 @@
     var kpis = lista(t.kpis).filter(function (k) { return !vacio(k); });
     var otros = ORDEN_PERFILES.filter(function (x) { return x !== p; });
     $('#cajon-etiqueta').textContent = 'Detalle de la tendencia';
+    // Si se repinta la misma tendencia (cambio de perfil), "Más detalle" conserva su estado.
+    var masAbierto = !!document.querySelector('#cajon.abierto details.mas-detalle[data-detalle-de="' + t.id + '"][open]');
 
-    var html = '<div class="cajon__meta">' + chipTema(t.tema) + chipUrgencia(t.urgencia) + insigniaCerteza(t) +
-      '<span>' + esc(horizonteInfo(t.horizonte).nombre) + (HORIZONTES[t.horizonte] && t.horizonte !== 'promedio_actual' ? ' (' + esc(HORIZONTES[t.horizonte].plazo) + ')' : '') + '</span></div>' +
+    var html = '<div class="cajon__meta">' + chipTema(t.tema) + '</div>' +
       '<h2 class="cajon__titulo" id="cajon-titulo">' + texto(t.nombre) + '</h2>' +
       '<p class="cajon__desc">' + texto(t.descripcion) + '</p>' +
+      nivel1(t, { ancho: true }) +
 
       bloque('Decisión sugerida <span class="editorial">Valoración editorial</span>', '<p class="decision__accion">' + texto(t.decision_sugerida) + '</p>', 'bloque--decision bloque--' + esc(t.urgencia || 'sin')) +
 
@@ -1053,11 +1109,14 @@
         return '<dt>' + esc(PERFILES[x].nombre) + '</dt><dd>' + texto(implicancia(t, x)) + '</dd>';
       }).join('') + '</dl></details>' +
 
-      bloque('Posición de la industria', '<p>' + chipPosicion(t.posicion_industria) + '</p><p>' + texto(t.argumento_posicion) + '</p>') +
-
       bloque('Proveedores que nombran las fuentes', prov.length ? '<ul class="proveedores">' + prov.map(function (x) {
         return '<li><strong>' + texto(x.nombre) + '</strong>: ' + texto(x.rol) + (vacio(x.fuente_id) ? '' : ' <small class="sin-dato-suave">(fuente: ' + esc(x.fuente_id) + ')</small>') + '</li>';
       }).join('') + '</ul>' : '<p>' + sd() + ': ninguna fuente de la evidencia nombra proveedores para esta tendencia.</p>') +
+
+      '<details class="mas-detalle" data-detalle-de="' + esc(t.id) + '"' + (masAbierto ? ' open' : '') + '><summary>Más detalle</summary><div class="mas-detalle__cuerpo">' +
+
+      bloque('Posición de la industria <span class="editorial">Valoración editorial</span>', '<p>' + chipPosicion(t.posicion_industria) + '</p><p>' + texto(t.argumento_posicion) + '</p>' +
+        '<p class="tarjeta__ayuda">' + esc(AYUDA_POSICION) + '</p>') +
 
       '<div class="dos-columnas">' +
         bloque('Inversión requerida <span class="editorial">Valoración editorial</span>', '<p class="inversion inversion--' + esc(t.inversion_requerida || 'sin_dato') + '">' +
@@ -1066,14 +1125,12 @@
           (vacio(t.justificacion_kpis) ? '' : '<p class="tarjeta__ayuda">' + esc(t.justificacion_kpis) + '</p>')) +
       '</div>' +
 
-      '<div class="bloque valoraciones"><h4>Brechas y valoraciones <span class="editorial">Valoración editorial</span></h4><dl>' +
-        '<dt>Brecha global</dt><dd>' + medidor(t.brecha_global, 5, 'var(--serie-global)') + '</dd>' +
-        '<dt>Brecha Latam</dt><dd>' + medidor(t.brecha_latam, 5, 'var(--serie-latam)') + '</dd>' +
+      '<div class="bloque valoraciones"><h4>Valoraciones <span class="editorial">Valoración editorial</span></h4><dl>' +
         '<dt>Adopción</dt><dd>' + medidor(t.adopcion, 10) + '</dd>' +
         '<dt>Impacto</dt><dd>' + medidor(t.impacto, 10) + '</dd>' +
-        '<dt>Fase</dt><dd>' + (vacio(t.fase_curva) ? sd() : esc(FASES[t.fase_curva] || t.fase_curva)) + '</dd>' +
-        '<dt>Clasificación</dt><dd>' + (vacio(t.cuadrante) ? sd() : esc(CUADRANTES[t.cuadrante] || t.cuadrante)) + '</dd>' +
-      '</dl><p class="tarjeta__ayuda">' + texto(t.justificacion_brecha) + '</p></div>' +
+        '<dt>Fase</dt><dd>' + (vacio(t.fase_curva) ? sd() : esc(FASES[t.fase_curva] || t.fase_curva)) + aclaracion() + '</dd>' +
+        '<dt>Clasificación</dt><dd>' + (vacio(t.cuadrante) ? sd() : esc(CUADRANTES[t.cuadrante] || t.cuadrante)) + aclaracion() + '</dd>' +
+      '</dl><h4 class="valoraciones__sub">Por qué esa brecha y esas valoraciones</h4><p class="tarjeta__ayuda">' + texto(t.justificacion_brecha) + '</p></div>' +
 
       bloque('Evidencia (' + ev.length + ')' + (ev.length < 2 ? ' <span class="insignia insignia--no">Evidencia débil: una sola fuente</span>' : ''),
         '<ul class="evidencia-lista">' + ev.map(function (x) {
@@ -1086,6 +1143,8 @@
             (u ? ' ' + enlaceFuente(n.fuente, u, 'Original') : '') + '</li>';
         }).join('') + '</ul>' +
         '<button type="button" class="boton-texto" data-filtrar-tendencia="' + esc(t.id) + '">Ver esta evidencia en la tabla</button>') +
+
+      '</div></details>' +
 
       '<p class="tarjeta__ayuda">Tendencias' + (estado.tendMeta && estado.tendMeta.actualizado ? ' actualizadas el ' + esc(fecha(estado.tendMeta.actualizado)) : '') +
         ' · esta tendencia, el ' + esc(fecha(t.ultima_actualizacion)) + ' · código ' + esc(t.id) + '</p>';
@@ -1109,7 +1168,6 @@
     if (!n) return;
     estado.volverA = desdeTendencia || null;
     var u = urlSegura(n.url);
-    var h = horizonteInfo(n.horizonte);
     var verif = n.verificada === true;
     var ref = esRef(n);
     var ts = tendenciasDe(n);
@@ -1126,23 +1184,22 @@
       (u ? '<a class="boton-original" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">Leer la nota original' + ICONO_EXTERNO + '</a><p class="cajon__url">' + esc(u) + '</p>'
          : '<p class="nota">No tiene enlace a la nota original.</p>') +
       (verif ? '' : '<p class="nota">No se pudo abrir la nota original: el resumen no incluye cifras y conviene contrastarlo.</p>') +
+      nivel1(n, { sinUrgencia: true, ancho: true }) +
       '<div class="bloque"><h4>Resumen</h4><p>' + texto(n.resumen_propio) + '</p></div>' +
       '<div class="bloque"><h4>Lectura de negocio</h4><p>' + texto(n.lectura_negocio) + '</p></div>' +
       '<div class="bloque bloque--dato"><h4>Dato clave (de la fuente)</h4><p>' + texto(n.dato_clave) + '</p></div>' +
+      '<details class="mas-detalle"><summary>Más detalle</summary><div class="mas-detalle__cuerpo">' +
       '<div class="bloque valoraciones"><h4>Valoraciones <span class="editorial">Valoración editorial</span></h4><dl>' +
         '<dt>Importancia</dt><dd>' + medidor(n.importancia, 5) + '</dd>' +
-        '<dt>Horizonte</dt><dd>' + esc(h.nombre) + (h.plazo && n.horizonte !== 'promedio_actual' ? ' (' + esc(h.plazo) + ')' : '') + '</dd>' +
-        '<dt>Fase</dt><dd>' + (vacio(n.fase_curva) ? sd() : esc(FASES[n.fase_curva] || n.fase_curva)) + '</dd>' +
+        '<dt>Fase</dt><dd>' + (vacio(n.fase_curva) ? sd() : esc(FASES[n.fase_curva] || n.fase_curva)) + aclaracion() + '</dd>' +
         '<dt>Adopción global</dt><dd>' + medidor(n.adopcion, 10) + '</dd>' +
         '<dt>Adopción Latam</dt><dd>' + medidor(n.adopcion_latam, 10, 'var(--serie-latam)') + '</dd>' +
         '<dt>Impacto</dt><dd>' + medidor(n.impacto, 10) + '</dd>' +
-        '<dt>Clasificación</dt><dd>' + (vacio(n.cuadrante) ? sd() : esc(CUADRANTES[n.cuadrante] || n.cuadrante)) + '</dd>' +
-        '<dt>Brecha global</dt><dd>' + medidor(n.brecha_global, 5, 'var(--serie-global)') + '</dd>' +
-        '<dt>Brecha Latam</dt><dd>' + medidor(n.brecha_latam, 5, 'var(--serie-latam)') + '</dd>' +
+        '<dt>Clasificación</dt><dd>' + (vacio(n.cuadrante) ? sd() : esc(CUADRANTES[n.cuadrante] || n.cuadrante)) + aclaracion() + '</dd>' +
         '<dt>Evidencia</dt><dd>' + (EVIDENCIAS[n.tipo_evidencia] ? esc(EVIDENCIAS[n.tipo_evidencia].nombre) : sd()) + '</dd>' +
-        '<dt>Certeza</dt><dd>' + (CERTEZAS[n.certeza] ? insigniaCerteza(n) : sd()) + '</dd>' +
       '</dl></div>' +
       '<div class="bloque"><h4>Por qué esa brecha</h4><p>' + texto(n.justificacion_brecha) + '</p></div>' +
+      '</div></details>' +
       '<p class="tarjeta__ayuda">' + (ref ? 'Biblioteca de referencias' + (estado.refsMeta && estado.refsMeta.actualizado ? ', actualizada el ' + esc(fecha(estado.refsMeta.actualizado)) : '') : 'Edición del ' + esc(fecha(n._edicion))) + ' · código ' + esc(n.id) + '</p>';
     mostrarCajon(html, sinHash ? null : '#noticia=' + encodeURIComponent(k));
   }
@@ -1180,6 +1237,8 @@
 
   function configurarCajon() {
     document.addEventListener('click', function (e) {
+      var ancla = e.target.closest('a[href^="#"]');
+      if (ancla && ancla.getAttribute('href').length > 1) abrirAncestros(document.getElementById(ancla.getAttribute('href').slice(1)));
       if (e.target.closest('[data-no-abrir]')) return;
       var t = e.target.closest('[data-tendencia]');
       if (t) { e.preventDefault(); abrirTendencia(t.getAttribute('data-tendencia')); return; }
