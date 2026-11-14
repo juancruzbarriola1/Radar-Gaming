@@ -1035,6 +1035,11 @@
   function renderDefiniciones() {
     $('#definiciones-perfiles').innerHTML = ORDEN_PERFILES.map(function (p) { return '<dt>' + esc(PERFILES[p].nombre) + '</dt><dd>' + esc(PERFILES[p].desc) + '</dd>'; }).join('');
     $('#definiciones-urgencia').innerHTML = Object.keys(URGENCIAS).map(function (u) { return '<dt>' + chipUrgencia(u) + '</dt><dd>' + esc(URGENCIAS[u].desc) + '</dd>'; }).join('');
+    // Ejemplos visuales de la lectura rápida (rótulos de la interfaz, no datos de las fuentes).
+    $('#ejemplo-brecha').innerHTML = '<span class="ejemplo__rotulo">Así se ve</span><span class="n1__valor">' + valorBrecha({ brecha_global: 3, brecha_latam: 4 }) + '</span>';
+    $('#ejemplo-horizonte').innerHTML = '<span class="ejemplo__rotulo">Así se ve</span>' + Object.keys(HORIZONTES).map(chipHorizonte).join('');
+    $('#ejemplo-urgencia').innerHTML = '<span class="ejemplo__rotulo">Así se ve</span>' + Object.keys(URGENCIAS).map(function (u) { return chipUrgencia(u); }).join('');
+    $('#ejemplo-certeza').innerHTML = '<span class="ejemplo__rotulo">Así se ve</span>' + Object.keys(CERTEZAS).map(chipCerteza).join('');
     $('#definiciones-posicion').innerHTML = Object.keys(POSICIONES).map(function (p) { return '<dt>' + chipPosicion(p, true) + '</dt><dd>' + esc(POSICIONES[p].desc) + '</dd>'; }).join('');
   }
 

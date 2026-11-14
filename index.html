@@ -292,125 +292,153 @@
           <span class="seccion__numero">08</span>
           <div>
             <h2>Cómo leer este tablero</h2>
-            <p class="seccion__ayuda">Qué significa cada valoración y qué quedó sin cubrir.</p>
+            <p class="seccion__ayuda">Primero, los cuatro indicadores que ves en todo el tablero. Abajo, en “Detalle avanzado”, el resto de las definiciones y qué quedó sin cubrir.</p>
           </div>
         </header>
-        <div class="rejilla-3">
+        <h3 class="lectura-rapida__titulo">Lectura rápida</h3>
+        <p class="seccion__ayuda">Los cuatro indicadores que acompañan a cada tendencia en todo el tablero, siempre en este orden.</p>
+        <div class="rejilla-4" id="lectura-rapida">
           <article class="tarjeta">
-            <h3 class="tarjeta__titulo">Tendencias vs. noticias</h3>
-            <p>Una <strong>tendencia</strong> es un cambio de tecnología o de mercado que aparece en varias fuentes. Las decisiones del tablero se toman sobre tendencias.</p>
-            <p>Las <strong>noticias</strong> (de la semana) y las <strong>referencias</strong> (informes, estudios y análisis de otras fechas) son la <strong>evidencia</strong> que la respalda. Cada tendencia muestra su evidencia con enlace a la fuente original.</p>
+            <h3 class="tarjeta__titulo">Brecha (1 a 5)</h3>
+            <p>Cuánto le falta a la industria para llegar a lo que pide la tendencia, en el mundo (Global) y en Latinoamérica (Latam): 1 = casi nada, 5 = mucho.</p>
+            <div class="ejemplo" id="ejemplo-brecha"></div>
           </article>
           <article class="tarjeta">
-            <h3 class="tarjeta__titulo">Los 4 perfiles</h3>
-            <p>“Ver como” cambia qué implicancia se muestra en cada tendencia y qué brechas se destacan. Hay cuatro perfiles:</p>
-            <dl class="definiciones" id="definiciones-perfiles"></dl>
+            <h3 class="tarjeta__titulo">Horizonte</h3>
+            <p>Cuándo podría volverse habitual: hoy (promedio actual), en 0–1 años (corto), 1–3 años (mediano) o 3+ años (largo).</p>
+            <div class="ejemplo" id="ejemplo-horizonte"></div>
           </article>
           <article class="tarjeta">
             <h3 class="tarjeta__titulo">Urgencia</h3>
-            <p>Qué tan pronto conviene actuar sobre la decisión sugerida.</p>
-            <dl class="definiciones" id="definiciones-urgencia"></dl>
-          </article>
-        </div>
-        <div class="rejilla-3">
-          <article class="tarjeta">
-            <h3 class="tarjeta__titulo">Posición de la industria</h3>
-            <p>Cómo está la industria frente a lo que la tendencia exige en su horizonte.</p>
-            <dl class="definiciones" id="definiciones-posicion"></dl>
-            <p class="nota">“Adelantada” no es un elogio: quiere decir que la oferta de la industria va por delante de la demanda o de la regulación. “En línea”: oferta y demanda avanzan a la par. “Atrasada”: la demanda, el riesgo o la regulación van por delante de la respuesta de la industria. El ícono <span class="ayuda ayuda--muestra" aria-hidden="true">?</span> junto a cada posición repite esta explicación.</p>
-          </article>
-          <article class="tarjeta">
-            <h3 class="tarjeta__titulo">Inversión e indicadores</h3>
-            <p><strong>Inversión requerida</strong> (baja, media, alta o sin dato): cuánto esfuerzo le pide la tendencia a una empresa típica. Ninguna fuente da montos: es una valoración con su justificación.</p>
-            <p><strong>Indicadores (KPI)</strong>: qué medir para saber si la tendencia está teniendo impacto en la empresa. También son valoración editorial, basada en lo que las fuentes dicen que cambia.</p>
-          </article>
-          <article class="tarjeta">
-            <h3 class="tarjeta__titulo">Valoración editorial con respaldo</h3>
-            <p>Todo lo que no es un dato de la fuente (posición, inversión, indicadores, implicancias, decisión, urgencia, brechas) es <strong>juicio del analista</strong>. Cada valor tiene su justificación y su evidencia. Si falta base, dice <span class="sin-dato">sin dato</span>.</p>
-            <p>Una tendencia respaldada por una sola fuente nunca tiene certeza alta.</p>
-          </article>
-        </div>
-        <div class="rejilla-3">
-          <article class="tarjeta">
-            <h3 class="tarjeta__titulo">Horizonte</h3>
-            <p>Cuándo podría volverse habitual lo que describe la tendencia o la noticia.</p>
-            <dl class="definiciones">
-              <dt>Promedio actual</dt><dd>Lo que la mayoría de las empresas ya hace hoy.</dd>
-              <dt>Corto (0–1 años)</dt><dd>Adopción temprana.</dd>
-              <dt>Mediano (1–3 años)</dt><dd>Camino a ser el nuevo estándar.</dd>
-              <dt>Largo (3+ años)</dt><dd>Experimental; puede cambiar las reglas del negocio.</dd>
-            </dl>
-          </article>
-          <article class="tarjeta">
-            <h3 class="tarjeta__titulo">Brecha (1 a 5)</h3>
-            <p>Cuánto le falta a la industria, desde lo que hace hoy, para llegar a lo que pide la tendencia o la noticia. Se valora en el mundo (global) y en Latinoamérica.</p>
-            <dl class="definiciones">
-              <dt>1</dt><dd>Casi nula: ya es estándar.</dd>
-              <dt>3</dt><dd>Media.</dd>
-              <dt>5</dt><dd>Muy grande.</dd>
-            </dl>
-            <p class="nota">Si la fuente no permite opinar sobre Latinoamérica, dice <strong>sin dato</strong>: nunca un cero ni un valor estimado. Si una tendencia es solo regional, su barra dice <strong>solo Latam</strong>.</p>
-          </article>
-          <article class="tarjeta">
-            <h3 class="tarjeta__titulo">Valoraciones editoriales</h3>
-            <p>Importancia (1–5), adopción (0–10), impacto (0–10), fase, clasificación y brecha son <strong>juicios del analista</strong>, no datos de la fuente. Cada uno se justifica con lo que dice la nota original.</p>
-            <dl class="definiciones">
-              <dt>Adopción</dt><dd>Qué tan extendida está hoy.</dd>
-              <dt>Impacto</dt><dd>Cuánto cambia la industria si madura.</dd>
-              <dt>Fase</dt><dd>En qué momento del ciclo de expectativas está: disparador, pico de expectativas, desilusión, aprendizaje o meseta (uso estable).</dd>
-              <dt>Clasificación</dt><dd>Cruza adopción e impacto. Estrella: extendida y de alto impacto. Interrogante: poco extendida y de alto impacto. Vaca lechera: extendida y de impacto menor. Perro: poco extendida y de impacto menor.</dd>
-              <dt>Verificada</dt><dd>La nota original se abrió y leyó. Si no, se marca “sin verificar” y no lleva cifras.</dd>
-            </dl>
-          </article>
-        </div>
-
-        <div class="rejilla-3">
-          <article class="tarjeta">
-            <h3 class="tarjeta__titulo">Noticias vs. referencias</h3>
-            <p><strong>Noticias</strong>: lo publicado en la semana de la edición. Cada edición cubre sus fechas y tiene sus propias valoraciones.</p>
-            <p><strong>Referencias</strong>: informes, estudios académicos, análisis legales y notas con datos de otras fechas. Cubren lo que las noticias de la semana no traen (largo plazo, Latinoamérica, regulación). Llevan la etiqueta <span class="insignia insignia--ref">Referencia</span> y su fecha, y nunca cuentan como noticias de la edición.</p>
+            <p>Qué tan pronto conviene actuar: ahora (este trimestre), preparar (próximos 6 a 12 meses) o vigilar (seguir sin comprometer recursos).</p>
+            <div class="ejemplo" id="ejemplo-urgencia"></div>
           </article>
           <article class="tarjeta">
             <h3 class="tarjeta__titulo">Certeza</h3>
-            <p>Qué tan firme es la base de cada valoración.</p>
-            <dl class="definiciones">
-              <dt>Alta</dt><dd>Dato medido y publicado.</dd>
-              <dt>Media</dt><dd>Pronóstico de una consultora u opinión de un directivo. También ante la duda.</dd>
-              <dt>Baja</dt><dd>Especulación o hecho que todavía no ocurrió. La sección de brechas la oculta salvo que marques la casilla.</dd>
-            </dl>
-          </article>
-          <article class="tarjeta tarjeta--advertencia">
-            <h3 class="tarjeta__titulo">Cifras de firmas distintas</h3>
-            <p>Newzoo, NielsenIQ, Bain, GlobalData, Xsolla y otras consultoras miden con métodos y períodos distintos, y dan cifras distintas para lo mismo (por ejemplo, la cantidad de jugadores en Latinoamérica). Por eso cada cifra dice quién la mide y, si llega por otro medio, cuál (“según Newzoo, vía GamesBeat”). Las diferencias se anotan en la nota de calidad; nunca se suman ni se promedian.</p>
+            <p>Qué tan firme es la base: alta (dato medido), media (pronóstico u opinión) o baja (especulación).</p>
+            <div class="ejemplo" id="ejemplo-certeza"></div>
           </article>
         </div>
 
-        <article class="tarjeta">
-          <h3 class="tarjeta__titulo">Biblioteca de referencias <span class="etiqueta-suave" id="referencias-actualizado"></span></h3>
-          <div class="resumen-estados" id="resumen-referencias"></div>
-          <div class="tabla-envoltura">
-            <table class="tabla tabla--fuentes tabla--tarjetas" id="tabla-referencias">
-              <thead><tr><th scope="col">Referencia</th><th scope="col">Estado</th><th scope="col">Nota de calidad</th></tr></thead>
-              <tbody></tbody>
-            </table>
+        <details class="tarjeta avanzado avanzado--seccion" id="detalle-avanzado">
+          <summary>Detalle avanzado</summary>
+          <div class="avanzado__cuerpo">
+            <p class="tarjeta__ayuda">Todas las definiciones: escalas completas, valoraciones de segundo nivel, perfiles, referencias, estado de las fuentes y limitaciones de la edición.</p>
+          <div class="rejilla-3">
+            <article class="tarjeta">
+              <h3 class="tarjeta__titulo">Tendencias vs. noticias</h3>
+              <p>Una <strong>tendencia</strong> es un cambio de tecnología o de mercado que aparece en varias fuentes. Las decisiones del tablero se toman sobre tendencias.</p>
+              <p>Las <strong>noticias</strong> (de la semana) y las <strong>referencias</strong> (informes, estudios y análisis de otras fechas) son la <strong>evidencia</strong> que la respalda. Cada tendencia muestra su evidencia con enlace a la fuente original.</p>
+            </article>
+            <article class="tarjeta">
+              <h3 class="tarjeta__titulo">Los 4 perfiles</h3>
+              <p>“Ver como” cambia qué implicancia se muestra en cada tendencia y qué brechas se destacan. Hay cuatro perfiles:</p>
+              <dl class="definiciones" id="definiciones-perfiles"></dl>
+            </article>
+            <article class="tarjeta">
+              <h3 class="tarjeta__titulo">Valoración editorial con respaldo</h3>
+              <p>Todo lo que no es un dato de la fuente (posición, inversión, indicadores, implicancias, decisión, urgencia, brechas) es <strong>juicio del analista</strong>. Cada valor tiene su justificación y su evidencia. Si falta base, dice <span class="sin-dato">sin dato</span>.</p>
+              <p>Una tendencia respaldada por una sola fuente nunca tiene certeza alta.</p>
+            </article>
           </div>
-        </article>
-
-        <article class="tarjeta">
-          <h3 class="tarjeta__titulo">Estado de las fuentes consultadas <span class="etiqueta-suave" id="fuentes-edicion"></span></h3>
-          <div class="resumen-estados" id="resumen-estados"></div>
-          <div class="tabla-envoltura">
-            <table class="tabla tabla--fuentes" id="tabla-fuentes">
-              <thead><tr><th scope="col">Fuente</th><th scope="col">Estado</th><th scope="col">Nota</th></tr></thead>
-              <tbody></tbody>
-            </table>
+          <div class="rejilla-3">
+            <article class="tarjeta">
+              <h3 class="tarjeta__titulo">Brecha (1 a 5)</h3>
+              <p>Cuánto le falta a la industria, desde lo que hace hoy, para llegar a lo que pide la tendencia o la noticia. Se valora en el mundo (global) y en Latinoamérica.</p>
+              <dl class="definiciones">
+                <dt>1</dt><dd>Casi nula: ya es estándar.</dd>
+                <dt>3</dt><dd>Media.</dd>
+                <dt>5</dt><dd>Muy grande.</dd>
+              </dl>
+              <p class="nota">Si la fuente no permite opinar sobre Latinoamérica, dice <strong>sin dato</strong>: nunca un cero ni un valor estimado. Si una tendencia es solo regional, su barra dice <strong>solo Latam</strong>.</p>
+            </article>
+            <article class="tarjeta">
+              <h3 class="tarjeta__titulo">Horizonte</h3>
+              <p>Cuándo podría volverse habitual lo que describe la tendencia o la noticia.</p>
+              <dl class="definiciones">
+                <dt>Promedio actual</dt><dd>Lo que la mayoría de las empresas ya hace hoy.</dd>
+                <dt>Corto (0–1 años)</dt><dd>Adopción temprana.</dd>
+                <dt>Mediano (1–3 años)</dt><dd>Camino a ser el nuevo estándar.</dd>
+                <dt>Largo (3+ años)</dt><dd>Experimental; puede cambiar las reglas del negocio.</dd>
+              </dl>
+            </article>
+            <article class="tarjeta">
+              <h3 class="tarjeta__titulo">Urgencia</h3>
+              <p>Qué tan pronto conviene actuar sobre la decisión sugerida.</p>
+              <dl class="definiciones" id="definiciones-urgencia"></dl>
+            </article>
           </div>
-        </article>
+          <div class="rejilla-3">
+            <article class="tarjeta">
+              <h3 class="tarjeta__titulo">Certeza</h3>
+              <p>Qué tan firme es la base de cada valoración.</p>
+              <dl class="definiciones">
+                <dt>Alta</dt><dd>Dato medido y publicado.</dd>
+                <dt>Media</dt><dd>Pronóstico de una consultora u opinión de un directivo. También ante la duda.</dd>
+                <dt>Baja</dt><dd>Especulación o hecho que todavía no ocurrió. La sección de brechas la oculta salvo que marques la casilla.</dd>
+              </dl>
+            </article>
+            <article class="tarjeta">
+              <h3 class="tarjeta__titulo">Posición de la industria</h3>
+              <p>Cómo está la industria frente a lo que la tendencia exige en su horizonte.</p>
+              <dl class="definiciones" id="definiciones-posicion"></dl>
+              <p class="nota">“Adelantada” no es un elogio: quiere decir que la oferta de la industria va por delante de la demanda o de la regulación. “En línea”: oferta y demanda avanzan a la par. “Atrasada”: la demanda, el riesgo o la regulación van por delante de la respuesta de la industria. El ícono <span class="ayuda ayuda--muestra" aria-hidden="true">?</span> junto a cada posición repite esta explicación. La posición se ve en “Más detalle” de cada tendencia y en “Análisis avanzado” de la sección Brechas.</p>
+            </article>
+            <article class="tarjeta">
+              <h3 class="tarjeta__titulo">Inversión e indicadores</h3>
+              <p><strong>Inversión requerida</strong> (baja, media, alta o sin dato): cuánto esfuerzo le pide la tendencia a una empresa típica. Ninguna fuente da montos: es una valoración con su justificación.</p>
+              <p><strong>Indicadores (KPI)</strong>: qué medir para saber si la tendencia está teniendo impacto en la empresa. También son valoración editorial, basada en lo que las fuentes dicen que cambia.</p>
+            </article>
+          </div>
+          <div class="rejilla-3">
+            <article class="tarjeta">
+              <h3 class="tarjeta__titulo">Valoraciones editoriales</h3>
+              <p>Importancia (1–5), adopción (0–10), impacto (0–10), fase, clasificación y brecha son <strong>juicios del analista</strong>, no datos de la fuente. Cada uno se justifica con lo que dice la nota original. Salvo la brecha, se ven en “Más detalle” de cada tendencia o noticia; fase y clasificación son valoraciones orientativas.</p>
+              <dl class="definiciones">
+                <dt>Adopción</dt><dd>Qué tan extendida está hoy.</dd>
+                <dt>Impacto</dt><dd>Cuánto cambia la industria si madura.</dd>
+                <dt>Fase</dt><dd>En qué momento del ciclo de expectativas está: disparador, pico de expectativas, desilusión, aprendizaje o meseta (uso estable).</dd>
+                <dt>Clasificación</dt><dd>Cruza adopción e impacto. Estrella: extendida y de alto impacto. Interrogante: poco extendida y de alto impacto. Vaca lechera: extendida y de impacto menor. Perro: poco extendida y de impacto menor.</dd>
+                <dt>Verificada</dt><dd>La nota original se abrió y leyó. Si no, se marca “sin verificar” y no lleva cifras.</dd>
+              </dl>
+            </article>
+            <article class="tarjeta">
+              <h3 class="tarjeta__titulo">Noticias vs. referencias</h3>
+              <p><strong>Noticias</strong>: lo publicado en la semana de la edición. Cada edición cubre sus fechas y tiene sus propias valoraciones.</p>
+              <p><strong>Referencias</strong>: informes, estudios académicos, análisis legales y notas con datos de otras fechas. Cubren lo que las noticias de la semana no traen (largo plazo, Latinoamérica, regulación). Llevan la etiqueta <span class="insignia insignia--ref">Referencia</span> y su fecha, y nunca cuentan como noticias de la edición.</p>
+            </article>
+            <article class="tarjeta tarjeta--advertencia">
+              <h3 class="tarjeta__titulo">Cifras de firmas distintas</h3>
+              <p>Newzoo, NielsenIQ, Bain, GlobalData, Xsolla y otras consultoras miden con métodos y períodos distintos, y dan cifras distintas para lo mismo (por ejemplo, la cantidad de jugadores en Latinoamérica). Por eso cada cifra dice quién la mide y, si llega por otro medio, cuál (“según Newzoo, vía GamesBeat”). Las diferencias se anotan en la nota de calidad; nunca se suman ni se promedian.</p>
+            </article>
+          </div>
 
-        <article class="tarjeta">
-          <h3 class="tarjeta__titulo">Limitaciones de esta edición</h3>
-          <ul class="limitaciones" id="limitaciones"></ul>
-        </article>
+          <article class="tarjeta">
+            <h3 class="tarjeta__titulo">Biblioteca de referencias <span class="etiqueta-suave" id="referencias-actualizado"></span></h3>
+            <div class="resumen-estados" id="resumen-referencias"></div>
+            <div class="tabla-envoltura">
+              <table class="tabla tabla--fuentes tabla--tarjetas" id="tabla-referencias">
+                <thead><tr><th scope="col">Referencia</th><th scope="col">Estado</th><th scope="col">Nota de calidad</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </article>
+          <article class="tarjeta">
+            <h3 class="tarjeta__titulo">Estado de las fuentes consultadas <span class="etiqueta-suave" id="fuentes-edicion"></span></h3>
+            <div class="resumen-estados" id="resumen-estados"></div>
+            <div class="tabla-envoltura">
+              <table class="tabla tabla--fuentes" id="tabla-fuentes">
+                <thead><tr><th scope="col">Fuente</th><th scope="col">Estado</th><th scope="col">Nota</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </article>
+          <article class="tarjeta">
+            <h3 class="tarjeta__titulo">Limitaciones de esta edición</h3>
+            <ul class="limitaciones" id="limitaciones"></ul>
+          </article>
+          </div>
+        </details>
       </div>
     </section>
   </main>
