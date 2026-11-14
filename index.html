@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Radar Gaming</title>
+  <title>Radar Gaming · Tendencias de la industria del gaming</title>
   <meta name="description" content="Tablero de inteligencia comercial sobre tendencias de la industria del gaming.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%236d4aff'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='white' stroke-width='2'/%3E%3Cpath d='M16 16 L27 9' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <script>
     // Aplica el tema guardado antes de pintar, para evitar parpadeo.
     try { var t = localStorage.getItem('rg-tema'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
@@ -27,6 +27,8 @@
         <span class="marca__nombre">Radar Gaming</span>
       </div>
       <div class="encabezado__controles">
+        <!-- Selector de perfil único: botones en pantallas anchas, desplegable en celular (mismo estado). -->
+        <div class="perfiles perfiles--encabezado" role="radiogroup" aria-label="Ver como" id="perfil-botones"></div>
         <label class="selector selector--perfil">
           <span class="selector__rotulo">Ver como</span>
           <select id="selector-perfil" aria-label="Ver el tablero como"></select>
@@ -65,7 +67,6 @@
             <p class="portada__ventana" id="ventana">Cargando edición…</p>
             <h1 class="resumen__titulo" id="tema-titulo"></h1>
           </div>
-          <div class="perfiles" role="radiogroup" aria-label="Ver como" id="perfil-botones"></div>
         </div>
         <div id="aviso" role="status" aria-live="polite"></div>
         <div class="resumen__rejilla" id="resumen-rejilla">
@@ -320,6 +321,16 @@
           </article>
         </div>
 
+        <article class="tarjeta tarjeta--actualiza" id="como-se-actualiza">
+          <h3 class="tarjeta__titulo">Cómo se actualiza este tablero</h3>
+          <ul class="actualiza">
+            <li>Un agente corre en Claude Code con el comando <code>/actualizar-noticias</code>: lee las fuentes, resume y valora cada noticia.</li>
+            <li>Cada corrida genera una edición nueva, validada por <code>scripts/validar.py</code> antes de publicarse.</li>
+            <li>El material que el agente no puede abrir (bloqueo, paywall, JavaScript) se carga a mano en la carpeta <code>inbox/</code>, y el agente lo lee en la corrida siguiente.</li>
+          </ul>
+          <p class="actualiza__fechas" id="actualiza-fechas"></p>
+        </article>
+
         <details class="tarjeta avanzado avanzado--seccion" id="detalle-avanzado">
           <summary>Detalle avanzado</summary>
           <div class="avanzado__cuerpo">
@@ -445,7 +456,10 @@
 
   <footer class="pie">
     <div class="contenedor">
-      <p>Radar Gaming · Todo el contenido sale de las ediciones semanales, la biblioteca de referencias y el análisis de tendencias. Los títulos de las notas se muestran en su idioma original.</p>
+      <p class="pie__creditos"><strong>Radar Gaming</strong> · Trabajo Práctico Integrador de Tendencias Tecnológicas · <span id="pie-integrantes"></span> · Noviembre 2026</p>
+      <p><a class="enlace-fuente" href="https://github.com/juancruzbarriola1/Radar-Gaming" target="_blank" rel="noopener noreferrer">Repositorio en GitHub<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a></p>
+      <p>Agente y tablero construidos con asistencia de Claude (Anthropic); las valoraciones son editoriales y cada dato enlaza a su fuente.</p>
+      <p>Todo el contenido sale de las ediciones semanales, la biblioteca de referencias y el análisis de tendencias. Los títulos de las notas se muestran en su idioma original.</p>
     </div>
   </footer>
 

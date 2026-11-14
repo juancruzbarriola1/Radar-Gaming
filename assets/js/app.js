@@ -5,6 +5,10 @@
 (function () {
   'use strict';
 
+  // ---------- Créditos del pie ----------
+  // Para cambiar los integrantes del equipo, editá esta constante (se muestra en el pie de página).
+  var INTEGRANTES = '<integrantes>';
+
   // ---------- Catálogos de la interfaz (rótulos, no datos) ----------
   var TEMAS = {
     cloud_gaming: { nombre: 'Cloud gaming', icono: '<path d="M7 18h10a4 4 0 0 0 .5-8 6 6 0 0 0-11.4 1.5A3.3 3.3 0 0 0 7 18z"/>' },
@@ -246,6 +250,7 @@
   }
 
   function iniciar() {
+    $('#pie-integrantes').textContent = INTEGRANTES;
     configurarTema();
     configurarPerfil();
     configurarCajon();
@@ -378,6 +383,7 @@
     renderRegulacion();
     renderMetodologia(d);
     renderReferenciasEstado();
+    renderActualizacion();
   }
 
   // Perfil cambiado: solo se repintan las partes que dependen de él.
@@ -1065,6 +1071,14 @@
     }).join('') : '<tr><td colspan="3" class="vacio">Sin registro de fuentes.</td></tr>';
     var lim = lista(d.limitaciones);
     $('#limitaciones').innerHTML = lim.length ? lim.map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('') : '<li class="vacio">La edición no registra limitaciones.</li>';
+  }
+
+  // "Cómo se actualiza": fechas leídas de data/indice.json y data/tendencias.json.
+  function renderActualizacion() {
+    var ult = estado.indice.find(function (e) { return estado.ediciones[e.fecha]; }) || estado.indice[0];
+    $('#actualiza-fechas').innerHTML =
+      '<span>Última edición: <strong>' + (ult ? esc((ult.numero != null ? 'N.º ' + ult.numero + ' · ' : '') + fecha(ult.fecha)) : sd()) + '</strong></span>' +
+      '<span>Tendencias actualizadas: <strong>' + (estado.tendMeta && estado.tendMeta.actualizado ? esc(fecha(estado.tendMeta.actualizado)) : sd()) + '</strong></span>';
   }
 
   function renderReferenciasEstado() {

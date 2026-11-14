@@ -826,3 +826,25 @@ a.indicador:hover { transform: translateY(-2px); border-color: var(--acento); }
 .avanzado--seccion { padding: 4px 20px; }
 .avanzado--seccion > .avanzado__cuerpo { padding-bottom: 12px; }
 .avanzado--seccion .tarjeta { box-shadow: none; }
+
+/* ---------- Selector de perfil único en el encabezado ----------
+   Pantallas anchas: 4 botones visibles. Celular y tablet: desplegable. Comparten el mismo estado. */
+.perfiles--encabezado { display: none; flex-wrap: nowrap; }
+.perfiles--encabezado .perfiles__boton { padding: 5px 11px; white-space: nowrap; }
+@media (min-width: 1000px) {
+  .perfiles--encabezado { display: inline-flex; }
+  .selector--perfil { display: none; }
+}
+
+/* ---------- Cómo se actualiza este tablero ---------- */
+.tarjeta--actualiza { border-left: 4px solid var(--acento); }
+.actualiza { margin: 8px 0 12px; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; color: var(--tinta-2); }
+.actualiza code, .actualiza__fechas code { background: var(--superficie-2); border-radius: 4px; padding: 0 5px; font-size: .88em; color: var(--tinta); }
+.actualiza__fechas { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 0; font-size: .9rem; color: var(--tinta-suave); }
+.actualiza__fechas strong { color: var(--tinta); }
+
+/* ---------- Pie con créditos ---------- */
+.pie { background: var(--superficie); }
+.pie p { margin: 0 0 6px; max-width: 90ch; }
+.pie__creditos { color: var(--tinta-2); font-size: .9rem; }
+.pie__creditos strong { color: var(--tinta); }
