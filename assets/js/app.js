@@ -7,7 +7,7 @@
 
   // ---------- Créditos del pie ----------
   // Para cambiar los integrantes del equipo, editá esta constante (se muestra en el pie de página).
-  var INTEGRANTES = '<integrantes>';
+  var INTEGRANTES = 'Juan Cruz Barriola, Nicolás Olaiz, Tomás Torrisi y Micaela Reybet';
 
   // ---------- Catálogos de la interfaz (rótulos, no datos) ----------
   var TEMAS = {
