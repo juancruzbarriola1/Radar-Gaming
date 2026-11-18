@@ -1,13 +1,13 @@
 {
-  "actualizado": "2026-11-13",
+  "actualizado": "2026-11-18",
   "tendencias": [
     {
       "id": "t01",
       "nombre": "La nube como puente de acceso",
       "tema": "cloud_gaming",
       "descripcion": "Jugar por streaming desde servidores remotos, sin hardware potente. Hoy los operadores la usan sobre todo para llevar su catálogo a equipos viejos o a pantallas sin consola.",
-      "promedio_actual": "Servicio complementario y de nicho: según GlobalData (vía PocketGamer.biz), solo 6% de los jugadores tenía una suscripción de juego en la nube en 2023, y Sony cierra su app de PC porque la usaba menos del 0,4% de los miembros elegibles de PlayStation Plus Premium. Xbox ofrece GTA VI en la nube solo en sus consolas y GeForce NOW suma catálogo mes a mes.",
-      "hacia_donde_va": "Si madura, la nube vuelve accesible un lanzamiento AAA sin comprar consola nueva y abre el pago por uso (Xbox habilita la compra de horas sin Game Pass en mercados compatibles). GlobalData proyecta un mercado de más de US$22.000 millones en 2030, un pronóstico de 2024 sin actualizar.",
+      "promedio_actual": "Servicio complementario y de nicho: según GlobalData (vía PocketGamer.biz), solo 6% de los jugadores tenía una suscripción de juego en la nube en 2023, y Sony cierra su app de PC porque la usaba menos del 0,4% de los miembros elegibles de PlayStation Plus Premium (n02, 2026-11-11). Xbox ofrece GTA VI en la nube solo en sus consolas y la prensa mexicana lo presenta como la forma de jugarlo en una Xbox One (n01, 2026-11-18). GeForce NOW suma catálogo cada semana y busca estar el día del lanzamiento en PC (n02, 2026-11-18).",
+      "hacia_donde_va": "Si madura, la nube vuelve accesible un lanzamiento AAA sin comprar consola nueva y se cobra por uso: desde el 11 de noviembre Xbox vende horas de nube sin Game Pass en mercados compatibles (n01, 2026-11-18). GlobalData proyecta un mercado de más de US$22.000 millones en 2030, un pronóstico de 2024 sin actualizar.",
       "horizonte": "corto",
       "fase_curva": "pendiente",
       "adopcion": 3,
@@ -15,15 +15,35 @@
       "cuadrante": "interrogante",
       "brecha_global": 3,
       "brecha_latam": 4,
-      "justificacion_brecha": "Global 3: el servicio existe y suma títulos masivos (n01, n04), pero el uso medido es bajo (n02: menos de 0,4%; GlobalData: 6% de suscriptores en 2023). Latam 4: según n01, la disponibilidad y la compra de horas varían por mercado y no hay precio confirmado para Argentina; según GSMA, vía El Economista, la penetración de internet móvil era 64% a fines de 2024. Fase pendiente: los operadores ajustan el modelo (Sony se repliega, Microsoft la usa como puente).",
+      "justificacion_brecha": "Global 3: el servicio existe y suma títulos masivos (n01 y n04 de 2026-11-11; n02 de 2026-11-18), pero el uso medido es bajo (n02 de 2026-11-11: menos de 0,4%; GlobalData: 6% de suscriptores en 2023). Latam 4: según n01 (2026-11-11) la disponibilidad y la compra de horas varían por mercado y no hay precio confirmado para Argentina; la nota mexicana de n01 (2026-11-18) explica el acceso pero no confirma que la compra de horas esté habilitada en México; según GSMA, vía El Economista, la penetración de internet móvil era 64% a fines de 2024. Fase pendiente: los operadores ajustan el modelo hacia el pago por uso.",
       "posicion_industria": "adelantada",
-      "argumento_posicion": "La oferta va por delante de la demanda medida: Microsoft y NVIDIA amplían catálogo y formas de acceso (n01, n03, n04) mientras Sony retira su app de PC por bajo uso (n02) y GlobalData midió 6% de suscriptores en 2023.",
+      "argumento_posicion": "La oferta va por delante de la demanda medida: Microsoft y NVIDIA amplían catálogo y formas de acceso (n01, n03, n04 de 2026-11-11; n01 y n02 de 2026-11-18) mientras Sony retira su app de PC por bajo uso (n02 de 2026-11-11) y GlobalData midió 6% de suscriptores en 2023.",
       "proveedores": [
-        {"nombre": "Microsoft (Xbox Cloud Gaming)", "rol": "Streaming de GTA VI en Xbox One y Series X|S desde el lanzamiento; venta de horas de nube sin Game Pass en mercados habilitados.", "fuente_id": "n01"},
-        {"nombre": "Microsoft (Xbox)", "rol": "Prueba en EE. UU. del teléfono como control en televisores y de cloud connect, que conecta el control al servidor por wifi para bajar la latencia.", "fuente_id": "n03"},
-        {"nombre": "NVIDIA (GeForce NOW)", "rol": "Nube de tipo 'traé tu biblioteca': 24 juegos nuevos en noviembre y DLSS 5 en la nube.", "fuente_id": "n04"},
-        {"nombre": "Sony (PlayStation Plus Premium)", "rol": "Mantiene el streaming en consolas y PlayStation Portal; cierra la app de PC el 10 de diciembre.", "fuente_id": "n02"},
-        {"nombre": "Claro", "rol": "Operador que vende juego en la nube y lo presenta como forma de control frente a piratería y fraude (webinar de la Universidad Externado).", "fuente_id": "uexternado_pirateria"}
+        {
+          "nombre": "Microsoft (Xbox Cloud Gaming)",
+          "rol": "Streaming de GTA VI en Xbox One y Series X|S desde el lanzamiento; venta de horas de nube sin Game Pass en mercados habilitados.",
+          "fuente_id": "n01"
+        },
+        {
+          "nombre": "Microsoft (Xbox)",
+          "rol": "Prueba en EE. UU. del teléfono como control en televisores y de cloud connect, que conecta el control al servidor por wifi para bajar la latencia.",
+          "fuente_id": "n03"
+        },
+        {
+          "nombre": "NVIDIA (GeForce NOW)",
+          "rol": "Nube de tipo 'traé tu biblioteca': 24 juegos nuevos en noviembre y DLSS 5 en la nube.",
+          "fuente_id": "n04"
+        },
+        {
+          "nombre": "Sony (PlayStation Plus Premium)",
+          "rol": "Mantiene el streaming en consolas y PlayStation Portal; cierra la app de PC el 10 de diciembre.",
+          "fuente_id": "n02"
+        },
+        {
+          "nombre": "Claro",
+          "rol": "Operador que vende juego en la nube y lo presenta como forma de control frente a piratería y fraude (webinar de la Universidad Externado).",
+          "fuente_id": "uexternado_pirateria"
+        }
       ],
       "inversion_requerida": "media",
       "justificacion_inversion": "Para un estudio o publisher, entrar a una nube existente es sobre todo un acuerdo comercial y pruebas de rendimiento (GTA VI corre con la configuración de Series S, n01); operar infraestructura propia es otra escala y Sony muestra que puede no recuperarse (n02). Valoración editorial: ninguna fuente da montos.",
@@ -39,29 +59,67 @@
         "indie": "Estar en catálogos como GeForce NOW da alcance sin portar a cada hardware, pero el uso medido de la nube todavía es bajo (n02).",
         "publisher_aaa": "La nube permite vender el lanzamiento a dueños de consolas viejas (GTA VI en Xbox One): conviene negociarla como canal de acceso, no como sustituto del hardware.",
         "plataforma_distribuidor": "Dos estrategias opuestas: Microsoft amplía y vende horas sueltas; Sony se repliega a su hardware. El diferencial está en catálogo, latencia y precio por uso.",
-        "latam": "Disponibilidad y precio de la nube varían por país y no están confirmados en Argentina; con 64% de internet móvil (GSMA, 2024) la conectividad pone techo."
+        "latam": "La prensa de la región presenta la nube como vía para jugar GTA VI sin consola nueva (n01, 2026-11-18), pero disponibilidad y precio varían por país; con 64% de internet móvil (GSMA, 2024) la conectividad pone techo."
       },
       "decision_sugerida": "Tratar la nube como canal complementario: medir horas por streaming por mercado antes de invertir más y negociar presencia en catálogos existentes en lugar de infraestructura propia.",
       "urgencia": "vigilar",
       "certeza": "media",
       "evidencia": [
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n01"},
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n02"},
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n03"},
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n04"},
-        {"tipo": "referencia", "edicion": null, "id": "pocketgamer_globaldata_cloud"},
-        {"tipo": "referencia", "edicion": null, "id": "eleconomista_latam"},
-        {"tipo": "referencia", "edicion": null, "id": "uexternado_pirateria"}
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n01"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n02"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n03"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n04"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "pocketgamer_globaldata_cloud"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "eleconomista_latam"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "uexternado_pirateria"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-18",
+          "id": "n01"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-18",
+          "id": "n02"
+        }
       ],
-      "ultima_actualizacion": "2026-11-11"
+      "ultima_actualizacion": "2026-11-18"
     },
     {
       "id": "t02",
       "nombre": "Lo digital como canal principal; el físico, nicho caro",
       "tema": "digitalizacion",
       "descripcion": "La venta de juegos se concentra en tiendas digitales y el formato físico pierde participación. Además, fabricar cartuchos se encarece porque la memoria se desvía a la IA.",
-      "promedio_actual": "La venta digital ya es mayoría incluso en Nintendo: 60,7% de sus ventas de juegos entre abril y septiembre de 2026, medido en ingresos (n05). GTA VI es el juego más reservado en las tiendas de PlayStation y Xbox (n12). En hardware y accesorios también avanza el canal online frente a la tienda física, según NielsenIQ, vía La República.",
-      "hacia_donde_va": "El físico pasa a ser un nicho a administrar: más caro de producir si los proveedores de memoria se retiran (Macronix, n06) y con PlayStation planeando abandonarlo (n05). Margen y poder de negociación se trasladan a las tiendas digitales.",
+      "promedio_actual": "La venta digital ya es mayoría incluso en Nintendo: 60,7% de sus ventas de juegos entre abril y septiembre de 2026, medido en ingresos (n05, 2026-11-11). GTA VI es el juego más reservado en las tiendas de PlayStation y Xbox (n12, 2026-11-11) y su edición en caja no trae disco sino un código de descarga (n03, 2026-11-18). En México, la caja cuesta unos 200 pesos más que la versión digital, según Wired en Español (n05, 2026-11-18). En hardware y accesorios también avanza el canal online, según NielsenIQ, vía La República.",
+      "hacia_donde_va": "El físico pasa a ser un nicho a administrar: más caro de producir si los proveedores de memoria se retiran (Macronix, n06 de 2026-11-11), con PlayStation planeando abandonarlo, y convertido en un código en caja que traslada a minoristas el riesgo de códigos faltantes o usados (n04, 2026-11-18). Margen y poder de negociación se trasladan a las tiendas digitales.",
       "horizonte": "promedio_actual",
       "fase_curva": "meseta",
       "adopcion": 7,
@@ -69,13 +127,30 @@
       "cuadrante": "estrella",
       "brecha_global": 2,
       "brecha_latam": null,
-      "justificacion_brecha": "Global 2: la venta digital ya es mayoritaria según los datos medidos de Nintendo (n05; 61,5% del negocio en el segundo trimestre calendario según n06); la distancia que queda es el tercio físico. Sin base para Latam: ninguna fuente mide la venta digital de juegos en la región (NielsenIQ, vía La República, habla del canal online en hardware y accesorios, no de juegos).",
+      "justificacion_brecha": "Global 2: la venta digital ya es mayoritaria según los datos medidos de Nintendo (n05 de 2026-11-11) y el lanzamiento del año llega sin disco (n03 de 2026-11-18). Sin base para Latam: Wired en Español (n05 de 2026-11-18) compara precios en México pero ninguna fuente mide cuánto se vende en digital en la región; NielsenIQ, vía La República, habla de hardware y accesorios.",
       "posicion_industria": "en_linea",
-      "argumento_posicion": "La industria acompaña el cambio: Nintendo vende mayoría digital pero sostiene el cartucho (n05, n06), PlayStation planea abandonar el físico (n05) y los grandes lanzamientos se reservan en tiendas digitales (n12).",
+      "argumento_posicion": "La industria acompaña el cambio: Nintendo vende mayoría digital pero sostiene el cartucho (n05, n06 de 2026-11-11), PlayStation planea abandonar el físico y el mayor lanzamiento del año se vende en caja con código (n03, 2026-11-18). La logística del código todavía falla (n04, 2026-11-18).",
       "proveedores": [
-        {"nombre": "Nintendo", "rol": "Último de los tres grandes que sostiene el formato físico; 60,7% de sus ventas de juegos ya es digital.", "fuente_id": "n05"},
-        {"nombre": "Macronix", "rol": "Principal fabricante de chips ROM para cartuchos de Nintendo, según un analista; se retira gradualmente del videojuego.", "fuente_id": "n06"},
-        {"nombre": "Tiendas de PlayStation y Xbox", "rol": "Canal de preventa del lanzamiento del año: según ambas plataformas, GTA VI es el juego más reservado de sus tiendas.", "fuente_id": "n12"}
+        {
+          "nombre": "Nintendo",
+          "rol": "Último de los tres grandes que sostiene el formato físico; 60,7% de sus ventas de juegos ya es digital.",
+          "fuente_id": "n05"
+        },
+        {
+          "nombre": "Macronix",
+          "rol": "Principal fabricante de chips ROM para cartuchos de Nintendo, según un analista; se retira gradualmente del videojuego.",
+          "fuente_id": "n06"
+        },
+        {
+          "nombre": "Tiendas de PlayStation y Xbox",
+          "rol": "Canal de preventa del lanzamiento del año: según ambas plataformas, GTA VI es el juego más reservado de sus tiendas.",
+          "fuente_id": "n12"
+        },
+        {
+          "nombre": "Rockstar Games",
+          "rol": "Vende la edición en caja de GTA VI con código de descarga y sin disco (edición 2026-11-18).",
+          "fuente_id": "n03"
+        }
       ],
       "inversion_requerida": "baja",
       "justificacion_inversion": "Para quien ya vende en tiendas digitales, el cambio no exige inversión nueva; el costo está en sostener el físico, con cartuchos más caros (n06). Valoración editorial: ninguna fuente da montos.",
@@ -83,25 +158,57 @@
         "Participación digital en los ingresos de software",
         "Costo unitario de fabricación del formato físico",
         "Preventas digitales sobre preventas totales",
-        "Margen por unidad digital frente a física"
+        "Margen por unidad digital frente a física",
+        "Reclamos por códigos faltantes o inválidos por cada mil cajas vendidas"
       ],
-      "justificacion_kpis": "Son las variables que mueven las fuentes: participación digital medida en ingresos (n05), costo del cartucho (n06) y preventas en tiendas (n12).",
+      "justificacion_kpis": "Son las variables que mueven las fuentes: participación digital medida en ingresos (n05, 2026-11-11), costo del cartucho (n06), preventas en tiendas (n12), y las fallas del código en caja (n04, 2026-11-18).",
       "implicancias": {
         "indie": "Sin impacto relevante nuevo: la mayoría ya vende solo en digital. Si se hace una edición física, su costo tiende a subir (n06).",
         "publisher_aaa": "El lanzamiento se juega en las tiendas digitales (preventas de GTA VI); el físico pasa a ser una decisión de margen, con cartuchos más caros.",
-        "plataforma_distribuidor": "Las tiendas digitales concentran preventas y margen; el minorista físico pierde peso y la cadena de soportes pierde proveedores.",
-        "latam": "Sin base en la evidencia para medir la venta digital de juegos en la región."
+        "plataforma_distribuidor": "Las tiendas digitales concentran preventas y margen; el minorista físico vende un código, con sobreprecio en México (n05, 2026-11-18), y carga con los reclamos cuando falla (n04, 2026-11-18).",
+        "latam": "En México la caja de GTA VI cuesta más que la versión digital (n05, 2026-11-18); falta medir la venta digital de juegos en la región."
       },
-      "decision_sugerida": "Planificar cada lanzamiento con el canal digital como principal y revisar tiradas y precio del físico ante el aumento del costo de los cartuchos.",
+      "decision_sugerida": "Planificar cada lanzamiento con el canal digital como principal, revisar tiradas y precio del físico y, si se vende código en caja, acordar con los minoristas un protocolo de reposición.",
       "urgencia": "preparar",
       "certeza": "alta",
       "evidencia": [
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n05"},
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n06"},
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n12"},
-        {"tipo": "referencia", "edicion": null, "id": "larepublica_nielseniq"}
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n05"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n06"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n12"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "larepublica_nielseniq"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-18",
+          "id": "n03"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-18",
+          "id": "n04"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-18",
+          "id": "n05"
+        }
       ],
-      "ultima_actualizacion": "2026-11-11"
+      "ultima_actualizacion": "2026-11-18"
     },
     {
       "id": "t03",
@@ -109,7 +216,7 @@
       "tema": "digitalizacion",
       "descripcion": "Los editores venden cada vez más por canales propios, como tiendas web, y las tiendas compiten por estar en el hardware del rival. El objetivo es recuperar margen y relación directa con el jugador.",
       "promedio_actual": "Según la encuesta global de Bain (más de 5.300 jugadores), casi la mitad compró en tiendas web de desarrolladores. Newzoo, vía PocketGamer.biz, señala que la venta directa gana peso entre los grandes editores. Epic lleva su lanzador, en vista previa, a SteamOS y Steam Deck (n07).",
-      "hacia_donde_va": "Si madura, la comisión de las plataformas deja de ser un costo fijo: el editor captura margen y datos del jugador, y el hardware abierto como SteamOS se vuelve terreno de varias tiendas. En Latinoamérica, Bain marca como desafíos las comisiones y los medios de pago locales.",
+      "hacia_donde_va": "Si madura, la comisión de las plataformas deja de ser un costo fijo: el editor captura margen y datos del jugador, y el hardware abierto se vuelve terreno de varias tiendas. Xbox promete que Project Helix será una consola capaz de jugar juegos de la PC (n06, 2026-11-18), sin detalles concretos. En Latinoamérica, Bain marca como desafíos las comisiones y los medios de pago locales.",
       "horizonte": "corto",
       "fase_curva": "pendiente",
       "adopcion": 5,
@@ -119,10 +226,23 @@
       "brecha_latam": null,
       "justificacion_brecha": "Global 2: la compra directa ya alcanza a casi la mitad de los jugadores encuestados por Bain y Newzoo la ve ganar peso. Adopción 5 por esa cifra; impacto 6 por el efecto en margen. Epic en SteamOS sigue en vista previa (n07). Sin base para Latam: Bain no separa cifras por región y su lectura regional es interpretación, no dato.",
       "posicion_industria": "en_linea",
-      "argumento_posicion": "Los grandes editores ya empujan la venta directa (Newzoo, vía PocketGamer.biz) y los jugadores responden (Bain), pero las tiendas de terceros siguen controlando el hardware: Fortnite no llega a SteamOS por el antitrampas (n07).",
+      "argumento_posicion": "Los grandes editores ya empujan la venta directa (Newzoo, vía PocketGamer.biz) y los jugadores responden (Bain), pero las tiendas de terceros siguen controlando el hardware: Fortnite no llega a SteamOS por el antitrampas (n07, 2026-11-11) y la apertura de Helix es por ahora una promesa (n06, 2026-11-18).",
       "proveedores": [
-        {"nombre": "Epic Games", "rol": "Lanzador para Linux en vista previa con soporte oficial de SteamOS y Steam Deck.", "fuente_id": "n07"},
-        {"nombre": "Valve", "rol": "Dueño de SteamOS y Steam Deck; Epic conversa con Valve sobre el soporte de su antitrampas.", "fuente_id": "n07"}
+        {
+          "nombre": "Epic Games",
+          "rol": "Lanzador para Linux en vista previa con soporte oficial de SteamOS y Steam Deck.",
+          "fuente_id": "n07"
+        },
+        {
+          "nombre": "Valve",
+          "rol": "Dueño de SteamOS y Steam Deck; Epic conversa con Valve sobre el soporte de su antitrampas.",
+          "fuente_id": "n07"
+        },
+        {
+          "nombre": "Microsoft (Xbox, Project Helix)",
+          "rol": "Próxima consola presentada como capaz de jugar juegos de PC; kits de desarrollo en 2027 (edición 2026-11-18).",
+          "fuente_id": "n06"
+        }
       ],
       "inversion_requerida": "media",
       "justificacion_inversion": "Una tienda web propia exige pasarela de pagos, soporte y marketing directo; en Latinoamérica, Bain marca los medios de pago locales como desafío. Valoración editorial: ninguna fuente da montos.",
@@ -137,25 +257,42 @@
       "implicancias": {
         "indie": "La venta directa exige audiencia propia; lo inmediato es diversificar tiendas, ya que el hardware abierto (SteamOS) empieza a admitir otras además de Steam (n07).",
         "publisher_aaa": "La venta directa recupera margen y datos: Newzoo la ve ganar peso entre los grandes editores y casi la mitad de los jugadores ya compró así (Bain).",
-        "plataforma_distribuidor": "La comisión queda en discusión y el hardware propio deja de ser exclusivo de una tienda: Epic entra en SteamOS.",
+        "plataforma_distribuidor": "La comisión queda en discusión y el hardware propio deja de ser exclusivo de una tienda: Epic entra en SteamOS y Xbox promete que Helix jugará la biblioteca de PC.",
         "latam": "Bain señala comisiones y medios de pago locales como desafíos en la región; no hay cifras regionales de venta directa."
       },
       "decision_sugerida": "Evaluar un canal de venta directa (tienda web o lanzador propio) con medios de pago locales, empezando por los mercados con más jugadores que pagan.",
       "urgencia": "preparar",
       "certeza": "media",
       "evidencia": [
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n07"},
-        {"tipo": "referencia", "edicion": null, "id": "bain_latam_2026"},
-        {"tipo": "referencia", "edicion": null, "id": "pocketgamer_newzoo"}
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n07"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "bain_latam_2026"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "pocketgamer_newzoo"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-18",
+          "id": "n06"
+        }
       ],
-      "ultima_actualizacion": "2026-11-11"
+      "ultima_actualizacion": "2026-11-18"
     },
     {
       "id": "t04",
       "nombre": "Ports y clones no autorizados hechos con IA",
       "tema": "ia_clonacion_pirateria",
       "descripcion": "Herramientas de IA para ingeniería inversa podrían abaratar versiones no autorizadas de un juego, por ejemplo un port de PC de un título de consola. Los editores responden con defensas técnicas y acciones legales.",
-      "promedio_actual": "Riesgo reconocido pero sin caso concreto con GTA VI: Take-Two dice reforzar sus defensas técnicas y legales y lo llama un problema creativo más que financiero (n09). Un exdirector técnico de Rockstar estima que intentarlo costaría decenas de miles de dólares en tokens de IA (n08). En Latinoamérica, la piratería de software de juegos promedió 58% según la BSA, cifra de segunda mano y sin año (webinar de la Universidad Externado).",
+      "promedio_actual": "Riesgo reconocido pero sin caso concreto con GTA VI: Take-Two dice reforzar sus defensas técnicas y legales y lo llama un problema creativo más que financiero (n09, 2026-11-11). Un exdirector técnico de Rockstar estima que intentarlo costaría decenas de miles de dólares en tokens de IA (n08, 2026-11-11). Algunos proveedores de IA ya restringen el trabajo con PI ajena: Claude se negó a seguir un juego de fans de Pokémon hecho con IA (n07, 2026-11-18). En Latinoamérica, la piratería de software de juegos promedió 58% según la BSA, cifra de segunda mano y sin año (webinar de la Universidad Externado).",
       "hacia_donde_va": "Si la conversión asistida por IA se abarata, la exclusividad temporal de consola deja de ser una barrera técnica: el editor tendría que acortar la distancia entre las versiones de consola y PC (n08) y sumar costos legales permanentes.",
       "horizonte": "corto",
       "fase_curva": "pico",
@@ -164,42 +301,66 @@
       "cuadrante": "interrogante",
       "brecha_global": 4,
       "brecha_latam": null,
-      "justificacion_brecha": "Global 4: el editor reconoce la amenaza (n09) pero el escenario no ocurrió (n08 es especulativa) y las defensas se describen como trabajo en curso. Certeza baja: la brecha se mide sobre un escenario especulativo, todavía no ocurrido. Sin base para Latam: la cifra de piratería regional es de segunda mano, sin año, y no mide clonación con IA.",
+      "justificacion_brecha": "Global 4: el editor reconoce la amenaza (n09, 2026-11-11) pero el escenario de GTA VI no ocurrió (n08 es especulativa); la restricción de un proveedor de IA (n07, 2026-11-18) es reciente y no cubre otras herramientas. Certeza baja: la brecha se mide sobre un escenario especulativo, todavía no ocurrido. Sin base para Latam: la cifra de piratería regional es de segunda mano, sin año, y no mide clonación con IA.",
       "posicion_industria": "atrasada",
       "argumento_posicion": "Las defensas van detrás de la amenaza: Take-Two describe sus defensas técnicas y legales como algo que está reforzando (n09) y no hay fecha oficial para la versión de PC de GTA VI, que es la ventana que la IA podría aprovechar (n08).",
-      "proveedores": [],
+      "proveedores": [
+        {
+          "nombre": "Anthropic (Claude)",
+          "rol": "Proveedor de IA que restringió a su herramienta para no trabajar con propiedad intelectual ajena (edición 2026-11-18).",
+          "fuente_id": "n07"
+        }
+      ],
       "inversion_requerida": "media",
       "justificacion_inversion": "Supone defensa técnica y legal continua; Take-Two la considera manejable (n09). Valoración editorial: ninguna fuente da montos de defensa.",
       "kpis": [
         "Días entre el lanzamiento en consola y la aparición de versiones no autorizadas",
         "Avisos de retiro enviados y resueltos",
         "Meses entre la versión de consola y la de PC",
-        "Costo legal anual de protección de PI"
+        "Costo legal anual de protección de PI",
+        "Proyectos no autorizados con PI propia detectados por mes"
       ],
       "justificacion_kpis": "Siguen las dos palancas que plantean las fuentes: la ventana consola-PC (n08) y la defensa técnica y legal (n09).",
       "implicancias": {
-        "indie": "La evidencia se centra en un AAA; para un estudio chico el riesgo es el mismo con menos recursos para defenderse, así que conviene tener lista la vía de reclamo de PI.",
+        "indie": "Para un estudio chico el riesgo es el mismo que para un AAA con menos recursos para defenderse; los juegos de fans hechos con IA sobre PI ajena ya circulan (n07, 2026-11-18), así que conviene tener lista la vía de reclamo.",
         "publisher_aaa": "La ventana de exclusividad de consola pasa a ser un riesgo comercial: cuanto más larga, más espacio para una versión no autorizada (n08).",
-        "plataforma_distribuidor": "Sin impacto directo medido en la evidencia; si el riesgo se concreta, las plataformas serían el punto donde se ejecutan los retiros.",
+        "plataforma_distribuidor": "Los proveedores de IA empiezan a filtrar el uso de PI ajena (n07, 2026-11-18); las tiendas siguen siendo el punto donde se ejecutan los retiros.",
         "latam": "La región ya convive con piratería alta (58% según la BSA, de segunda mano y sin año); la clonación con IA no tiene datos regionales."
       },
       "decision_sugerida": "Para títulos grandes, revisar la distancia entre la versión de consola y la de PC y dejar listo un protocolo técnico y legal de retiro antes del lanzamiento.",
       "urgencia": "preparar",
       "certeza": "baja",
       "evidencia": [
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n08"},
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n09"},
-        {"tipo": "referencia", "edicion": null, "id": "uexternado_pirateria"}
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n08"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n09"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "uexternado_pirateria"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-18",
+          "id": "n07"
+        }
       ],
-      "ultima_actualizacion": "2026-11-11"
+      "ultima_actualizacion": "2026-11-18"
     },
     {
       "id": "t05",
       "nombre": "IA generativa en la producción: adopción con rechazo",
       "tema": "ia_desarrollo",
       "descripcion": "Uso de IA generativa para crear código, arte o contenido de juegos. Crece en volumen, pero choca con el rechazo de parte de la comunidad y congestiona la curaduría de las tiendas.",
-      "promedio_actual": "Al menos 7% de los juegos publicados en Steam declara algún uso de IA para crear contenido, frente a 1% el año anterior, según un reporte de Ichiro Lambe citado por Ternar et al. Los jurados del IGF notan un aumento fuerte de postulaciones con IA y parte se niega a votarlas (n10). Valve demora la revisión hasta 12 días hábiles por más envíos, sin atribuirlo a la IA (n11).",
-      "hacia_donde_va": "La IA acelera la ideación y el prototipado, pero sus resultados exigen retrabajo y supervisión antes de producción (Ternar et al.). El cuello de botella pasa de producir el juego a lograr que lo publiquen y lo acepten (n10, n11). Unity ya ofrece una herramienta para crear juegos a partir de texto (n13).",
+      "promedio_actual": "Según GDC, vía Game Developer, 40% de los profesionales usa IA generativa en el trabajo, sobre todo para investigar e idear (73% de los usuarios); solo una minoría la usa para contenido que ve el jugador (n09, 2026-11-18). Al menos 7% de los juegos publicados en Steam declara algún uso de IA, según un reporte de Ichiro Lambe citado por Ternar et al. Los jurados del IGF notan más postulaciones con IA y parte se niega a votarlas (n10, 2026-11-11).",
+      "hacia_donde_va": "La IA acelera la ideación y el prototipado, pero exige retrabajo y supervisión (Ternar et al.). El cuello de botella pasa a la aceptación: curaduría saturada (n11, 2026-11-11), rechazo sindical organizado en Europa (n10, 2026-11-18) y usos con consentimiento y pago como modelo aceptable para voces (n11, 2026-11-18). Unity ofrece crear juegos a partir de texto (n13, 2026-11-11).",
       "horizonte": "corto",
       "fase_curva": "abismo",
       "adopcion": 5,
@@ -207,12 +368,25 @@
       "cuadrante": "estrella",
       "brecha_global": 3,
       "brecha_latam": null,
-      "justificacion_brecha": "Global 3: el uso ya es visible (7% de los lanzamientos en Steam; más postulaciones con IA en el IGF) pero sin consenso de aceptación ni norma de declaración (Steam no la pide, n10). Fase abismo por el rechazo explícito de jurados. Sin base para Latam: la encuesta de Bain sobre comodidad con la IA es global y los estudios revisados por Ternar et al. no cubren la región.",
+      "justificacion_brecha": "Global 3: el uso interno ya es amplio (40% según GDC, n09 de 2026-11-18; 7% de los lanzamientos en Steam), pero sin consenso de aceptación: 55% de los profesionales ve un impacto negativo, según GDC (n10 de 2026-11-18), y Steam no pide declarar el uso (n10 de 2026-11-11). Fase abismo por el rechazo de jurados y sindicatos. Sin base para Latam: la encuesta de GDC y la de Bain no separan resultados de la región.",
       "posicion_industria": "atrasada",
-      "argumento_posicion": "Las reglas van detrás del uso: Steam no pide declarar la IA (n10), la curaduría se satura (n11) y cada premio fija su criterio. Del lado del público, Bain mide que 42% de los jugadores se siente más cómodo con la IA en los juegos que hace un año.",
+      "argumento_posicion": "Las reglas van detrás del uso: Steam no pide declarar la IA (n10, 2026-11-11), la curaduría se satura (n11, 2026-11-11) y los sindicatos europeos piden frenarla (n10, 2026-11-18) mientras 40% de los profesionales ya la usa (n09, 2026-11-18).",
       "proveedores": [
-        {"nombre": "Unity", "rol": "Motor que se reorienta a la IA, con una herramienta para crear juegos a partir de instrucciones de texto.", "fuente_id": "n13"},
-        {"nombre": "Valve (Steam)", "rol": "Tienda que recibe el aumento de envíos y cambia su proceso para que los juegos aprueben en el primer intento.", "fuente_id": "n11"}
+        {
+          "nombre": "Unity",
+          "rol": "Motor que se reorienta a la IA, con una herramienta para crear juegos a partir de instrucciones de texto.",
+          "fuente_id": "n13"
+        },
+        {
+          "nombre": "Valve (Steam)",
+          "rol": "Tienda que recibe el aumento de envíos y cambia su proceso para que los juegos aprueben en el primer intento.",
+          "fuente_id": "n11"
+        },
+        {
+          "nombre": "Respeecher",
+          "rol": "Generador de voz con IA que CD Projekt Red usa, con consentimiento del actor, en la expansión de The Witcher 3 (edición 2026-11-18).",
+          "fuente_id": "n11"
+        }
       ],
       "inversion_requerida": "baja",
       "justificacion_inversion": "Las herramientas están disponibles; el costo real está en retrabajo, supervisión y riesgo de autoría (Ternar et al.), más el riesgo reputacional (n10). Valoración editorial: ninguna fuente da montos.",
@@ -221,33 +395,69 @@
         "Porcentaje de contenido final hecho con IA (declarado)",
         "Días de aprobación en tiendas",
         "Menciones y reseñas sobre el uso de IA en el juego",
-        "Reclamos de autoría o de PI recibidos"
+        "Reclamos de autoría o de PI recibidos",
+        "Usos de IA cubiertos por consentimiento escrito del talento"
       ],
       "justificacion_kpis": "Miden el balance que describen las fuentes: velocidad contra retrabajo (Ternar et al.), demora de publicación (n11) y costo reputacional (n10).",
       "implicancias": {
         "indie": "Usar IA, aun en forma mínima, ya es un riesgo reputacional en festivales y comunidades: House House estimó muy por debajo de 0,1% de código ligado a LLM y quedó en el centro del debate (n10).",
-        "publisher_aaa": "La IA acelera prototipos, pero el ahorro no es automático por el retrabajo; conviene tener una política de declaración antes de que la exijan tiendas o premios.",
+        "publisher_aaa": "El uso aceptado hoy es interno (ideación, análisis, código); para voces o arte de personas, el caso Witcher muestra un modelo con consentimiento y pago. Conviene negociar la política de IA con los equipos antes de que la exijan tiendas, premios o sindicatos.",
         "plataforma_distribuidor": "Más envíos saturan la curaduría (Steam pasó de 3-5 días a hasta 12 días hábiles); la tienda debe decidir si exige declarar el uso de IA.",
         "latam": "Sin base regional en la evidencia de esta tendencia."
       },
-      "decision_sugerida": "Definir por escrito dónde y cuánto se usa IA y cómo se declara, y sumar días de aprobación en Steam al calendario de lanzamiento.",
+      "decision_sugerida": "Definir por escrito dónde y cuánto se usa IA (prioridad a tareas internas), exigir consentimiento y pago cuando toque voces o arte de personas, y sumar días de aprobación en Steam al calendario.",
       "urgencia": "ahora",
       "certeza": "media",
       "evidencia": [
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n10"},
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n11"},
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n13"},
-        {"tipo": "referencia", "edicion": null, "id": "arxiv_genai_qualitative"},
-        {"tipo": "referencia", "edicion": null, "id": "bain_latam_2026"}
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n10"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n11"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n13"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "arxiv_genai_qualitative"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "bain_latam_2026"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-18",
+          "id": "n09"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-18",
+          "id": "n10"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-18",
+          "id": "n11"
+        }
       ],
-      "ultima_actualizacion": "2026-11-11"
+      "ultima_actualizacion": "2026-11-18"
     },
     {
       "id": "t06",
       "nombre": "Motores generativos y modelos de mundo",
       "tema": "ia_desarrollo",
       "descripcion": "Sistemas de IA que generan mundos de juego, su física y su lógica en tiempo real, en lugar de armarlos a mano en un motor tradicional. Hoy es agenda de investigación y prototipos.",
-      "promedio_actual": "Nicho de investigación: un relevamiento encuentra 53 juegos y prototipos nativos de IA públicos, 45,3% de ellos aventuras narrativas (Xu et al.). Naavik ve el uso más cercano en preproducción y prototipado, y estima más de US$10.000 millones invertidos en modelos de mundo en 18 meses, sin detallar la fuente. Igor's Lab sostiene que los mundos generados hoy solo mantienen coherencia de corto plazo y no reemplazan reglas ni estados persistentes.",
+      "promedio_actual": "Nicho de investigación: un relevamiento encuentra 53 juegos y prototipos nativos de IA públicos, 45,3% de ellos aventuras narrativas (Xu et al.). Naavik ve el uso más cercano en preproducción y prototipado, y estima más de US$10.000 millones invertidos en modelos de mundo en 18 meses, sin detallar la fuente. Igor's Lab sostiene que los mundos generados hoy solo mantienen coherencia de corto plazo y no reemplazan reglas ni estados persistentes. Will Wright anunció MyMems, una simulación que genera personajes y zonas a partir de recuerdos del jugador, para el año próximo (n12, 2026-11-18).",
       "hacia_donde_va": "Si madura, el motor pasa a generar mundos bajo control del diseñador. Yu et al. ubican mundos interactivos con física coherente a 3-5 años y mundos que evolucionan solos a 10-15 años, como pronóstico preliminar y condicional.",
       "horizonte": "largo",
       "fase_curva": "disparador",
@@ -256,12 +466,25 @@
       "cuadrante": "interrogante",
       "brecha_global": 5,
       "brecha_latam": null,
-      "justificacion_brecha": "Global 5. Certeza baja: la brecha se mide contra un escenario especulativo; los propios autores ubican el primer nivel generativo a 3-5 años sin garantía (Yu et al.) y Naavik ve las experiencias de consumo muy lejos por el costo de inferencia. Igor's Lab describe el paso a juegos completos como una reestructuración larga, sin plazo. Adopción 1: solo 53 artefactos públicos (Xu et al.). Sin base para Latam.",
+      "justificacion_brecha": "Global 5. Certeza baja: la brecha se mide contra un escenario especulativo; los propios autores ubican el primer nivel generativo a 3-5 años sin garantía (Yu et al.) y Naavik ve las experiencias de consumo muy lejos por el costo de inferencia. Igor's Lab describe el paso a juegos completos como una reestructuración larga, sin plazo. Adopción 1: solo 53 artefactos públicos (Xu et al.). Sin base para Latam. MyMems (n12, 2026-11-18) es un anuncio, no un producto lanzado.",
       "posicion_industria": "adelantada",
       "argumento_posicion": "El capital va por delante del producto: Naavik estima más de US$10.000 millones invertidos en modelos de mundo, mientras las experiencias de consumo siguen lejos por el costo de inferencia y con dudas sobre la demanda. Igor's Lab advierte que inversores y plataformas sacan conclusiones prematuras sobre estos sistemas.",
       "proveedores": [
-        {"nombre": "Genie 3", "rol": "Modelo de mundo citado por Naavik; costo estimado de unos US$100 por hora, sin fuente nombrada.", "fuente_id": "naavik_world_models"},
-        {"nombre": "Google DeepMind", "rol": "Investiga modelos de mundo (Genie 3, Project Genie); Igor's Lab lo cita como ejemplo.", "fuente_id": "igorslab_ai_worlds"}
+        {
+          "nombre": "Genie 3",
+          "rol": "Modelo de mundo citado por Naavik; costo estimado de unos US$100 por hora, sin fuente nombrada.",
+          "fuente_id": "naavik_world_models"
+        },
+        {
+          "nombre": "Google DeepMind",
+          "rol": "Investiga modelos de mundo (Genie 3, Project Genie); Igor's Lab lo cita como ejemplo.",
+          "fuente_id": "igorslab_ai_worlds"
+        },
+        {
+          "nombre": "Artificial Agency",
+          "rol": "Socio tecnológico de Gallium Studios en MyMems, simulación de Will Wright con IA generativa (edición 2026-11-18).",
+          "fuente_id": "n12"
+        }
       ],
       "inversion_requerida": "alta",
       "justificacion_inversion": "Desarrollar o adoptar estas tecnologías exige investigación y cómputo caros (costo de inferencia, según Naavik y Xu et al.); para la mayoría, lo viable es experimentar en prototipado. Valoración editorial.",
@@ -273,7 +496,7 @@
       ],
       "justificacion_kpis": "Son los cuellos de botella que nombran las fuentes: costo de inferencia (Naavik, Xu et al.), memoria, consistencia y control (Yu et al.) y el valor de los datos propios (Naavik).",
       "implicancias": {
-        "indie": "Experimental: puede servir para prototipar, pero los juegos nativos de IA son sobre todo aventuras narrativas; estrategia y simulación casi no aparecen (Xu et al.). Igor's Lab ve la IA como un amplificador que baja la barrera de entrada para probar ideas con equipos chicos.",
+        "indie": "Experimental: puede servir para prototipar, pero los juegos nativos de IA son sobre todo aventuras narrativas; estrategia y simulación casi no aparecen (Xu et al.). Igor's Lab ve la IA como un amplificador que baja la barrera de entrada para probar ideas con equipos chicos. MyMems muestra un camino de diseño centrado en contenido generado a partir del jugador.",
         "publisher_aaa": "Horizonte largo: vale explorar en preproducción y cuidar los datos de juego propios, que Naavik ve como el activo de valor; no reemplaza al motor en este ciclo. Recortar equipos creativos apostando a mundos generados sería, según Igor's Lab, un error estratégico.",
         "plataforma_distribuidor": "Sin impacto relevante en este horizonte: la evidencia no trata la distribución.",
         "latam": "Sin base regional en la evidencia."
@@ -282,12 +505,33 @@
       "urgencia": "vigilar",
       "certeza": "baja",
       "evidencia": [
-        {"tipo": "referencia", "edicion": null, "id": "arxiv_gge_roadmap"},
-        {"tipo": "referencia", "edicion": null, "id": "arxiv_ai_native_games"},
-        {"tipo": "referencia", "edicion": null, "id": "naavik_world_models"},
-        {"tipo": "referencia", "edicion": null, "id": "igorslab_ai_worlds"}
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "arxiv_gge_roadmap"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "arxiv_ai_native_games"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "naavik_world_models"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "igorslab_ai_worlds"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-18",
+          "id": "n12"
+        }
       ],
-      "ultima_actualizacion": "2026-11-13"
+      "ultima_actualizacion": "2026-11-18"
     },
     {
       "id": "t07",
@@ -307,8 +551,16 @@
       "posicion_industria": "atrasada",
       "argumento_posicion": "La práctica va detrás del uso de la IA: documentar la autoría es una recomendación de bufetes, no un estándar, y no hay jurisprudencia citada (Nelson Mullins); para Latinoamérica la referencia disponible es de 2023 (LexLatin).",
       "proveedores": [
-        {"nombre": "Nelson Mullins", "rol": "Bufete autor del análisis sobre derecho de autor y contenido generado con IA en EE. UU.", "fuente_id": "nelsonmullins_ai_copyright"},
-        {"nombre": "Demarest", "rol": "Bufete cuyas abogadas analizan para LexLatin los riesgos de PI en Brasil.", "fuente_id": "lexlatin_regulacion"}
+        {
+          "nombre": "Nelson Mullins",
+          "rol": "Bufete autor del análisis sobre derecho de autor y contenido generado con IA en EE. UU.",
+          "fuente_id": "nelsonmullins_ai_copyright"
+        },
+        {
+          "nombre": "Demarest",
+          "rol": "Bufete cuyas abogadas analizan para LexLatin los riesgos de PI en Brasil.",
+          "fuente_id": "lexlatin_regulacion"
+        }
       ],
       "inversion_requerida": "baja",
       "justificacion_inversion": "Registrar PI y documentar el proceso creativo es un costo administrativo y legal acotado frente al riesgo de perder protección. Valoración editorial: las fuentes no dan montos.",
@@ -329,8 +581,16 @@
       "urgencia": "preparar",
       "certeza": "media",
       "evidencia": [
-        {"tipo": "referencia", "edicion": null, "id": "nelsonmullins_ai_copyright"},
-        {"tipo": "referencia", "edicion": null, "id": "lexlatin_regulacion"}
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "nelsonmullins_ai_copyright"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "lexlatin_regulacion"
+        }
       ],
       "ultima_actualizacion": "2026-11-11"
     },
@@ -352,8 +612,16 @@
       "posicion_industria": "en_linea",
       "argumento_posicion": "Los grandes responden a tiempo: Nintendo declara suministro asegurado (n14) y Sony cerró un acuerdo con TSMC (n15). El punto débil es la cadena del cartucho, cuyo principal proveedor se retira (n06).",
       "proveedores": [
-        {"nombre": "TSMC", "rol": "Acuerdo con Sony para reducir riesgos de suministro.", "fuente_id": "n15"},
-        {"nombre": "Macronix", "rol": "Fabricante de ROM para cartuchos que se retira; su producción de ROM cayó 39% en un año.", "fuente_id": "n06"}
+        {
+          "nombre": "TSMC",
+          "rol": "Acuerdo con Sony para reducir riesgos de suministro.",
+          "fuente_id": "n15"
+        },
+        {
+          "nombre": "Macronix",
+          "rol": "Fabricante de ROM para cartuchos que se retira; su producción de ROM cayó 39% en un año.",
+          "fuente_id": "n06"
+        }
       ],
       "inversion_requerida": "media",
       "justificacion_inversion": "Asegurar suministro exige contratos anticipados o pagar más por componentes; para quien no fabrica hardware, el efecto llega por el precio de consolas y cartuchos. Valoración editorial: las fuentes no dan montos.",
@@ -374,9 +642,21 @@
       "urgencia": "preparar",
       "certeza": "media",
       "evidencia": [
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n14"},
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n15"},
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n06"}
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n14"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n15"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n06"
+        }
       ],
       "ultima_actualizacion": "2026-11-11"
     },
@@ -398,7 +678,11 @@
       "posicion_industria": "atrasada",
       "argumento_posicion": "La infraestructura comercial va detrás de la audiencia: varias firmas cuentan cientos de millones de jugadores, pero medios de pago, comisiones (Bain) y conectividad (GSMA) frenan la monetización; Newzoo ve a la región crecer rápido con una porción chica de los ingresos.",
       "proveedores": [
-        {"nombre": "Xsolla", "rol": "Patrocina el informe de GamesBeat sobre la región y se promociona en él.", "fuente_id": "xsolla_latam_2026"}
+        {
+          "nombre": "Xsolla",
+          "rol": "Patrocina el informe de GamesBeat sobre la región y se promociona en él.",
+          "fuente_id": "xsolla_latam_2026"
+        }
       ],
       "inversion_requerida": "media",
       "justificacion_inversion": "Localización por país, medios de pago locales y presencia en eventos regionales, repetidos por país porque la región no es un bloque (GamesBeat/Xsolla). Valoración editorial: las fuentes no dan montos.",
@@ -420,12 +704,36 @@
       "urgencia": "preparar",
       "certeza": "media",
       "evidencia": [
-        {"tipo": "referencia", "edicion": null, "id": "xsolla_latam_2026"},
-        {"tipo": "referencia", "edicion": null, "id": "gamedevreports_newzoo_2026"},
-        {"tipo": "referencia", "edicion": null, "id": "larepublica_nielseniq"},
-        {"tipo": "referencia", "edicion": null, "id": "eleconomista_latam"},
-        {"tipo": "referencia", "edicion": null, "id": "eyn_latam_2025"},
-        {"tipo": "referencia", "edicion": null, "id": "bain_latam_2026"}
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "xsolla_latam_2026"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "gamedevreports_newzoo_2026"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "larepublica_nielseniq"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "eleconomista_latam"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "eyn_latam_2025"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "bain_latam_2026"
+        }
       ],
       "ultima_actualizacion": "2026-11-11"
     },
@@ -466,10 +774,26 @@
       "urgencia": "vigilar",
       "certeza": "media",
       "evidencia": [
-        {"tipo": "referencia", "edicion": null, "id": "gamesbeat_newzoo_2026"},
-        {"tipo": "referencia", "edicion": null, "id": "pocketgamer_newzoo"},
-        {"tipo": "referencia", "edicion": null, "id": "gamedevreports_newzoo_2026"},
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n12"}
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "gamesbeat_newzoo_2026"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "pocketgamer_newzoo"
+        },
+        {
+          "tipo": "referencia",
+          "edicion": null,
+          "id": "gamedevreports_newzoo_2026"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n12"
+        }
       ],
       "ultima_actualizacion": "2026-11-11"
     },
@@ -478,7 +802,7 @@
       "nombre": "Concentración de capital en herramientas de desarrollo",
       "tema": "mercado",
       "descripcion": "Grandes fondos compran empresas que proveen herramientas centrales del desarrollo de juegos. Puede cambiar condiciones de uso y precios para los estudios.",
-      "promedio_actual": "Según Reuters, citada por Game Developer, Silver Lake y el fondo soberano de Arabia Saudita (PIF) conversan con Unity sobre una posible compra, similar a la que hicieron con Electronic Arts; Silver Lake ya posee 8% de Unity. Es una negociación reportada, no un hecho.",
+      "promedio_actual": "Según Reuters, citada por Game Developer, Silver Lake y el PIF saudita conversan con Unity sobre una posible compra (n13, 2026-11-11). Unity no lo confirma: su vicepresidente de producto dice que la especulación es habitual tras un buen trimestre (n15, 2026-11-18). Unity facturó 622 millones de dólares (32% más interanual), impulsada por publicidad (43%) más que por el motor (8%).",
       "hacia_donde_va": "Si ocurre, el mismo grupo controlaría a un gran editor y al motor que, según Unity, se usa en más de la mitad de los juegos móviles: más poder sobre condiciones y precios de una herramienta crítica.",
       "horizonte": "mediano",
       "fase_curva": "meseta",
@@ -487,12 +811,20 @@
       "cuadrante": "interrogante",
       "brecha_global": 2,
       "brecha_latam": null,
-      "justificacion_brecha": "Global 2: según la nota, el mismo grupo ya compró EA; sumar Unity sería continuidad más que un cambio de adopción. Certeza baja: la compra es una negociación reportada, no un hecho ocurrido, y hay una sola fuente. Sin base para Latam.",
+      "justificacion_brecha": "Global 2: el mismo grupo ya compró EA, así que sumar Unity sería continuidad. Certeza baja: la compra es una negociación reportada, no un hecho ocurrido; Unity no la confirma ni la descarta (n15, 2026-11-18). Sin base para Latam.",
       "posicion_industria": "en_linea",
-      "argumento_posicion": "Sin base para hablar de atraso o adelanto: la negociación sigue un antecedente reciente (EA) según la única fuente disponible.",
+      "argumento_posicion": "Sin base para hablar de atraso o adelanto: la negociación sigue un antecedente reciente (EA) y el atractivo de Unity está en su negocio de publicidad (n15, 2026-11-18).",
       "proveedores": [
-        {"nombre": "Unity", "rol": "Motor usado en más de la mitad de los juegos móviles, según la empresa; objeto de la posible compra.", "fuente_id": "n13"},
-        {"nombre": "Silver Lake y PIF", "rol": "Consorcio que negocia la compra mediante una adquisición apalancada, como la que hicieron con Electronic Arts.", "fuente_id": "n13"}
+        {
+          "nombre": "Unity",
+          "rol": "Motor usado en más de la mitad de los juegos móviles, según la empresa; objeto de la posible compra.",
+          "fuente_id": "n13"
+        },
+        {
+          "nombre": "Silver Lake y PIF",
+          "rol": "Consorcio que negocia la compra mediante una adquisición apalancada, como la que hicieron con Electronic Arts.",
+          "fuente_id": "n13"
+        }
       ],
       "inversion_requerida": "sin_dato",
       "justificacion_inversion": "No hay una inversión del lado de los estudios; el costo posible es de dependencia (cambios de condiciones), que ninguna fuente cuantifica.",
@@ -503,7 +835,7 @@
       ],
       "justificacion_kpis": "Miden la exposición a un cambio de condiciones del proveedor, el riesgo que plantea la lectura de negocio de n13.",
       "implicancias": {
-        "indie": "Muchos estudios móviles dependen de Unity; un cambio de dueño podría traer cambios de condiciones, hoy no anunciados.",
+        "indie": "Muchos estudios móviles dependen de Unity; el motor crece menos que la publicidad (n15), y un cambio de dueño podría traer cambios de condiciones, hoy no anunciados.",
         "publisher_aaa": "Sin impacto relevante inmediato; conviene seguir la operación si se usa Unity en proyectos propios.",
         "plataforma_distribuidor": "Sin impacto relevante en la evidencia.",
         "latam": "Sin base regional en la evidencia."
@@ -512,9 +844,68 @@
       "urgencia": "vigilar",
       "certeza": "baja",
       "evidencia": [
-        {"tipo": "noticia", "edicion": "2026-11-11", "id": "n13"}
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-11",
+          "id": "n13"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-18",
+          "id": "n15"
+        }
       ],
-      "ultima_actualizacion": "2026-11-11"
+      "ultima_actualizacion": "2026-11-18"
+    },
+    {
+      "id": "t12",
+      "nombre": "Regulación de la monetización para menores",
+      "tema": "regulacion_pi",
+      "descripcion": "Leyes que restringen cajas de botín, monedas virtuales y pago para progresar cuando juegan menores. Obligan a cambiar el diseño de la monetización por edad y por región.",
+      "promedio_actual": "La monetización con cajas de botín y monedas virtuales sigue sin reglas comunes en la UE: la Comisión Europea acaba de proponer la Ley de Equidad Digital, que reemplazaría normas nacionales y debe negociarse (n13, n14, 2026-11-18).",
+      "hacia_donde_va": "Si se aprueba, en la UE no se podrán vender cajas de botín a menores, las monedas virtuales mostrarán su valor en dinero real y vendrán desactivadas para menores salvo aprobación adulta, y habrá que poder apagar rachas y notificaciones (n13). Según James Tamim, en PocketGamer.biz, una regla única daría más certeza jurídica (n14).",
+      "horizonte": "mediano",
+      "fase_curva": "disparador",
+      "adopcion": 2,
+      "impacto": 8,
+      "cuadrante": "interrogante",
+      "brecha_global": 4,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 4: la práctica actual de los juegos gratuitos está lejos de las exigencias propuestas y la norma todavía no está aprobada (n13, n14 de 2026-11-18). Sin base para Latam: las dos notas tratan solo la UE.",
+      "posicion_industria": "atrasada",
+      "argumento_posicion": "La regulación avanza sobre prácticas que la industria no autorreguló: Oscar Clark, en PocketGamer.biz, atribuye la propuesta a fallas propias para controlar a los malos actores (n14), y Game Developer marca definiciones ambiguas que la industria todavía no sabe cómo aplicar (n13).",
+      "proveedores": [],
+      "inversion_requerida": "media",
+      "justificacion_inversion": "Adaptar la monetización implica rediseño, verificación de edad o aprobación parental y, según Game Developer, mantener y balancear versiones por región (n13). Valoración editorial: las fuentes no dan montos.",
+      "kpis": [
+        "Porcentaje de ingresos de la UE que vienen de cajas de botín o monedas virtuales",
+        "Porcentaje de jugadores menores con edad verificada",
+        "Ingresos por usuario en la UE antes y después de adaptar la monetización",
+        "Cantidad de versiones regionales del sistema de monetización"
+      ],
+      "justificacion_kpis": "Miden la exposición y el costo que describen las fuentes: las mecánicas alcanzadas, la separación por edad y el trabajo de versiones por región (n13, n14).",
+      "implicancias": {
+        "indie": "Según Oscar Clark (n14), el mayor impacto caerá sobre los equipos chicos; un juego premium sin cajas de botín queda menos expuesto.",
+        "publisher_aaa": "Los juegos con monetización por cajas o monedas virtuales y público mixto deberán separar la experiencia por edad o por región, con costo de balanceo en el competitivo (n13).",
+        "plataforma_distribuidor": "Las tiendas y plataformas pueden quedar a cargo de verificar edad y mostrar el valor real de las monedas virtuales; las notas no lo detallan.",
+        "latam": "Sin base regional en la evidencia de la tendencia."
+      },
+      "decision_sugerida": "Inventariar las mecánicas de monetización alcanzadas (cajas, monedas virtuales, pago para progresar, rachas) en los juegos con público menor en la UE y estimar el costo de adaptarlas antes de que la norma se apruebe.",
+      "urgencia": "preparar",
+      "certeza": "media",
+      "evidencia": [
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-18",
+          "id": "n13"
+        },
+        {
+          "tipo": "noticia",
+          "edicion": "2026-11-18",
+          "id": "n14"
+        }
+      ],
+      "ultima_actualizacion": "2026-11-18"
     }
   ]
 }

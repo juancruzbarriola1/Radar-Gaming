@@ -1,0 +1,795 @@
+{
+  "edicion": {
+    "numero": 2,
+    "fecha": "2026-11-18",
+    "desde": "2026-11-11",
+    "hasta": "2026-11-18"
+  },
+  "tema_de_la_semana": {
+    "titulo": "GTA VI llega sin disco: el físico ya es un código y la nube, un atajo con tope",
+    "bajada": "En la semana previa al estreno, la caja de GTA VI resultó ser un código de descarga, con reclamos por códigos faltantes, y en México cuesta más que la versión digital. La nube aparece como vía para jugarlo en una Xbox One, con horas compradas aparte.",
+    "noticia_ids": [
+      "n03",
+      "n04",
+      "n05",
+      "n01"
+    ]
+  },
+  "dato_de_la_semana": {
+    "cifra": "40%",
+    "texto": "de los profesionales del videojuego usa IA generativa en su trabajo, según el informe State of the Game Industry de GDC; de ellos, 73% la usa sobre todo para investigar e idear, no para contenido final.",
+    "fuente": "Game Developer (informe de GDC)",
+    "url": "https://www.gamedeveloper.com/production/genai-using-developers-say-they-mostly-use-it-for-research-and-brainstorming-"
+  },
+  "resumen_ejecutivo": {
+    "claves": [
+      {
+        "texto": "GTA VI se vende en caja sin disco: hubo reclamos por códigos faltantes o usados, y en México la caja cuesta unos 200 pesos más que la versión digital.",
+        "tendencia_id": "t02",
+        "noticia_ids": [
+          "n03",
+          "n04",
+          "n05"
+        ]
+      },
+      {
+        "texto": "La UE propone prohibir las cajas de botín a menores y obligar a mostrar el valor real de las monedas virtuales; todavía debe aprobarse.",
+        "tendencia_id": "t12",
+        "noticia_ids": [
+          "n13",
+          "n14"
+        ]
+      },
+      {
+        "texto": "40% de los profesionales usa IA generativa, sobre todo para idear; a la vez, sindicatos europeos piden dejar de usarla siempre que se pueda.",
+        "tendencia_id": "t05",
+        "noticia_ids": [
+          "n09",
+          "n10",
+          "n11"
+        ]
+      },
+      {
+        "texto": "En México la nube se presenta como la forma de jugar GTA VI en una Xbox One, con horas compradas aparte del juego.",
+        "tendencia_id": "t01",
+        "noticia_ids": [
+          "n01",
+          "n02"
+        ]
+      },
+      {
+        "texto": "Las herramientas de IA empiezan a negarse a trabajar con PI ajena: Claude frenó un juego de fans de Pokémon.",
+        "tendencia_id": "t04",
+        "noticia_ids": [
+          "n07"
+        ]
+      }
+    ],
+    "decisiones": [
+      {
+        "accion": "Si se vende una edición en caja con código, acordar con los minoristas un protocolo de reposición y verificación de códigos.",
+        "urgencia": "ahora",
+        "por_que": "Sin disco, un código faltante o usado deja al comprador sin juego y sin reposición clara (n04).",
+        "tendencia_id": "t02"
+      },
+      {
+        "accion": "Revisar la monetización de los juegos con jugadores menores en la UE: cajas de botín, monedas virtuales y pago para progresar.",
+        "urgencia": "preparar",
+        "por_que": "La propuesta prohíbe vender cajas a menores y exige mostrar el valor real de las monedas (n13); falta su aprobación.",
+        "tendencia_id": "t12"
+      },
+      {
+        "accion": "Limitar el uso de IA a tareas internas (ideación, análisis, código) y exigir consentimiento y pago cuando toque voces o arte de personas.",
+        "urgencia": "ahora",
+        "por_que": "Ese es el uso mayoritario según GDC (n09) y el rechazo laboral ya está organizado (n10); el caso Witcher muestra un modelo aceptado (n11).",
+        "tendencia_id": "t05"
+      },
+      {
+        "accion": "Medir cuántos jugadores de consolas viejas en Latinoamérica compran horas de nube antes de apostar a ese canal.",
+        "urgencia": "vigilar",
+        "por_que": "La compra de horas sin Game Pass existe en mercados compatibles, pero no está claro en qué países de la región (n01).",
+        "tendencia_id": "t01"
+      },
+      {
+        "accion": "Monitorear juegos de fans y clones hechos con IA que usen la PI propia, sin depender de que el proveedor de IA los frene.",
+        "urgencia": "vigilar",
+        "por_que": "La restricción de un proveedor (n07) no cubre otras herramientas.",
+        "tendencia_id": "t04"
+      }
+    ],
+    "riesgos": [
+      {
+        "texto": "Reclamos y fraude con códigos en caja sin disco, con costo reputacional para el editor.",
+        "tendencia_id": "t02"
+      },
+      {
+        "texto": "Versiones regionales de la monetización para cumplir la norma europea, con costo de desarrollo y balanceo.",
+        "tendencia_id": "t12"
+      },
+      {
+        "texto": "Conflicto laboral por el uso de IA generativa en estudios europeos.",
+        "tendencia_id": "t05"
+      }
+    ],
+    "oportunidades": [
+      {
+        "texto": "Vender el lanzamiento a dueños de consolas viejas por la nube, con horas sueltas.",
+        "tendencia_id": "t01"
+      },
+      {
+        "texto": "Usar IA con consentimiento y pago para sostener la continuidad de voces e interpretaciones.",
+        "tendencia_id": "t05"
+      },
+      {
+        "texto": "Una consola que juegue la biblioteca de PC abre la tienda del hardware a más editores.",
+        "tendencia_id": "t03"
+      }
+    ]
+  },
+  "fuentes_consultadas": [
+    {
+      "id": "gamedeveloper",
+      "nombre": "Game Developer",
+      "url": "https://www.gamedeveloper.com/rss.xml",
+      "estado": "ok",
+      "nota": "RSS leído; 20 notas en la ventana, 7 usadas."
+    },
+    {
+      "id": "arstechnica",
+      "nombre": "Ars Technica",
+      "url": "https://arstechnica.com/gaming/feed/",
+      "estado": "ok",
+      "nota": "RSS leído; 5 notas en la ventana, 1 usada (la de Big Walk repite un tema de la edición 1)."
+    },
+    {
+      "id": "theverge",
+      "nombre": "The Verge Entertainment",
+      "url": "https://www.theverge.com/rss/games/index.xml",
+      "estado": "ok",
+      "nota": "RSS de games leído; la mayoría de las notas son reseñas y cobertura del lanzamiento de GTA VI; 1 usada."
+    },
+    {
+      "id": "wired_es",
+      "nombre": "Wired en Español",
+      "url": "https://es.wired.com/feed/rss",
+      "estado": "ok",
+      "nota": "RSS leído; 1 nota usada (precios de GTA VI en México) y 2 usadas como contraste (eventos en Latinoamérica, Ley de Equidad Digital)."
+    },
+    {
+      "id": "newzoo",
+      "nombre": "Newzoo",
+      "url": "https://newzoo.com/reports",
+      "estado": "bloqueada",
+      "nota": "Respuesta 403 (desafío anti-bots). No se intentó otro camino."
+    },
+    {
+      "id": "ampere",
+      "nombre": "Ampere Analysis",
+      "url": "https://www.ampereanalysis.com/reports",
+      "estado": "requiere_js",
+      "nota": "Responde 200 pero solo con un esqueleto que depende de JavaScript; sin contenido legible."
+    },
+    {
+      "id": "gartner_forrester",
+      "nombre": "Gartner / Forrester",
+      "url": null,
+      "estado": "sin_novedades",
+      "nota": "La búsqueda no encontró comunicados públicos de Gartner, Forrester, Ampere ni Newzoo en la ventana."
+    },
+    {
+      "id": "excelsior",
+      "nombre": "Excélsior (México)",
+      "url": "https://www.excelsior.com.mx/",
+      "estado": "ok",
+      "nota": "Hallado por búsqueda (ángulo Latam de nube)."
+    },
+    {
+      "id": "laderechadiario",
+      "nombre": "La Derecha Diario (Argentina)",
+      "url": "https://derechadiario.com.ar/entretenimiento/gta-6-llega-xbox-one-por-cloud-gaming-importante-limitacion",
+      "estado": "ok",
+      "nota": "Nota del 12/11; usada solo como contraste de n01 (topes de horas de Game Pass). Medio generalista con línea política declarada; no se usó como noticia."
+    },
+    {
+      "id": "worthplaying",
+      "nombre": "Worthplaying",
+      "url": "https://worthplaying.com/",
+      "estado": "ok",
+      "nota": "Reproduce el comunicado semanal de NVIDIA sobre GeForce NOW."
+    },
+    {
+      "id": "ggrecon",
+      "nombre": "GGRecon",
+      "url": "https://www.ggrecon.com/",
+      "estado": "ok",
+      "nota": "Hallado por búsqueda."
+    },
+    {
+      "id": "tweaktown",
+      "nombre": "TweakTown",
+      "url": "https://www.tweaktown.com/",
+      "estado": "ok",
+      "nota": "Esta semana respondió OK (la edición 1 la registró bloqueada). También se leyó una nota del 21/10 sobre precios de horas de nube, fuera de ventana."
+    },
+    {
+      "id": "kotaku",
+      "nombre": "Kotaku",
+      "url": "https://kotaku.com/",
+      "estado": "ok",
+      "nota": "Hallado por búsqueda."
+    },
+    {
+      "id": "pocketgamer",
+      "nombre": "PocketGamer.biz",
+      "url": "https://www.pocketgamer.biz/",
+      "estado": "ok",
+      "nota": "Nota del 11/11 sobre la Ley de Equidad Digital; otra de 2025 sobre Brasil usada como alerta."
+    },
+    {
+      "id": "mobilegamer",
+      "nombre": "mobilegamer.biz",
+      "url": "https://mobilegamer.biz/unworkable-unjustified-and-disproportionate-trade-bodies-slam-the-eus-digital-fairness-act/",
+      "estado": "bloqueada",
+      "nota": "Respuesta 429 (límite de pedidos) en dos intentos. La reacción de Video Games Europe y EGDF a la Ley de Equidad Digital quedó sin verificar y no se incluyó."
+    },
+    {
+      "id": "godisageek",
+      "nombre": "GodisaGeek",
+      "url": "https://godisageek.com/2026/11/gta-6-ps5-no-disc-download-code/",
+      "estado": "bloqueada",
+      "nota": "Respuesta 403 (desafío anti-bots); el tema se cubrió con GGRecon."
+    },
+    {
+      "id": "mdzol",
+      "nombre": "MDZ (Argentina)",
+      "url": "https://www.mdzol.com/tecnologia/gta-6-playstation-5-tendra-bloqueo-argentina-cuales-son-los-cambios-y-quienes-afecta-n1575146",
+      "estado": "bloqueada",
+      "nota": "Respuesta 403 en dos notas (bloqueo regional de GTA VI en Argentina y ventas en PlayStation Store). No se incluyeron."
+    },
+    {
+      "id": "tecnoblog",
+      "nombre": "Tecnoblog (Brasil)",
+      "url": "https://tecnoblog.net/noticias/microsoft-nega-exclusividade-de-gta-6-no-xbox-cloud-gaming/",
+      "estado": "bloqueada",
+      "nota": "Respuesta 403 (desafío anti-bots)."
+    },
+    {
+      "id": "notebookcheck",
+      "nombre": "Notebookcheck",
+      "url": "https://www.notebookcheck.org/",
+      "estado": "bloqueada",
+      "nota": "Respuesta 403 en la nota sobre precios regionales de PlayStation Store."
+    },
+    {
+      "id": "iphoneincanada",
+      "nombre": "iPhone in Canada",
+      "url": "https://iphoneincanada.ca/2026/11/05/playstation-digital-game-sales-earnings",
+      "estado": "ok",
+      "nota": "Nota del 05/11 sobre resultados de Sony, fuera de ventana; usada solo como alerta."
+    },
+    {
+      "id": "3djuegos",
+      "nombre": "3DJuegos",
+      "url": "https://www.3djuegos.com/",
+      "estado": "ok",
+      "nota": "Nota del 18/07 sobre precios regionales de PlayStation Store en Latinoamérica; usada solo como alerta."
+    },
+    {
+      "id": "windowscentral",
+      "nombre": "Windows Central",
+      "url": "https://windowscentral.com/gaming/xbox/microsoft-clearly-doesnt-see-much-of-a-future-for-xbox-cloud-gaming",
+      "estado": "ok",
+      "nota": "Columna del 05/09, fuera de ventana; usada solo como alerta."
+    },
+    {
+      "id": "inbox",
+      "nombre": "inbox/ (fuentes manuales)",
+      "url": null,
+      "estado": "sin_novedades",
+      "nota": "Solo hay LEEME.md y oxford-copyright-ia.md; este último es una lista de URLs de referencias (ya cargadas en la biblioteca) sin el formato de tres líneas, así que no se usó como noticia."
+    }
+  ],
+  "noticias": [
+    {
+      "id": "n01",
+      "fuente": "Excélsior (México)",
+      "url": "https://www.excelsior.com.mx/tecnologia/como-jugar-gta-vi-xbox-one-gracias-nube-horarios-e-instalacion",
+      "fecha_publicacion": "2026-11-11",
+      "titulo": "Cómo jugar GTA VI en Xbox One gracias a la nube: horarios e instalación",
+      "tipo": "noticia",
+      "tema": "cloud_gaming",
+      "tendencia_id": "t01",
+      "resumen_propio": "Diario mexicano que explica cómo jugar GTA VI desde una Xbox One por Xbox Cloud Gaming, con la configuración gráfica de Series S, sin comprar consola nueva. Detalla el horario de apertura en hora de México y recuerda que, desde el 11 de noviembre, en los mercados compatibles se puede comprar tiempo de nube sin suscripción a Game Pass. La nota no aclara si México está entre esos mercados.",
+      "dato_clave": "Desde el 11 de noviembre de 2026 se puede comprar tiempo de juego en la nube sin Game Pass en mercados compatibles.",
+      "lectura_negocio": "La prensa latinoamericana presenta la nube como la vía para jugar el lanzamiento del año con una consola de 2013: el argumento es acceso y ahorro de hardware, no calidad.",
+      "importancia": 3,
+      "horizonte": "corto",
+      "fase_curva": "pendiente",
+      "adopcion": 4,
+      "adopcion_latam": null,
+      "impacto": 7,
+      "cuadrante": "interrogante",
+      "brecha_global": 3,
+      "brecha_latam": 4,
+      "justificacion_brecha": "Global 3: el servicio funciona y suma un título masivo, pero solo en consolas Xbox. Latam 4: la nota explica el acceso desde México pero no confirma que la compra de horas sin Game Pass esté habilitada allí; La Derecha Diario (12/11) agrega que Game Pass tiene topes de 5 a 15 horas mensuales. Adopción 4 e impacto 7 por uso restringido a una plataforma con alcance masivo.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "media",
+      "verificada": true
+    },
+    {
+      "id": "n02",
+      "fuente": "Worthplaying (comunicado de NVIDIA)",
+      "url": "https://worthplaying.com/article/2026/11/12/news/151419-geforce-now-will-have-dawn-of-war-iv-at-launch-adds-10-titles-this-week/",
+      "fecha_publicacion": "2026-11-12",
+      "titulo": "GeForce NOW Will Have Dawn of War IV At Launch, Adds 10 Titles This Week",
+      "tipo": "noticia",
+      "tema": "cloud_gaming",
+      "tendencia_id": "t01",
+      "resumen_propio": "Comunicado semanal de NVIDIA reproducido por Worthplaying. GeForce NOW tendrá Warhammer 40,000: Dawn of War IV el día de su lanzamiento en Steam (3 de diciembre), suma diez juegos esta semana y lleva DLSS 5 a War Thunder y Where Winds Meet. Además anuncia que pasará a comunicar mensualmente los juegos nuevos de acceso instantáneo, para que los usuarios sepan con más anticipación qué llega a la nube.",
+      "dato_clave": "GeForce NOW suma 10 juegos esta semana y tendrá Dawn of War IV el día de su lanzamiento (3 de diciembre).",
+      "lectura_negocio": "La nube de tipo 'traé tu biblioteca' compite por estar el día del lanzamiento en PC: para un editor, entrar al catálogo de lanzamiento es un canal de alcance sin portar a cada dispositivo.",
+      "importancia": 2,
+      "horizonte": "corto",
+      "fase_curva": "pendiente",
+      "adopcion": 4,
+      "adopcion_latam": null,
+      "impacto": 6,
+      "cuadrante": "interrogante",
+      "brecha_global": 3,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 3: el servicio crece en catálogo y en funciones gráficas, pero el comunicado no da cifras de uso. Sin base para Latam: el comunicado no menciona la región. Es la fuente oficial del proveedor, sin contraste independiente.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "media",
+      "verificada": true
+    },
+    {
+      "id": "n03",
+      "fuente": "GGRecon",
+      "url": "https://www.ggrecon.com/articles/gta-6-code-in-box-copies-out-today/",
+      "fecha_publicacion": "2026-11-12",
+      "titulo": "GTA 6 boxed copies are out today, but there's no disc inside",
+      "tipo": "noticia",
+      "tema": "digitalizacion",
+      "tendencia_id": "t02",
+      "resumen_propio": "Las copias en caja de GTA VI salen a la venta el 12 de noviembre, una semana antes del estreno, con un código de descarga en lugar de disco. La nota cita la página de soporte de Rockstar y listados de Amazon que rotulan el producto como código en caja. El código se puede canjear al recibirlo para empezar la descarga anticipada, de hasta 212 GB según la nota.",
+      "dato_clave": "La descarga de GTA VI ocupa hasta 212 GB; la caja física solo trae un código.",
+      "lectura_negocio": "El lanzamiento más grande del año confirma que la 'edición física' pasa a ser un producto de regalo y exhibición: el minorista vende un acceso digital y la tienda de la plataforma se queda con la entrega.",
+      "importancia": 4,
+      "horizonte": "promedio_actual",
+      "fase_curva": "meseta",
+      "adopcion": 7,
+      "adopcion_latam": null,
+      "impacto": 7,
+      "cuadrante": "estrella",
+      "brecha_global": 2,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 2: el lanzamiento del año llega sin disco ni siquiera en la caja, señal de que lo digital ya es el estándar. Sin base para Latam en esta nota.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "alta",
+      "verificada": true
+    },
+    {
+      "id": "n04",
+      "fuente": "TweakTown",
+      "url": "https://www.tweaktown.com/news/114703/gta-6-players-furious-as-physical-copies-reportedly-arrive-with-missing-or-already-used-codes/index.html",
+      "fecha_publicacion": "2026-11-16",
+      "titulo": "GTA 6 players furious as physical copies reportedly arrive with missing or already-used codes",
+      "tipo": "noticia",
+      "tema": "digitalizacion",
+      "tendencia_id": "t02",
+      "resumen_propio": "TweakTown recoge reportes, vía Dexerto y Twisted Voxel, de compradores de la caja de GTA VI que recibieron cajas sin código o con códigos ya canjeados, en compras de GameStop, Best Buy y la tienda de Rockstar. Como la caja no trae disco, sin un código válido no hay forma de instalar el juego. Rockstar no confirmó la escala del problema y algunos clientes dicen que no les dieron reposición.",
+      "dato_clave": null,
+      "lectura_negocio": "Cuando lo físico es solo un código, el riesgo de fraude y de mala atención pasa a la cadena minorista: sin un protocolo de reposición, el costo reputacional cae sobre el editor.",
+      "importancia": 3,
+      "horizonte": "promedio_actual",
+      "fase_curva": "meseta",
+      "adopcion": 7,
+      "adopcion_latam": null,
+      "impacto": 5,
+      "cuadrante": "vaca_lechera",
+      "brecha_global": 2,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 2: el formato código en caja ya es estándar en el lanzamiento del año y aparecen sus fallas operativas. Sin base para Latam. Certeza media: son reportes de usuarios recogidos de segunda mano, sin confirmación de Rockstar sobre la escala.",
+      "tipo_evidencia": "opinion",
+      "certeza": "media",
+      "verificada": true
+    },
+    {
+      "id": "n05",
+      "fuente": "Wired en Español",
+      "url": "https://es.wired.com/articulos/donde-cuando-y-por-cuanto-podras-jugar-gta-vi",
+      "fecha_publicacion": "2026-11-17",
+      "titulo": "¿Dónde, cuándo y por cuánto podrás jugar GTA 6?",
+      "tipo": "analisis",
+      "tema": "digitalizacion",
+      "tendencia_id": "t02",
+      "resumen_propio": "Wired en Español detalla el costo de GTA VI en México: 1.499 pesos la edición estándar y 1.879 la Ultimate en tiendas digitales. En Gameplanet, una cadena mexicana, la caja cuesta 1.699 pesos, unos 200 más que en digital, y trae solo un código. La nota suma el costo de jugar en línea: un año de juego más suscripción sale más barato en PlayStation que en Xbox con los precios mexicanos.",
+      "dato_clave": "En México, la caja de GTA VI cuesta unos 200 pesos más que la versión digital (1.699 contra 1.499 pesos).",
+      "lectura_negocio": "En el mayor mercado de la región la caja ya no es la opción barata: el canal digital gana por precio y el minorista vende el mismo código con sobreprecio.",
+      "importancia": 4,
+      "horizonte": "promedio_actual",
+      "fase_curva": "meseta",
+      "adopcion": 7,
+      "adopcion_latam": null,
+      "impacto": 7,
+      "cuadrante": "estrella",
+      "brecha_global": 2,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 2: la venta digital ya es el canal de referencia y el físico se vende como código. Latam sin dato: la nota compara precios en México pero no mide cuánto se vende en digital en la región, por eso brecha_latam queda en null.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "alta",
+      "verificada": true
+    },
+    {
+      "id": "n06",
+      "fuente": "Game Developer",
+      "url": "https://www.gamedeveloper.com/console/new-xbox-codenamed-helix-gets-a-few-new-details",
+      "fecha_publicacion": "2026-11-16",
+      "titulo": "Xbox teases Project Helix as 'a console that is also capable of playing games from your PC'",
+      "tipo": "noticia",
+      "tema": "digitalizacion",
+      "tendencia_id": "t03",
+      "resumen_propio": "En una publicación por los 25 años de Xbox, el vicepresidente Jason Ronald describe a Project Helix, la próxima consola, como una consola capaz de jugar juegos de la PC, y no como una PC con interfaz de consola. Promete acceso a la biblioteca de cuatro generaciones y quitar las barreras entre juegos de consola y de PC. La nota aclara que hay pocos detalles concretos; los kits de desarrollo salen en 2027.",
+      "dato_clave": "Los kits de desarrollo de Project Helix empiezan a distribuirse en 2027, según Xbox.",
+      "lectura_negocio": "Si la consola juega la biblioteca de PC, la tienda deja de ser exclusiva del hardware: para editores y tiendas cambia dónde se compra y quién cobra la comisión.",
+      "importancia": 3,
+      "horizonte": "mediano",
+      "fase_curva": "disparador",
+      "adopcion": 3,
+      "adopcion_latam": null,
+      "impacto": 7,
+      "cuadrante": "interrogante",
+      "brecha_global": 4,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 4: es una promesa sin especificaciones ni fecha, lejos de la práctica actual de tiendas cerradas por consola. Certeza baja: describe un producto que todavía no existe y la propia nota dice que la información es escasa. Sin base para Latam.",
+      "tipo_evidencia": "opinion",
+      "certeza": "baja",
+      "verificada": true
+    },
+    {
+      "id": "n07",
+      "fuente": "Kotaku",
+      "url": "https://kotaku.com/pokemon-arena-2d-fan-project-vibe-coded-claude-ai-big-kid-nation-2000756082",
+      "fecha_publicacion": "2026-11-12",
+      "titulo": "Vibecoded Pokémon Fan Project Developer Is Outraged At AI Clampdowns On IP Infringement After Spending Thousands Per Month",
+      "tipo": "noticia",
+      "tema": "ia_clonacion_pirateria",
+      "tendencia_id": "t04",
+      "resumen_propio": "Kotaku cuenta el caso del responsable de Pokémon Arena 2D, un juego de fans hecho mayormente con IA que usa sprites extraídos y la marca Pokémon. Tras una ola de recompilaciones de juegos, Anthropic restringió a Claude para que no trabaje con propiedad intelectual ajena, y la herramienta se negó a seguir con el proyecto. El desarrollador dice gastar más de 2.000 dólares por mes en tokens y planea lanzar en diciembre.",
+      "dato_clave": "El desarrollador afirma gastar más de 2.000 dólares por mes en tokens de IA (dato del propio interesado).",
+      "lectura_negocio": "Los proveedores de IA empiezan a funcionar como primera barrera contra el uso de PI ajena, antes que los avisos de retiro: un filtro que no depende del titular de los derechos.",
+      "importancia": 3,
+      "horizonte": "corto",
+      "fase_curva": "pico",
+      "adopcion": 3,
+      "adopcion_latam": null,
+      "impacto": 7,
+      "cuadrante": "interrogante",
+      "brecha_global": 4,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 4: la restricción es reciente, de un solo proveedor, y no frena otras herramientas. Certeza media: los hechos los reporta la prensa, pero el gasto mensual y los planes de lanzamiento son declaraciones del propio desarrollador. Sin base para Latam.",
+      "tipo_evidencia": "opinion",
+      "certeza": "media",
+      "verificada": true
+    },
+    {
+      "id": "n08",
+      "fuente": "The Verge",
+      "url": "https://www.theverge.com/games/1035087/gta-vi-leaks-2022-hacker-pleads-guilty-arion-kurtaj",
+      "fecha_publicacion": "2026-11-16",
+      "titulo": "Hacker behind 2022 GTA VI leaks pleads guilty",
+      "tipo": "noticia",
+      "tema": "regulacion_pi",
+      "tendencia_id": null,
+      "resumen_propio": "Arion Kurtaj, miembro del grupo Lapsus$ que filtró 90 videos de GTA VI en 2022, se declaró culpable, según la Fiscalía de la Corona del Reino Unido. Además de Rockstar, atacó a BT/EE, Uber y Revolut, en parte mientras estaba bajo fianza. Había sido internado en un hospital de seguridad por su autismo y en enero fue declarado apto para juicio. La sentencia está prevista para el 23 de noviembre.",
+      "dato_clave": "Kurtaj filtró 90 videos de GTA VI en 2022; la sentencia está prevista para el 23 de noviembre.",
+      "lectura_negocio": "La filtración de material en desarrollo es un riesgo de seguridad con consecuencias penales, pero el proceso tarda años: la protección de PI depende primero de la seguridad interna.",
+      "importancia": 2,
+      "horizonte": "promedio_actual",
+      "fase_curva": "meseta",
+      "adopcion": 5,
+      "adopcion_latam": null,
+      "impacto": 4,
+      "cuadrante": "vaca_lechera",
+      "brecha_global": 1,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 1: perseguir penalmente filtraciones ya es práctica establecida; el caso sigue su curso judicial. Sin base para Latam.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "alta",
+      "verificada": true
+    },
+    {
+      "id": "n09",
+      "fuente": "Game Developer",
+      "url": "https://www.gamedeveloper.com/production/genai-using-developers-say-they-mostly-use-it-for-research-and-brainstorming-",
+      "fecha_publicacion": "2026-11-12",
+      "titulo": "GenAI-using developers say they mostly employ it for 'research and brainstorming'",
+      "tipo": "encuesta",
+      "tema": "ia_desarrollo",
+      "tendencia_id": "t05",
+      "resumen_propio": "Según el informe State of the Game Industry de GDC (noviembre de 2026), 40% de los profesionales usa IA generativa en el trabajo. Entre ellos, 73% la usa para investigar e idear, 62% para analizar y resumir datos y 56% para generar o depurar código; 37% para prototipos y 22% para arte conceptual. Solo una minoría la usa para contenido que ve el jugador. Persisten objeciones por calidad, ambiente y derechos de autor.",
+      "dato_clave": "Según GDC, vía Game Developer, 40% de los profesionales usa IA generativa; de ellos, 73% para investigar e idear.",
+      "lectura_negocio": "La IA entra por tareas internas (ideación, análisis, código), no por el contenido que ve el jugador: el ahorro está en preproducción y el riesgo reputacional, en lo visible.",
+      "importancia": 5,
+      "horizonte": "promedio_actual",
+      "fase_curva": "abismo",
+      "adopcion": 5,
+      "adopcion_latam": null,
+      "impacto": 7,
+      "cuadrante": "estrella",
+      "brecha_global": 3,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 3: el uso interno ya es mayoritario entre quienes adoptan la IA, pero el contenido visible para el jugador casi no la usa. Sin base para Latam: la encuesta no separa resultados por región.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "alta",
+      "verificada": true
+    },
+    {
+      "id": "n10",
+      "fuente": "Game Developer",
+      "url": "https://www.gamedeveloper.com/production/europe-s-game-worker-unions-publish-a-manifesto-warning-against-unchecked-ai-usage",
+      "fecha_publicacion": "2026-11-17",
+      "titulo": "European Game Worker unions publish manifesto warning against unchecked AI usage",
+      "tipo": "noticia",
+      "tema": "ia_desarrollo",
+      "tendencia_id": "t05",
+      "resumen_propio": "La rama de trabajadores de videojuegos de IWGB publicó un manifiesto junto con Game Workers Unite Ireland, CSVI de España y el consejo de FIOM-CGIL en Milán. Sostiene que la IA generativa empeora las condiciones laborales, se vende como reemplazo de trabajadores y genera presión de plazos. Propone dejar de usarla siempre que sea posible. La nota recuerda que, según GDC, 55% de los profesionales ve un impacto negativo de la IA.",
+      "dato_clave": "Según GDC, vía Game Developer, 55% de los profesionales cree que la IA generativa tiene un impacto negativo en la industria.",
+      "lectura_negocio": "El rechazo a la IA se organiza en sindicatos europeos: quien la adopte deberá negociar su uso, no solo comunicarlo.",
+      "importancia": 3,
+      "horizonte": "corto",
+      "fase_curva": "abismo",
+      "adopcion": 5,
+      "adopcion_latam": null,
+      "impacto": 7,
+      "cuadrante": "estrella",
+      "brecha_global": 3,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 3: el uso crece (40% según GDC) pero la resistencia laboral se formaliza, lo que aleja un estándar aceptado. Sin base para Latam: el manifiesto es europeo.",
+      "tipo_evidencia": "opinion",
+      "certeza": "media",
+      "verificada": true
+    },
+    {
+      "id": "n11",
+      "fuente": "Game Developer",
+      "url": "https://www.gamedeveloper.com/production/polish-voice-actor-for-geralt-returns-for-the-witcher-3-with-ai",
+      "fecha_publicacion": "2026-11-13",
+      "titulo": "Witcher 3 devs use AI to help Polish voice actor reprise role of Geralt after stroke",
+      "tipo": "noticia",
+      "tema": "ia_desarrollo",
+      "tendencia_id": "t05",
+      "resumen_propio": "CD Projekt Red usará IA para que Jacek Rozenek, voz polaca de Geralt, retome el papel en la nueva expansión de The Witcher 3 tras un accidente cerebrovascular que le cambió la voz. El actor dio su consentimiento, sigue contratado y cobrando, y el modelo de Respeecher se entrenó con sus grabaciones previas. El estudio aclara que es una excepción por la salud del actor, no una práctica habitual.",
+      "dato_clave": null,
+      "lectura_negocio": "Aparece un modelo aceptable de IA en el contenido visible: consentimiento, pago al actor y uso acotado. Es una referencia para negociar con talento y sindicatos.",
+      "importancia": 3,
+      "horizonte": "corto",
+      "fase_curva": "pendiente",
+      "adopcion": 3,
+      "adopcion_latam": null,
+      "impacto": 5,
+      "cuadrante": "perro",
+      "brecha_global": 3,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 3: el uso de voces con IA con consentimiento existe pero es excepcional, según el propio estudio. Sin base para Latam.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "alta",
+      "verificada": true
+    },
+    {
+      "id": "n12",
+      "fuente": "Ars Technica",
+      "url": "https://arstechnica.com/gaming/2026/11/will-wrights-next-simulation-will-use-ai-to-mine-content-from-your-memories/",
+      "fecha_publicacion": "2026-11-18",
+      "titulo": "Will Wright's next simulation will use AI to mine content from your memories",
+      "tipo": "noticia",
+      "tema": "ia_desarrollo",
+      "tendencia_id": "t06",
+      "resumen_propio": "Will Wright, creador de SimCity y The Sims, anunció MyMems junto con Gallium Studios y Artificial Agency, para el año próximo. La simulación usa IA generativa para convertir recuerdos que aporta el jugador en personas digitales que forman equipos y resuelven desafíos, y en zonas temáticas como deportes o vacaciones. También permite crear mundos con recuerdos compartidos con familia o amigos.",
+      "dato_clave": "MyMems saldría el año próximo, según el comunicado de Gallium Studios y Artificial Agency.",
+      "lectura_negocio": "Un diseñador de referencia apuesta por un juego cuyo contenido central lo genera la IA a partir del jugador: valida el género, pero también abre preguntas de privacidad y de datos personales.",
+      "importancia": 3,
+      "horizonte": "largo",
+      "fase_curva": "disparador",
+      "adopcion": 1,
+      "adopcion_latam": null,
+      "impacto": 7,
+      "cuadrante": "interrogante",
+      "brecha_global": 5,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 5. Certeza baja: es un anuncio de un juego que no salió, con contenido generado que todavía no se probó con jugadores. Sin base para Latam.",
+      "tipo_evidencia": "especulacion",
+      "certeza": "baja",
+      "verificada": true
+    },
+    {
+      "id": "n13",
+      "fuente": "Game Developer",
+      "url": "https://www.gamedeveloper.com/business/european-union-proposes-digital-fairness-act-which-could-have-major-effects-on-game-development",
+      "fecha_publicacion": "2026-11-13",
+      "titulo": "Newly-proposed EU law could place tight restrictions on free-to-play games",
+      "tipo": "analisis",
+      "tema": "regulacion_pi",
+      "tendencia_id": "t12",
+      "resumen_propio": "La Comisión Europea presentó la propuesta de Ley de Equidad Digital. Para juegos, exige mostrar el valor en dinero real de las monedas virtuales, desactivarlas por defecto en productos para menores salvo aprobación de un adulto, prohibir la venta de cajas de botín a menores y obligar a informar probabilidades a los adultos. También restringe el pago para progresar y exige poder apagar notificaciones y rachas. La nota advierte definiciones ambiguas.",
+      "dato_clave": "La propuesta tiene 71 páginas y prohibiría vender cajas de botín a menores en toda la UE.",
+      "lectura_negocio": "Si se aprueba, monetizar juegos gratuitos en Europa exigirá versiones o configuraciones por edad y región: un costo de desarrollo y balanceo, sobre todo en juegos competitivos con menores y adultos.",
+      "importancia": 5,
+      "horizonte": "mediano",
+      "fase_curva": "disparador",
+      "adopcion": 2,
+      "adopcion_latam": null,
+      "impacto": 8,
+      "cuadrante": "interrogante",
+      "brecha_global": 4,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 4: la propuesta todavía debe negociarse y aprobarse, y la práctica actual de monetización está lejos de sus exigencias. Certeza media: el texto existe, pero su versión final no ocurrió. Sin base para Latam en esta nota.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "media",
+      "verificada": true
+    },
+    {
+      "id": "n14",
+      "fuente": "PocketGamer.biz",
+      "url": "https://www.pocketgamer.biz/digital-fairness-act-raises-questions-over-mobile-game-monetisation",
+      "fecha_publicacion": "2026-11-11",
+      "titulo": "Digital Fairness Act raises questions over future of mobile game monetisation",
+      "tipo": "analisis",
+      "tema": "regulacion_pi",
+      "tendencia_id": "t12",
+      "resumen_propio": "PocketGamer.biz reúne opiniones sobre el borrador filtrado y la propuesta oficial de la Ley de Equidad Digital. Oscar Clark (Arcanix.AI) advierte que el mayor impacto caerá sobre los equipos más chicos, aunque admite fallas de autorregulación de la industria. El analista James Tamim ve positivo que una regulación única reemplace 27 normas nacionales, porque daría más certeza jurídica a quienes operan en varios países.",
+      "dato_clave": null,
+      "lectura_negocio": "La misma norma se lee como carga para estudios chicos y como simplificación para quien opera en toda la UE: la exposición depende del modelo de monetización y del tamaño.",
+      "importancia": 4,
+      "horizonte": "mediano",
+      "fase_curva": "disparador",
+      "adopcion": 2,
+      "adopcion_latam": null,
+      "impacto": 8,
+      "cuadrante": "interrogante",
+      "brecha_global": 4,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 4: la propuesta está en debate y los expertos difieren sobre su alcance. Certeza media: son opiniones sobre una norma no aprobada. Sin base para Latam.",
+      "tipo_evidencia": "opinion",
+      "certeza": "media",
+      "verificada": true
+    },
+    {
+      "id": "n15",
+      "fuente": "Game Developer",
+      "url": "https://www.gamedeveloper.com/business/-it-s-common-for-there-to-be-speculation-and-headlines-unity-exec-addresses-acquisition-rumors",
+      "fecha_publicacion": "2026-11-16",
+      "titulo": "'It's common for there to be speculation and headlines:' Unity exec addresses acquisition rumors",
+      "tipo": "noticia",
+      "tema": "mercado",
+      "tendencia_id": "t11",
+      "resumen_propio": "Adam Smith, vicepresidente de producto de Unity, respondió al reporte de Reuters sobre conversaciones con el grupo de Silver Lake y el PIF saudita: dijo que la especulación es habitual tras un buen trimestre y que no hay nada más que decir. Unity reportó 622 millones de dólares de ingresos, 32% más interanual, con pérdida de 121,6 millones; la división de publicidad creció 43% y la del motor, 8%.",
+      "dato_clave": "Unity facturó 622 millones de dólares en el trimestre, 32% más interanual; el motor creció 8%.",
+      "lectura_negocio": "El crecimiento de Unity viene de la publicidad más que del motor: un comprador valoraría el negocio de anuncios, y los estudios que dependen del motor no tienen señales sobre sus condiciones.",
+      "importancia": 3,
+      "horizonte": "mediano",
+      "fase_curva": "meseta",
+      "adopcion": 4,
+      "adopcion_latam": null,
+      "impacto": 6,
+      "cuadrante": "interrogante",
+      "brecha_global": 2,
+      "brecha_latam": null,
+      "justificacion_brecha": "Global 2: la operación no se confirmó ni se descartó. Certeza media: los resultados trimestrales son dato medido, pero la compra sigue sin ocurrir. Sin base para Latam.",
+      "tipo_evidencia": "dato_medido",
+      "certeza": "media",
+      "verificada": true
+    }
+  ],
+  "frente_a_frente": {
+    "coincidencias": [
+      {
+        "titulo": "La caja de GTA VI es un código",
+        "texto": "GGRecon, TweakTown y Wired en Español coinciden en que la edición en caja de GTA VI no trae disco sino un código de descarga, y en que sin ese código no hay forma de instalar el juego.",
+        "fuentes": [
+          "GGRecon",
+          "TweakTown",
+          "Wired en Español"
+        ]
+      },
+      {
+        "titulo": "Qué cambia la Ley de Equidad Digital para los juegos",
+        "texto": "Game Developer y PocketGamer.biz coinciden en que la propuesta restringe cajas de botín, pago para progresar y monedas virtuales para menores; Wired en Español agrega la obligación de mostrar precios claros en monedas virtuales y de poder desactivar diseños que fomentan el gasto compulsivo.",
+        "fuentes": [
+          "Game Developer",
+          "PocketGamer.biz",
+          "Wired en Español"
+        ]
+      },
+      {
+        "titulo": "GTA VI en la nube para Xbox One",
+        "texto": "Excélsior y La Derecha Diario coinciden en que GTA VI se podrá jugar en Xbox One por la nube desde el 19 de noviembre y en que desde el 11 de noviembre se pueden comprar horas de nube sin Game Pass en mercados compatibles.",
+        "fuentes": [
+          "Excélsior",
+          "La Derecha Diario"
+        ]
+      }
+    ],
+    "diferencias": [
+      {
+        "titulo": "¿Carga para los chicos o certeza para todos?",
+        "texto": "En PocketGamer.biz, Oscar Clark advierte que el impacto mayor caerá sobre los equipos chicos, mientras James Tamim destaca que una regla única para la UE da más certeza jurídica; Game Developer subraya el trabajo de mantener versiones distintas por región.",
+        "fuentes": [
+          "PocketGamer.biz",
+          "Game Developer"
+        ]
+      },
+      {
+        "titulo": "¿Cuándo se presentó la ley?",
+        "texto": "PocketGamer.biz fecha la presentación oficial de la propuesta el 11 de noviembre; Wired en Español, en una nota del 15 de noviembre, dice que se presentó 'este viernes'. No se eligió una fecha.",
+        "fuentes": [
+          "PocketGamer.biz",
+          "Wired en Español"
+        ]
+      },
+      {
+        "titulo": "Nube: ¿fin del requisito de consola o acceso racionado?",
+        "texto": "Excélsior presenta la nube como el fin de la necesidad de una consola nueva; La Derecha Diario subraya que los topes de Game Pass (5 a 15 horas mensuales) equivalen a entre 10 y 30 minutos por día.",
+        "fuentes": [
+          "Excélsior",
+          "La Derecha Diario"
+        ]
+      },
+      {
+        "titulo": "IA: uso selectivo o abandono",
+        "texto": "La encuesta de GDC muestra más apertura a usos internos de la IA (n09); el manifiesto sindical europeo propone dejar de usarla siempre que sea posible (n10).",
+        "fuentes": [
+          "Game Developer (informe de GDC)",
+          "Game Developer (manifiesto sindical)"
+        ]
+      }
+    ]
+  },
+  "alertas": [
+    {
+      "tipo": "oportunidad",
+      "fuente": "iPhone in Canada",
+      "url": "https://iphoneincanada.ca/2026/11/05/playstation-digital-game-sales-earnings",
+      "fecha": "2026-11-05",
+      "titulo": "PlayStation Digital Game Sales Hit 78% as Sony Reports Stronger Earnings",
+      "resumen": "Según el informe trimestral de Sony, vía iPhone in Canada, 78% de las ventas de juegos completos de PlayStation en el segundo trimestre fiscal fue digital, seis puntos más que un año antes; aun así, los ingresos por software físico subieron 21,7%. Sony planea dejar de producir discos para juegos nuevos desde enero de 2028.",
+      "por_que_importa": "Confirma que el canal digital domina en la plataforma más grande, pero el físico todavía vende: retirarlo es una decisión de costo, no una falta de demanda."
+    },
+    {
+      "tipo": "riesgo",
+      "fuente": "3DJuegos",
+      "url": "https://www.3djuegos.com/ps5/noticias/sony-fin-confirma-precios-regionales-playstation-store-para-latinoamerica-jugadores-mexicanos-estan-decepcionados",
+      "fecha": "2026-07-18",
+      "titulo": "Sony por fin confirma los precios regionales en PlayStation Store para Latinoamérica, pero los jugadores mexicanos están decepcionados",
+      "resumen": "PlayStation Store pasó a cobrar en pesos en México desde el 20 de agosto, con una tasa fija de 20,50 pesos por dólar cuando el cambio real rondaba los 17,50, según 3DJuegos. La nota advierte que eso encarece saldos, compras y suscripciones.",
+      "por_que_importa": "La conversión de precios en tiendas digitales de la región puede encarecer los lanzamientos y abrir la puerta a reclamos de consumidores."
+    },
+    {
+      "tipo": "riesgo",
+      "fuente": "PocketGamer.biz",
+      "url": "https://www.pocketgamer.biz/brazil-bans-loot-boxes-for-under-18s-in-online-child-safety-measure",
+      "fecha": "2025-09-29",
+      "titulo": "Brazil bans loot boxes for under 18s in online child safety measure",
+      "resumen": "Brasil sancionó la Ley 15.211/2025, que desde marzo de 2026 prohíbe las cajas de botín en juegos dirigidos a menores, con multas de hasta 10% de la facturación en el país, según PocketGamer.biz.",
+      "por_que_importa": "La propuesta europea no es un caso aislado: el mayor mercado de Latinoamérica ya tiene una prohibición vigente para menores."
+    },
+    {
+      "tipo": "riesgo",
+      "fuente": "Windows Central",
+      "url": "https://windowscentral.com/gaming/xbox/microsoft-clearly-doesnt-see-much-of-a-future-for-xbox-cloud-gaming",
+      "fecha": "2026-09-05",
+      "titulo": "Microsoft's recent decisions paint a clear picture — Xbox Cloud Gaming is no longer the future the company once promised",
+      "resumen": "Columna de opinión que critica los topes de horas de nube de Game Pass desde noviembre (15, 10 y 5 horas según el plan). Según Microsoft, citada en la nota, afectan a 4% de los suscriptores; el autor compara con GeForce NOW, que ofrece hasta 100 horas en su plan más alto.",
+      "por_que_importa": "Si el operador más grande raciona la nube, el modelo pasa a pago por uso: cambia el cálculo para quien la planee como canal de acceso."
+    }
+  ],
+  "limitaciones": [
+    "GTA VI sale el 19 de noviembre, fuera de la ventana: no hay datos de ventas ni de uso de la nube en el lanzamiento.",
+    "La cobertura de nube de la semana fue escasa: los topes de horas de Game Pass se anunciaron en septiembre y no se encontraron notas en la ventana que confirmen su puesta en marcha; quedaron como alerta.",
+    "Newzoo bloqueó el acceso y Ampere requiere JavaScript; no hubo comunicados públicos de consultoras en la ventana.",
+    "La reacción de Video Games Europe y EGDF a la Ley de Equidad Digital (mobilegamer.biz) no se pudo abrir por límite de pedidos y no se incluyó.",
+    "Varias fuentes latinoamericanas bloquearon el acceso (MDZ, Tecnoblog, Notebookcheck): quedaron sin cubrir el bloqueo regional de GTA VI en Argentina y las ventas en PlayStation Store en la región. adopcion_latam quedó en null en todas las noticias.",
+    "En clonación con IA, la cobertura fuerte (retiros de Activision, Epic y Microsoft) es de octubre; esta semana solo hubo un caso puntual (n07).",
+    "Quedaron afuera por menor relevancia para las prioridades: despidos en Firaxis, PS5 con 100 millones de unidades distribuidas y la renuncia del CEO de NVIDIA."
+  ]
+}
