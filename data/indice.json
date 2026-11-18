@@ -8,6 +8,15 @@
       "archivo": "data/ediciones/2026-11-11.json",
       "titulo": "GTA VI como prueba de estrés: nube, clonación con IA y formato digital",
       "noticias": 15
+    },
+    {
+      "numero": 2,
+      "fecha": "2026-11-18",
+      "desde": "2026-11-11",
+      "hasta": "2026-11-18",
+      "archivo": "data/ediciones/2026-11-18.json",
+      "titulo": "GTA VI llega sin disco: el físico ya es un código y la nube, un atajo con tope",
+      "noticias": 15
     }
   ]
 }
